@@ -1,9 +1,12 @@
 {
   "name": "future-fin",
   "version": "1.0.0",
-  "description": "",
+  "description": "Financial Plan builder app.",
   "main": "index.js",
   "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,5 +26,10 @@
   "bugs": {
     "url": "https://github.com/mudrila/future-fin/issues"
   },
-  "homepage": "https://github.com/mudrila/future-fin#readme"
+  "homepage": "https://github.com/mudrila/future-fin#readme",
+  "dependencies": {
+    "next": "^9.5.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
 }
