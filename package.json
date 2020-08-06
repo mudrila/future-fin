@@ -1,0 +1,27 @@
+{
+  "name": "future-fin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mudrila/future-fin.git"
+  },
+  "keywords": [
+    "React",
+    "Next.js",
+    "Redux",
+    "Node.js",
+    "Financing",
+    "Planning"
+  ],
+  "author": "Kirill Klimenko <klimenkomud@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mudrila/future-fin/issues"
+  },
+  "homepage": "https://github.com/mudrila/future-fin#readme"
+}
