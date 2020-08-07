@@ -12,12 +12,12 @@ export default {
   },
   BUDGET_DASHBOARD: {
     ROUTE_NAME: "BUDGET_DASHBOARD",
-    PATH: "/apps/budget/dashboard",
+    PATH: "/apps/budget",
     TITLE: "Budget Overview"
   },
   FINPLAN_DASHBOARD: {
     ROUTE_NAME: "FINPLAN_DASHBOARD",
-    PATH: "/apps/finplan/dashboard",
+    PATH: "/apps/finplan",
     TITLE: "Financial Plan Overview"
   }
 };
