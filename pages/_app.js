@@ -6,8 +6,10 @@ import Head from "next/head";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
-import theme from "../ui-library/theme";
 import { useStore } from "../store";
+import ROUTES from "../config/routes";
+import theme from "../ui-library/theme";
+import { Navigation } from "../ui-library";
 
 export default function App({ Component, pageProps }) {
   React.useEffect(() => {
@@ -31,6 +33,7 @@ export default function App({ Component, pageProps }) {
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
+          <Navigation items={ROUTES} />
           <Component {...pageProps} />
         </ThemeProvider>
       </Provider>
@@ -39,7 +42,7 @@ export default function App({ Component, pageProps }) {
 }
 
 App.propTypes = {
-  Component: PropTypes.node,
+  Component: PropTypes.any,
   pageProps: PropTypes.shape({
     initialReduxState: PropTypes.shape({})
   })

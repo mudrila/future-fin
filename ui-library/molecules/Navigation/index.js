@@ -1,18 +1,27 @@
-import { Drawer } from "@material-ui/core";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ListItem from "@material-ui/core/ListItem";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+import clsx from "clsx";
+import { useTheme } from "@material-ui/core/styles";
+import {
+  Drawer,
+  AppBar,
+  Toolbar,
+  List,
+  IconButton,
+  Typography,
+  ListItem,
+  Divider,
+  ListItemIcon,
+  ListItemText
+} from "@material-ui/core";
+
+import {
+  Menu,
+  ChevronLeft,
+  ChevronRight,
+  Inbox,
+  Mail
+} from "@material-ui/icons";
+
+import useStyles from "./styles";
 
 export default function Navigation() {
   const classes = useStyles();
@@ -44,7 +53,7 @@ export default function Navigation() {
               [classes.hide]: open
             })}
           >
-            <MenuIcon />
+            <Menu />
           </IconButton>
           <Typography variant="h6" noWrap>
             Mini variant drawer
@@ -66,11 +75,7 @@ export default function Navigation() {
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
+            {theme.direction === "rtl" ? <ChevronRight /> : <ChevronLeft />}
           </IconButton>
         </div>
         <Divider />
@@ -78,7 +83,7 @@ export default function Navigation() {
           {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {index % 2 === 0 ? <Inbox /> : <Mail />}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
@@ -89,7 +94,7 @@ export default function Navigation() {
           {["All mail", "Trash", "Spam"].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {index % 2 === 0 ? <Inbox /> : <Mail />}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>

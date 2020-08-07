@@ -1,22 +1,22 @@
 export default {
   HOME: {
-    ROUTE_NAME: "HOME",
+    KEY: "HOME",
     PATH: "/",
     TITLE: "Dashboard"
   },
   APPS_DASHBOARD: {
-    ROUTE_NAME: "APPS_DASHBOARD",
+    KEY: "APPS_DASHBOARD",
     PATH: "/apps",
     TITLE: "Apps Overview",
     children: ["BUDGET_DASHBOARD", "FINPLAN_DASHBOARD"]
   },
   BUDGET_DASHBOARD: {
-    ROUTE_NAME: "BUDGET_DASHBOARD",
+    KEY: "BUDGET_DASHBOARD",
     PATH: "/apps/budget",
     TITLE: "Budget Overview"
   },
   FINPLAN_DASHBOARD: {
-    ROUTE_NAME: "FINPLAN_DASHBOARD",
+    KEY: "FINPLAN_DASHBOARD",
     PATH: "/apps/finplan",
     TITLE: "Financial Plan Overview"
   }
