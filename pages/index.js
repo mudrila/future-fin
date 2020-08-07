@@ -1,5 +1,5 @@
 function HomePage() {
-  return <div>Welcome to Next.js!</div>;
+  return <section>Welcome to FinPlan Builder!</section>;
 }
 
 export default HomePage;

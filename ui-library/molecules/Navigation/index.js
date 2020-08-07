@@ -23,7 +23,7 @@ import {
 
 import useStyles from "./styles";
 
-export default function Navigation() {
+export default function Navigation({}) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
