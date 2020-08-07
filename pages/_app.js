@@ -5,8 +5,8 @@ import Head from "next/head";
 
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { theme } from "@complex-ity/ui-library";
 
+import theme from "../ui-library/theme";
 import { useStore } from "../store";
 
 export default function App({ Component, pageProps }) {
