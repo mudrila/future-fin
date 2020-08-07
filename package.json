@@ -32,6 +32,7 @@
   },
   "homepage": "https://github.com/mudrila/future-fin#readme",
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
     "next": "^9.5.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
@@ -41,6 +42,13 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.5",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "prettier": "^2.0.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
