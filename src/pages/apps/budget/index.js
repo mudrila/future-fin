@@ -1,40 +1,57 @@
-import { Fab, Typography, Divider, makeStyles } from "@material-ui/core";
-import { Add } from "@material-ui/icons";
+import { Typography, Divider, makeStyles } from "@material-ui/core";
+import { AddButton } from "../../../ui-library";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    width: "100%"
+    width: "100%",
+    flexWrap: "wrap"
+  },
+  section: {
+    display: "flex",
+    width: "100%",
+    flexWrap: "wrap"
+  },
+  heading: {
+    width: "100%",
+    margin: theme.spacing(3)
+  },
+  divider: {
+    width: "90%",
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2)
   }
 }));
 
-function BudgetDashboard(props) {
+function BudgetDashboard() {
   const classes = useStyles();
   return (
     <section className={classes.root}>
-      <Typography variant="h4">Budget Dashboard</Typography>
-      <Divider />
-      <section>
-        <Typography variant="h5">Incomes</Typography>
-        <Fab color="primary" aria-label="Add Income">
-          <Add />
-        </Fab>
+      <Typography variant="h4" className={classes.heading} align="center">
+        Budget Dashboard
+      </Typography>
+      <Divider className={classes.divider} />
+      <section className={classes.section}>
+        <Typography variant="h5" className={classes.heading} align="center">
+          Incomes
+        </Typography>
+        <AddButton />
       </section>
-      <Divider />
-      <section>
-        <Typography variant="h5">Accounts</Typography>
-        <Fab color="primary" aria-label="Add Account">
-          <Add />
-        </Fab>
+      <Divider className={classes.divider} />
+      <section className={classes.section}>
+        <Typography variant="h5" className={classes.heading} align="center">
+          Accounts
+        </Typography>
+        <AddButton />
       </section>
-      <Divider />
-      <section>
-        <Typography variant="h5">Spendings</Typography>
-        <Fab color="primary" aria-label="Add Spending Category">
-          <Add />
-        </Fab>
+      <Divider className={classes.divider} />
+      <section className={classes.section}>
+        <Typography variant="h5" className={classes.heading} align="center">
+          Spendings
+        </Typography>
+        <AddButton />
       </section>
-      <Divider />
+      <Divider className={classes.divider} />
     </section>
   );
 }
