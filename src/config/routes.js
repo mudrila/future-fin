@@ -18,6 +18,6 @@ export default {
   FINPLAN_DASHBOARD: {
     KEY: "FINPLAN_DASHBOARD",
     PATH: "/apps/finplan",
-    TITLE: "Financial Plan Overview"
+    TITLE: "Financial Plan"
   }
 };

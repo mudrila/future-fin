@@ -1,5 +1,6 @@
+import Link from "next/link";
+import PropTypes from "prop-types";
 import clsx from "clsx";
-import { useTheme } from "@material-ui/core/styles";
 import {
   Drawer,
   AppBar,
@@ -13,19 +14,13 @@ import {
   ListItemText
 } from "@material-ui/core";
 
-import {
-  Menu,
-  ChevronLeft,
-  ChevronRight,
-  Inbox,
-  Mail
-} from "@material-ui/icons";
+import { ChevronLeft, Menu } from "@material-ui/icons";
+import { ICONS_MAP } from "./config";
 
 import useStyles from "./styles";
 
-export default function Navigation({}) {
+export default function Navigation({ items }) {
   const classes = useStyles();
-  const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -56,7 +51,7 @@ export default function Navigation({}) {
             <Menu />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Mini variant drawer
+            FutureFin | Financial Plan Builder
           </Typography>
         </Toolbar>
       </AppBar>
@@ -75,32 +70,37 @@ export default function Navigation({}) {
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? <ChevronRight /> : <ChevronLeft />}
+            <ChevronLeft />
           </IconButton>
         </div>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <Inbox /> : <Mail />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <Inbox /> : <Mail />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          {items.map((item) => {
+            const ItemIcon = ICONS_MAP[item.KEY];
+            return (
+              <Link key={item.KEY} href={item.PATH}>
+                <ListItem button selected={item.selected}>
+                  <ListItemIcon>
+                    <ItemIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={item.TITLE} />
+                </ListItem>
+              </Link>
+            );
+          })}
         </List>
       </Drawer>
     </>
   );
 }
+
+Navigation.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      KEY: PropTypes.string.isRequired,
+      PATH: PropTypes.string.isRequired,
+      TITLE: PropTypes.string.isRequired,
+      children: PropTypes.arrayOf(PropTypes.string)
+    })
+  ).isRequired
+};

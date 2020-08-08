@@ -12,10 +12,8 @@ import theme from "../ui-library/theme";
 import { Navigation } from "../ui-library";
 
 const useStyles = makeStyles((theme) => ({
-  toolbar: {
+  innerContent: {
     display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar
@@ -23,10 +21,11 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    marginTop: theme.spacing(5)
+    marginTop: theme.spacing(7),
+    marginLeft: 210
   }
 }));
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps, router }) {
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
@@ -36,6 +35,16 @@ export default function App({ Component, pageProps }) {
   }, []);
   const store = useStore(pageProps.initialReduxState);
   const classes = useStyles();
+  const navigationItems = Object.values(ROUTES).map((route) => {
+    if (route.PATH === router.route) {
+      return {
+        ...route,
+        selected: true
+      };
+    } else {
+      return route;
+    }
+  });
   return (
     <>
       <Head>
@@ -48,9 +57,9 @@ export default function App({ Component, pageProps }) {
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Navigation items={ROUTES} />
+          <Navigation items={navigationItems} />
           <main className={classes.content}>
-            <article className={classes.toolbar}>
+            <article className={classes.innerContent}>
               <Component {...pageProps} />
             </article>
           </main>
@@ -64,6 +73,9 @@ App.propTypes = {
   Component: PropTypes.any,
   pageProps: PropTypes.shape({
     initialReduxState: PropTypes.shape({})
+  }),
+  router: PropTypes.shape({
+    route: PropTypes.string.isRequired
   })
 };
 
