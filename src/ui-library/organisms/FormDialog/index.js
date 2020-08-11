@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 
 import useForm from "../Form/hooks";
+import useStyles from "./styles";
 
 // This components partially repeat Form component
 // Since submit handled in a bit different way
@@ -35,6 +36,7 @@ export default function FormDialog({
     fields: formProps.fields,
     onSubmit
   });
+  const classes = useStyles();
   return (
     <>
       <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
@@ -57,6 +59,7 @@ export default function FormDialog({
                       {...params}
                       label={field.label}
                       variant="outlined"
+                      helperText={field.helperText}
                     />
                   );
                   inputProps.getOptionLabel = (option) => {
@@ -69,16 +72,27 @@ export default function FormDialog({
                   inputProps.onChange = (event, value) =>
                     handleAutocompleteChange(field.name, value);
                 }
-                return <Component key={field.name} {...inputProps} />;
+                return (
+                  <Component
+                    key={field.name}
+                    {...inputProps}
+                    className={classes.inputField}
+                  />
+                );
               })}
             </form>
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} color="primary">
+          <Button onClick={onClose} color="primary" variant="contained">
             {cancelButtonText}
           </Button>
-          <Button onClick={handleSubmit} color="primary" type="submit">
+          <Button
+            onClick={handleSubmit}
+            color="primary"
+            type="submit"
+            variant="contained"
+          >
             {submitButtonText}
           </Button>
         </DialogActions>

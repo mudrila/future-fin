@@ -1,13 +1,16 @@
 export const budgetDashbaordConfig = {
   entityParts: [
     {
-      name: "incomes"
+      name: "incomes",
+      modalTitle: "Source of Income"
     },
     {
-      name: "accounts"
+      name: "accounts",
+      modalTitle: "Account"
     },
     {
-      name: "spendings"
+      name: "spendings",
+      modalTitle: "Spending Category"
     }
   ],
   entityName: "budget",
@@ -20,7 +23,9 @@ export const budgetDashbaordConfig = {
           name: "sourceName",
           required: true,
           label: "Source",
-          value: "Salary"
+          value: "Salary",
+          variant: "outlined",
+          helperText: "Name of Source of Income"
         },
         {
           type: "number",
@@ -28,7 +33,8 @@ export const budgetDashbaordConfig = {
           required: true,
           label: "Amount",
           helperText: "Expected Amount of Income",
-          value: ""
+          value: "",
+          variant: "outlined"
         },
         {
           type: "autocomplete",
@@ -61,10 +67,12 @@ export const budgetDashbaordConfig = {
       ]
     },
     accounts: {
-      fields: []
+      fields: [],
+      formName: "budget-accounts"
     },
     spendings: {
-      fields: []
+      fields: [],
+      formName: "budget-spendings"
     }
   }
 };

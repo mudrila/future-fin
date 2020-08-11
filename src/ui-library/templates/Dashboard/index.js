@@ -41,8 +41,9 @@ export default function Dashboard({
               open={modalsState[entityPart.name].isModalOpen}
               onClose={() => handleModalClose(entityPart.name)}
               onSubmit={(formValues) =>
-                handleSubmit(formsConfig[entityPart.name], formValues)
+                handleSubmit(entityPart.name, formValues)
               }
+              title={`Create new ${entityPart.modalTitle}`}
             />
           </section>
           <Divider className={classes.divider} />
