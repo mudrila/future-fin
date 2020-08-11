@@ -3,7 +3,11 @@ import { Popover } from "@material-ui/core";
 import { useHoverablePopover } from "./hooks";
 import useStyles from "./styles";
 
-export function HoverablePopover({ TriggerComponent, children }) {
+export function HoverablePopover({
+  TriggerComponent,
+  children,
+  ...TriggerComponentProps
+}) {
   const {
     handlePopoverOpen,
     handlePopoverClose,
@@ -14,6 +18,7 @@ export function HoverablePopover({ TriggerComponent, children }) {
   return (
     <>
       <TriggerComponent
+        {...TriggerComponentProps}
         aria-owns={popoverOpen ? "mouse-over-popover" : undefined}
         aria-haspopup="true"
         onMouseEnter={handlePopoverOpen}

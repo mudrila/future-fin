@@ -74,7 +74,7 @@ export default function Navigation({ items }) {
           {items.map((item) => {
             const ItemIcon = ICONS_MAP[item.KEY];
             const TriggerComponent = (props) => (
-              <a {...props}>
+              <a {...props} className={classes.link}>
                 <ListItem button selected={item.selected}>
                   <ListItemIcon>
                     <ItemIcon />

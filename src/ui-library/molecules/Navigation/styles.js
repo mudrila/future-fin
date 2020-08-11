@@ -60,5 +60,9 @@ export default makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(1)
+  },
+  link: {
+    textDecoration: "none",
+    color: theme.palette.primary.main
   }
 }));
