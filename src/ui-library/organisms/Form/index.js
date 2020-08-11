@@ -4,8 +4,11 @@ import { Grid } from "@material-ui/core";
 
 import useForm from "./hooks";
 
-export default function Form({ fields }) {
-  const { getComponentByFieldType, handleChange } = useForm();
+export default function Form({ fields, onSubmit }) {
+  const { getComponentByFieldType, handleChange } = useForm({
+    fields,
+    onSubmit
+  });
   return (
     <Grid>
       {fields.map((field) => {
@@ -26,5 +29,6 @@ Form.propTypes = {
       onChange: PropTypes.func.isRequired,
       id: PropTypes.string
     })
-  )
+  ),
+  onSubmit: PropTypes.func.isRequired
 };
