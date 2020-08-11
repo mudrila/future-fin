@@ -6,6 +6,7 @@ function FinPlanDashboard() {
     <Dashboard
       entityName={finplanDashboardConfig.entityName}
       entityParts={finplanDashboardConfig.entityParts}
+      formsConfig={finplanDashboardConfig.formsConfig}
     />
   );
 }

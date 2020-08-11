@@ -6,6 +6,7 @@ function BudgetDashboard() {
     <Dashboard
       entityName={budgetDashbaordConfig.entityName}
       entityParts={budgetDashbaordConfig.entityParts}
+      formsConfig={budgetDashbaordConfig.formsConfig}
     />
   );
 }

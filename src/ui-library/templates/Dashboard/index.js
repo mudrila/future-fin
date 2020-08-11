@@ -3,10 +3,14 @@ import PropTypes from "prop-types";
 import { Typography, Divider } from "@material-ui/core";
 
 import { capitalizeString } from "../../utils";
-import { AddButton } from "../../";
+import { AddButton, FormDialog } from "../../";
 import useStyles from "./styles";
+import useDashboard from "./hooks";
 
-export default function Dashboard({ entityName, entityParts }) {
+export default function Dashboard({ entityName, entityParts, formsConfig }) {
+  const { modalsState, handleModalOpen, handleModalClose } = useDashboard({
+    formsConfig
+  });
   const classes = useStyles();
   return (
     <section className={classes.root}>
@@ -20,7 +24,12 @@ export default function Dashboard({ entityName, entityParts }) {
             <Typography variant="h5" className={classes.heading} align="center">
               {capitalizeString(entityPart.name)}
             </Typography>
-            <AddButton />
+            <AddButton onClick={() => handleModalOpen(entityPart.name)} />
+            <FormDialog
+              formProps={formsConfig[entityPart.name]}
+              open={modalsState[entityPart.name]}
+              onClose={() => handleModalClose(entityPart.name)}
+            />
           </section>
           <Divider className={classes.divider} />
         </Fragment>
@@ -35,5 +44,6 @@ Dashboard.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired
     })
-  ).isRequired
+  ).isRequired,
+  formsConfig: PropTypes.object
 };

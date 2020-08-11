@@ -10,7 +10,6 @@ import {
 } from "@material-ui/core";
 
 import useForm from "./hooks";
-import useFormDialog from "./hooks/useFormDialog";
 
 // This components partially repeat Form component
 // Since submit handled in a bit different way
@@ -20,20 +19,18 @@ export default function FormDialog({
   submitButtonText = "Submit",
   cancelButtonText = "Cancel",
   title = "Create new",
-  contentText
+  contentText,
+  open,
+  onClose,
+  onSubmit
 }) {
-  const { handleClose, open, handleSubmit } = useFormDialog();
-  const { getComponentByFieldType, handleChange } = useForm({
+  const { getComponentByFieldType, handleChange, handleSubmit } = useForm({
     fields: formProps.fields,
-    onSubmit: formProps.onSubmit
+    onSubmit
   });
   return (
     <>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-      >
+      <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">{title}</DialogTitle>
         <DialogContent>
           {contentText && <DialogContentText>{contentText}</DialogContentText>}
@@ -53,10 +50,10 @@ export default function FormDialog({
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={onClose} color="primary">
             {cancelButtonText}
           </Button>
-          <Button onClick={handleSubmit} color="primary">
+          <Button onClick={handleSubmit} color="primary" type="submit">
             {submitButtonText}
           </Button>
         </DialogActions>
@@ -81,5 +78,8 @@ FormDialog.propTypes = {
     formName: PropTypes.string.isRequired
   }).isRequired,
   title: PropTypes.string,
-  contentText: PropTypes.string
+  contentText: PropTypes.string,
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired
 };
