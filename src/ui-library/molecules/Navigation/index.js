@@ -12,11 +12,11 @@ import {
   ListItem,
   Divider,
   ListItemIcon,
-  ListItemText
+  ListItemText,
+  Tooltip
 } from "@material-ui/core";
 import { ChevronLeft, Menu } from "@material-ui/icons";
 
-import { HoverablePopover } from "../../";
 import { ICONS_MAP } from "./config";
 
 import useNavigation from "./hooks";
@@ -73,21 +73,18 @@ export default function Navigation({ items }) {
         <List>
           {items.map((item) => {
             const ItemIcon = ICONS_MAP[item.KEY];
-            const TriggerComponent = (props) => (
-              <a {...props} className={classes.link}>
-                <ListItem button selected={item.selected}>
-                  <ListItemIcon>
-                    <ItemIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={item.TITLE} />
-                </ListItem>
-              </a>
-            );
             return (
               <Link href={item.PATH} passHref={true} key={item.KEY}>
-                <HoverablePopover TriggerComponent={TriggerComponent}>
-                  <Typography>{item.TITLE}</Typography>
-                </HoverablePopover>
+                <a className={classes.link}>
+                  <Tooltip title={item.TITLE}>
+                    <ListItem button selected={item.selected}>
+                      <ListItemIcon>
+                        <ItemIcon />
+                      </ListItemIcon>
+                      <ListItemText primary={item.TITLE} />
+                    </ListItem>
+                  </Tooltip>
+                </a>
               </Link>
             );
           })}

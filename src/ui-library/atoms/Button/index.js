@@ -2,9 +2,9 @@ import PropTypes from "prop-types";
 import { Fab } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 
-export function AddButton({ color = "primary", ariaLabel = "Add" }) {
+export function AddButton({ color = "primary", ariaLabel = "Add", onClick }) {
   return (
-    <Fab color={color} aria-label={ariaLabel}>
+    <Fab color={color} aria-label={ariaLabel} onClick={onClick}>
       <Add />
     </Fab>
   );
@@ -12,5 +12,6 @@ export function AddButton({ color = "primary", ariaLabel = "Add" }) {
 
 AddButton.propTypes = {
   color: PropTypes.string,
-  ariaLabel: PropTypes.string
+  ariaLabel: PropTypes.string,
+  onClick: PropTypes.func
 };

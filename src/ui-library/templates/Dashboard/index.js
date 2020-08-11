@@ -12,6 +12,7 @@ export default function Dashboard({ entityName, entityParts, formsConfig }) {
     formsConfig
   });
   const classes = useStyles();
+  console.log(modalsState);
   return (
     <section className={classes.root}>
       <Typography variant="h4" className={classes.heading} align="center">
@@ -27,7 +28,7 @@ export default function Dashboard({ entityName, entityParts, formsConfig }) {
             <AddButton onClick={() => handleModalOpen(entityPart.name)} />
             <FormDialog
               formProps={formsConfig[entityPart.name]}
-              open={modalsState[entityPart.name]}
+              open={modalsState[entityPart.name].isModalOpen}
               onClose={() => handleModalClose(entityPart.name)}
             />
           </section>

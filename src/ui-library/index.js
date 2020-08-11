@@ -1,6 +1,6 @@
-import { AddButton, HoverablePopover } from "./atoms";
+import { AddButton } from "./atoms";
 import { Navigation } from "./molecules";
 import { Form, FormDialog } from "./organisms";
 import { Dashboard } from "./templates";
 
-export { AddButton, Navigation, Form, FormDialog, Dashboard, HoverablePopover };
+export { AddButton, Navigation, Form, FormDialog, Dashboard };
