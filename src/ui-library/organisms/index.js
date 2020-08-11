@@ -1,4 +1,4 @@
 import Form from "./Form";
-import FormDialog from "./Form/FormDialog";
+import FormDialog from "./FormDialog";
 
 export { Form, FormDialog };

@@ -7,12 +7,22 @@ import { AddButton, FormDialog } from "../../";
 import useStyles from "./styles";
 import useDashboard from "./hooks";
 
-export default function Dashboard({ entityName, entityParts, formsConfig }) {
-  const { modalsState, handleModalOpen, handleModalClose } = useDashboard({
-    formsConfig
+export default function Dashboard({
+  entityName,
+  entityParts,
+  formsConfig,
+  onSubmit
+}) {
+  const {
+    modalsState,
+    handleModalOpen,
+    handleModalClose,
+    handleSubmit
+  } = useDashboard({
+    formsConfig,
+    onSubmit
   });
   const classes = useStyles();
-  console.log(modalsState);
   return (
     <section className={classes.root}>
       <Typography variant="h4" className={classes.heading} align="center">
@@ -30,6 +40,9 @@ export default function Dashboard({ entityName, entityParts, formsConfig }) {
               formProps={formsConfig[entityPart.name]}
               open={modalsState[entityPart.name].isModalOpen}
               onClose={() => handleModalClose(entityPart.name)}
+              onSubmit={(formValues) =>
+                handleSubmit(formsConfig[entityPart.name], formValues)
+              }
             />
           </section>
           <Divider className={classes.divider} />
@@ -46,5 +59,6 @@ Dashboard.propTypes = {
       name: PropTypes.string.isRequired
     })
   ).isRequired,
-  formsConfig: PropTypes.object
+  formsConfig: PropTypes.object,
+  onSubmit: PropTypes.func.isRequired
 };

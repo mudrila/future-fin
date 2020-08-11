@@ -31,7 +31,7 @@ export const budgetDashbaordConfig = {
           value: ""
         },
         {
-          type: "select",
+          type: "autocomplete",
           name: "incomeCurrency",
           required: true,
           label: "Currency",
@@ -44,7 +44,7 @@ export const budgetDashbaordConfig = {
           ]
         },
         {
-          type: "select",
+          type: "autocomplete",
           name: "incomeFrequency",
           required: true,
           label: "Frequency",

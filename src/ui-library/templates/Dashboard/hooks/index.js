@@ -10,12 +10,6 @@ export default function useDashbaord({ formsConfig }) {
   const [modalsState, setModalsState] = useState(initialModalsState);
 
   function handleModalOpen(formName) {
-    console.log(formName, modalsState, {
-      ...modalsState,
-      [formName]: {
-        isModalOpen: true
-      }
-    });
     setModalsState({
       ...modalsState,
       [formName]: {

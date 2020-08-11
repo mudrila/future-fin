@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TextField } from "@material-ui/core";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 export default function useForm({ fields, onSubmit }) {
   const initialFormState = {};
@@ -14,9 +15,17 @@ export default function useForm({ fields, onSubmit }) {
       case "text":
       default:
         return TextField;
+      case "autocomplete":
+        return Autocomplete;
     }
   }
-  function handleChange(event) {
+
+  function handleAutocompleteChange(name, value) {
+    const targetField = fields.find((field) => name === field.name);
+    setFormState({ ...formState, [name]: value });
+    targetField.onChange && targetField.onChange(event);
+  }
+  function handleChange(event, ...rest) {
     const { name, value } = event.target;
     const targetField = fields.find((field) => name === field.name);
     setFormState({ ...formState, [name]: value });
@@ -29,6 +38,8 @@ export default function useForm({ fields, onSubmit }) {
   return {
     getComponentByFieldType,
     handleChange,
-    handleSubmit
+    handleAutocompleteChange,
+    handleSubmit,
+    formState
   };
 }

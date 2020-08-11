@@ -6,10 +6,11 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Grid
+  Grid,
+  TextField
 } from "@material-ui/core";
 
-import useForm from "./hooks";
+import useForm from "../Form/hooks";
 
 // This components partially repeat Form component
 // Since submit handled in a bit different way
@@ -24,7 +25,13 @@ export default function FormDialog({
   onClose,
   onSubmit
 }) {
-  const { getComponentByFieldType, handleChange, handleSubmit } = useForm({
+  const {
+    getComponentByFieldType,
+    handleChange,
+    handleSubmit,
+    formState,
+    handleAutocompleteChange
+  } = useForm({
     fields: formProps.fields,
     onSubmit
   });
@@ -38,13 +45,31 @@ export default function FormDialog({
             <form name={formProps.formName} onSubmit={handleSubmit}>
               {formProps.fields.map((field) => {
                 const Component = getComponentByFieldType(field.type);
-                return (
-                  <Component
-                    key={field.name}
-                    {...field}
-                    onChange={handleChange}
-                  />
-                );
+                let inputProps = {
+                  ...field,
+                  onChange: handleChange,
+                  value: formState[field.name]
+                };
+                if (field.type === "autocomplete") {
+                  // eslint-disable-next-line react/display-name
+                  inputProps.renderInput = (params) => (
+                    <TextField
+                      {...params}
+                      label={field.label}
+                      variant="outlined"
+                    />
+                  );
+                  inputProps.getOptionLabel = (option) => {
+                    return option.label;
+                  };
+                  inputProps.getOptionSelected = (option, value) => {
+                    return option.value === value;
+                  };
+
+                  inputProps.onChange = (event, value) =>
+                    handleAutocompleteChange(field.name, value);
+                }
+                return <Component key={field.name} {...inputProps} />;
               })}
             </form>
           </Grid>
@@ -70,11 +95,10 @@ FormDialog.propTypes = {
       PropTypes.shape({
         name: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
-        onChange: PropTypes.func.isRequired,
+        onChange: PropTypes.func,
         id: PropTypes.string
       })
     ),
-    onSubmit: PropTypes.func.isRequired,
     formName: PropTypes.string.isRequired
   }).isRequired,
   title: PropTypes.string,
