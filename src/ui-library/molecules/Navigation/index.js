@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import PropTypes from "prop-types";
 import clsx from "clsx";
@@ -13,23 +14,18 @@ import {
   ListItemIcon,
   ListItemText
 } from "@material-ui/core";
-
 import { ChevronLeft, Menu } from "@material-ui/icons";
+
+import { HoverablePopover } from "../../";
 import { ICONS_MAP } from "./config";
 
+import useNavigation from "./hooks";
 import useStyles from "./styles";
 
 export default function Navigation({ items }) {
+  const { open, handleDrawerClose, handleDrawerOpen } = useNavigation();
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
   return (
     <>
       <AppBar
@@ -77,14 +73,21 @@ export default function Navigation({ items }) {
         <List>
           {items.map((item) => {
             const ItemIcon = ICONS_MAP[item.KEY];
-            return (
-              <Link key={item.KEY} href={item.PATH}>
+            const TriggerComponent = (props) => (
+              <a {...props}>
                 <ListItem button selected={item.selected}>
                   <ListItemIcon>
                     <ItemIcon />
                   </ListItemIcon>
                   <ListItemText primary={item.TITLE} />
                 </ListItem>
+              </a>
+            );
+            return (
+              <Link href={item.PATH} passHref={true} key={item.KEY}>
+                <HoverablePopover TriggerComponent={TriggerComponent}>
+                  <Typography>{item.TITLE}</Typography>
+                </HoverablePopover>
               </Link>
             );
           })}

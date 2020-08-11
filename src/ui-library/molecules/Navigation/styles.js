@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core";
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme) => ({
+export default makeStyles((theme) => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
@@ -54,7 +54,11 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar
+  },
+  popover: {
+    pointerEvents: "none"
+  },
+  paper: {
+    padding: theme.spacing(1)
   }
 }));
-
-export default useStyles;

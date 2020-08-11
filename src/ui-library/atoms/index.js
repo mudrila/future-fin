@@ -1,3 +1,4 @@
 import { AddButton } from "./Button";
+import { HoverablePopover } from "./Popover";
 
-export { AddButton };
+export { AddButton, HoverablePopover };
