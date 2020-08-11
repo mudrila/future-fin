@@ -1,22 +1,23 @@
-import React from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 
 import useForm from "./hooks";
 
 export default function Form({ fields, onSubmit }) {
-  const { getComponentByFieldType, handleChange } = useForm({
+  const { getComponentByFieldType, handleChange, handleSubmit } = useForm({
     fields,
     onSubmit
   });
   return (
     <Grid>
-      {fields.map((field) => {
-        const Component = getComponentByFieldType(field.type);
-        return (
-          <Component key={field.name} {...field} onChange={handleChange} />
-        );
-      })}
+      <form name={formName} onSubmit={handleSubmit}>
+        {fields.map((field) => {
+          const Component = getComponentByFieldType(field.type);
+          return (
+            <Component key={field.name} {...field} onChange={handleChange} />
+          );
+        })}
+      </form>
     </Grid>
   );
 }
@@ -30,5 +31,6 @@ Form.propTypes = {
       id: PropTypes.string
     })
   ),
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
+  formName: PropTypes.string.isRequired
 };

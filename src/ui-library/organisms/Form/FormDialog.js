@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import {
   Button,
@@ -13,6 +12,9 @@ import {
 import useForm from "./hooks";
 import useFormDialog from "./hooks/useFormDialog";
 
+// This components partially repeat Form component
+// Since submit handled in a bit different way
+// TODO: Find better way to keep it DRY.
 export default function FormDialog({
   formProps,
   submitButtonText = "Submit",
@@ -22,8 +24,8 @@ export default function FormDialog({
 }) {
   const { handleClose, open, handleSubmit } = useFormDialog();
   const { getComponentByFieldType, handleChange } = useForm({
-    fields,
-    onSubmit
+    fields: formProps.fields,
+    onSubmit: formProps.onSubmit
   });
   return (
     <>
@@ -36,16 +38,18 @@ export default function FormDialog({
         <DialogContent>
           {contentText && <DialogContentText>{contentText}</DialogContentText>}
           <Grid>
-            {formProps.fields.map((field) => {
-              const Component = getComponentByFieldType(field.type);
-              return (
-                <Component
-                  key={field.name}
-                  {...field}
-                  onChange={handleChange}
-                />
-              );
-            })}
+            <form name={formProps.formName} onSubmit={handleSubmit}>
+              {formProps.fields.map((field) => {
+                const Component = getComponentByFieldType(field.type);
+                return (
+                  <Component
+                    key={field.name}
+                    {...field}
+                    onChange={handleChange}
+                  />
+                );
+              })}
+            </form>
           </Grid>
         </DialogContent>
         <DialogActions>
@@ -73,7 +77,8 @@ FormDialog.propTypes = {
         id: PropTypes.string
       })
     ),
-    onSubmit: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired,
+    formName: PropTypes.string.isRequired
   }).isRequired,
   title: PropTypes.string,
   contentText: PropTypes.string

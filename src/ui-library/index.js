@@ -1,4 +1,6 @@
 import { AddButton } from "./atoms";
 import { Navigation } from "./molecules";
+import { Form, FormDialog } from "./organisms";
+import { Dashboard } from "./templates";
 
-export { AddButton, Navigation };
+export { AddButton, Navigation, Form, FormDialog, Dashboard };
