@@ -1,0 +1,21 @@
+export default function makeActionCreate(actionType) {
+  return function actionCreator(payload) {
+    return {
+      type: actionType,
+      payload
+    };
+  };
+}
+
+export function getBasicCRUDResultShape() {
+  const crudKeys = ["CREATE", "UPDATE", "READ", "DELETE"];
+  const stateKeys = ["REQUEST", "LOADING", "SUCESS", "ERROR"];
+  let result = {};
+  crudKeys.forEach((crudKey) => {
+    result[crudKey] = {};
+    stateKeys.forEach((stateKey) => {
+      result[crudKey][stateKey] = "";
+    });
+  });
+  return result;
+}
