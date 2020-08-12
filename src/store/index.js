@@ -1,18 +1,44 @@
 import { useMemo } from "react";
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import sagaMiddleware from "redux-saga";
+import createSagaMiddleware from "redux-saga";
+import { persistStore } from "redux-persist";
 
-import reducers from "./reducers";
+import rootReducer from "./reducers";
+import rootSaga from "./sagas";
 
 let store;
+const sagaMiddleware = createSagaMiddleware();
 
 function initStore(initialState) {
-  return createStore(
-    reducers,
-    initialState,
-    composeWithDevTools(applyMiddleware(sagaMiddleware))
-  );
+  let store;
+  const isClient = typeof window !== "undefined";
+
+  if (isClient) {
+    const { persistReducer } = require("redux-persist");
+    const storage = require("redux-persist/lib/storage").default;
+
+    const persistConfig = {
+      key: "root",
+      storage
+    };
+
+    store = createStore(
+      persistReducer(persistConfig, rootReducer),
+      initialState,
+      composeWithDevTools(applyMiddleware(sagaMiddleware))
+    );
+
+    store.__PERSISTOR = persistStore(store);
+  } else {
+    store = createStore(
+      rootReducer,
+      initialState,
+      composeWithDevTools(applyMiddleware(sagaMiddleware))
+    );
+  }
+  store.sagaTask = sagaMiddleware.run(rootSaga);
+  return store;
 }
 
 export const initializeStore = (preloadedState) => {

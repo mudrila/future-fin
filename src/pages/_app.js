@@ -2,6 +2,7 @@ import { Provider } from "react-redux";
 import PropTypes from "prop-types";
 import NextApp from "next/app";
 import Head from "next/head";
+import { PersistGate } from "redux-persist/integration/react";
 
 import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -55,15 +56,17 @@ export default function App({ Component, pageProps, router }) {
         />
       </Head>
       <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Navigation items={navigationItems} />
-          <main className={classes.content}>
-            <article className={classes.innerContent}>
-              <Component {...pageProps} />
-            </article>
-          </main>
-        </ThemeProvider>
+        <PersistGate persistor={store.__PERSISTOR} loading={null}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Navigation items={navigationItems} />
+            <main className={classes.content}>
+              <article className={classes.innerContent}>
+                <Component {...pageProps} />
+              </article>
+            </main>
+          </ThemeProvider>
+        </PersistGate>
       </Provider>
     </>
   );
