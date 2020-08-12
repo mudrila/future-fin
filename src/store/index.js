@@ -2,9 +2,6 @@ import { useMemo } from "react";
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import sagaMiddleware from "redux-saga";
-import throttle from "lodash/throttle";
-
-import { loadState, saveState } from "./localStorage";
 
 import reducers from "./reducers";
 
@@ -18,7 +15,7 @@ function initStore(initialState) {
   );
 }
 
-export const initializeStore = (preloadedState = loadState()) => {
+export const initializeStore = (preloadedState) => {
   let _store = store ?? initStore(preloadedState);
 
   // After navigating to a page with an initial Redux state, merge that state
@@ -42,11 +39,5 @@ export const initializeStore = (preloadedState = loadState()) => {
 
 export function useStore(initialState) {
   const store = useMemo(() => initializeStore(initialState), [initialState]);
-  store.subscribe(
-    throttle(() => {
-      saveState(store.getState());
-    }),
-    2000
-  );
   return store;
 }
