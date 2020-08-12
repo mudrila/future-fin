@@ -1,6 +1,6 @@
 import { getBasicCRUDResultShape, makeActionCreator } from "./utils";
 import {
-  BUDGET_INCOME_ACTION_TYPES,
+  BUDGET_INCOME_SOURCES_ACTION_TYPES,
   BUDGET_ACCOUNTS_ACTION_TYPES,
   BUDGET_SPENDING_CATEGORIES_ACTION_TYPES
 } from "./types";
@@ -18,7 +18,7 @@ function generateCRUDActionCreators(actionTypes) {
 }
 
 export const budgetIncomesActionCreators = generateCRUDActionCreators(
-  BUDGET_INCOME_ACTION_TYPES
+  BUDGET_INCOME_SOURCES_ACTION_TYPES
 );
 export const budgetAccountsActionCreators = generateCRUDActionCreators(
   BUDGET_ACCOUNTS_ACTION_TYPES

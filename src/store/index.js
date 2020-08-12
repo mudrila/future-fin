@@ -19,7 +19,7 @@ function initStore(initialState) {
     const storage = require("redux-persist/lib/storage").default;
 
     const persistConfig = {
-      key: "root",
+      key: "appState",
       storage
     };
 
