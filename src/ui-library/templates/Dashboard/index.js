@@ -11,7 +11,8 @@ export default function Dashboard({
   entityName,
   entityParts,
   formsConfig,
-  onSubmit
+  onSubmit,
+  normalizeFormData = false
 }) {
   const {
     modalsState,
@@ -20,7 +21,8 @@ export default function Dashboard({
     handleSubmit
   } = useDashboard({
     formsConfig,
-    onSubmit
+    onSubmit,
+    normalizeFormData
   });
   const classes = useStyles();
   return (
@@ -61,5 +63,6 @@ Dashboard.propTypes = {
     })
   ).isRequired,
   formsConfig: PropTypes.object,
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
+  normalizeFormData: PropTypes.bool
 };

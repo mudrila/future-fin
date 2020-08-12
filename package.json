@@ -35,6 +35,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "clsx": "^1.1.1",
+    "flexsearch": "^0.6.32",
     "lodash": "^4.17.19",
     "next": "^9.5.1",
     "react": "^16.13.1",

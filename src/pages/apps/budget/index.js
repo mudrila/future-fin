@@ -19,6 +19,7 @@ function BudgetDashboard() {
       entityParts={budgetDashbaordConfig.entityParts}
       formsConfig={budgetDashbaordConfig.formsConfig}
       onSubmit={handleSubmit}
+      normalizeFormData={true}
     />
   );
 }

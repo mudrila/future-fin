@@ -9,7 +9,7 @@ export function makeActionCreator(actionType) {
 
 export function getBasicCRUDResultShape() {
   const crudKeys = ["CREATE", "UPDATE", "READ", "DELETE"];
-  const stateKeys = ["REQUEST", "LOADING", "SUCESS", "ERROR"];
+  const stateKeys = ["REQUEST", "LOADING", "SUCCESS", "ERROR"];
   let result = {};
   crudKeys.forEach((crudKey) => {
     result[crudKey] = {};
