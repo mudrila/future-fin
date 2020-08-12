@@ -28,10 +28,8 @@ export default function FormDialog({
 }) {
   const {
     getComponentByFieldType,
-    handleChange,
-    handleSubmit,
-    formState,
-    handleAutocompleteChange
+    getInputPropsByFieldType,
+    handleSubmit
   } = useForm({
     fields: formProps.fields,
     onSubmit
@@ -47,31 +45,7 @@ export default function FormDialog({
             <form name={formProps.formName} onSubmit={handleSubmit}>
               {formProps.fields.map((field) => {
                 const Component = getComponentByFieldType(field.type);
-                let inputProps = {
-                  ...field,
-                  onChange: handleChange,
-                  value: formState[field.name]
-                };
-                if (field.type === "autocomplete") {
-                  // eslint-disable-next-line react/display-name
-                  inputProps.renderInput = (params) => (
-                    <TextField
-                      {...params}
-                      label={field.label}
-                      variant="outlined"
-                      helperText={field.helperText}
-                    />
-                  );
-                  inputProps.getOptionLabel = (option) => {
-                    return option.label;
-                  };
-                  inputProps.getOptionSelected = (option, value) => {
-                    return option.value === value;
-                  };
-
-                  inputProps.onChange = (event, value) =>
-                    handleAutocompleteChange(field.name, value);
-                }
+                const inputProps = getInputPropsByFieldType(field.type);
                 return (
                   <Component
                     key={field.name}

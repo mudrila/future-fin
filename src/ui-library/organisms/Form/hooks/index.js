@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { TextField } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import { IconSelector } from "../../../";
 
 export default function useForm({ fields, onSubmit }) {
   const initialFormState = {};
@@ -17,7 +18,38 @@ export default function useForm({ fields, onSubmit }) {
         return TextField;
       case "autocomplete":
         return Autocomplete;
+      case "iconSelection":
+        return IconSelector;
     }
+  }
+
+  function getInputPropsByFieldType(type) {
+    let inputProps = {
+      ...field,
+      onChange: handleChange,
+      value: formState[field.name]
+    };
+    if (field.type === "autocomplete") {
+      // eslint-disable-next-line react/display-name
+      inputProps.renderInput = (params) => (
+        <TextField
+          {...params}
+          label={field.label}
+          variant="outlined"
+          helperText={field.helperText}
+        />
+      );
+      inputProps.getOptionLabel = (option) => {
+        return option.label;
+      };
+      inputProps.getOptionSelected = (option, value) => {
+        return option.value === value;
+      };
+
+      inputProps.onChange = (event, value) =>
+        handleAutocompleteChange(field.name, value);
+    }
+    return inputProps;
   }
 
   function handleAutocompleteChange(name, value) {
@@ -40,6 +72,7 @@ export default function useForm({ fields, onSubmit }) {
     handleChange,
     handleAutocompleteChange,
     handleSubmit,
+    getInputPropsByFieldType,
     formState
   };
 }

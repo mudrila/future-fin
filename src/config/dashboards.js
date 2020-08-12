@@ -63,6 +63,15 @@ export const budgetDashbaordConfig = {
             { label: "One-time income", value: "once" }
           ],
           value: "monthly"
+        },
+        {
+          type: "iconSelection",
+          name: "icon",
+          required: false,
+          label: "Icon",
+          helperText:
+            "Select icon, which would be displaied for this income source",
+          value: "AttachMoney"
         }
       ]
     },

@@ -13,7 +13,9 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Radio from "@material-ui/core/Radio";
 import * as mui from "@material-ui/icons";
+import useStyles from "./styles";
 import synonyms from "./synonyms";
+import { rest } from "lodash";
 
 if (process.env.NODE_ENV !== "production") {
   Object.keys(synonyms).forEach((icon) => {
@@ -107,7 +109,8 @@ const allIcons = Object.keys(mui)
     return icon;
   });
 
-export default function SearchIcons({ onIconClick }) {
+export default function IconSelector({ onChange, ...rest }) {
+  console.log("IconSelector", rest);
   const classes = useStyles();
   const [tag, setTag] = React.useState("Filled");
   const [keys, setKeys] = React.useState(null);
@@ -189,12 +192,12 @@ export default function SearchIcons({ onIconClick }) {
         <Typography
           className={classes.results}
         >{`${icons.length} matching results`}</Typography>
-        <Icons icons={icons} classes={classes} handleClickOpen={onIconClick} />
+        <Icons icons={icons} classes={classes} handleClickOpen={onChange} />
       </Grid>
     </Grid>
   );
 }
 
-SearchIcons.propTypes = {
-  onIconClick: PropTypes.func
+IconSelector.propTypes = {
+  onChange: PropTypes.func
 };
