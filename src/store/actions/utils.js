@@ -1,4 +1,4 @@
-export default function makeActionCreate(actionType) {
+export function makeActionCreator(actionType) {
   return function actionCreator(payload) {
     return {
       type: actionType,
