@@ -7,8 +7,11 @@ import {
   DialogContentText,
   DialogTitle,
   Grid,
-  TextField
+  Accordion,
+  AccordionSummary,
+  AccordionDetails
 } from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import useForm from "../Form/hooks";
 import useStyles from "./styles";
@@ -24,7 +27,9 @@ export default function FormDialog({
   contentText,
   open,
   onClose,
-  onSubmit
+  onSubmit,
+  sectionsSplitting = false,
+  sections
 }) {
   const {
     getComponentByFieldType,
@@ -35,6 +40,35 @@ export default function FormDialog({
     onSubmit
   });
   const classes = useStyles();
+
+  function renderFields(fields) {
+    return fields.map((field) => {
+      const Component = getComponentByFieldType(field.type);
+      const inputProps = getInputPropsByField(field);
+      return (
+        <Component
+          key={field.name}
+          {...inputProps}
+          className={classes.inputField}
+        />
+      );
+    });
+  }
+  function renderSections() {
+    return sections.map((section) => (
+      <Accordion key={section.name}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id={section.name}
+        >
+          {section.name}
+        </AccordionSummary>
+        <AccordionDetails>{renderFields(section.fields)}</AccordionDetails>
+      </Accordion>
+    ));
+  }
+
   return (
     <>
       <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
@@ -43,17 +77,9 @@ export default function FormDialog({
           {contentText && <DialogContentText>{contentText}</DialogContentText>}
           <Grid>
             <form name={formProps.formName} onSubmit={handleSubmit}>
-              {formProps.fields.map((field) => {
-                const Component = getComponentByFieldType(field.type);
-                const inputProps = getInputPropsByField(field);
-                return (
-                  <Component
-                    key={field.name}
-                    {...inputProps}
-                    className={classes.inputField}
-                  />
-                );
-              })}
+              {sectionsSplitting
+                ? renderSections()
+                : renderFields(formProps.fields)}
             </form>
           </Grid>
         </DialogContent>
@@ -93,5 +119,19 @@ FormDialog.propTypes = {
   contentText: PropTypes.string,
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
+  sectionsSplitting: PropTypes.bool,
+  sections: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      fields: PropTypes.arrayOf(
+        PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          label: PropTypes.string.isRequired,
+          onChange: PropTypes.func.isRequired,
+          id: PropTypes.string
+        })
+      ).isRequired
+    })
+  )
 };

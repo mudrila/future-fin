@@ -34,6 +34,7 @@ export default function useDashbaord({
     } else {
       onSubmit(formName, formValues);
     }
+    handleModalClose(formName);
   }
   function normalizeFormValues(formValues) {
     let result = {};

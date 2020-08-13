@@ -17,7 +17,7 @@ export default function budgetReducer(
     case BUDGET_INCOME_SOURCES_ACTION_TYPES.READ.LOADING:
     case BUDGET_INCOME_SOURCES_ACTION_TYPES.UPDATE.LOADING:
     case BUDGET_INCOME_SOURCES_ACTION_TYPES.DELETE.LOADING:
-      return { ...state, icnomes: { ...state.incomes, loading: true } };
+      return { ...state, incomes: { ...state.incomes, loading: true } };
     case BUDGET_INCOME_SOURCES_ACTION_TYPES.CREATE.SUCCESS:
       const newSource = {
         ...payload,
@@ -25,9 +25,9 @@ export default function budgetReducer(
       };
       return {
         ...state,
-        icnomes: {
+        incomes: {
           ...state.incomes,
-          sources: [...state.icnomes.sources, newSource],
+          sources: [...state.incomes.sources, newSource],
           loading: false
         }
       };
