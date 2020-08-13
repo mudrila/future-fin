@@ -44,7 +44,7 @@ export const budgetDashbaordConfig = {
           required: true,
           label: "Currency",
           helperText: "In which currency?",
-          value: "USD",
+          value: { label: "US Dollars", value: "USD" },
           options: [
             { label: "US Dollars", value: "USD" },
             { label: "European Euro", value: "EUR" },
@@ -64,7 +64,7 @@ export const budgetDashbaordConfig = {
             { label: "Per year", value: "yearly" },
             { label: "One-time income", value: "once" }
           ],
-          value: "monthly"
+          value: { label: "Per month", value: "montly" }
         },
         {
           type: "iconSelection",
@@ -92,7 +92,7 @@ export const budgetDashbaordConfig = {
             },
             {
               type: "number",
-              name: "incomeExpectedAmount",
+              name: "amount",
               required: true,
               label: "Amount",
               helperText: "Expected Amount of Income",
@@ -106,7 +106,7 @@ export const budgetDashbaordConfig = {
               required: true,
               label: "Currency",
               helperText: "In which currency?",
-              value: "USD",
+              value: { label: "US Dollars", value: "USD" },
               options: [
                 { label: "US Dollars", value: "USD" },
                 { label: "European Euro", value: "EUR" },
@@ -126,7 +126,7 @@ export const budgetDashbaordConfig = {
                 { label: "Per year", value: "yearly" },
                 { label: "One-time income", value: "once" }
               ],
-              value: "monthly"
+              value: { label: "Per month", value: "montly" }
             }
           ]
         },
@@ -151,19 +151,20 @@ export const budgetDashbaordConfig = {
             {
               type: "number",
               name: "incomeFee",
-              required: true,
+              required: false,
               label: "Fee",
               helperText: "Any possible fees",
               value: "0",
-              variant: "outlined"
+              variant: "outlined",
+              fullWidth: true
             },
             {
               type: "autocomplete",
               name: "incomeFeeType",
-              required: true,
+              required: false,
               label: "Fee Type",
               helperText: "If there's fee - is it fixed, or in percentage?",
-              value: "%",
+              value: { label: "%", value: "%" },
               options: [
                 { label: "%", value: "%" },
                 { label: "Fixed", value: "fixed" }

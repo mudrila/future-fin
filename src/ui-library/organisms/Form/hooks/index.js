@@ -41,7 +41,7 @@ export default function useForm({ fields, onSubmit }) {
           return option.label;
         },
         getOptionSelected: (option, value) => {
-          return option.value === value;
+          return option.value === value.value;
         },
         onChange: (event, value) => handleAutocompleteChange(field.name, value),
         value: formState[field.name]

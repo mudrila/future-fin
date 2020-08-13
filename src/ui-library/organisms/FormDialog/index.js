@@ -64,7 +64,9 @@ export default function FormDialog({
           {section.name}
         </AccordionSummary>
         <AccordionDetails>
-          <Grid xs={12}>{renderFields(section.fields)}</Grid>
+          <Grid item xs={12}>
+            {renderFields(section.fields)}
+          </Grid>
         </AccordionDetails>
       </Accordion>
     ));
@@ -76,7 +78,7 @@ export default function FormDialog({
         <DialogTitle id="form-dialog-title">{title}</DialogTitle>
         <DialogContent className={classes.dialogRoot}>
           {contentText && <DialogContentText>{contentText}</DialogContentText>}
-          <Grid>
+          <Grid item xs={12}>
             <form name={formProps.formName} onSubmit={handleSubmit}>
               {sectionsSplitting
                 ? renderSections()
@@ -108,12 +110,12 @@ FormDialog.propTypes = {
   formProps: PropTypes.shape({
     sections: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string.isRequired,
+        name: PropTypes.string,
         fields: PropTypes.arrayOf(
           PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            label: PropTypes.string.isRequired,
-            onChange: PropTypes.func.isRequired,
+            name: PropTypes.string,
+            label: PropTypes.string,
+            onChange: PropTypes.func,
             id: PropTypes.string
           })
         ).isRequired
@@ -121,8 +123,8 @@ FormDialog.propTypes = {
     ),
     fields: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        label: PropTypes.string.isRequired,
+        name: PropTypes.string,
+        label: PropTypes.string,
         onChange: PropTypes.func,
         id: PropTypes.string
       })
