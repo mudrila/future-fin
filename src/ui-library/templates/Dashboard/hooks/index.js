@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-export default function useDashbaord({ formsConfig, onSubmit }) {
+export default function useDashbaord({
+  formsConfig,
+  onSubmit,
+  normalizeFormData
+}) {
   let initialModalsState = {};
   Object.keys(formsConfig).forEach((formKey) => {
     initialModalsState[formKey] = {
@@ -25,7 +29,23 @@ export default function useDashbaord({ formsConfig, onSubmit }) {
   }
 
   function handleSubmit(formName, formValues) {
-    onSubmit(formName, formValues);
+    if (normalizeFormData) {
+      onSubmit(formName, normalizeFormValues(formValues));
+    } else {
+      onSubmit(formName, formValues);
+    }
+  }
+  function normalizeFormValues(formValues) {
+    let result = {};
+
+    Object.keys(formValues).forEach((entryKey) => {
+      if (formValues[entryKey].value) {
+        result[entryKey] = formValues[entryKey].value;
+      } else {
+        result[entryKey] = formValues[entryKey];
+      }
+    });
+    return result;
   }
   return {
     modalsState,

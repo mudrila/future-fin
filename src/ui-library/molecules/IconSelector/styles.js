@@ -42,7 +42,7 @@ export default makeStyles((theme) => ({
   iconSvg: {
     boxSizing: "content-box",
     cursor: "pointer",
-    color: theme.palette.text.primary,
+    color: theme.palette.primary.main,
     borderRadius: theme.shape.borderRadius,
     transition: theme.transitions.create(["background-color", "box-shadow"], {
       duration: theme.transitions.duration.shortest
@@ -52,7 +52,8 @@ export default makeStyles((theme) => ({
     margin: theme.spacing(0.5, 0),
     "&:hover": {
       backgroundColor: theme.palette.background.paper,
-      boxShadow: theme.shadows[1]
+      boxShadow: theme.shadows[1],
+      color: theme.palette.primary.main
     }
   },
   selectedIcon: {
