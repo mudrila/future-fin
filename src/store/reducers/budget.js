@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import { BUDGET_INCOME_SOURCES_ACTION_TYPES } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -18,10 +19,17 @@ export default function budgetReducer(
     case BUDGET_INCOME_SOURCES_ACTION_TYPES.DELETE.LOADING:
       return { ...state, icnomes: { ...state.incomes, loading: true } };
     case BUDGET_INCOME_SOURCES_ACTION_TYPES.CREATE.SUCCESS:
-      console.log("REDUCER", payload);
+      const newSource = {
+        ...payload,
+        id: uuidv4() // Temp
+      };
       return {
         ...state,
-        icnomes: { ...state.incomes, sources: [], loading: false }
+        icnomes: {
+          ...state.incomes,
+          sources: [...state.icnomes.sources, newSource],
+          loading: false
+        }
       };
     default:
       return state;
