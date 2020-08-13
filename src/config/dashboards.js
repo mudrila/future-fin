@@ -25,7 +25,8 @@ export const budgetDashbaordConfig = {
           label: "Source",
           value: "Salary",
           variant: "outlined",
-          helperText: "Name of Source of Income"
+          helperText: "Name of Source of Income",
+          fullWidth: true
         },
         {
           type: "number",
@@ -33,8 +34,9 @@ export const budgetDashbaordConfig = {
           required: true,
           label: "Amount",
           helperText: "Expected Amount of Income",
-          value: "",
-          variant: "outlined"
+          value: "1000.00",
+          variant: "outlined",
+          fullWidth: true
         },
         {
           type: "autocomplete",
@@ -70,7 +72,7 @@ export const budgetDashbaordConfig = {
           required: false,
           label: "Icon",
           helperText:
-            "Select icon, which would be displaied for this income source",
+            "Select icon, which would be displayed for this income source",
           value: "AttachMoney"
         }
       ]

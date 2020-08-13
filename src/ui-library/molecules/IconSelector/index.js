@@ -15,7 +15,6 @@ import Radio from "@material-ui/core/Radio";
 import * as mui from "@material-ui/icons";
 import useStyles from "./styles";
 import synonyms from "./synonyms";
-import { rest } from "lodash";
 
 if (process.env.NODE_ENV !== "production") {
   Object.keys(synonyms).forEach((icon) => {
@@ -36,9 +35,7 @@ function selectNode(node) {
   selection.addRange(range);
 }
 
-let Icons = (props) => {
-  const { icons, classes, handleClickOpen } = props;
-
+let Icons = ({ icons, classes, handleClickOpen, name, value }) => {
   const handleClick = (event) => {
     selectNode(event.currentTarget);
   };
@@ -52,10 +49,10 @@ let Icons = (props) => {
               tabIndex={-1}
               onClick={handleClickOpen}
               title={icon.key}
-              className={classes.iconSvg}
-              data-ga-event-category="material-icons"
-              data-ga-event-action="click"
-              data-ga-event-label={icon.key}
+              className={clsx(classes.iconSvg, {
+                [classes.selectedIcon]: value === icon.key
+              })}
+              name={name}
             />
             <p onClick={handleClick}>{icon.key}</p>
           </span>
@@ -68,7 +65,9 @@ let Icons = (props) => {
 Icons.propTypes = {
   classes: PropTypes.object.isRequired,
   handleClickOpen: PropTypes.func.isRequired,
-  icons: PropTypes.array.isRequired
+  icons: PropTypes.array.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired
 };
 Icons = React.memo(Icons);
 
@@ -109,8 +108,7 @@ const allIcons = Object.keys(mui)
     return icon;
   });
 
-export default function IconSelector({ onChange, ...rest }) {
-  console.log("IconSelector", rest);
+export default function IconSelector({ onChange, helperText, name, value }) {
   const classes = useStyles();
   const [tag, setTag] = React.useState("Filled");
   const [keys, setKeys] = React.useState(null);
@@ -185,19 +183,29 @@ export default function IconSelector({ onChange, ...rest }) {
               handleChange(event.target.value);
             }}
             className={classes.input}
-            placeholder="Search icons…"
+            placeholder={helperText}
             inputProps={{ "aria-label": "search icons" }}
           />
         </Paper>
         <Typography
           className={classes.results}
         >{`${icons.length} matching results`}</Typography>
-        <Icons icons={icons} classes={classes} handleClickOpen={onChange} />
+        <Icons
+          icons={icons}
+          classes={classes}
+          handleClickOpen={onChange}
+          name={name}
+          value={value}
+        />
       </Grid>
     </Grid>
   );
 }
 
 IconSelector.propTypes = {
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  helperText: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired
 };

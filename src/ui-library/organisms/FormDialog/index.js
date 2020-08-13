@@ -28,7 +28,7 @@ export default function FormDialog({
 }) {
   const {
     getComponentByFieldType,
-    getInputPropsByFieldType,
+    getInputPropsByField,
     handleSubmit
   } = useForm({
     fields: formProps.fields,
@@ -45,7 +45,7 @@ export default function FormDialog({
             <form name={formProps.formName} onSubmit={handleSubmit}>
               {formProps.fields.map((field) => {
                 const Component = getComponentByFieldType(field.type);
-                const inputProps = getInputPropsByFieldType(field.type);
+                const inputProps = getInputPropsByField(field);
                 return (
                   <Component
                     key={field.name}

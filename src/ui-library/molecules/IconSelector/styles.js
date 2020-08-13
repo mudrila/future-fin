@@ -55,6 +55,11 @@ export default makeStyles((theme) => ({
       boxShadow: theme.shadows[1]
     }
   },
+  selectedIcon: {
+    backgroundColor: theme.palette.primary.main,
+    boxShadow: theme.shadows[1],
+    color: "white"
+  },
   results: {
     marginBottom: theme.spacing(1)
   }

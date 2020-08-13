@@ -23,31 +23,41 @@ export default function useForm({ fields, onSubmit }) {
     }
   }
 
-  function getInputPropsByFieldType(type) {
-    let inputProps = {
-      ...field,
-      onChange: handleChange,
-      value: formState[field.name]
-    };
+  function getInputPropsByField(field) {
+    let inputProps;
     if (field.type === "autocomplete") {
-      // eslint-disable-next-line react/display-name
-      inputProps.renderInput = (params) => (
-        <TextField
-          {...params}
-          label={field.label}
-          variant="outlined"
-          helperText={field.helperText}
-        />
-      );
-      inputProps.getOptionLabel = (option) => {
-        return option.label;
+      inputProps = {
+        ...field,
+        // eslint-disable-next-line react/display-name
+        renderInput: (params) => (
+          <TextField
+            {...params}
+            label={field.label}
+            variant="outlined"
+            helperText={field.helperText}
+          />
+        ),
+        getOptionLabel: (option) => {
+          return option.label;
+        },
+        getOptionSelected: (option, value) => {
+          return option.value === value;
+        },
+        onChange: (event, value) => handleAutocompleteChange(field.name, value),
+        value: formState[field.name]
       };
-      inputProps.getOptionSelected = (option, value) => {
-        return option.value === value;
+    } else if (field.type === "iconSelection") {
+      inputProps = {
+        ...field,
+        onChange: handleIconSelectionChange,
+        value: formState[field.name]
       };
-
-      inputProps.onChange = (event, value) =>
-        handleAutocompleteChange(field.name, value);
+    } else {
+      inputProps = {
+        ...field,
+        onChange: handleChange,
+        value: formState[field.name]
+      };
     }
     return inputProps;
   }
@@ -57,11 +67,16 @@ export default function useForm({ fields, onSubmit }) {
     setFormState({ ...formState, [name]: value });
     targetField.onChange && targetField.onChange(event);
   }
-  function handleChange(event, ...rest) {
+  function handleChange(event) {
     const { name, value } = event.target;
     const targetField = fields.find((field) => name === field.name);
     setFormState({ ...formState, [name]: value });
     targetField.onChange && targetField.onChange(event);
+  }
+  function handleIconSelectionChange(event) {
+    const iconName = event.currentTarget.getAttribute("title");
+    const fieldName = event.currentTarget.getAttribute("name");
+    setFormState({ ...formState, [fieldName]: iconName });
   }
 
   function handleSubmit() {
@@ -72,7 +87,7 @@ export default function useForm({ fields, onSubmit }) {
     handleChange,
     handleAutocompleteChange,
     handleSubmit,
-    getInputPropsByFieldType,
+    getInputPropsByField,
     formState
   };
 }
