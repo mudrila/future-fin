@@ -183,7 +183,7 @@ export default function IconSelector({ onChange, helperText, name, value }) {
               handleChange(event.target.value);
             }}
             className={classes.input}
-            placeholder={helperText}
+            placeholder={"Search icon ..."}
             inputProps={{ "aria-label": "search icons" }}
           />
         </Paper>

@@ -46,6 +46,7 @@ export default function Dashboard({
                 handleSubmit(entityPart.name, formValues)
               }
               title={`Create new ${entityPart.modalTitle}`}
+              sectionsSplitting={true}
             />
           </section>
           <Divider className={classes.divider} />

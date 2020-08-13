@@ -4,5 +4,8 @@ export default makeStyles((theme) => ({
   inputField: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2)
+  },
+  dialogRoot: {
+    minWidth: 600
   }
 }));

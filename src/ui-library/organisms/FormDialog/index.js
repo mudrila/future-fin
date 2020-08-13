@@ -28,8 +28,7 @@ export default function FormDialog({
   open,
   onClose,
   onSubmit,
-  sectionsSplitting = false,
-  sections
+  sectionsSplitting = false
 }) {
   const {
     getComponentByFieldType,
@@ -55,8 +54,8 @@ export default function FormDialog({
     });
   }
   function renderSections() {
-    return sections.map((section) => (
-      <Accordion key={section.name}>
+    return formProps.sections.map((section) => (
+      <Accordion key={section.name} TransitionProps={{ unmountOnExit: true }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -64,7 +63,9 @@ export default function FormDialog({
         >
           {section.name}
         </AccordionSummary>
-        <AccordionDetails>{renderFields(section.fields)}</AccordionDetails>
+        <AccordionDetails>
+          <Grid xs={12}>{renderFields(section.fields)}</Grid>
+        </AccordionDetails>
       </Accordion>
     ));
   }
@@ -73,7 +74,7 @@ export default function FormDialog({
     <>
       <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">{title}</DialogTitle>
-        <DialogContent>
+        <DialogContent className={classes.dialogRoot}>
           {contentText && <DialogContentText>{contentText}</DialogContentText>}
           <Grid>
             <form name={formProps.formName} onSubmit={handleSubmit}>
@@ -105,6 +106,19 @@ FormDialog.propTypes = {
   submitButtonText: PropTypes.string,
   cancelButtonText: PropTypes.string,
   formProps: PropTypes.shape({
+    sections: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        fields: PropTypes.arrayOf(
+          PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            label: PropTypes.string.isRequired,
+            onChange: PropTypes.func.isRequired,
+            id: PropTypes.string
+          })
+        ).isRequired
+      })
+    ),
     fields: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
@@ -120,18 +134,5 @@ FormDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  sectionsSplitting: PropTypes.bool,
-  sections: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      fields: PropTypes.arrayOf(
-        PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          label: PropTypes.string.isRequired,
-          onChange: PropTypes.func.isRequired,
-          id: PropTypes.string
-        })
-      ).isRequired
-    })
-  )
+  sectionsSplitting: PropTypes.bool
 };
