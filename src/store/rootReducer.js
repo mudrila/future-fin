@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import finPlanReducer from "./finplan";
-import budgetReducer from "./budget";
+import finPlanReducer from "../pages/Apps/FinPlan/redux/reducer";
+import budgetReducer from "../pages/Apps/Budget/redux/reducer";
 
 export default combineReducers({
   finPlan: finPlanReducer,

@@ -1,4 +1,4 @@
-export const budgetDashbaordConfig = {
+const budgetDashbaordConfig = {
   entityParts: [
     {
       name: "incomes",
@@ -209,16 +209,4 @@ export const budgetDashbaordConfig = {
   }
 };
 
-export const finplanDashboardConfig = {
-  entityParts: [
-    {
-      name: "goals"
-    }
-  ],
-  entityName: "finplan",
-  formsConfig: {
-    goals: {
-      fields: []
-    }
-  }
-};
+export default budgetDashbaordConfig;

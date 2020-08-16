@@ -1,5 +1,5 @@
 import { Dashboard } from "../../../ui-library";
-import { finplanDashboardConfig } from "../../../config/dashboards";
+import finplanDashboardConfig from "./config/dashboard";
 
 function FinPlanDashboard() {
   return (

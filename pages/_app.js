@@ -7,10 +7,10 @@ import { PersistGate } from "redux-persist/integration/react";
 import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
-import { useStore } from "./src/store";
-import ROUTES from "./src/config/routes";
-import theme from "./src/ui-library/theme";
-import { Navigation } from "./src/ui-library";
+import { useStore } from "../src/store";
+import ROUTES from "../src/config/routes";
+import theme from "../src/ui-library/theme";
+import { Navigation } from "../src/ui-library";
 
 const useStyles = makeStyles((theme) => ({
   innerContent: {
