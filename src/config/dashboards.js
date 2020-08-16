@@ -30,7 +30,7 @@ export const budgetDashbaordConfig = {
         },
         {
           type: "number",
-          name: "incomeExpectedAmount",
+          name: "amount",
           required: true,
           label: "Amount",
           helperText: "Expected Amount of Income",
@@ -74,6 +74,28 @@ export const budgetDashbaordConfig = {
           helperText:
             "Select icon, which would be displayed for this income source",
           value: "AttachMoney"
+        },
+        {
+          type: "number",
+          name: "incomeFee",
+          required: false,
+          label: "Fee",
+          helperText: "Any possible fees",
+          value: "0",
+          variant: "outlined",
+          fullWidth: true
+        },
+        {
+          type: "autocomplete",
+          name: "incomeFeeType",
+          required: false,
+          label: "Fee Type",
+          helperText: "If there's fee - is it fixed, or in percentage?",
+          value: { label: "%", value: "%" },
+          options: [
+            { label: "%", value: "%" },
+            { label: "Fixed", value: "fixed" }
+          ]
         }
       ],
       sections: [

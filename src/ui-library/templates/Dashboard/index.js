@@ -37,6 +37,9 @@ export default function Dashboard({
             <Typography variant="h5" className={classes.heading} align="center">
               {capitalizeString(entityPart.name)}
             </Typography>
+            {entityPart.items.map((item) => {
+              return item.amount;
+            })}
             <AddButton onClick={() => handleModalOpen(entityPart.name)} />
             <FormDialog
               formProps={formsConfig[entityPart.name]}
