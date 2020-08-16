@@ -1,14 +1,5 @@
-import { Dashboard } from "../../../ui-library";
-import { finplanDashboardConfig } from "../../../config/dashboards";
+import { FinPlanDashboard } from "../../../src/pages";
 
-function FinPlanDashboard() {
-  return (
-    <Dashboard
-      entityName={finplanDashboardConfig.entityName}
-      entityParts={finplanDashboardConfig.entityParts}
-      formsConfig={finplanDashboardConfig.formsConfig}
-    />
-  );
+export default function FinPlanAppPage() {
+  return <FinPlanDashboard />;
 }
-
-export default FinPlanDashboard;

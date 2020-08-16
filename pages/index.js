@@ -1,5 +1,5 @@
-function HomePage() {
-  return <section>Welcome to FinPlan Builder!</section>;
-}
+import { HomePage } from "../../../src/pages";
 
-export default HomePage;
+export default function IndexPage() {
+  return <HomePage />;
+}

@@ -1,5 +1,5 @@
-function AppsDashboard() {
-  return <div>Welcome to AppsDashboard!</div>;
-}
+import { AppsDashboard } from "../../../src/pages";
 
-export default AppsDashboard;
+export default function AppsRootPage() {
+  return <AppsDashboard />;
+}
