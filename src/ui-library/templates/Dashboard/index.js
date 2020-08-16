@@ -4,6 +4,8 @@ import { Typography, Divider } from "@material-ui/core";
 
 import { capitalizeString } from "../../utils";
 import { AddButton, FormDialog } from "../../";
+import EntityPartIcon from "./components/EntityPartIcon";
+
 import useStyles from "./styles";
 import useDashboard from "./hooks";
 
@@ -38,7 +40,7 @@ export default function Dashboard({
               {capitalizeString(entityPart.name)}
             </Typography>
             {entityPart.items.map((item) => {
-              return <div key={item.id}>{item.expectedAmount}</div>;
+              return <EntityPartIcon key={item.id} {...item} />;
             })}
             <AddButton onClick={() => handleModalOpen(entityPart.name)} />
             <FormDialog

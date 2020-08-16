@@ -76,8 +76,8 @@ const searchIndex = FlexSearch.create({
   tokenize: "full"
 });
 
-const allIconsMap = {};
-const allIcons = Object.keys(mui)
+export const allIconsMap = {};
+export const allIcons = Object.keys(mui)
   .sort()
   .map((key) => {
     let tag;
@@ -150,7 +150,7 @@ export default function IconSelector({ onChange, helperText, name, value }) {
   return (
     <Grid container className={classes.root}>
       <Grid item xs={12} sm={3}>
-        <form className={classes.form}>
+        <section className={classes.form}>
           <RadioGroup>
             {["Filled", "Outlined", "Rounded", "Two tone", "Sharp"].map(
               (key) => {
@@ -170,7 +170,7 @@ export default function IconSelector({ onChange, helperText, name, value }) {
               }
             )}
           </RadioGroup>
-        </form>
+        </section>
       </Grid>
       <Grid item xs={12} sm={9}>
         <Paper className={classes.paper}>

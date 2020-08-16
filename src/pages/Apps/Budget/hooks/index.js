@@ -22,7 +22,6 @@ export default function useBudgetDashboard() {
     ...entityPart,
     items: budgetDataMapping[entityPart.name] || []
   }));
-  console.log(entityParts, "PENIS");
   return {
     handleSubmit,
     entityName: budgetDashbaordConfig.entityName,

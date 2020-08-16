@@ -23,7 +23,7 @@ const budgetDashbaordConfig = {
           fields: [
             {
               type: "string",
-              name: "sourceName",
+              name: "name",
               required: true,
               label: "Source",
               value: "Salary",
@@ -43,7 +43,7 @@ const budgetDashbaordConfig = {
             },
             {
               type: "autocomplete",
-              name: "incomeCurrency",
+              name: "currency",
               required: true,
               label: "Currency",
               helperText: "In which currency?",
@@ -56,7 +56,7 @@ const budgetDashbaordConfig = {
             },
             {
               type: "autocomplete",
-              name: "incomeFrequency",
+              name: "frequency",
               required: true,
               label: "Frequency",
               helperText: "How frequent you will get income from this source?",
