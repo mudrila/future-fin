@@ -81,6 +81,7 @@ export default function useForm({ fields, onSubmit }) {
 
   function handleSubmit() {
     onSubmit(formState);
+    setFormState(initialFormState);
   }
   return {
     getComponentByFieldType,

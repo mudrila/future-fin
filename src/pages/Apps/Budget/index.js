@@ -1,23 +1,19 @@
-import { useDispatch } from "react-redux";
-
 import { Dashboard } from "../../../ui-library";
-import budgetDashbaordConfig from "./config/dashboard";
-import { budgetIncomesActionCreators } from "./redux/actions";
+import useBudgetDashboard from "./hooks";
 
 function BudgetDashboard() {
-  const dispatch = useDispatch();
+  const {
+    handleSubmit,
+    entityName,
+    entityParts,
+    formsConfig
+  } = useBudgetDashboard();
 
-  function handleSubmit(formName, formValues) {
-    if (formName === "incomes") {
-      const action = budgetIncomesActionCreators.CREATE.REQUEST(formValues);
-      dispatch(action);
-    }
-  }
   return (
     <Dashboard
-      entityName={budgetDashbaordConfig.entityName}
-      entityParts={budgetDashbaordConfig.entityParts}
-      formsConfig={budgetDashbaordConfig.formsConfig}
+      entityName={entityName}
+      entityParts={entityParts}
+      formsConfig={formsConfig}
       onSubmit={handleSubmit}
       normalizeFormData={true}
     />

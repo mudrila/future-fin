@@ -38,7 +38,7 @@ export default function Dashboard({
               {capitalizeString(entityPart.name)}
             </Typography>
             {entityPart.items.map((item) => {
-              return item.amount;
+              return <div key={item.id}>{item.expectedAmount}</div>;
             })}
             <AddButton onClick={() => handleModalOpen(entityPart.name)} />
             <FormDialog

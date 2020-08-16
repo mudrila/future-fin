@@ -33,7 +33,7 @@ const budgetDashbaordConfig = {
             },
             {
               type: "number",
-              name: "amount",
+              name: "expectedAmount",
               required: true,
               label: "Amount",
               helperText: "Expected Amount of Income",
