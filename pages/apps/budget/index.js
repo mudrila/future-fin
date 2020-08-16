@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 
-import { Dashboard } from "../../../ui-library";
-import { budgetDashbaordConfig } from "../../../config/dashboards";
-import { budgetIncomesActionCreators } from "../../../store/actions/actionCreators";
+import { Dashboard } from "../../../src/ui-library";
+import { budgetDashbaordConfig } from "../../../src/config/dashboards";
+import { budgetIncomesActionCreators } from "../../../src/store/actions/actionCreators";
 
 function BudgetDashboard() {
   const dispatch = useDispatch();
