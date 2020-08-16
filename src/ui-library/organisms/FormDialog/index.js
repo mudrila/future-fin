@@ -30,12 +30,19 @@ export default function FormDialog({
   onSubmit,
   sectionsSplitting = false
 }) {
+  let fields = formProps.fields;
+  if (sectionsSplitting) {
+    fields = [];
+    formProps.sections.forEach((section) => {
+      fields.push(...section.fields);
+    });
+  }
   const {
     getComponentByFieldType,
     getInputPropsByField,
     handleSubmit
   } = useForm({
-    fields: formProps.fields,
+    fields,
     onSubmit
   });
   const classes = useStyles();

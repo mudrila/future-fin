@@ -7,7 +7,8 @@ const finplanDashboardConfig = {
   entityName: "finplan",
   formsConfig: {
     goals: {
-      fields: []
+      sections: [],
+      formName: "finplan-goals"
     }
   }
 };
