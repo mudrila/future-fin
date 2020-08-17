@@ -3,7 +3,7 @@ export function incomeSourcesSelector(state) {
 }
 
 export function accountsSelector(state) {
-  return state.budget.accounts;
+  return state.budget.accounts.items;
 }
 
 export function spendingCategoriesSelector(state) {

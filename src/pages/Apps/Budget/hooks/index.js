@@ -1,34 +1,48 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import budgetDashbaordConfig from "../config/dashboard";
-import { budgetIncomesActionCreators } from "../redux/actions";
-import { incomeSourcesSelector } from "../redux/selectors";
+import {
+  budgetIncomesActionCreators,
+  budgetAccountsActionCreators
+} from "../redux/actions";
+import { incomeSourcesSelector, accountsSelector } from "../redux/selectors";
 
 export default function useBudgetDashboard() {
   const dispatch = useDispatch();
   const incomeSources = useSelector(incomeSourcesSelector);
+  const accounts = useSelector(accountsSelector);
 
   const budgetDataMapping = {
-    incomes: incomeSources
+    incomes: incomeSources,
+    accounts
   };
 
   function handleSubmit(formName, formValues) {
+    let action = null;
     if (formName === "incomes") {
-      const action = budgetIncomesActionCreators.CREATE.REQUEST(formValues);
-      dispatch(action);
+      action = budgetIncomesActionCreators.CREATE.REQUEST(formValues);
+    } else if (formName === "accounts") {
+      action = budgetAccountsActionCreators.CREATE.REQUEST(formValues);
     }
+    dispatch(action);
   }
   function handleEdit({ entityPartName, item }) {
+    let action = null;
     if (entityPartName === "incomes") {
-      const action = budgetIncomesActionCreators.UPDATE.REQUEST(item);
-      dispatch(action);
+      action = budgetIncomesActionCreators.UPDATE.REQUEST(item);
+    } else if (entityPartName === "accounts") {
+      action = budgetAccountsActionCreators.UPDATE.REQUEST(item);
     }
+    action && dispatch(action);
   }
   function handleDelete({ entityPartName, item }) {
+    let action = null;
     if (entityPartName === "incomes") {
-      const action = budgetIncomesActionCreators.DELETE.REQUEST(item);
-      dispatch(action);
+      action = budgetIncomesActionCreators.DELETE.REQUEST(item);
+    } else if (entityPartName === "accounts") {
+      action = budgetAccountsActionCreators.DELETE.REQUEST(item);
     }
+    action && dispatch(action);
   }
   const entityParts = budgetDashbaordConfig.entityParts.map((entityPart) => ({
     ...entityPart,
