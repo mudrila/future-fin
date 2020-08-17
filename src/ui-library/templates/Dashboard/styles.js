@@ -9,7 +9,8 @@ export default makeStyles((theme) => ({
   section: {
     display: "flex",
     width: "100%",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    alignItems: "center"
   },
   heading: {
     width: "100%",
