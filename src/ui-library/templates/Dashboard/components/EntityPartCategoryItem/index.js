@@ -16,6 +16,7 @@ import { allIconsMap } from "../../../../molecules/IconSelector";
 
 export default function EntityPartCategoryItem({
   expectedAmount,
+  balance,
   amount = 0,
   frequency,
   icon,
@@ -79,18 +80,20 @@ export default function EntityPartCategoryItem({
           <Icon />
         </Fab>
         <Typography variant="body1">
-          {(+amount).toFixed(2)} {currency}
+          {(+balance || +amount).toFixed(2)} {currency}
         </Typography>
-        <Typography variant="body1">
-          {(+expectedAmount).toFixed(2)} / {capitalizeString(frequency)}
-        </Typography>
+        {expectedAmount && (
+          <Typography variant="body1">
+            {(+expectedAmount).toFixed(2)} / {capitalizeString(frequency)}
+          </Typography>
+        )}
       </CardContent>
     </Card>
   );
 }
 
 EntityPartCategoryItem.propTypes = {
-  expectedAmount: PropTypes.string.isRequired,
+  expectedAmount: PropTypes.string,
   amount: PropTypes.string,
   frequency: PropTypes.string,
   icon: PropTypes.string.isRequired,
@@ -98,5 +101,6 @@ EntityPartCategoryItem.propTypes = {
   frequency: PropTypes.string.isRequired,
   currency: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
-  onEdit: PropTypes.func.isRequired
+  onEdit: PropTypes.func.isRequired,
+  balance: PropTypes.string
 };

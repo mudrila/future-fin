@@ -125,18 +125,18 @@ const budgetDashbaordConfig = {
               type: "string",
               name: "name",
               required: true,
-              label: "Source",
-              value: "Salary",
+              label: "Account Name",
+              value: "Wallet",
               variant: "outlined",
               helperText: "Name of Account",
               fullWidth: true
             },
             {
               type: "number",
-              name: "amount",
+              name: "balance",
               required: true,
-              label: "Amount",
-              helperText: "Expected Amount of Income",
+              label: "Balance",
+              helperText: "Current Balance",
               value: "1000.00",
               variant: "outlined",
               fullWidth: true
@@ -165,8 +165,83 @@ const budgetDashbaordConfig = {
               required: false,
               label: "Icon",
               helperText:
-                "Select icon, which would be displayed for this income source",
-              value: "AttachMoney"
+                "Select icon, which would be displayed for this account",
+              value: "AccountBalanceWallet"
+            }
+          ]
+        },
+        {
+          name: "Advanced",
+          description: "Advanced configuration for Account",
+          fields: [
+            {
+              type: "number",
+              name: "limit",
+              required: false,
+              label: "Debt Limit",
+              helperText:
+                "For some debit cards/accounts - there is possible debt limit.",
+              value: "0",
+              variant: "outlined",
+              fullWidth: true
+            },
+            {
+              type: "number",
+              name: "fee",
+              required: false,
+              label: "Debt Limit Fee",
+              helperText:
+                "If there is fee for debt limit usage - how much it is?",
+              value: "0",
+              variant: "outlined",
+              fullWidth: true
+            },
+            {
+              type: "autocomplete",
+              name: "debtFeeType",
+              required: false,
+              label: "Fee Type",
+              helperText:
+                "If there's fee for debt limit - is it fixed, or in percentage?",
+              value: { label: "%", value: "%" },
+              options: [
+                { label: "%", value: "%" },
+                { label: "Fixed", value: "fixed" }
+              ]
+            },
+            {
+              type: "autocomplete",
+              name: "feeFrequency",
+              required: false,
+              label: "Frequency",
+              helperText:
+                "How frequent you will be charged for debt limit usage?",
+              options: [
+                { label: "Per working day", value: "daily" },
+                { label: "Per week", value: "weekly" },
+                { label: "Per month", value: "montly" },
+                { label: "Per year", value: "yearly" },
+                { label: "One-time fee", value: "once" }
+              ],
+              value: { label: "Per month", value: "montly" }
+            },
+            {
+              type: "autocomplete",
+              name: "limitFreeUsageDays",
+              required: true,
+              label: "Free days",
+              helperText:
+                "Type amount of days, if there is custom amount of time for free usage",
+              placeholder: "How long you can use debt limit for free?",
+              options: [
+                { label: "No free usage", value: "noFreeUsage" },
+                { label: "A day", value: "daily" },
+                { label: "A week", value: "weekly" },
+                { label: "A month", value: "montly" },
+                { label: "A year", value: "yearly" },
+                { label: "Always", value: "always" }
+              ],
+              value: { label: "Per month", value: "montly" }
             }
           ]
         }
