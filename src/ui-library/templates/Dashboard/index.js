@@ -54,14 +54,18 @@ export default function Dashboard({
             <Card className={cardClasses.root} variant="outlined">
               <CardHeader
                 className={cardClasses.cardHeader}
-                title={<Skeleton />}
-                action={<Skeleton />}
+                title={
+                  <Skeleton variant="text" className={cardClasses.textHeader} />
+                }
+                action={<Skeleton width={56} height={56} variant="circle" />}
               />
               <CardContent className={cardClasses.cardContent}>
-                <Skeleton />
-                <AddButton onClick={() => handleModalOpen(entityPart.name)} />
-                <Skeleton />
-                <Skeleton />
+                <AddButton
+                  onClick={() => handleModalOpen(entityPart.name)}
+                  className={cardClasses.actionIcon}
+                />
+                <Skeleton variant="text" />
+                <Skeleton variant="text" />
               </CardContent>
             </Card>
             <FormDialog

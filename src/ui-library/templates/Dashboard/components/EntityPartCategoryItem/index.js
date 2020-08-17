@@ -64,7 +64,7 @@ export default function EntityPartCategoryItem({
         }
       />
       <CardContent className={classes.cardContent}>
-        <Fab color="primary">
+        <Fab color="primary" className={classes.actionIcon}>
           <Icon />
         </Fab>
         <Typography variant="body1">

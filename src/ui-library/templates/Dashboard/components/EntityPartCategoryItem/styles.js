@@ -3,8 +3,9 @@ import { makeStyles } from "@material-ui/core/styles";
 function useStyles(theme) {
   return {
     root: {
-      marginRight: theme.spacing(1),
-      marginLeft: theme.spacing(1)
+      margin: theme.spacing(1),
+      minWidth: 280,
+      minHeight: 220
     },
     textHeader: {
       marginRight: theme.spacing(2)
@@ -15,6 +16,9 @@ function useStyles(theme) {
     cardContent: {
       textAlign: "center",
       paddingTop: 0
+    },
+    actionIcon: {
+      marginBottom: theme.spacing(1)
     }
   };
 }
