@@ -22,17 +22,23 @@ export default function Dashboard({
   entityParts,
   formsConfig,
   onSubmit,
-  normalizeFormData = false
+  normalizeFormData = false,
+  onDelete,
+  onEdit
 }) {
   const {
     modalsState,
     handleModalOpen,
     handleModalClose,
-    handleSubmit
+    handleSubmit,
+    handleDeleteCategory,
+    handleEdit
   } = useDashboard({
     formsConfig,
     onSubmit,
-    normalizeFormData
+    normalizeFormData,
+    onDelete,
+    onEdit
   });
   const classes = useStyles();
   const cardClasses = useEntityPartCategoryItemStyles();
@@ -49,7 +55,21 @@ export default function Dashboard({
               {capitalizeString(entityPart.name)}
             </Typography>
             {entityPart.items.map((item) => {
-              return <EntityPartCategoryItem key={item.id} {...item} />;
+              return (
+                <EntityPartCategoryItem
+                  key={item.id}
+                  {...item}
+                  onDelete={() =>
+                    handleDeleteCategory({
+                      entityPartName: entityPart.name,
+                      item
+                    })
+                  }
+                  onEdit={() =>
+                    handleEdit({ entityPartName: entityPart.name, item })
+                  }
+                />
+              );
             })}
             <Card className={cardClasses.root} variant="outlined">
               <CardHeader
@@ -95,5 +115,7 @@ Dashboard.propTypes = {
   ).isRequired,
   formsConfig: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
-  normalizeFormData: PropTypes.bool
+  normalizeFormData: PropTypes.bool,
+  onDelete: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired
 };

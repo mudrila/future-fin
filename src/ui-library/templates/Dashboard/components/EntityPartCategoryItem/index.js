@@ -20,7 +20,9 @@ export default function EntityPartCategoryItem({
   frequency,
   icon,
   name,
-  currency
+  currency,
+  onDelete,
+  onEdit
 }) {
   const classes = useStyles();
   const Icon = allIconsMap[icon].Icon;
@@ -32,6 +34,15 @@ export default function EntityPartCategoryItem({
   const handleOpen = () => {
     setOpen(true);
   };
+  const handleDelete = () => {
+    onDelete();
+    handleClose();
+  };
+  const handleEdit = () => {
+    onEdit();
+    handleClose();
+  };
+
   return (
     <Card className={classes.root} variant="outlined">
       <CardHeader
@@ -53,12 +64,12 @@ export default function EntityPartCategoryItem({
             <SpeedDialAction
               icon={<allIconsMap.Edit.Icon />}
               tooltipTitle={"Edit"}
-              onClick={handleClose}
+              onClick={handleEdit}
             />
             <SpeedDialAction
               icon={<allIconsMap.Delete.Icon />}
               tooltipTitle={"Delete"}
-              onClick={handleClose}
+              onClick={handleDelete}
             />
           </SpeedDial>
         }
@@ -85,5 +96,7 @@ EntityPartCategoryItem.propTypes = {
   icon: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   frequency: PropTypes.string.isRequired,
-  currency: PropTypes.string.isRequired
+  currency: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired
 };

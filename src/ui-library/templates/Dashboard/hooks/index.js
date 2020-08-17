@@ -3,7 +3,9 @@ import { useState } from "react";
 export default function useDashbaord({
   formsConfig,
   onSubmit,
-  normalizeFormData
+  normalizeFormData,
+  onDelete,
+  onEdit
 }) {
   let initialModalsState = {};
   Object.keys(formsConfig).forEach((formKey) => {
@@ -50,10 +52,20 @@ export default function useDashbaord({
     return result;
   }
 
+  function handleDeleteCategory({ item, entityPartName }) {
+    onDelete({ item, entityPartName });
+  }
+
+  function handleEdit({ item, entityPartName }) {
+    onEdit({ item, entityPartName });
+  }
+
   return {
     modalsState,
     handleModalOpen,
     handleModalClose,
-    handleSubmit
+    handleSubmit,
+    handleDeleteCategory,
+    handleEdit
   };
 }

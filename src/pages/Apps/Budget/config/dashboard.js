@@ -117,7 +117,60 @@ const budgetDashbaordConfig = {
     },
     accounts: {
       formName: "budget-accounts",
-      sections: []
+      sections: [
+        {
+          name: "General",
+          fields: [
+            {
+              type: "string",
+              name: "name",
+              required: true,
+              label: "Source",
+              value: "Salary",
+              variant: "outlined",
+              helperText: "Name of Account",
+              fullWidth: true
+            },
+            {
+              type: "number",
+              name: "amount",
+              required: true,
+              label: "Amount",
+              helperText: "Expected Amount of Income",
+              value: "1000.00",
+              variant: "outlined",
+              fullWidth: true
+            },
+            {
+              type: "autocomplete",
+              name: "currency",
+              required: true,
+              label: "Currency",
+              helperText: "In which currency?",
+              value: { label: "US Dollars", value: "USD" },
+              options: [
+                { label: "US Dollars", value: "USD" },
+                { label: "European Euro", value: "EUR" },
+                { label: "Ukrainian Hryvna", value: "UAH" }
+              ]
+            }
+          ]
+        },
+        {
+          name: "Icon Selection",
+          fields: [
+            {
+              type: "iconSelection",
+              name: "icon",
+              required: false,
+              label: "Icon",
+              helperText:
+                "Select icon, which would be displayed for this income source",
+              value: "AttachMoney"
+            }
+          ]
+        }
+      ]
     },
     spendings: {
       formName: "budget-spendings",
