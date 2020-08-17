@@ -9,7 +9,8 @@ import {
   Grid,
   Accordion,
   AccordionSummary,
-  AccordionDetails
+  AccordionDetails,
+  Typography
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
@@ -70,7 +71,12 @@ export default function FormDialog({
         >
           {section.name}
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails className={classes.detailsContainer}>
+          {section.description && (
+            <Grid item xs={12}>
+              <Typography variant="body2">{section.description}</Typography>
+            </Grid>
+          )}
           <Grid item xs={12}>
             {renderFields(section.fields)}
           </Grid>

@@ -7,5 +7,8 @@ export default makeStyles((theme) => ({
   },
   dialogRoot: {
     minWidth: 600
+  },
+  detailsContainer: {
+    flexWrap: "wrap"
   }
 }));
