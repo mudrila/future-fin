@@ -6,7 +6,9 @@ function BudgetDashboard() {
     handleSubmit,
     entityName,
     entityParts,
-    formsConfig
+    formsConfig,
+    handleEdit,
+    handleDelete
   } = useBudgetDashboard();
 
   return (
@@ -16,6 +18,8 @@ function BudgetDashboard() {
       formsConfig={formsConfig}
       onSubmit={handleSubmit}
       normalizeFormData={true}
+      onEdit={handleEdit}
+      onDelete={handleDelete}
     />
   );
 }

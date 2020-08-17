@@ -18,6 +18,18 @@ export default function useBudgetDashboard() {
       dispatch(action);
     }
   }
+  function handleEdit({ entityPartName, item }) {
+    if (entityPartName === "incomes") {
+      const action = budgetIncomesActionCreators.UPDATE.REQUEST(item);
+      dispatch(action);
+    }
+  }
+  function handleDelete({ entityPartName, item }) {
+    if (entityPartName === "incomes") {
+      const action = budgetIncomesActionCreators.DELETE.REQUEST(item);
+      dispatch(action);
+    }
+  }
   const entityParts = budgetDashbaordConfig.entityParts.map((entityPart) => ({
     ...entityPart,
     items: budgetDataMapping[entityPart.name] || []
@@ -26,6 +38,8 @@ export default function useBudgetDashboard() {
     handleSubmit,
     entityName: budgetDashbaordConfig.entityName,
     entityParts,
-    formsConfig: budgetDashbaordConfig.formsConfig
+    formsConfig: budgetDashbaordConfig.formsConfig,
+    handleEdit,
+    handleDelete
   };
 }
