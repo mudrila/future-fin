@@ -249,7 +249,76 @@ const budgetDashbaordConfig = {
     },
     spendings: {
       formName: "budget-spendings",
-      sections: []
+      sections: [
+        {
+          name: "General",
+          fields: [
+            {
+              type: "string",
+              name: "name",
+              required: true,
+              label: "Category",
+              value: "Goods",
+              variant: "outlined",
+              helperText: "Name of Spending Category",
+              fullWidth: true
+            },
+            {
+              type: "number",
+              name: "expectedAmount",
+              required: true,
+              label: "Amount",
+              helperText: "Expected Amount of Spendings for this Category",
+              value: "1000.00",
+              variant: "outlined",
+              fullWidth: true
+            },
+            {
+              type: "autocomplete",
+              name: "currency",
+              required: true,
+              label: "Currency",
+              helperText: "In which currency?",
+              value: { label: "US Dollars", value: "USD" },
+              options: [
+                { label: "US Dollars", value: "USD" },
+                { label: "European Euro", value: "EUR" },
+                { label: "Ukrainian Hryvna", value: "UAH" }
+              ]
+            },
+            {
+              type: "autocomplete",
+              name: "frequency",
+              required: true,
+              label: "Frequency",
+              helperText:
+                "What is the frequency of updating expected amount of spending for this category? (I.e. how much in **which period** you want to spend?",
+              options: [
+                { label: "Per working day", value: "daily" },
+                { label: "Per week", value: "weekly" },
+                { label: "Per month", value: "montly" },
+                { label: "Per year", value: "yearly" },
+                { label: "One-time income", value: "once" }
+              ],
+              value: { label: "Per month", value: "montly" }
+            }
+          ]
+        },
+        {
+          name: "Icon Selection",
+          fields: [
+            {
+              type: "iconSelection",
+              name: "icon",
+              required: false,
+              label: "Icon",
+              helperText:
+                "Select icon, which would be displayed for this income source",
+              value: "AttachMoney"
+            }
+          ]
+        }
+      ]
     }
   }
 };
