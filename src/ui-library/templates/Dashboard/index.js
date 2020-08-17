@@ -1,11 +1,19 @@
 import { Fragment } from "react";
 import PropTypes from "prop-types";
-import { Typography, Divider } from "@material-ui/core";
+import {
+  Typography,
+  Divider,
+  Card,
+  CardHeader,
+  CardContent
+} from "@material-ui/core";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 import { capitalizeString } from "../../utils";
 import { AddButton, FormDialog } from "../../";
-import EntityPartIcon from "./components/EntityPartIcon";
+import EntityPartCategoryItem from "./components/EntityPartCategoryItem";
 
+import useEntityPartCategoryItemStyles from "./components/EntityPartCategoryItem/styles";
 import useStyles from "./styles";
 import useDashboard from "./hooks";
 
@@ -27,6 +35,7 @@ export default function Dashboard({
     normalizeFormData
   });
   const classes = useStyles();
+  const cardClasses = useEntityPartCategoryItemStyles();
   return (
     <section className={classes.root}>
       <Typography variant="h4" className={classes.heading} align="center">
@@ -40,9 +49,21 @@ export default function Dashboard({
               {capitalizeString(entityPart.name)}
             </Typography>
             {entityPart.items.map((item) => {
-              return <EntityPartIcon key={item.id} {...item} />;
+              return <EntityPartCategoryItem key={item.id} {...item} />;
             })}
-            <AddButton onClick={() => handleModalOpen(entityPart.name)} />
+            <Card className={cardClasses.root} variant="outlined">
+              <CardHeader
+                className={cardClasses.cardHeader}
+                title={<Skeleton />}
+                action={<Skeleton />}
+              />
+              <CardContent className={cardClasses.cardContent}>
+                <Skeleton />
+                <AddButton onClick={() => handleModalOpen(entityPart.name)} />
+                <Skeleton />
+                <Skeleton />
+              </CardContent>
+            </Card>
             <FormDialog
               formProps={formsConfig[entityPart.name]}
               open={modalsState[entityPart.name].isModalOpen}

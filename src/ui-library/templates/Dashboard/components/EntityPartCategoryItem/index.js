@@ -10,11 +10,11 @@ import {
 import SpeedDial from "@material-ui/lab/SpeedDial";
 import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
 
-import { capitalizeString } from "../../../utils";
+import { capitalizeString } from "../../../../utils";
 import useStyles from "./styles";
-import { allIconsMap } from "../../../molecules/IconSelector";
+import { allIconsMap } from "../../../../molecules/IconSelector";
 
-export default function EntityPartIcon({
+export default function EntityPartCategoryItem({
   expectedAmount,
   amount = 0,
   frequency,
@@ -78,7 +78,7 @@ export default function EntityPartIcon({
   );
 }
 
-EntityPartIcon.propTypes = {
+EntityPartCategoryItem.propTypes = {
   expectedAmount: PropTypes.string.isRequired,
   amount: PropTypes.string,
   frequency: PropTypes.string,
