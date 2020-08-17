@@ -69,7 +69,7 @@ export default function budgetReducer(
         accounts: {
           ...state.accounts,
           items: state.accounts.items.filter(
-            (account) => account !== payload.id
+            (account) => account.id !== payload.id
           ),
           loading: false
         }
