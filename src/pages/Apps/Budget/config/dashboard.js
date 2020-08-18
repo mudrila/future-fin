@@ -317,6 +317,39 @@ const budgetDashbaordConfig = {
               value: "Shop"
             }
           ]
+        },
+        {
+          name: "Advanced",
+          description: "Advanced configuration for this Spending Category",
+          fields: [
+            {
+              type: "switcher",
+              name: "isMandatory",
+              required: false,
+              label: "Mandatory spending status",
+              value: true,
+              helperText:
+                "Off this switcher, if this spending category not mandatory (i.e. you can omit this type of spendings for a while)."
+            },
+            {
+              type: "autocomplete",
+              name: "isMandatoryStateExpiration",
+              required: false,
+              label: "Removal time",
+              helperText:
+                "After which period of time you can remove this spending category?",
+              placeholder: "95 days",
+              options: [
+                { label: "After a day", value: "daily" },
+                { label: "After a week", value: "weekly" },
+                { label: "After a month", value: "montly" },
+                { label: "After 6 months", value: "half-early" },
+                { label: "After a year", value: "yearly" },
+                { label: "One-time spending", value: "once" }
+              ],
+              value: { label: "After a month", value: "montly" }
+            }
+          ]
         }
       ]
     }
