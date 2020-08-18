@@ -7,5 +7,5 @@ export function accountsSelector(state) {
 }
 
 export function spendingCategoriesSelector(state) {
-  return state.budget.spending.categories;
+  return state.budget.spendings.categories;
 }

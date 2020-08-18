@@ -313,8 +313,8 @@ const budgetDashbaordConfig = {
               required: false,
               label: "Icon",
               helperText:
-                "Select icon, which would be displayed for this income source",
-              value: "AttachMoney"
+                "Select icon, which would be displayed for this spending category",
+              value: "Shop"
             }
           ]
         }

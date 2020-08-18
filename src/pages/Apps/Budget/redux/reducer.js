@@ -1,7 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 import {
   BUDGET_INCOME_SOURCES_ACTION_TYPES,
-  BUDGET_ACCOUNTS_ACTION_TYPES
+  BUDGET_ACCOUNTS_ACTION_TYPES,
+  BUDGET_SPENDING_CATEGORIES_ACTION_TYPES
 } from "./actions";
 
 const INITIAL_STATE = {
@@ -12,6 +13,11 @@ const INITIAL_STATE = {
   },
   accounts: {
     loading: false,
+    items: []
+  },
+  spendings: {
+    loading: false,
+    categories: [],
     items: []
   }
 };
@@ -70,6 +76,30 @@ export default function budgetReducer(
           ...state.accounts,
           items: state.accounts.items.filter(
             (account) => account.id !== payload.id
+          ),
+          loading: false
+        }
+      };
+    case BUDGET_SPENDING_CATEGORIES_ACTION_TYPES.CREATE.SUCCESS:
+      const newCategory = {
+        ...payload,
+        id: uuidv4() // Temp
+      };
+      return {
+        ...state,
+        spendings: {
+          ...state.incomes,
+          categories: [...state.incomes.sources, newCategory],
+          loading: false
+        }
+      };
+    case BUDGET_SPENDING_CATEGORIES_ACTION_TYPES.DELETE.SUCCESS:
+      return {
+        ...state,
+        spendings: {
+          ...state.incomes,
+          categories: state.spendings.categories.filter(
+            (spendingCategory) => spendingCategory.id !== payload.id
           ),
           loading: false
         }
