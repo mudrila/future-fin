@@ -58,8 +58,8 @@ export default function useBudgetDashboard() {
       action = budgetAccountsActionCreators.DELETE.REQUEST(item);
     } else if (entityPartName === "spendings") {
       action = budgetSpendingCategoriesActionCreators.DELETE.REQUEST(item);
-      action && dispatch(action);
     }
+    action && dispatch(action);
   }
 
   const entityParts = budgetDashbaordConfig.entityParts.map((entityPart) => ({
