@@ -6,8 +6,12 @@ import { IconSelector, SwitchField, CheckboxField } from "../../../";
 
 export default function useForm({ fields, onSubmit }) {
   const initialFormState = {};
-  fields.forEach(({ name, value }) => {
-    initialFormState[name] = value;
+  fields.forEach(({ name, value, checked, type }) => {
+    if (type === "checkbox") {
+      initialFormState[name] = checked;
+    } else {
+      initialFormState[name] = value;
+    }
   });
 
   const [formState, setFormState] = useState(initialFormState);

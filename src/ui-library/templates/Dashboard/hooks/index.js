@@ -8,28 +8,52 @@ export default function useDashbaord({
   onEdit
 }) {
   let initialModalsState = {};
-  Object.keys(formsConfig).forEach((formKey) => {
+  const formNames = Object.keys(formsConfig);
+  formNames.forEach((formKey) => {
     initialModalsState[formKey] = {
       isModalOpen: false
     };
   });
-  const [modalsState, setModalsState] = useState(initialModalsState);
+  const [createModalsState, setCreateModalsState] = useState(
+    initialModalsState
+  );
+  const [editModalsState, setEditModalsState] = useState(initialModalsState);
+  const [currentEditableEntity, setCurrentEditableEntity] = useState(null);
 
-  function handleModalOpen(formName) {
-    setModalsState({
-      ...modalsState,
+  function handleCreateModalOpen(formName) {
+    setCreateModalsState({
+      ...createModalsState,
       [formName]: {
         isModalOpen: true
       }
     });
   }
-  function handleModalClose(formName) {
-    setModalsState({
-      ...modalsState,
-      [formName]: false
+  function handleCreateModalClose(formName) {
+    setCreateModalsState({
+      ...createModalsState,
+      [formName]: {
+        isModalOpen: false
+      }
     });
   }
 
+  function handleEditModalOpen({ item, entityPartName }) {
+    setEditModalsState({
+      ...editModalsState,
+      [item.id]: {
+        isModalOpen: true
+      }
+    });
+    setCurrentEditableEntity({ item, entityPartName });
+  }
+  function handleEditModalClose(item) {
+    setEditModalsState({
+      ...editModalsState,
+      [item.id]: {
+        isModalOpen: false
+      }
+    });
+  }
   function handleSubmit(formName, formValues) {
     if (normalizeFormData) {
       onSubmit(formName, normalizeFormValues(formValues));
@@ -60,12 +84,35 @@ export default function useDashbaord({
     onEdit({ item, entityPartName });
   }
 
+  function mapEntityToEditFormProps({ item, entityPartName }) {
+    const initialFormConfig = formsConfig[entityPartName];
+    const formConfig = {
+      formName: initialFormConfig.formName,
+      sections: initialFormConfig.sections.map((section) => {
+        return {
+          ...section,
+          fields: section.fields.map((field) => {
+            return {
+              ...field,
+              value: item[field.name]
+            };
+          })
+        };
+      })
+    };
+    return formConfig;
+  }
   return {
-    modalsState,
-    handleModalOpen,
-    handleModalClose,
+    createModalsState,
+    editModalsState,
+    handleCreateModalOpen,
+    handleCreateModalClose,
     handleSubmit,
     handleDeleteCategory,
-    handleEdit
+    handleEditModalClose,
+    handleEdit,
+    handleEditModalOpen,
+    currentEditableEntity,
+    mapEntityToEditFormProps
   };
 }

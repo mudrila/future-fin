@@ -176,6 +176,17 @@ const budgetDashbaordConfig = {
           fields: [
             {
               type: "number",
+              name: "payoutPriority",
+              required: false,
+              label: "Payout priority",
+              helperText:
+                "If this is debt account - how it is important to payout it first prior to others?(from 1 to 10)",
+              value: "1",
+              variant: "outlined",
+              fullWidth: true
+            },
+            {
+              type: "number",
               name: "limit",
               required: false,
               label: "Debt Limit",
@@ -241,7 +252,7 @@ const budgetDashbaordConfig = {
                 { label: "A year", value: "yearly" },
                 { label: "Always", value: "always" }
               ],
-              value: { label: "Per month", value: "montly" }
+              value: { label: "A month", value: "montly" }
             }
           ]
         }
@@ -326,11 +337,11 @@ const budgetDashbaordConfig = {
               type: "checkbox",
               name: "isMandatory",
               required: false,
-              label: "Mandatory spending status",
+              label: "Mandatory spending",
               value: "isMandatory",
               helperText:
                 "Off this switcher, if this spending category not mandatory (i.e. you can omit this type of spendings for a while).",
-              checked: false
+              checked: true
             },
             {
               type: "autocomplete",
@@ -346,9 +357,10 @@ const budgetDashbaordConfig = {
                 { label: "After a month", value: "montly" },
                 { label: "After 6 months", value: "half-early" },
                 { label: "After a year", value: "yearly" },
-                { label: "One-time spending", value: "once" }
+                { label: "One-time spending", value: "once" },
+                { label: "Always mandatory", value: "always" }
               ],
-              value: { label: "After a month", value: "montly" }
+              value: { label: "Always mandatory", value: "always" }
             }
           ]
         }

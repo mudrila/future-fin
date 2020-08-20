@@ -27,12 +27,16 @@ export default function Dashboard({
   onEdit
 }) {
   const {
-    modalsState,
-    handleModalOpen,
-    handleModalClose,
+    createModalsState,
+    editModalsState,
+    handleCreateModalClose,
+    handleCreateModalOpen,
     handleSubmit,
     handleDeleteCategory,
-    handleEdit
+    handleEdit,
+    handleEditModalClose,
+    handleEditModalOpen,
+    mapEntityToEditFormProps
   } = useDashboard({
     formsConfig,
     onSubmit,
@@ -56,19 +60,39 @@ export default function Dashboard({
             </Typography>
             {entityPart.items.map((item) => {
               return (
-                <EntityPartCategoryItem
-                  key={item.id}
-                  {...item}
-                  onDelete={() =>
-                    handleDeleteCategory({
+                <Fragment key={item.id}>
+                  <EntityPartCategoryItem
+                    {...item}
+                    onDelete={() =>
+                      handleDeleteCategory({
+                        entityPartName: entityPart.name,
+                        item
+                      })
+                    }
+                    onEdit={() =>
+                      handleEditModalOpen({
+                        entityPartName: entityPart.name,
+                        item
+                      })
+                    }
+                  />
+                  <FormDialog
+                    formProps={mapEntityToEditFormProps({
                       entityPartName: entityPart.name,
                       item
-                    })
-                  }
-                  onEdit={() =>
-                    handleEdit({ entityPartName: entityPart.name, item })
-                  }
-                />
+                    })}
+                    open={editModalsState[item.id]?.isModalOpen}
+                    onClose={() => handleEditModalClose(item)}
+                    onSubmit={(formValues) =>
+                      handleEdit({
+                        entityPartName: entityPart.name,
+                        item: formValues
+                      })
+                    }
+                    title={`Edit ${item.name}`}
+                    sectionsSplitting={true}
+                  />
+                </Fragment>
               );
             })}
             <Card className={cardClasses.root} variant="outlined">
@@ -81,7 +105,7 @@ export default function Dashboard({
               />
               <CardContent className={cardClasses.cardContent}>
                 <AddButton
-                  onClick={() => handleModalOpen(entityPart.name)}
+                  onClick={() => handleCreateModalOpen(entityPart.name)}
                   className={cardClasses.actionIcon}
                 />
                 <Skeleton variant="text" />
@@ -90,8 +114,8 @@ export default function Dashboard({
             </Card>
             <FormDialog
               formProps={formsConfig[entityPart.name]}
-              open={modalsState[entityPart.name].isModalOpen}
-              onClose={() => handleModalClose(entityPart.name)}
+              open={createModalsState[entityPart.name].isModalOpen}
+              onClose={() => handleCreateModalClose(entityPart.name)}
               onSubmit={(formValues) =>
                 handleSubmit(entityPart.name, formValues)
               }
