@@ -1,7 +1,9 @@
-import { Typography } from "@material-ui/core";
+import { Typography, Divider, Grid } from "@material-ui/core";
 
 import { Dashboard } from "../../../ui-library";
 import useFinPlanDashboard from "./hooks";
+import useStyles from "./styles";
+import { Fragment } from "react";
 
 function FinPlanDashboard() {
   const {
@@ -10,9 +12,14 @@ function FinPlanDashboard() {
     spendingCategories,
     entityName,
     entityParts,
-    formsConfig
+    formsConfig,
+    totalIncome,
+    currentBalance,
+    totalSpendings,
+    monthsToPositiveBalance,
+    payoutSchedule
   } = useFinPlanDashboard();
-  console.log(incomeSources, accounts, spendingCategories);
+  const classes = useStyles();
   return (
     <Dashboard
       entityName={entityName}
@@ -20,12 +27,39 @@ function FinPlanDashboard() {
       formsConfig={formsConfig}
       childrenPositioning="top"
     >
-      <Typography variant="body1">Your total income / month:</Typography>
-      <Typography variant="body1">Your current ballance:</Typography>
-      <Typography variant="body1"> Your total spendings / month:</Typography>
-      <Typography variant="body1">
-        Your projected positive ballance would be achieved in:
+      <Typography variant="body1" className={classes.fullWidth}>
+        Your total income(UAH) / month: {totalIncome}
       </Typography>
+      <Typography variant="body1" className={classes.fullWidth}>
+        Your current ballance: {currentBalance}
+      </Typography>
+      <Typography variant="body1" className={classes.fullWidth}>
+        Your total spendings / month: {totalSpendings}
+      </Typography>
+      <Typography variant="body1" className={classes.fullWidth}>
+        Your projected positive ballance would be achieved in:{" "}
+        {monthsToPositiveBalance} months
+      </Typography>
+      <Divider className={classes.fullWidth} />
+      <Typography variant="body1" className={classes.fullWidth}>
+        Your debts payout schedule:
+      </Typography>
+      {payoutSchedule.map((item, i) => (
+        <Grid container key={i}>
+          <Grid item xs={6}>
+            <Typography variant="body1" className={classes.fullWidth}>
+              {item.month}
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            {item.paidDebts.map((paidDebt, i) => (
+              <Typography key={i} variant="body1" className={classes.fullWidth}>
+                {paidDebt.name}: {paidDebt.balance} UAH
+              </Typography>
+            ))}
+          </Grid>
+        </Grid>
+      ))}
     </Dashboard>
   );
 }
