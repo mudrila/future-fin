@@ -102,7 +102,6 @@ export default function useFinPlanDashboard() {
           }
         })
         .filter((debt) => debt);
-      console.log(debts);
       const scheduleItem = {
         month,
         paidDebts
