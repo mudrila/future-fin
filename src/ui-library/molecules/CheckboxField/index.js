@@ -1,4 +1,4 @@
-import PropTypes from "prop-";
+import PropTypes from "prop-types";
 import {
   Checkbox,
   FormControlLabel,

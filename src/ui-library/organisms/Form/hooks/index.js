@@ -57,6 +57,12 @@ export default function useForm({ fields, onSubmit }) {
         onChange: handleIconSelectionChange,
         value: formState[field.name]
       };
+    } else if (field.type === "checkbox") {
+      inputProps = {
+        ...field,
+        onChange: handleCheckboxChange,
+        checked: formState[field.name]
+      };
     } else {
       inputProps = {
         ...field,
@@ -73,10 +79,15 @@ export default function useForm({ fields, onSubmit }) {
     targetField.onChange && targetField.onChange(event);
   }
   function handleChange(event) {
-    console.log(event);
     const { name, value } = event.target;
     const targetField = fields.find((field) => name === field.name);
     setFormState({ ...formState, [name]: value });
+    targetField.onChange && targetField.onChange(event);
+  }
+  function handleCheckboxChange(event) {
+    const { name, checked } = event.target;
+    const targetField = fields.find((field) => name === field.name);
+    setFormState({ ...formState, [name]: checked });
     targetField.onChange && targetField.onChange(event);
   }
   function handleIconSelectionChange(event) {

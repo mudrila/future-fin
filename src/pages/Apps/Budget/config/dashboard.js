@@ -329,7 +329,8 @@ const budgetDashbaordConfig = {
               label: "Mandatory spending status",
               value: "isMandatory",
               helperText:
-                "Off this switcher, if this spending category not mandatory (i.e. you can omit this type of spendings for a while)."
+                "Off this switcher, if this spending category not mandatory (i.e. you can omit this type of spendings for a while).",
+              checked: false
             },
             {
               type: "autocomplete",

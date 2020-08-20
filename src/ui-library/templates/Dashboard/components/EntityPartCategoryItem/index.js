@@ -98,7 +98,7 @@ EntityPartCategoryItem.propTypes = {
   frequency: PropTypes.string,
   icon: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  frequency: PropTypes.string.isRequired,
+  frequency: PropTypes.string,
   currency: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
