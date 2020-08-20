@@ -21,11 +21,12 @@ export default function SwitchField({
       <FormGroup aria-label="position" row>
         <FormControlLabel
           value={value}
-          control={<Switch color="secondary" {...rest} />}
+          control={<Switch color="secondary" />}
           label={label}
           labelPlacement={labelPlacement}
+          {...rest}
         />
-        <Typography variant="body2">{helperText}</Typography>
+        {helperText && <Typography variant="body2">{helperText}</Typography>}
       </FormGroup>
     </FormControl>
   );
