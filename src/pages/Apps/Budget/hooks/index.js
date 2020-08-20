@@ -11,6 +11,7 @@ import {
   accountsSelector,
   spendingCategoriesSelector
 } from "../redux/selectors";
+import { ListItem } from "@material-ui/core";
 
 export default function useBudgetDashboard() {
   const dispatch = useDispatch();
@@ -44,11 +45,9 @@ export default function useBudgetDashboard() {
     } else if (entityPartName === "accounts") {
       action = budgetAccountsActionCreators.UPDATE.REQUEST(item);
     } else if (entityPartName === "spendings") {
-      action = budgetSpendingCategoriesActionCreators.UPDATE.REQUEST(
-        formValues
-      );
-      action && dispatch(action);
+      action = budgetSpendingCategoriesActionCreators.UPDATE.REQUEST(item);
     }
+    action && dispatch(action);
   }
   function handleDelete({ entityPartName, item }) {
     let action = null;

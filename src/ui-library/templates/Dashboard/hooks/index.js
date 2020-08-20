@@ -53,6 +53,7 @@ export default function useDashbaord({
         isModalOpen: false
       }
     });
+    setCurrentEditableEntity(null);
   }
   function handleSubmit(formName, formValues) {
     if (normalizeFormData) {
@@ -60,7 +61,7 @@ export default function useDashbaord({
     } else {
       onSubmit(formName, formValues);
     }
-    handleModalClose(formName);
+    handleCreateModalClose(formName);
   }
   function normalizeFormValues(formValues) {
     let result = {};
@@ -81,7 +82,18 @@ export default function useDashbaord({
   }
 
   function handleEdit({ item, entityPartName }) {
-    onEdit({ item, entityPartName });
+    if (normalizeFormData) {
+      onEdit({
+        item: { ...currentEditableEntity.item, ...normalizeFormValues(item) },
+        entityPartName
+      });
+    } else {
+      onEdit({
+        item: { ...currentEditableEntity.item, ...item },
+        entityPartName
+      });
+    }
+    handleEditModalClose(currentEditableEntity);
   }
 
   function mapEntityToEditFormProps({ item, entityPartName }) {
@@ -92,10 +104,17 @@ export default function useDashbaord({
         return {
           ...section,
           fields: section.fields.map((field) => {
-            return {
-              ...field,
-              value: item[field.name]
-            };
+            if (field.type === "autocomplete") {
+              return {
+                ...field,
+                value: { value: item[field.name], label: item[field.name] }
+              };
+            } else {
+              return {
+                ...field,
+                value: item[field.name]
+              };
+            }
           })
         };
       })

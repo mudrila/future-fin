@@ -45,6 +45,19 @@ export default function budgetReducer(
           loading: false
         }
       };
+    case BUDGET_INCOME_SOURCES_ACTION_TYPES.UPDATE.SUCCESS:
+      return {
+        ...state,
+        incomes: {
+          ...state.incomes,
+          sources: state.incomes.sources.map((item) => {
+            if (item.id === payload.id) {
+              return payload;
+            }
+            return item;
+          })
+        }
+      };
     case BUDGET_INCOME_SOURCES_ACTION_TYPES.DELETE.SUCCESS:
       return {
         ...state,
@@ -69,6 +82,19 @@ export default function budgetReducer(
           loading: false
         }
       };
+    case BUDGET_ACCOUNTS_ACTION_TYPES.UPDATE.SUCCESS:
+      return {
+        ...state,
+        accounts: {
+          ...state.accounts,
+          items: state.accounts.items.map((item) => {
+            if (item.id === payload.id) {
+              return payload;
+            }
+            return item;
+          })
+        }
+      };
     case BUDGET_ACCOUNTS_ACTION_TYPES.DELETE.SUCCESS:
       return {
         ...state,
@@ -91,6 +117,19 @@ export default function budgetReducer(
           ...state.spendings,
           categories: [...state.spendings.categories, newCategory],
           loading: false
+        }
+      };
+    case BUDGET_SPENDING_CATEGORIES_ACTION_TYPES.UPDATE.SUCCESS:
+      return {
+        ...state,
+        spendings: {
+          ...state.spendings,
+          categories: state.spendings.categories.map((item) => {
+            if (item.id === payload.id) {
+              return payload;
+            }
+            return item;
+          })
         }
       };
     case BUDGET_SPENDING_CATEGORIES_ACTION_TYPES.DELETE.SUCCESS:

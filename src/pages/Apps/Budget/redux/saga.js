@@ -21,6 +21,15 @@ function* budgetIncomeSourceCreateWorker({ payload }) {
   yield put(createIncomeSourceSuccessAction);
 }
 
+function* budgetIncomeSourceUpdateWorker({ payload }) {
+  const loadingAction = budgetIncomesActionCreators.UPDATE.LOADING();
+  yield put(loadingAction);
+  const updateIncomeSourceSuccessAction = budgetIncomesActionCreators.UPDATE.SUCCESS(
+    payload
+  );
+  yield put(updateIncomeSourceSuccessAction);
+}
+
 function* budgetIncomeSourceDeleteWorker({ payload }) {
   const loadingAction = budgetIncomesActionCreators.DELETE.LOADING();
   yield put(loadingAction);
@@ -37,6 +46,15 @@ function* budgetAccountCreateWorker({ payload }) {
     payload
   );
   yield put(createAccountSuccessAction);
+}
+
+function* budgetAccountUpdateWorker({ payload }) {
+  const loadingAction = budgetAccountsActionCreators.UPDATE.LOADING();
+  yield put(loadingAction);
+  const updateAccountSuccessAction = budgetAccountsActionCreators.UPDATE.SUCCESS(
+    payload
+  );
+  yield put(updateAccountSuccessAction);
 }
 
 function* budgetAccountDeleteWorker({ payload }) {
@@ -57,6 +75,15 @@ function* budgetSpendingCategoryCreateWorker({ payload }) {
   yield put(createSpendingCategorySuccessAction);
 }
 
+function* budgetSpendingCategoryUpdateWorker({ payload }) {
+  const loadingAction = budgetSpendingCategoriesActionCreators.UPDATE.LOADING();
+  yield put(loadingAction);
+  const updateSpendingCategorySuccessAction = budgetSpendingCategoriesActionCreators.UPDATE.SUCCESS(
+    payload
+  );
+  yield put(updateSpendingCategorySuccessAction);
+}
+
 function* budgetSpendingCategoryDeleteWorker({ payload }) {
   const loadingAction = budgetSpendingCategoriesActionCreators.DELETE.LOADING();
   yield put(loadingAction);
@@ -67,25 +94,40 @@ function* budgetSpendingCategoryDeleteWorker({ payload }) {
 }
 
 export default function* budgetSagaWatcher() {
+  // Income Sources
   yield takeEvery(
     BUDGET_INCOME_SOURCES_ACTION_TYPES.CREATE.REQUEST,
     budgetIncomeSourceCreateWorker
   );
   yield takeEvery(
+    BUDGET_INCOME_SOURCES_ACTION_TYPES.UPDATE.REQUEST,
+    budgetIncomeSourceUpdateWorker
+  );
+  yield takeEvery(
     BUDGET_INCOME_SOURCES_ACTION_TYPES.DELETE.REQUEST,
     budgetIncomeSourceDeleteWorker
   );
+  // Accounts
   yield takeEvery(
     BUDGET_ACCOUNTS_ACTION_TYPES.CREATE.REQUEST,
     budgetAccountCreateWorker
   );
   yield takeEvery(
+    BUDGET_ACCOUNTS_ACTION_TYPES.UPDATE.REQUEST,
+    budgetAccountUpdateWorker
+  );
+  yield takeEvery(
     BUDGET_ACCOUNTS_ACTION_TYPES.DELETE.REQUEST,
     budgetAccountDeleteWorker
   );
+  // Spending Categories
   yield takeEvery(
     BUDGET_SPENDING_CATEGORIES_ACTION_TYPES.CREATE.REQUEST,
     budgetSpendingCategoryCreateWorker
+  );
+  yield takeEvery(
+    BUDGET_SPENDING_CATEGORIES_ACTION_TYPES.UPDATE.REQUEST,
+    budgetSpendingCategoryUpdateWorker
   );
   yield takeEvery(
     BUDGET_SPENDING_CATEGORIES_ACTION_TYPES.DELETE.REQUEST,
