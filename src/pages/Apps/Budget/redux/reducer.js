@@ -88,8 +88,8 @@ export default function budgetReducer(
       return {
         ...state,
         spendings: {
-          ...state.incomes,
-          categories: [...state.incomes.sources, newCategory],
+          ...state.spendings,
+          categories: [...state.spendings.categories, newCategory],
           loading: false
         }
       };
@@ -97,7 +97,7 @@ export default function budgetReducer(
       return {
         ...state,
         spendings: {
-          ...state.incomes,
+          ...state.spendings,
           categories: state.spendings.categories.filter(
             (spendingCategory) => spendingCategory.id !== payload.id
           ),

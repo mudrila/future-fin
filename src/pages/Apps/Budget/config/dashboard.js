@@ -323,11 +323,11 @@ const budgetDashbaordConfig = {
           description: "Advanced configuration for this Spending Category",
           fields: [
             {
-              type: "switcher",
+              type: "checkbox",
               name: "isMandatory",
               required: false,
               label: "Mandatory spending status",
-              value: true,
+              value: "isMandatory",
               helperText:
                 "Off this switcher, if this spending category not mandatory (i.e. you can omit this type of spendings for a while)."
             },

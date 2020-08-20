@@ -12,10 +12,12 @@ export default function SwitchField({
   value,
   helperText,
   labelPlacement = "top",
+  onChange,
+  name,
   ...rest
 }) {
   return (
-    <FormControl component="fieldset">
+    <FormControl component="fieldset" onChange={onChange} name={name}>
       <FormGroup aria-label="position" row>
         <FormControlLabel
           value={value}
@@ -31,7 +33,9 @@ export default function SwitchField({
 
 SwitchField.propTypes = {
   label: PropTypes.string,
-  value: PropTypes.bool,
+  value: PropTypes.string,
   helperText: PropTypes.string,
-  labelPlacement: PropTypes.string
+  labelPlacement: PropTypes.string,
+  onChange: PropTypes.func,
+  name: PropTypes.string
 };

@@ -71,6 +71,7 @@ export default function useForm({ fields, onSubmit }) {
     targetField.onChange && targetField.onChange(event);
   }
   function handleChange(event) {
+    console.log(event);
     const { name, value } = event.target;
     const targetField = fields.find((field) => name === field.name);
     setFormState({ ...formState, [name]: value });
