@@ -24,7 +24,9 @@ export default function Dashboard({
   onSubmit,
   normalizeFormData = false,
   onDelete,
-  onEdit
+  onEdit,
+  childrenPositioning,
+  children
 }) {
   const {
     createModalsState,
@@ -52,6 +54,12 @@ export default function Dashboard({
         {capitalizeString(entityName)} Dashboard
       </Typography>
       <Divider className={classes.divider} />
+      {childrenPositioning === "top" && (
+        <Fragment>
+          {children}
+          <Divider className={classes.divider} />
+        </Fragment>
+      )}
       {entityParts.map((entityPart) => (
         <Fragment key={entityPart.name}>
           <section className={classes.section}>
@@ -141,5 +149,7 @@ Dashboard.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   normalizeFormData: PropTypes.bool,
   onDelete: PropTypes.func.isRequired,
-  onEdit: PropTypes.func.isRequired
+  onEdit: PropTypes.func.isRequired,
+  childrenPositioning: PropTypes.oneOf(["top", "bottom"]),
+  children: PropTypes.node
 };
