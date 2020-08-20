@@ -2,7 +2,7 @@ import { useState } from "react";
 import { TextField } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
-import { IconSelector, SwitchField } from "../../../";
+import { IconSelector, SwitchField, CheckboxField } from "../../../";
 
 export default function useForm({ fields, onSubmit }) {
   const initialFormState = {};
@@ -23,6 +23,8 @@ export default function useForm({ fields, onSubmit }) {
         return IconSelector;
       case "switcher":
         return SwitchField;
+      case "checkbox":
+        return CheckboxField;
     }
   }
 

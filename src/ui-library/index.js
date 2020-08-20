@@ -1,5 +1,10 @@
 import { AddButton } from "./atoms";
-import { Navigation, IconSelector, SwitchField } from "./molecules";
+import {
+  Navigation,
+  IconSelector,
+  SwitchField,
+  CheckboxField
+} from "./molecules";
 import { Form, FormDialog } from "./organisms";
 import { Dashboard } from "./templates";
 
@@ -10,5 +15,6 @@ export {
   FormDialog,
   Dashboard,
   IconSelector,
-  SwitchField
+  SwitchField,
+  CheckboxField
 };
