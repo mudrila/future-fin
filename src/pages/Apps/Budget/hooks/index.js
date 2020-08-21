@@ -11,7 +11,6 @@ import {
   accountsSelector,
   spendingCategoriesSelector
 } from "../redux/selectors";
-import { ListItem } from "@material-ui/core";
 
 export default function useBudgetDashboard() {
   const dispatch = useDispatch();
