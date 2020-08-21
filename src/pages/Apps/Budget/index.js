@@ -4,11 +4,11 @@ import useBudgetDashboard from "./hooks";
 function BudgetDashboard() {
   const {
     handleSubmit,
+    handleEdit,
+    handleDelete,
     entityName,
     entityParts,
-    formsConfig,
-    handleEdit,
-    handleDelete
+    formsConfig
   } = useBudgetDashboard();
 
   return (

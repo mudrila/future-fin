@@ -1,86 +1,77 @@
-import React, { PureComponent } from "react";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend
-} from "recharts";
+import { Fragment } from "react";
+import { Typography, Divider, Grid } from "@material-ui/core";
 
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
-  }
-];
+import { CheckboxField } from "../../../../../ui-library";
+import useBalanceProjection from "./hooks";
+import useStyles from "./styles";
 
-export default class Example extends PureComponent {
-  render() {
-    return (
-      <LineChart
-        width={500}
-        height={300}
-        data={data}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line
-          type="monotone"
-          dataKey="pv"
-          stroke="#8884d8"
-          activeDot={{ r: 8 }}
-        />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-      </LineChart>
-    );
-  }
+export default function BalanceProjection() {
+  const classes = useStyles();
+  const {
+    totalIncome,
+    currentBalance,
+    totalSpendings,
+    monthsToPositiveBalance,
+    payoutSchedule,
+    possibleReducing,
+    reducedCategories,
+    handlePossibleReducingChange
+  } = useBalanceProjection();
+  return (
+    <Fragment>
+      <Grid container>
+        <Typography variant="h4" className={classes.fullWidth}>
+          Check how your fin plan would look like, if you will reduce those
+          spendings:
+          <CheckboxField
+            checked={possibleReducing}
+            onChange={handlePossibleReducingChange}
+          />
+        </Typography>
+        {reducedCategories.map((category, i) => (
+          <Fragment key={i}>
+            <Grid item xs={6}>
+              {category.name}
+            </Grid>
+            <Grid item xs={6}>
+              {category.expectedAmount} {category.currency}
+            </Grid>
+          </Fragment>
+        ))}
+      </Grid>
+      <Typography variant="body1" className={classes.fullWidth}>
+        Your total income(UAH) / month: {totalIncome}
+      </Typography>
+      <Typography variant="body1" className={classes.fullWidth}>
+        Your current ballance: {currentBalance}
+      </Typography>
+      <Typography variant="body1" className={classes.fullWidth}>
+        Your total spendings / month: {totalSpendings}
+      </Typography>
+      <Typography variant="body1" className={classes.fullWidth}>
+        Your projected positive ballance would be achieved in:{" "}
+        {monthsToPositiveBalance} months
+      </Typography>
+      <Divider className={classes.fullWidth} />
+      <Typography variant="h4" className={classes.fullWidth} align="center">
+        Your debts payout schedule:
+      </Typography>
+      {payoutSchedule.map((item, i) => (
+        <Grid container key={i}>
+          <Grid item xs={6}>
+            <Typography variant="body1" className={classes.fullWidth}>
+              {item.month}
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            {item.paidDebts.map((paidDebt, i) => (
+              <Typography key={i} variant="body1" className={classes.fullWidth}>
+                {paidDebt.name}: {paidDebt.balance} UAH
+              </Typography>
+            ))}
+          </Grid>
+        </Grid>
+      ))}
+    </Fragment>
+  );
 }
