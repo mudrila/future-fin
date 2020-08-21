@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import finplanDashboardConfig from "../config/dashboard";
 
@@ -15,9 +16,20 @@ export default function useFinPlanDashboard() {
     UAH: 1
   };
 
+  const [possibleReducing, setPossibleReducing] = useState(false);
   const incomeSources = useSelector(incomeSourcesSelector);
   const accounts = useSelector(accountsSelector);
   const spendingCategories = useSelector(spendingCategoriesSelector);
+  const reducedCategories = spendingCategories
+    .map((category) => {
+      if (!category.isMandatory) {
+        return category;
+      } else if (category.reducingAmount && category.reducingAmount > 0) {
+        return { ...category, expectedAmount: category.reducingAmount };
+      }
+      return null;
+    })
+    .filter((category) => category);
 
   const finPlanDataMapping = {};
 
@@ -42,14 +54,15 @@ export default function useFinPlanDashboard() {
   }
   const totalIncome = incomeSources.reduce(sumReducer, 0);
   const currentBalance = accounts.reduce(sumReducer, 0);
-  const totalSpendings = spendingCategories.reduce(sumReducer, 0);
+  const totalSpendings = possibleReducing
+    ? reducedCategories.reduce(sumReducer, 0)
+    : spendingCategories.reduce(sumReducer, 0);
 
   const monthsToPositiveBalance = Math.round(
     Math.abs(currentBalance / (totalIncome - totalSpendings))
   );
 
   function buildPayoutSchedule() {
-    let balance = currentBalance;
     let debts = accounts
       .filter((account) => account.balance < 0)
       .sort((a, b) => a.payoutPriority - b.payoutPriority);
@@ -115,8 +128,11 @@ export default function useFinPlanDashboard() {
     }
     return schedule;
   }
-
   const payoutSchedule = buildPayoutSchedule();
+
+  function handlePossibleReducingChange(event) {
+    setPossibleReducing(event.target.checked);
+  }
   return {
     incomeSources,
     accounts,
@@ -128,6 +144,9 @@ export default function useFinPlanDashboard() {
     currentBalance,
     totalSpendings,
     monthsToPositiveBalance,
-    payoutSchedule
+    payoutSchedule,
+    reducedCategories,
+    handlePossibleReducingChange,
+    possibleReducing
   };
 }

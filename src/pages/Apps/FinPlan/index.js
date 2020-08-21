@@ -1,15 +1,12 @@
+import { Fragment } from "react";
 import { Typography, Divider, Grid } from "@material-ui/core";
 
-import { Dashboard } from "../../../ui-library";
+import { Dashboard, CheckboxField } from "../../../ui-library";
 import useFinPlanDashboard from "./hooks";
 import useStyles from "./styles";
-import { Fragment } from "react";
 
 function FinPlanDashboard() {
   const {
-    incomeSources,
-    accounts,
-    spendingCategories,
     entityName,
     entityParts,
     formsConfig,
@@ -17,7 +14,10 @@ function FinPlanDashboard() {
     currentBalance,
     totalSpendings,
     monthsToPositiveBalance,
-    payoutSchedule
+    payoutSchedule,
+    possibleReducing,
+    reducedCategories,
+    handlePossibleReducingChange
   } = useFinPlanDashboard();
   const classes = useStyles();
   return (
@@ -27,6 +27,26 @@ function FinPlanDashboard() {
       formsConfig={formsConfig}
       childrenPositioning="top"
     >
+      <Grid container>
+        <Typography variant="h4" className={classes.fullWidth}>
+          Check how your fin plan would look like, if you will reduce those
+          spendings:
+          <CheckboxField
+            checked={possibleReducing}
+            onChange={handlePossibleReducingChange}
+          />
+        </Typography>
+        {reducedCategories.map((category, i) => (
+          <Fragment key={i}>
+            <Grid item xs={6}>
+              {category.name}
+            </Grid>
+            <Grid item xs={6}>
+              {category.expectedAmount} {category.currency}
+            </Grid>
+          </Fragment>
+        ))}
+      </Grid>
       <Typography variant="body1" className={classes.fullWidth}>
         Your total income(UAH) / month: {totalIncome}
       </Typography>
@@ -41,7 +61,7 @@ function FinPlanDashboard() {
         {monthsToPositiveBalance} months
       </Typography>
       <Divider className={classes.fullWidth} />
-      <Typography variant="body1" className={classes.fullWidth}>
+      <Typography variant="h4" className={classes.fullWidth} align="center">
         Your debts payout schedule:
       </Typography>
       {payoutSchedule.map((item, i) => (
