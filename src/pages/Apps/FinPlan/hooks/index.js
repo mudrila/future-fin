@@ -1,8 +1,14 @@
+import { useSelector } from "react-redux";
+
 import finplanDashboardConfig from "../config/dashboard";
 import { finPlanGoalsActionCreators } from "../redux/actions";
+import { finPlanGoalsSelector } from "../redux/selectors";
 
 export default function useFinPlanDashboard() {
-  const finPlanDataMapping = {};
+  const finPlanGoals = useSelector(finPlanGoalsSelector);
+  const finPlanDataMapping = {
+    goals: finPlanGoals
+  };
 
   const entityParts = finplanDashboardConfig.entityParts.map((entityPart) => ({
     ...entityPart,

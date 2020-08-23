@@ -1,7 +1,8 @@
 const finplanDashboardConfig = {
   entityParts: [
     {
-      name: "goals"
+      name: "goals",
+      modalTitle: "Financial Goal"
     }
   ],
   entityName: "finplan",
