@@ -187,6 +187,32 @@ const budgetDashbaordConfig = {
             },
             {
               type: "number",
+              name: "requiredPayment",
+              required: false,
+              label: "Required payment",
+              helperText:
+                "How much do you need to payout this debt regulary (like bank credit)? Leave 0 if no required payment per some period, or put whole debt amount if you need to pay it via single payment.",
+              value: "0",
+              variant: "outlined",
+              fullWidth: true
+            },
+            {
+              type: "autocomplete",
+              name: "requiredPaymentFrequency",
+              required: false,
+              label: "Required Payment Frequency",
+              helperText: "How frequent you need to pay your required payment?",
+              options: [
+                { label: "Per working day", value: "daily" },
+                { label: "Per week", value: "weekly" },
+                { label: "Per month", value: "montly" },
+                { label: "Per year", value: "yearly" },
+                { label: "One-time payout", value: "once" }
+              ],
+              value: { label: "One-time payout", value: "once" }
+            },
+            {
+              type: "number",
               name: "limit",
               required: false,
               label: "Debt Limit",

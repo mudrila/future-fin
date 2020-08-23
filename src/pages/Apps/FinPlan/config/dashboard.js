@@ -62,69 +62,18 @@ const finplanDashboardConfig = {
         },
         {
           name: "Advanced",
-          description: "Advanced configuration for Account",
+          description: "Advanced configuration for Financial Goal",
           fields: [
             {
               type: "number",
-              name: "payoutPriority",
+              name: "achievementPriority",
               required: false,
-              label: "Payout priority",
+              label: "Priority",
               helperText:
-                "If this is debt account - how it is important to payout it first prior to others?(from 1 to 10)",
+                "Tip - it use same priority ranking as debts, so higher achievement priority means you want to get this financial goal earlier than settle the debt",
               value: "1",
               variant: "outlined",
               fullWidth: true
-            },
-            {
-              type: "number",
-              name: "limit",
-              required: false,
-              label: "Debt Limit",
-              helperText:
-                "For some debit cards/accounts - there is possible debt limit.",
-              value: "0",
-              variant: "outlined",
-              fullWidth: true
-            },
-            {
-              type: "number",
-              name: "fee",
-              required: false,
-              label: "Debt Limit Fee",
-              helperText:
-                "If there is fee for debt limit usage - how much it is?",
-              value: "0",
-              variant: "outlined",
-              fullWidth: true
-            },
-            {
-              type: "autocomplete",
-              name: "debtFeeType",
-              required: false,
-              label: "Fee Type",
-              helperText:
-                "If there's fee for debt limit - is it fixed, or in percentage?",
-              value: { label: "%", value: "%" },
-              options: [
-                { label: "%", value: "%" },
-                { label: "Fixed", value: "fixed" }
-              ]
-            },
-            {
-              type: "autocomplete",
-              name: "feeFrequency",
-              required: false,
-              label: "Frequency",
-              helperText:
-                "How frequent you will be charged for debt limit usage?",
-              options: [
-                { label: "Per working day", value: "daily" },
-                { label: "Per week", value: "weekly" },
-                { label: "Per month", value: "montly" },
-                { label: "Per year", value: "yearly" },
-                { label: "One-time fee", value: "once" }
-              ],
-              value: { label: "Per month", value: "montly" }
             }
           ]
         }
