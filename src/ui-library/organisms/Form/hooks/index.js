@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { TextField } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import { DatePicker } from "@material-ui/pickers";
 
 import { IconSelector, SwitchField, CheckboxField } from "../../../";
 
@@ -29,6 +30,8 @@ export default function useForm({ fields, onSubmit }) {
         return SwitchField;
       case "checkbox":
         return CheckboxField;
+      case "date":
+        return DatePicker;
     }
   }
 
@@ -66,6 +69,12 @@ export default function useForm({ fields, onSubmit }) {
         ...field,
         onChange: handleCheckboxChange,
         checked: formState[field.name]
+      };
+    } else if (field.type === "date") {
+      inputProps = {
+        ...field,
+        onChange: (value) =>
+          handleChange({ target: { name: field.name, value } }) // Simulating event.target
       };
     } else {
       inputProps = {
