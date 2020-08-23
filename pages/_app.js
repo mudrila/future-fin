@@ -4,6 +4,8 @@ import NextApp from "next/app";
 import Head from "next/head";
 import { PersistGate } from "redux-persist/integration/react";
 
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
@@ -59,12 +61,14 @@ export default function App({ Component, pageProps, router }) {
         <PersistGate persistor={store.__PERSISTOR} loading={null}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Navigation items={navigationItems} />
-            <main className={classes.content}>
-              <article className={classes.innerContent}>
-                <Component {...pageProps} />
-              </article>
-            </main>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Navigation items={navigationItems} />
+              <main className={classes.content}>
+                <article className={classes.innerContent}>
+                  <Component {...pageProps} />
+                </article>
+              </main>
+            </MuiPickersUtilsProvider>
           </ThemeProvider>
         </PersistGate>
       </Provider>
