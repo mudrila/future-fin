@@ -19,6 +19,18 @@ function useStyles(theme) {
     },
     actionIcon: {
       marginBottom: theme.spacing(1)
+    },
+    settingsIcon: {
+      width: 40,
+      height: 40,
+      backgroundColor: "transparent",
+      boxShadow: "none",
+      "& svg": {
+        fill: theme.palette.primary.main
+      },
+      "&:hover svg": {
+        fill: "white"
+      }
     }
   };
 }

@@ -57,6 +57,9 @@ export default function EntityPartCategoryItem({
           <SpeedDial
             ariaLabel="Manage"
             icon={<allIconsMap.Settings.Icon />}
+            FabProps={{
+              className: classes.settingsIcon
+            }}
             onClose={handleClose}
             onOpen={handleOpen}
             open={open}
