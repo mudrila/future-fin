@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { cloneDeep } from "lodash";
 
 import {
   incomeSourcesSelector,
@@ -71,7 +72,7 @@ export default function useBalanceProjection() {
 
   function buildPayoutSchedule() {
     // Make copy of accounts since we're going to manipulate items of debts array directly
-    let debts = [...accounts]
+    let debts = cloneDeep(accounts)
       .filter((account) => account.balance < 0)
       .sort((a, b) => a.payoutPriority - b.payoutPriority);
     let credits = debts.filter((account) => account.requiredPayment > 0);
@@ -97,48 +98,60 @@ export default function useBalanceProjection() {
       const paidDebts = [];
       const month = monthsMap[currentMonthNumber + 1];
       let monthPossiblePayoutBalance = totalIncome - totalSpendings;
-      // credits = credits
-      //   .map((credit) => {
-      //     const creditBalanceToUAH =
-      //       +credit.balance * currencyMappingToUAH[credit.currency];
-      //     const creditRequiredPaymentToUAH =
-      //       +credit.requiredPayment * currencyMappingToUAH[credit.currency];
-      //     const debtIndex = debts.findIndex((debt) => debt.id === credit.id);
-      //     if (creditBalanceToUAH < creditRequiredPaymentToUAH) {
-      //       const paidDebt = {
-      //         ...credit,
-      //         balance: Math.abs(creditBalanceToUAH),
-      //         currency: "UAH"
-      //       };
-      //       monthPossiblePayoutBalance -= creditBalanceToUAH;
-      //       paidDebts.push(paidDebt);
-      //       debts[debtIndex].balance = 0;
-      //       return null;
-      //     } else {
-      //       const debtLeft = {
-      //         ...credit,
-      //         balance: creditBalanceToUAH + creditRequiredPaymentToUAH,
-      //         currency: "UAH"
-      //       };
-      //       const paidDebt = {
-      //         ...credit,
-      //         balance: creditRequiredPaymentToUAH,
-      //         currency: "UAH"
-      //       };
-      //       monthPossiblePayoutBalance -= creditRequiredPaymentToUAH;
-      //       paidDebts.push(paidDebt);
-      //       debts[debtIndex].balance += creditRequiredPaymentToUAH;
-      //       return debtLeft;
-      //     }
-      //   })
-      //   .filter((credit) => credit);
+      credits = credits
+        .map((credit) => {
+          const creditBalanceToUAH =
+            +credit.balance * currencyMappingToUAH[credit.currency];
+          const creditRequiredPaymentToUAH =
+            +credit.requiredPayment * currencyMappingToUAH[credit.currency];
+          const debtIndex = debts.findIndex((debt) => debt.id === credit.id);
+          if (Math.abs(creditBalanceToUAH) < creditRequiredPaymentToUAH) {
+            const paidDebt = {
+              ...credit,
+              balance: Math.abs(creditBalanceToUAH),
+              currency: "UAH"
+            };
+            monthPossiblePayoutBalance -= creditBalanceToUAH;
+            paidDebts.push(paidDebt);
+            if (debts[debtIndex]) {
+              debts[debtIndex].balance = 0;
+            }
+            return null;
+          } else {
+            const debtLeft = {
+              ...credit,
+              balance: creditBalanceToUAH + creditRequiredPaymentToUAH,
+              currency: "UAH"
+            };
+            const paidDebt = {
+              ...credit,
+              balance: creditRequiredPaymentToUAH,
+              currency: "UAH"
+            };
+            monthPossiblePayoutBalance -= creditRequiredPaymentToUAH;
+            paidDebts.push(paidDebt);
+            debts[debtIndex] = {
+              ...debts[debtIndex],
+              currency: "UAH",
+              balance: debtLeft.balance
+            };
+            return debtLeft;
+          }
+        })
+        .filter((credit) => credit);
       debts = debts
         .map((debt) => {
           const debtBalanceToUAH =
             +debt.balance * currencyMappingToUAH[debt.currency];
+          const creditIndex = credits.findIndex(
+            (credit) => credit.id === debt.id
+          );
           if (Math.abs(debtBalanceToUAH) < monthPossiblePayoutBalance) {
             monthPossiblePayoutBalance -= Math.abs(debtBalanceToUAH);
             paidDebts.push({ ...debt, balance: Math.abs(+debtBalanceToUAH) });
+            if (credits[creditIndex]) {
+              credits[creditIndex].balance = 0;
+            }
             return null; // Debt is settled
           } else {
             if (monthPossiblePayoutBalance > 0) {
@@ -152,6 +165,9 @@ export default function useBalanceProjection() {
                 balance: monthPossiblePayoutBalance,
                 currency: "UAH"
               };
+              if (credits[creditIndex]) {
+                credits[creditIndex].balance = debtLeft.balance;
+              }
               monthPossiblePayoutBalance = 0;
               paidDebts.push(paidDebt);
               return debtLeft;
