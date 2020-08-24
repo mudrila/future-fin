@@ -96,7 +96,6 @@ export default function useBalanceProjection() {
         (b.payoutPriority || b.achievementPriority)
     );
 
-    console.log(checkPoints);
     const today = new Date();
     const monthsMap = [
       "January",
