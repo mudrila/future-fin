@@ -55,22 +55,28 @@ export default function BalanceProjection() {
       </Typography>
       <Divider className={classes.fullWidth} />
       <Typography variant="h4" className={classes.fullWidth} align="center">
-        Your debts payout schedule:
+        Your financial plan schedule:
       </Typography>
       {finPlanSchedule.map((item, i) => (
         <Grid container key={i}>
-          <Grid item xs={6}>
+          <Grid item xs={3}>
             <Typography variant="body1" className={classes.fullWidth}>
-              {item.month}
+              {item.month} {item.year}
             </Typography>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={8}>
             {item.paidDebts.map((paidDebt, i) => (
               <Typography key={i} variant="body1" className={classes.fullWidth}>
-                {paidDebt.name}: {paidDebt.balance} UAH
+                {paidDebt.name}: {paidDebt.balance} {paidDebt.currency}
               </Typography>
             ))}
           </Grid>
+          <Grid item xs={1}>
+            <Typography variant="body1" className={classes.fullWidth}>
+              {item.totalBalance} UAH
+            </Typography>
+          </Grid>
+          <Divider className={classes.fullWidth} />
         </Grid>
       ))}
     </Fragment>
