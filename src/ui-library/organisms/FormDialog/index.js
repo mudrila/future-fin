@@ -62,8 +62,12 @@ export default function FormDialog({
     });
   }
   function renderSections() {
-    return formProps.sections.map((section) => (
-      <Accordion key={section.name} TransitionProps={{ unmountOnExit: true }}>
+    return formProps.sections.map((section, i) => (
+      <Accordion
+        key={section.name}
+        TransitionProps={{ unmountOnExit: true }}
+        defaultExpanded={i === 0}
+      >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"

@@ -26,18 +26,20 @@ export default function Form({
     });
   }
   function renderSections() {
-    return sections.map((section) => (
-      <Accordion key={section.name}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id={section.name}
-        >
-          {section.name}
-        </AccordionSummary>
-        <AccordionDetails>{renderFields(section.fields)}</AccordionDetails>
-      </Accordion>
-    ));
+    return sections.map((section, i) => {
+      return (
+        <Accordion key={section.name} defaultExpanded={i === 0}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id={section.name}
+          >
+            {section.name}
+          </AccordionSummary>
+          <AccordionDetails>{renderFields(section.fields)}</AccordionDetails>
+        </Accordion>
+      );
+    });
   }
   return (
     <Grid>
