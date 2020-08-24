@@ -1,10 +1,11 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import finplanDashboardConfig from "../config/dashboard";
 import { finPlanGoalsActionCreators } from "../redux/actions";
 import { finPlanGoalsSelector } from "../redux/selectors";
 
 export default function useFinPlanDashboard() {
+  const dispatch = useDispatch();
   const finPlanGoals = useSelector(finPlanGoalsSelector);
   const finPlanDataMapping = {
     goals: finPlanGoals

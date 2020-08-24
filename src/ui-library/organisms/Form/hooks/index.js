@@ -2,6 +2,7 @@ import { useState } from "react";
 import { TextField } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { DatePicker } from "@material-ui/pickers";
+import { format } from "date-fns";
 
 import { IconSelector, SwitchField, CheckboxField } from "../../../";
 
@@ -73,8 +74,7 @@ export default function useForm({ fields, onSubmit }) {
     } else if (field.type === "date") {
       inputProps = {
         ...field,
-        onChange: (value) =>
-          handleChange({ target: { name: field.name, value } }) // Simulating event.target
+        onChange: (value) => handleDateTimeChange({ name: field.name, value })
       };
     } else {
       inputProps = {
@@ -95,6 +95,12 @@ export default function useForm({ fields, onSubmit }) {
     const { name, value } = event.target;
     const targetField = fields.find((field) => name === field.name);
     setFormState({ ...formState, [name]: value });
+    targetField.onChange && targetField.onChange(event);
+  }
+  function handleDateTimeChange(field) {
+    const { name, value } = field;
+    const targetField = fields.find((field) => name === field.name);
+    setFormState({ ...formState, [name]: format(value, "yyyy-MM-dd") });
     targetField.onChange && targetField.onChange(event);
   }
   function handleCheckboxChange(event) {

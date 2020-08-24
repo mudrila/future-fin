@@ -52,11 +52,25 @@ const finplanDashboardConfig = {
               label: "Deadline",
               helperText:
                 "Till which date you want to achieve this financial goal?",
-              value: null,
+              value: new Date(),
               disablePast: true,
               animateYearScrolling: true,
-              emptyLabel: "Deadline",
-              variant: "inline"
+              variant: "inline",
+              autoOk: true
+            }
+          ]
+        },
+        {
+          name: "Icon Selection",
+          fields: [
+            {
+              type: "iconSelection",
+              name: "icon",
+              required: false,
+              label: "Icon",
+              helperText:
+                "Select icon, which would be displayed for this financial goal",
+              value: "Apartment"
             }
           ]
         },
