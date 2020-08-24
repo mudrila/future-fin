@@ -19,6 +19,8 @@ export default function useBalanceProjection() {
   const incomeSources = useSelector(incomeSourcesSelector);
   const accounts = useSelector(accountsSelector);
   const spendingCategories = useSelector(spendingCategoriesSelector);
+
+  // Spending categories which we can reduce
   const reducedCategories = spendingCategories
     .map((category) => {
       if (!category.isMandatory) {
@@ -30,6 +32,7 @@ export default function useBalanceProjection() {
     })
     .filter((category) => category);
 
+  // Apply reducingAmount for countings when possibleReducing is true
   const categoriesWithReducing = spendingCategories.map((category) => {
     if (category.reducingAmount && category.reducingAmount > 0) {
       return {
@@ -67,9 +70,12 @@ export default function useBalanceProjection() {
   );
 
   function buildPayoutSchedule() {
-    let debts = accounts
+    // Make copy of accounts since we're going to manipulate items of debts array directly
+    let debts = [...accounts]
       .filter((account) => account.balance < 0)
       .sort((a, b) => a.payoutPriority - b.payoutPriority);
+    let credits = debts.filter((account) => account.requiredPayment > 0);
+
     const today = new Date();
     const monthsMap = [
       "January",
@@ -91,6 +97,41 @@ export default function useBalanceProjection() {
       const paidDebts = [];
       const month = monthsMap[currentMonthNumber + 1];
       let monthPossiblePayoutBalance = totalIncome - totalSpendings;
+      // credits = credits
+      //   .map((credit) => {
+      //     const creditBalanceToUAH =
+      //       +credit.balance * currencyMappingToUAH[credit.currency];
+      //     const creditRequiredPaymentToUAH =
+      //       +credit.requiredPayment * currencyMappingToUAH[credit.currency];
+      //     const debtIndex = debts.findIndex((debt) => debt.id === credit.id);
+      //     if (creditBalanceToUAH < creditRequiredPaymentToUAH) {
+      //       const paidDebt = {
+      //         ...credit,
+      //         balance: Math.abs(creditBalanceToUAH),
+      //         currency: "UAH"
+      //       };
+      //       monthPossiblePayoutBalance -= creditBalanceToUAH;
+      //       paidDebts.push(paidDebt);
+      //       debts[debtIndex].balance = 0;
+      //       return null;
+      //     } else {
+      //       const debtLeft = {
+      //         ...credit,
+      //         balance: creditBalanceToUAH + creditRequiredPaymentToUAH,
+      //         currency: "UAH"
+      //       };
+      //       const paidDebt = {
+      //         ...credit,
+      //         balance: creditRequiredPaymentToUAH,
+      //         currency: "UAH"
+      //       };
+      //       monthPossiblePayoutBalance -= creditRequiredPaymentToUAH;
+      //       paidDebts.push(paidDebt);
+      //       debts[debtIndex].balance += creditRequiredPaymentToUAH;
+      //       return debtLeft;
+      //     }
+      //   })
+      //   .filter((credit) => credit);
       debts = debts
         .map((debt) => {
           const debtBalanceToUAH =
@@ -98,7 +139,7 @@ export default function useBalanceProjection() {
           if (Math.abs(debtBalanceToUAH) < monthPossiblePayoutBalance) {
             monthPossiblePayoutBalance -= Math.abs(debtBalanceToUAH);
             paidDebts.push({ ...debt, balance: Math.abs(+debtBalanceToUAH) });
-            return null;
+            return null; // Debt is settled
           } else {
             if (monthPossiblePayoutBalance > 0) {
               const debtLeft = {

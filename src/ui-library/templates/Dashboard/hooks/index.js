@@ -17,7 +17,7 @@ export default function useDashbaord({
   const [createModalsState, setCreateModalsState] = useState(
     initialModalsState
   );
-  const [editModalsState, setEditModalsState] = useState(initialModalsState);
+  const [editModalsState, setEditModalsState] = useState({});
   const [currentEditableEntity, setCurrentEditableEntity] = useState(null);
 
   function handleCreateModalOpen(formName) {
@@ -93,7 +93,7 @@ export default function useDashbaord({
         entityPartName
       });
     }
-    handleEditModalClose(currentEditableEntity);
+    handleEditModalClose(currentEditableEntity.item);
   }
 
   function mapEntityToEditFormProps({ item, entityPartName }) {
