@@ -83,7 +83,20 @@ export default function useBalanceProjection() {
       .filter((account) => account.balance < 0)
       .sort((a, b) => a.payoutPriority - b.payoutPriority);
     let credits = debts.filter((account) => account.requiredPayment > 0);
+    let checkPoints = [
+      ...cloneDeep(debts),
+      ...goals.map((goal) => ({
+        ...goal,
+        balance: +goal.expectedAmount * currencyMappingToUAH[goal.currency],
+        currency: "UAH"
+      }))
+    ].sort(
+      (a, b) =>
+        (a.payoutPriority || a.achievementPriority) -
+        (b.payoutPriority || b.achievementPriority)
+    );
 
+    console.log(checkPoints);
     const today = new Date();
     const monthsMap = [
       "January",
@@ -104,7 +117,8 @@ export default function useBalanceProjection() {
     let currentMonthNumber = startingMonthNumber;
     const schedule = [];
     let totalBalance = currentBalance;
-    while (monthsToPositiveBalance + 1 > schedule.length) {
+    // TODO: Refactor this cycle when will move it to BE. This might be simplified significantly!
+    while (monthsToAchieveAllFinancialGoals > schedule.length) {
       const paidDebts = [];
       const month = monthsMap[currentMonthNumber];
       let monthPossiblePayoutBalance = totalIncome - totalSpendings;
@@ -117,7 +131,9 @@ export default function useBalanceProjection() {
           }
           const creditRequiredPaymentToUAH =
             +credit.requiredPayment * currencyMappingToUAH[credit.currency];
-          const debtIndex = debts.findIndex((debt) => debt.id === credit.id);
+          const debtIndex = checkPoints.findIndex(
+            (debt) => debt.id === credit.id
+          );
           if (Math.abs(creditBalanceToUAH) < creditRequiredPaymentToUAH) {
             const paidDebt = {
               ...credit,
@@ -127,8 +143,8 @@ export default function useBalanceProjection() {
             totalBalance += creditBalanceToUAH;
             monthPossiblePayoutBalance -= creditBalanceToUAH;
             paidDebts.push(paidDebt);
-            if (debts[debtIndex]) {
-              debts[debtIndex].balance = 0;
+            if (checkPoints[debtIndex]) {
+              checkPoints[debtIndex].balance = 0;
             }
             return null;
           } else {
@@ -145,8 +161,8 @@ export default function useBalanceProjection() {
             totalBalance += creditRequiredPaymentToUAH;
             monthPossiblePayoutBalance -= creditRequiredPaymentToUAH;
             paidDebts.push(paidDebt);
-            debts[debtIndex] = {
-              ...debts[debtIndex],
+            checkPoints[debtIndex] = {
+              ...checkPoints[debtIndex],
               currency: "UAH",
               balance: debtLeft.balance
             };
@@ -154,7 +170,7 @@ export default function useBalanceProjection() {
           }
         })
         .filter((credit) => credit);
-      debts = debts
+      checkPoints = checkPoints
         .map((debt) => {
           const debtBalanceToUAH =
             +debt.balance * currencyMappingToUAH[debt.currency];
@@ -173,6 +189,23 @@ export default function useBalanceProjection() {
             }
             return null; // Debt is settled
           } else {
+            if (debtBalanceToUAH > 0 && monthPossiblePayoutBalance > 0) {
+              // This is not a debt, but financial goal. And we have some cash available to achieve that :)
+              totalBalance += monthPossiblePayoutBalance;
+              const debtLeft = {
+                ...debt,
+                balance: debtBalanceToUAH - monthPossiblePayoutBalance,
+                currency: "UAH"
+              };
+              const paidDebt = {
+                ...debt,
+                balance: monthPossiblePayoutBalance,
+                currency: "UAH"
+              };
+              monthPossiblePayoutBalance = 0;
+              paidDebts.push(paidDebt);
+              return debtLeft;
+            }
             if (monthPossiblePayoutBalance > 0) {
               totalBalance += monthPossiblePayoutBalance;
               const debtLeft = {
