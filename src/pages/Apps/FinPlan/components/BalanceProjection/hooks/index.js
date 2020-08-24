@@ -92,8 +92,11 @@ export default function useBalanceProjection() {
       "November",
       "December"
     ];
-    let currentMonthNumber = today.getMonth();
+    let startingMonthNumber = today.getMonth() + 1;
+    let year = today.getFullYear();
+    let currentMonthNumber = startingMonthNumber;
     const schedule = [];
+    let totalBalance = currentBalance;
     while (monthsToPositiveBalance + 1 > schedule.length) {
       const paidDebts = [];
       const month = monthsMap[currentMonthNumber];
@@ -114,6 +117,7 @@ export default function useBalanceProjection() {
               balance: Math.abs(creditBalanceToUAH),
               currency: "UAH"
             };
+            totalBalance += creditBalanceToUAH;
             monthPossiblePayoutBalance -= creditBalanceToUAH;
             paidDebts.push(paidDebt);
             if (debts[debtIndex]) {
@@ -131,6 +135,7 @@ export default function useBalanceProjection() {
               balance: creditRequiredPaymentToUAH,
               currency: "UAH"
             };
+            totalBalance += creditRequiredPaymentToUAH;
             monthPossiblePayoutBalance -= creditRequiredPaymentToUAH;
             paidDebts.push(paidDebt);
             debts[debtIndex] = {
@@ -153,6 +158,7 @@ export default function useBalanceProjection() {
             (credit) => credit.id === debt.id
           );
           if (Math.abs(debtBalanceToUAH) < monthPossiblePayoutBalance) {
+            totalBalance += Math.abs(debtBalanceToUAH);
             monthPossiblePayoutBalance -= Math.abs(debtBalanceToUAH);
             paidDebts.push({ ...debt, balance: Math.abs(+debtBalanceToUAH) });
             if (credits[creditIndex]) {
@@ -161,6 +167,7 @@ export default function useBalanceProjection() {
             return null; // Debt is settled
           } else {
             if (monthPossiblePayoutBalance > 0) {
+              totalBalance += monthPossiblePayoutBalance;
               const debtLeft = {
                 ...debt,
                 balance: debtBalanceToUAH + monthPossiblePayoutBalance,
@@ -184,11 +191,14 @@ export default function useBalanceProjection() {
         .filter((debt) => debt);
       const scheduleItem = {
         month,
-        paidDebts
+        year,
+        paidDebts,
+        totalBalance
       };
       schedule.push(scheduleItem);
       if (currentMonthNumber === 11) {
         currentMonthNumber = 0;
+        year += 1;
       } else {
         currentMonthNumber++;
       }
