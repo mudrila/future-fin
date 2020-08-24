@@ -70,7 +70,7 @@ export default function useBalanceProjection() {
     Math.abs(currentBalance / (totalIncome - totalSpendings))
   );
 
-  function buildPayoutSchedule() {
+  function buildFinPlanSchedule() {
     // Make copy of accounts since we're going to manipulate items of debts array directly
     let debts = cloneDeep(accounts)
       .filter((account) => account.balance < 0)
@@ -96,7 +96,7 @@ export default function useBalanceProjection() {
     const schedule = [];
     while (monthsToPositiveBalance + 1 > schedule.length) {
       const paidDebts = [];
-      const month = monthsMap[currentMonthNumber + 1];
+      const month = monthsMap[currentMonthNumber];
       let monthPossiblePayoutBalance = totalIncome - totalSpendings;
       credits = credits
         .map((credit) => {
@@ -195,7 +195,7 @@ export default function useBalanceProjection() {
     }
     return schedule;
   }
-  const payoutSchedule = buildPayoutSchedule();
+  const finPlanSchedule = buildFinPlanSchedule();
 
   function handlePossibleReducingChange(event) {
     setPossibleReducing(event.target.checked);
@@ -206,7 +206,7 @@ export default function useBalanceProjection() {
     currentBalance,
     totalSpendings,
     monthsToPositiveBalance,
-    payoutSchedule,
+    finPlanSchedule,
     reducedCategories,
     handlePossibleReducingChange,
     possibleReducing

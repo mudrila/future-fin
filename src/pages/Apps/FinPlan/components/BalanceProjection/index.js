@@ -12,11 +12,12 @@ export default function BalanceProjection() {
     currentBalance,
     totalSpendings,
     monthsToPositiveBalance,
-    payoutSchedule,
+    finPlanSchedule,
     possibleReducing,
     reducedCategories,
     handlePossibleReducingChange
   } = useBalanceProjection();
+  console.log(finPlanSchedule);
   return (
     <Fragment>
       <Grid container>
@@ -56,7 +57,7 @@ export default function BalanceProjection() {
       <Typography variant="h4" className={classes.fullWidth} align="center">
         Your debts payout schedule:
       </Typography>
-      {payoutSchedule.map((item, i) => (
+      {finPlanSchedule.map((item, i) => (
         <Grid container key={i}>
           <Grid item xs={6}>
             <Typography variant="body1" className={classes.fullWidth}>
