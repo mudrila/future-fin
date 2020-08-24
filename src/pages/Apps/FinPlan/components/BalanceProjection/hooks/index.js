@@ -102,6 +102,9 @@ export default function useBalanceProjection() {
         .map((credit) => {
           const creditBalanceToUAH =
             +credit.balance * currencyMappingToUAH[credit.currency];
+          if (creditBalanceToUAH === 0) {
+            return null;
+          }
           const creditRequiredPaymentToUAH =
             +credit.requiredPayment * currencyMappingToUAH[credit.currency];
           const debtIndex = debts.findIndex((debt) => debt.id === credit.id);
@@ -143,6 +146,9 @@ export default function useBalanceProjection() {
         .map((debt) => {
           const debtBalanceToUAH =
             +debt.balance * currencyMappingToUAH[debt.currency];
+          if (debtBalanceToUAH === 0) {
+            return null;
+          }
           const creditIndex = credits.findIndex(
             (credit) => credit.id === debt.id
           );
