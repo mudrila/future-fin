@@ -15,7 +15,9 @@ export default function BalanceProjection() {
     finPlanSchedule,
     possibleReducing,
     reducedCategories,
-    handlePossibleReducingChange
+    handlePossibleReducingChange,
+    totalFinancialGoalsPrice,
+    monthsToAchieveAllFinancialGoals
   } = useBalanceProjection();
   console.log(finPlanSchedule);
   return (
@@ -49,9 +51,21 @@ export default function BalanceProjection() {
       <Typography variant="body1" className={classes.fullWidth}>
         Your total spendings / month: {totalSpendings}
       </Typography>
+      {currentBalance < 0 ? (
+        <Typography variant="body1" className={classes.fullWidth}>
+          Your projected positive ballance would be achieved in:{" "}
+          {monthsToPositiveBalance} months (
+          {Math.round(monthsToPositiveBalance / 12)} years)
+        </Typography>
+      ) : null}
+      <Divider className={classes.fullWidth} />
       <Typography variant="body1" className={classes.fullWidth}>
-        Your projected positive ballance would be achieved in:{" "}
-        {monthsToPositiveBalance} months
+        Your total financial goals price: {totalFinancialGoalsPrice}
+      </Typography>
+      <Typography variant="body1" className={classes.fullWidth}>
+        Your financial goals would be achieved in:{" "}
+        {monthsToAchieveAllFinancialGoals} months (
+        {Math.round(monthsToAchieveAllFinancialGoals / 12)} years)
       </Typography>
       <Divider className={classes.fullWidth} />
       <Typography variant="h4" className={classes.fullWidth} align="center">

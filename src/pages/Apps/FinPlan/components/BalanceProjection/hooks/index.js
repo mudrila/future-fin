@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { cloneDeep } from "lodash";
 
+import { finPlanGoalsSelector } from "../../../redux/selectors";
 import {
   incomeSourcesSelector,
   accountsSelector,
@@ -20,6 +21,7 @@ export default function useBalanceProjection() {
   const incomeSources = useSelector(incomeSourcesSelector);
   const accounts = useSelector(accountsSelector);
   const spendingCategories = useSelector(spendingCategoriesSelector);
+  const goals = useSelector(finPlanGoalsSelector);
 
   // Spending categories which we can reduce
   const reducedCategories = spendingCategories
@@ -66,9 +68,14 @@ export default function useBalanceProjection() {
     ? categoriesWithReducing.reduce(sumReducer, 0)
     : spendingCategories.reduce(sumReducer, 0);
 
+  const totalFinancialGoalsPrice = goals.reduce(sumReducer, 0);
   const monthsToPositiveBalance = Math.round(
     Math.abs(currentBalance / (totalIncome - totalSpendings))
   );
+
+  const monthsToAchieveAllFinancialGoals =
+    monthsToPositiveBalance +
+    Math.round(totalFinancialGoalsPrice / (totalIncome - totalSpendings));
 
   function buildFinPlanSchedule() {
     // Make copy of accounts since we're going to manipulate items of debts array directly
@@ -219,6 +226,8 @@ export default function useBalanceProjection() {
     finPlanSchedule,
     reducedCategories,
     handlePossibleReducingChange,
-    possibleReducing
+    possibleReducing,
+    totalFinancialGoalsPrice,
+    monthsToAchieveAllFinancialGoals
   };
 }
