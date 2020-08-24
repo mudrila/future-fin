@@ -30,10 +30,22 @@ export default function useBalanceProjection() {
     })
     .filter((category) => category);
 
+  const categoriesWithReducing = spendingCategories.map((category) => {
+    if (category.reducingAmount && category.reducingAmount > 0) {
+      return {
+        ...category,
+        expectedAmount: +category.expectedAmount - +category.reducingAmount
+      };
+    }
+    return category;
+  });
+
   function sumReducer(total, current) {
-    const amountToUAH =
-      +(current.expectedAmount || current.balance) *
-      currencyMappingToUAH[current.currency];
+    let amount = current.expectedAmount;
+    if (typeof amount === "undefined") {
+      amount = current.balance;
+    }
+    const amountToUAH = amount * currencyMappingToUAH[current.currency];
     if (current.frequency) {
       if (current.frequency === "daily") {
         // ~Working month
@@ -47,7 +59,7 @@ export default function useBalanceProjection() {
   const totalIncome = incomeSources.reduce(sumReducer, 0);
   const currentBalance = accounts.reduce(sumReducer, 0);
   const totalSpendings = possibleReducing
-    ? reducedCategories.reduce(sumReducer, 0)
+    ? categoriesWithReducing.reduce(sumReducer, 0)
     : spendingCategories.reduce(sumReducer, 0);
 
   const monthsToPositiveBalance = Math.round(
