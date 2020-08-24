@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { cloneDeep } from "lodash";
 
-import { finPlanGoalsSelector } from "../../../redux/selectors";
+import { finPlanGoalsSelector } from "../../FinPlan/redux/selectors";
 import {
   incomeSourcesSelector,
   accountsSelector,
   spendingCategoriesSelector
-} from "../../../../Budget/redux/selectors";
+} from "../../Budget/redux/selectors";
 
 export default function useBalanceProjection() {
   // TODO: Grab currency exchange rate from some open data source instead of hardcoding
@@ -229,6 +229,7 @@ export default function useBalanceProjection() {
         })
         .filter((debt) => debt);
       const scheduleItem = {
+        date: `${month} ${year}`,
         month,
         year,
         paidDebts,

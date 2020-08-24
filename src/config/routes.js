@@ -8,7 +8,7 @@ export default {
     KEY: "APPS_DASHBOARD",
     PATH: "/apps",
     TITLE: "Apps Overview",
-    children: ["BUDGET_DASHBOARD", "FINPLAN_DASHBOARD"]
+    children: ["BUDGET_DASHBOARD", "FINPLAN_DASHBOARD", "FINPLAN_SCHEDULE"]
   },
   BUDGET_DASHBOARD: {
     KEY: "BUDGET_DASHBOARD",

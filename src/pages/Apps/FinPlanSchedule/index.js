@@ -1,11 +1,19 @@
 import { Fragment } from "react";
 import { Typography, Divider, Grid } from "@material-ui/core";
+import {
+  LineChart,
+  Line,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip
+} from "recharts";
 
-import { CheckboxField } from "../../../../../ui-library";
+import { CheckboxField } from "../../../ui-library";
 import useBalanceProjection from "./hooks";
 import useStyles from "./styles";
 
-export default function BalanceProjection() {
+export default function FinPlanSchedule() {
   const classes = useStyles();
   const {
     totalIncome,
@@ -22,6 +30,15 @@ export default function BalanceProjection() {
   console.log(finPlanSchedule);
   return (
     <Fragment>
+      <Grid container>
+        <LineChart width={500} height={300} data={finPlanSchedule}>
+          <XAxis dataKey="date" />
+          <YAxis dataKey="totalBalance" />
+          <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+          <Line type="monotone" dataKey="totalBalance" stroke="#8884d8" />
+          <Tooltip />
+        </LineChart>
+      </Grid>
       <Grid container>
         <Typography variant="h4" className={classes.fullWidth}>
           Check how your fin plan would look like, if you will reduce those
