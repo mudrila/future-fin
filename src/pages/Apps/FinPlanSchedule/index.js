@@ -10,6 +10,7 @@ import {
 } from "recharts";
 
 import { CheckboxField } from "../../../ui-library";
+import { CustomTooltip } from "./components";
 import useBalanceProjection from "./hooks";
 import useStyles from "./styles";
 
@@ -27,16 +28,26 @@ export default function FinPlanSchedule() {
     totalFinancialGoalsPrice,
     monthsToAchieveAllFinancialGoals
   } = useBalanceProjection();
-  console.log(finPlanSchedule);
   return (
     <Fragment>
       <Grid container>
-        <LineChart width={500} height={300} data={finPlanSchedule}>
+        <Typography variant="h4" className={classes.fullWidth}>
+          Balance Projection (3 years)
+        </Typography>
+        <LineChart
+          width={1200}
+          height={600}
+          data={finPlanSchedule.slice(0, 36)}
+        >
           <XAxis dataKey="date" />
-          <YAxis dataKey="totalBalance" />
+          <YAxis
+            dataKey="totalBalance"
+            type="number"
+            domain={["dataMin", "dataMax"]}
+          />
           <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
           <Line type="monotone" dataKey="totalBalance" stroke="#8884d8" />
-          <Tooltip />
+          <Tooltip content={<CustomTooltip />} />
         </LineChart>
       </Grid>
       <Grid container>
