@@ -115,7 +115,8 @@ export default function useForm({ fields, onSubmit }) {
     setFormState({ ...formState, [fieldName]: iconName });
   }
 
-  function handleSubmit() {
+  function handleSubmit(event) {
+    event.preventDefault();
     onSubmit(formState);
     setFormState(initialFormState);
   }

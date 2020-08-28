@@ -1,10 +1,11 @@
 const STATE_KEYS = ["REQUEST", "LOADING", "SUCCESS", "ERROR"];
 
 export function makeActionCreator(actionType) {
-  return function actionCreator(payload) {
+  return function actionCreator(payload, enqueueSnackbar) {
     return {
       type: actionType,
-      payload
+      payload,
+      enqueueSnackbar
     };
   };
 }

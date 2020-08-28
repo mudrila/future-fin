@@ -10,7 +10,7 @@ import {
 } from "./actions";
 import { signUpRequest, loginRequest, logoutRequest } from "./requests";
 
-function* signUpWorker({ payload }) {
+function* signUpWorker({ payload, enqueueSnackbar }) {
   const loadingAction = userActionCreators.CREATE.LOADING();
   yield put(loadingAction);
   try {
@@ -23,7 +23,7 @@ function* signUpWorker({ payload }) {
   }
 }
 
-function* loginWorker({ payload }) {
+function* loginWorker({ payload, enqueueSnackbar }) {
   const loadingAction = loginActionCreators.LOADING();
   yield put(loadingAction);
   try {
@@ -32,12 +32,17 @@ function* loginWorker({ payload }) {
     const successAction = loginActionCreators.SUCCESS(result);
     yield put(successAction);
   } catch (e) {
+    let message;
+    if (e.response.status === 400 && e.response.data) {
+      message = e.response.data.error;
+    }
+    enqueueSnackbar(message, { variant: "error" });
     const errorAction = loginActionCreators.ERROR();
     yield put(errorAction);
   }
 }
 
-function* logoutWorker() {
+function* logoutWorker({ enqueueSnackbar }) {
   try {
     // Doesn't really matter is the request successfull or not
     yield logoutRequest();
@@ -46,6 +51,7 @@ function* logoutWorker() {
   }
   api.defaults.headers.Authorization = "";
   localStorage.removeItem("persist:appState");
+  enqueueSnackbar("Successfully logged out. See ya ;)");
 }
 
 export default function* userWatcher() {

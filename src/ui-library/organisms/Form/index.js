@@ -4,25 +4,41 @@ import {
   Grid,
   Accordion,
   AccordionSummary,
-  AccordionDetails
+  AccordionDetails,
+  Button
 } from "@material-ui/core";
 
 import useForm from "./hooks";
+import useStyles from "../FormDialog/styles";
 
 export default function Form({
   fields,
   onSubmit,
   sectionsSplitting = false,
-  sections
+  sections,
+  formName,
+  submitButtonText = "Submit"
 }) {
-  const { getComponentByFieldType, handleChange, handleSubmit } = useForm({
+  const classes = useStyles();
+  const {
+    getComponentByFieldType,
+    getInputPropsByField,
+    handleSubmit
+  } = useForm({
     fields,
     onSubmit
   });
   function renderFields(fields) {
     return fields.map((field) => {
       const Component = getComponentByFieldType(field.type);
-      return <Component key={field.name} {...field} onChange={handleChange} />;
+      const inputProps = getInputPropsByField(field);
+      return (
+        <Component
+          key={field.name}
+          className={classes.inputField}
+          {...inputProps}
+        />
+      );
     });
   }
   function renderSections() {
@@ -45,6 +61,9 @@ export default function Form({
     <Grid>
       <form name={formName} onSubmit={handleSubmit}>
         {sectionsSplitting ? renderSections() : renderFields(fields)}
+        <Button color="primary" type="submit" variant="contained" fullWidth>
+          {submitButtonText}
+        </Button>
       </form>
     </Grid>
   );
@@ -69,10 +88,11 @@ Form.propTypes = {
         PropTypes.shape({
           name: PropTypes.string.isRequired,
           label: PropTypes.string.isRequired,
-          onChange: PropTypes.func.isRequired,
+          onChange: PropTypes.func,
           id: PropTypes.string
         })
       ).isRequired
     })
-  )
+  ),
+  submitButtonText: PropTypes.string
 };

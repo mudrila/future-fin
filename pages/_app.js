@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import NextApp from "next/app";
 import Head from "next/head";
 import { PersistGate } from "redux-persist/integration/react";
+import { SnackbarProvider } from "notistack";
 
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
@@ -52,12 +53,14 @@ export default function App({ Component, pageProps }) {
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Navigation />
-              <main className={classes.content}>
-                <article className={classes.innerContent}>
-                  <Component {...pageProps} />
-                </article>
-              </main>
+              <SnackbarProvider maxSnack={5} preventDuplicate={true}>
+                <Navigation />
+                <main className={classes.content}>
+                  <article className={classes.innerContent}>
+                    <Component {...pageProps} />
+                  </article>
+                </main>
+              </SnackbarProvider>
             </MuiPickersUtilsProvider>
           </ThemeProvider>
         </PersistGate>
