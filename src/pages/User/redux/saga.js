@@ -18,6 +18,14 @@ function* signUpWorker({ payload, enqueueSnackbar }) {
     const successAction = userActionCreators.CREATE.SUCCESS(result);
     yield put(successAction);
   } catch (e) {
+    let message;
+    if (
+      (e.response.status === 400 || e.response.status === 406) &&
+      e.response.data
+    ) {
+      message = e.response.data.error;
+    }
+    enqueueSnackbar(message, { variant: "error" });
     const errorAction = userActionCreators.CREATE.ERROR();
     yield put(errorAction);
   }
@@ -29,6 +37,7 @@ function* loginWorker({ payload, enqueueSnackbar }) {
   try {
     const result = yield loginRequest(payload);
     api.defaults.headers.Authorization = `Bearer ${result.token}`;
+    enqueueSnackbar("User successfully created!", { variant: "success" });
     const successAction = loginActionCreators.SUCCESS(result);
     yield put(successAction);
   } catch (e) {
