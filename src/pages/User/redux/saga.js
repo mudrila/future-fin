@@ -51,7 +51,7 @@ function* logoutWorker({ enqueueSnackbar }) {
   }
   api.defaults.headers.Authorization = "";
   localStorage.removeItem("persist:appState");
-  enqueueSnackbar("Successfully logged out. See ya ;)");
+  enqueueSnackbar("Successfully logged out. See ya ;)", { variant: "success" });
 }
 
 export default function* userWatcher() {
