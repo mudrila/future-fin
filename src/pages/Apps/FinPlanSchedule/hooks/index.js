@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { cloneDeep } from "lodash";
 
+import useSecureRoute from "../../../../hooks/useSecureRoute";
+
 import { finPlanGoalsSelector } from "../../FinPlan/redux/selectors";
 import {
   incomeSourcesSelector,
@@ -10,6 +12,7 @@ import {
 } from "../../Budget/redux/selectors";
 
 export default function useBalanceProjection() {
+  useSecureRoute();
   // TODO: Grab currency exchange rate from some open data source instead of hardcoding
   const currencyMappingToUAH = {
     EUR: 32.5,

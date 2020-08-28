@@ -1,10 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
 
+import useSecureRoute from "../../../../hooks/useSecureRoute";
+
 import finplanDashboardConfig from "../config/dashboard";
 import { finPlanGoalsActionCreators } from "../redux/actions";
 import { finPlanGoalsSelector } from "../redux/selectors";
 
 export default function useFinPlanDashboard() {
+  useSecureRoute();
   const dispatch = useDispatch();
   const finPlanGoals = useSelector(finPlanGoalsSelector);
   const finPlanDataMapping = {

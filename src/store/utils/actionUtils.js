@@ -1,3 +1,5 @@
+const STATE_KEYS = ["REQUEST", "LOADING", "SUCCESS", "ERROR"];
+
 export function makeActionCreator(actionType) {
   return function actionCreator(payload) {
     return {
@@ -7,13 +9,28 @@ export function makeActionCreator(actionType) {
   };
 }
 
+export function generateBasicStateActionTypes(prefix) {
+  let result = {};
+  STATE_KEYS.forEach((stateKey) => {
+    result[stateKey] = `${prefix}_${stateKey}`;
+  });
+  return result;
+}
+
+export function generateBasicStateActionCreators(actionTypes) {
+  let result = {};
+  Object.keys(actionTypes).forEach((actionTypeKey) => {
+    result[actionTypeKey] = makeActionCreator(actionTypes[actionTypeKey]);
+  });
+  return result;
+}
+
 export function getBasicCRUDResultShape() {
   const crudKeys = ["CREATE", "UPDATE", "READ", "DELETE"];
-  const stateKeys = ["REQUEST", "LOADING", "SUCCESS", "ERROR"];
   let result = {};
   crudKeys.forEach((crudKey) => {
     result[crudKey] = {};
-    stateKeys.forEach((stateKey) => {
+    STATE_KEYS.forEach((stateKey) => {
       result[crudKey][stateKey] = "";
     });
   });

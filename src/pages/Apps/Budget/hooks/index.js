@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
+import useSecureRoute from "../../../../hooks/useSecureRoute";
 import budgetDashbaordConfig from "../config/dashboard";
 import {
   budgetIncomesActionCreators,
@@ -13,6 +14,7 @@ import {
 } from "../redux/selectors";
 
 export default function useBudgetDashboard() {
+  useSecureRoute();
   const dispatch = useDispatch();
   const incomeSources = useSelector(incomeSourcesSelector);
   const accounts = useSelector(accountsSelector);
