@@ -1,6 +1,4 @@
-import { Fragment } from "react";
 import Link from "next/link";
-import PropTypes from "prop-types";
 import clsx from "clsx";
 import {
   Drawer,
@@ -22,8 +20,8 @@ import { ICONS_MAP } from "./config";
 import useNavigation from "./hooks";
 import useStyles from "./styles";
 
-export default function Navigation({ items }) {
-  const { open, handleDrawerClose, handleDrawerOpen } = useNavigation();
+export default function Navigation() {
+  const { open, handleDrawerClose, handleDrawerOpen, items } = useNavigation();
   const classes = useStyles();
 
   return (
@@ -93,14 +91,3 @@ export default function Navigation({ items }) {
     </>
   );
 }
-
-Navigation.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      KEY: PropTypes.string.isRequired,
-      PATH: PropTypes.string.isRequired,
-      TITLE: PropTypes.string.isRequired,
-      children: PropTypes.arrayOf(PropTypes.string)
-    })
-  ).isRequired
-};

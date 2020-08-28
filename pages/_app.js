@@ -10,7 +10,6 @@ import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import { useStore } from "../src/store";
-import ROUTES from "../src/config/routes";
 import theme from "../src/ui-library/theme";
 import { Navigation } from "../src/ui-library";
 
@@ -29,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 210
   }
 }));
-export default function App({ Component, pageProps, router }) {
+export default function App({ Component, pageProps }) {
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
@@ -39,16 +38,6 @@ export default function App({ Component, pageProps, router }) {
   }, []);
   const store = useStore(pageProps.initialReduxState);
   const classes = useStyles();
-  const navigationItems = Object.values(ROUTES).map((route) => {
-    if (route.PATH === router.route) {
-      return {
-        ...route,
-        selected: true
-      };
-    } else {
-      return route;
-    }
-  });
   return (
     <>
       <Head>
@@ -63,7 +52,7 @@ export default function App({ Component, pageProps, router }) {
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Navigation items={navigationItems} />
+              <Navigation />
               <main className={classes.content}>
                 <article className={classes.innerContent}>
                   <Component {...pageProps} />

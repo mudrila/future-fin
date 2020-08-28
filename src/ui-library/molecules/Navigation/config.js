@@ -5,13 +5,17 @@ import {
   AppsRounded,
   AccountBalanceWalletRounded,
   MonetizationOnRounded,
-  DateRangeRounded
+  DateRangeRounded,
+  ExitToAppRounded,
+  PersonAddRounded
 } from "@material-ui/icons";
 
 export const ICONS_MAP = {
-  [ROUTES.HOME.KEY]: HomeRounded,
-  [ROUTES.APPS_DASHBOARD.KEY]: AppsRounded,
-  [ROUTES.BUDGET_DASHBOARD.KEY]: AccountBalanceWalletRounded,
-  [ROUTES.FINPLAN_DASHBOARD.KEY]: MonetizationOnRounded,
-  [ROUTES.FINPLAN_SCHEDULE.KEY]: DateRangeRounded
+  [ROUTES.PROTECTED_ROUTES.HOME.KEY]: HomeRounded,
+  [ROUTES.PROTECTED_ROUTES.APPS_DASHBOARD.KEY]: AppsRounded,
+  [ROUTES.PROTECTED_ROUTES.BUDGET_DASHBOARD.KEY]: AccountBalanceWalletRounded,
+  [ROUTES.PROTECTED_ROUTES.FINPLAN_DASHBOARD.KEY]: MonetizationOnRounded,
+  [ROUTES.PROTECTED_ROUTES.FINPLAN_SCHEDULE.KEY]: DateRangeRounded,
+  [ROUTES.PUBLIC_ROUTES.LOGIN.KEY]: ExitToAppRounded,
+  [ROUTES.PUBLIC_ROUTES.SIGN_UP.KEY]: PersonAddRounded
 };
