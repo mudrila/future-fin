@@ -15,8 +15,17 @@ function* signUpWorker({ payload, enqueueSnackbar }) {
   yield put(loadingAction);
   try {
     const result = yield signUpRequest(payload);
+    enqueueSnackbar("Success! You're registered!", { variant: "success" });
     const successAction = userActionCreators.CREATE.SUCCESS(result);
     yield put(successAction);
+    const loginRequestAction = loginActionCreators.REQUEST(
+      {
+        email: payload.email,
+        password: payload.password
+      },
+      enqueueSnackbar
+    );
+    yield put(loginRequestAction);
   } catch (e) {
     let message;
     if (
@@ -37,7 +46,6 @@ function* loginWorker({ payload, enqueueSnackbar }) {
   try {
     const result = yield loginRequest(payload);
     api.defaults.headers.Authorization = `Bearer ${result.token}`;
-    enqueueSnackbar("User successfully created!", { variant: "success" });
     const successAction = loginActionCreators.SUCCESS(result);
     yield put(successAction);
   } catch (e) {
