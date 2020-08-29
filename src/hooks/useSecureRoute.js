@@ -13,7 +13,11 @@ export default function useSecureRoute() {
       router.route === ROUTES.PUBLIC_ROUTES.SIGN_UP.PATH)
   ) {
     router.push("/");
-  } else if (!user.isAuthenticated) {
+  } else if (
+    !user.isAuthenticated &&
+    router.route !== ROUTES.PUBLIC_ROUTES.LOGIN.PATH &&
+    router.route !== ROUTES.PUBLIC_ROUTES.SIGN_UP.PATH
+  ) {
     router.push("/login");
   }
 }

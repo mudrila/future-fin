@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import {
@@ -11,9 +12,16 @@ import {
   Divider,
   ListItemIcon,
   ListItemText,
-  Tooltip
+  Tooltip,
+  Menu,
+  MenuItem
 } from "@material-ui/core";
-import { ChevronLeft, Menu } from "@material-ui/icons";
+import {
+  ChevronLeft,
+  Menu as MenuIcon,
+  ExitToAppRounded,
+  AccountCircleRounded
+} from "@material-ui/icons";
 
 import { ICONS_MAP } from "./config";
 
@@ -21,7 +29,17 @@ import useNavigation from "./hooks";
 import useStyles from "./styles";
 
 export default function Navigation() {
-  const { open, handleDrawerClose, handleDrawerOpen, items } = useNavigation();
+  const {
+    open,
+    handleDrawerClose,
+    handleDrawerOpen,
+    items,
+    isAuthenticated,
+    accountMenuAnchorEl,
+    handleAccountMenuOpen,
+    handleAccountMenuClose,
+    handleLogout
+  } = useNavigation();
   const classes = useStyles();
 
   return (
@@ -42,7 +60,7 @@ export default function Navigation() {
               [classes.hide]: open
             })}
           >
-            <Menu />
+            <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
             FutureFin | Financial Plan Builder
@@ -86,6 +104,46 @@ export default function Navigation() {
               </Link>
             );
           })}
+          {isAuthenticated && (
+            <Fragment>
+              <Tooltip title="Profile">
+                <ListItem
+                  button
+                  selected={Boolean(accountMenuAnchorEl)}
+                  onClick={handleAccountMenuOpen}
+                >
+                  <ListItemIcon>
+                    <AccountCircleRounded />
+                  </ListItemIcon>
+                  <ListItemText primary="Profile" />
+                </ListItem>
+              </Tooltip>
+              <Menu
+                open={Boolean(accountMenuAnchorEl)}
+                anchorEl={accountMenuAnchorEl}
+                onClose={handleAccountMenuClose}
+                keepMounted
+                id="account-menu"
+              >
+                <Link href="/account" passHref={true}>
+                  <a className={classes.link}>
+                    <MenuItem>
+                      <ListItemIcon>
+                        <AccountCircleRounded />
+                      </ListItemIcon>
+                      <ListItemText primary="My Account" />
+                    </MenuItem>
+                  </a>
+                </Link>
+                <MenuItem onClick={handleLogout}>
+                  <ListItemIcon>
+                    <ExitToAppRounded />
+                  </ListItemIcon>
+                  <ListItemText primary="Logout" />
+                </MenuItem>
+              </Menu>
+            </Fragment>
+          )}
         </List>
       </Drawer>
     </>

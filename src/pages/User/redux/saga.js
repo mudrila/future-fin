@@ -6,7 +6,8 @@ import {
   LOGIN_ACTION_TYPES,
   LOGOUT_ACTION_TYPES,
   userActionCreators,
-  loginActionCreators
+  loginActionCreators,
+  logoutActionCreators
 } from "./actions";
 import { signUpRequest, loginRequest, logoutRequest } from "./requests";
 
@@ -66,6 +67,8 @@ function* logoutWorker({ enqueueSnackbar }) {
   } catch (e) {
     console.error(e);
   }
+  const logoutSuccessAction = logoutActionCreators.SUCCESS();
+  yield put(logoutSuccessAction);
   api.defaults.headers.Authorization = "";
   localStorage.removeItem("persist:appState");
   enqueueSnackbar("Successfully logged out. See ya ;)", { variant: "success" });

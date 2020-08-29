@@ -1,4 +1,8 @@
-import { LOGIN_ACTION_TYPES, USER_ACTION_TYPES } from "./actions";
+import {
+  LOGIN_ACTION_TYPES,
+  USER_ACTION_TYPES,
+  LOGOUT_ACTION_TYPES
+} from "./actions";
 
 const INITIAL_STATE = {
   user: {
@@ -25,6 +29,8 @@ export default function finPlanReducer(
       return { ...payload, isAuthenticated: true };
     case LOGIN_ACTION_TYPES.ERROR:
       return { ...state, loading: false };
+    case LOGOUT_ACTION_TYPES.SUCCESS:
+      return { ...INITIAL_STATE.user };
     default:
       return state;
   }

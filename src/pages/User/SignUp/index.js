@@ -6,7 +6,7 @@ import useStyles from "./styles";
 
 export default function SignUpPage() {
   const classes = useStyles();
-  const { handleSubmit, fields, formName } = useSignUp();
+  const { handleSubmit, fields, formName, loading } = useSignUp();
   return (
     <Paper vairant="outlined" className={classes.root}>
       <Typography variant="h5" align="center">
@@ -18,6 +18,7 @@ export default function SignUpPage() {
         formName={formName}
         normalizeFormData={true}
         onSubmit={handleSubmit}
+        loading={loading}
       />
     </Paper>
   );

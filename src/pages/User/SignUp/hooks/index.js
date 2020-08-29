@@ -1,12 +1,14 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useSnackbar } from "notistack";
 
+import { userSelector } from "../../redux/selectors";
 import useSecureRoute from "../../../../hooks/useSecureRoute";
 import { userActionCreators } from "../../redux/actions";
 import formConfig from "../config/form";
 
 export default function useSignUp() {
   useSecureRoute();
+  const { loading } = useSelector(userSelector);
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
   const { formName, fields } = formConfig;
@@ -22,6 +24,7 @@ export default function useSignUp() {
   return {
     formName,
     fields,
-    handleSubmit
+    handleSubmit,
+    loading
   };
 }

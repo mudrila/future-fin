@@ -5,7 +5,8 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Button
+  Button,
+  CircularProgress
 } from "@material-ui/core";
 
 import useForm from "./hooks";
@@ -17,7 +18,8 @@ export default function Form({
   sectionsSplitting = false,
   sections,
   formName,
-  submitButtonText = "Submit"
+  submitButtonText = "Submit",
+  loading = false
 }) {
   const classes = useStyles();
   const {
@@ -61,8 +63,14 @@ export default function Form({
     <Grid>
       <form name={formName} onSubmit={handleSubmit}>
         {sectionsSplitting ? renderSections() : renderFields(fields)}
-        <Button color="primary" type="submit" variant="contained" fullWidth>
-          {submitButtonText}
+        <Button
+          color="primary"
+          type="submit"
+          variant="contained"
+          fullWidth
+          disabled={loading}
+        >
+          {loading ? <CircularProgress /> : submitButtonText}
         </Button>
       </form>
     </Grid>
@@ -94,5 +102,6 @@ Form.propTypes = {
       ).isRequired
     })
   ),
-  submitButtonText: PropTypes.string
+  submitButtonText: PropTypes.string,
+  loading: PropTypes.bool
 };
