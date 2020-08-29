@@ -64,5 +64,11 @@ export default makeStyles((theme) => ({
   link: {
     textDecoration: "none",
     color: theme.palette.primary.main
+  },
+  headerTextContainer: {
+    paddingTop: theme.spacing(2)
+  },
+  appBarTogglerContainer: {
+    paddingTop: theme.spacing(1)
   }
 }));

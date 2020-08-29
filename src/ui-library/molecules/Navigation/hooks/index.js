@@ -10,7 +10,7 @@ import ROUTES from "../../../../config/routes";
 export default function useNavigation() {
   // TODO: Refactor this so Navigation items are passed outside instead of calculated inside.
   const router = useRouter();
-  const { isAuthenticated } = useSelector(userSelector);
+  const { isAuthenticated, avatarUrl, name = "G" } = useSelector(userSelector);
   const items = Object.values(
     isAuthenticated ? ROUTES.PROTECTED_ROUTES : ROUTES.PUBLIC_ROUTES
   ).map((route) => {
@@ -43,6 +43,7 @@ export default function useNavigation() {
   }
   // TODO: Refactor this logic to lie not in Navigation hooks, but to be passed outside
   function handleLogout() {
+    handleAccountMenuClose();
     const logoutActionRequest = logoutActionCreators.REQUEST(
       null,
       enqueueSnackbar
@@ -59,6 +60,8 @@ export default function useNavigation() {
     accountMenuAnchorEl,
     handleAccountMenuOpen,
     handleAccountMenuClose,
-    handleLogout
+    handleLogout,
+    avatarUrl,
+    name
   };
 }

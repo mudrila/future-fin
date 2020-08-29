@@ -14,7 +14,9 @@ import {
   ListItemText,
   Tooltip,
   Menu,
-  MenuItem
+  MenuItem,
+  Grid,
+  Avatar
 } from "@material-ui/core";
 import {
   ChevronLeft,
@@ -38,7 +40,9 @@ export default function Navigation() {
     accountMenuAnchorEl,
     handleAccountMenuOpen,
     handleAccountMenuClose,
-    handleLogout
+    handleLogout,
+    avatarUrl,
+    name
   } = useNavigation();
   const classes = useStyles();
 
@@ -51,20 +55,69 @@ export default function Navigation() {
         })}
       >
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            FutureFin | Financial Plan Builder
-          </Typography>
+          <Grid container justify="space-between">
+            <Grid container item xs={11}>
+              <Grid item xs={1} className={classes.appBarTogglerContainer}>
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  onClick={handleDrawerOpen}
+                  edge="start"
+                  className={clsx(classes.menuButton, {
+                    [classes.hide]: open
+                  })}
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Grid>
+              <Grid item xs={11} className={classes.headerTextContainer}>
+                <Typography variant="h5" noWrap>
+                  FutureFin | Financial Plan Builder
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid item xs={1}>
+              {isAuthenticated && (
+                <Fragment>
+                  <Tooltip title="Profile">
+                    <IconButton onClick={handleAccountMenuOpen}>
+                      {avatarUrl ? (
+                        <Avatar src={avatarUrl} />
+                      ) : (
+                        <Avatar>{name[0]}</Avatar>
+                      )}
+                    </IconButton>
+                  </Tooltip>
+                  <Menu
+                    open={Boolean(accountMenuAnchorEl)}
+                    anchorEl={accountMenuAnchorEl}
+                    onClose={handleAccountMenuClose}
+                    id="account-menu"
+                  >
+                    <Link href="/account" passHref={true}>
+                      <a
+                        className={classes.link}
+                        onClick={handleAccountMenuClose}
+                      >
+                        <MenuItem>
+                          <ListItemIcon>
+                            <AccountCircleRounded />
+                          </ListItemIcon>
+                          <ListItemText primary="My Account" />
+                        </MenuItem>
+                      </a>
+                    </Link>
+                    <MenuItem onClick={handleLogout}>
+                      <ListItemIcon>
+                        <ExitToAppRounded />
+                      </ListItemIcon>
+                      <ListItemText primary="Logout" />
+                    </MenuItem>
+                  </Menu>
+                </Fragment>
+              )}
+            </Grid>
+          </Grid>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -104,46 +157,6 @@ export default function Navigation() {
               </Link>
             );
           })}
-          {isAuthenticated && (
-            <Fragment>
-              <Tooltip title="Profile">
-                <ListItem
-                  button
-                  selected={Boolean(accountMenuAnchorEl)}
-                  onClick={handleAccountMenuOpen}
-                >
-                  <ListItemIcon>
-                    <AccountCircleRounded />
-                  </ListItemIcon>
-                  <ListItemText primary="Profile" />
-                </ListItem>
-              </Tooltip>
-              <Menu
-                open={Boolean(accountMenuAnchorEl)}
-                anchorEl={accountMenuAnchorEl}
-                onClose={handleAccountMenuClose}
-                keepMounted
-                id="account-menu"
-              >
-                <Link href="/account" passHref={true}>
-                  <a className={classes.link}>
-                    <MenuItem>
-                      <ListItemIcon>
-                        <AccountCircleRounded />
-                      </ListItemIcon>
-                      <ListItemText primary="My Account" />
-                    </MenuItem>
-                  </a>
-                </Link>
-                <MenuItem onClick={handleLogout}>
-                  <ListItemIcon>
-                    <ExitToAppRounded />
-                  </ListItemIcon>
-                  <ListItemText primary="Logout" />
-                </MenuItem>
-              </Menu>
-            </Fragment>
-          )}
         </List>
       </Drawer>
     </>
