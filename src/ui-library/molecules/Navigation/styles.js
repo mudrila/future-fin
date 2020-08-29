@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { deepPurple } from "@material-ui/core/colors";
 
 const drawerWidth = 240;
 
@@ -70,5 +71,9 @@ export default makeStyles((theme) => ({
   },
   appBarTogglerContainer: {
     paddingTop: theme.spacing(1)
+  },
+  purpleAvatar: {
+    color: theme.palette.getContrastText(deepPurple[500]),
+    backgroundColor: deepPurple[500]
   }
 }));

@@ -9,8 +9,9 @@ const INITIAL_STATE = {
     isAuthenticated: false,
     name: "",
     email: "",
-    accessToken: "",
-    loading: false
+    token: "",
+    loading: false,
+    avatarUrl: ""
   }
 };
 

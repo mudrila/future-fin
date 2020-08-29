@@ -76,16 +76,16 @@ export default function Navigation() {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={1} container justify="flex-end">
               {isAuthenticated && (
                 <Fragment>
                   <Tooltip title="Profile">
                     <IconButton onClick={handleAccountMenuOpen}>
-                      {avatarUrl ? (
-                        <Avatar src={avatarUrl} />
-                      ) : (
-                        <Avatar>{name[0]}</Avatar>
-                      )}
+                      <Avatar
+                        src={avatarUrl}
+                        alt={name}
+                        className={classes.purpleAvatar}
+                      />
                     </IconButton>
                   </Tooltip>
                   <Menu

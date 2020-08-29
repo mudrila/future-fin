@@ -1,4 +1,5 @@
 import { takeEvery, put } from "redux-saga/effects";
+import Router from "next/router";
 
 import api from "../../../api";
 import {
@@ -47,7 +48,10 @@ function* loginWorker({ payload, enqueueSnackbar }) {
   try {
     const result = yield loginRequest(payload);
     api.defaults.headers.Authorization = `Bearer ${result.token}`;
-    const successAction = loginActionCreators.SUCCESS(result);
+    const successAction = loginActionCreators.SUCCESS({
+      ...result.user,
+      token: result.token
+    });
     yield put(successAction);
   } catch (e) {
     let message;
@@ -72,6 +76,7 @@ function* logoutWorker({ enqueueSnackbar }) {
   api.defaults.headers.Authorization = "";
   localStorage.removeItem("persist:appState");
   enqueueSnackbar("Successfully logged out. See ya ;)", { variant: "success" });
+  Router.push("/login");
 }
 
 export default function* userWatcher() {
