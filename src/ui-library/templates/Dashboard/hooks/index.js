@@ -40,7 +40,7 @@ export default function useDashbaord({
   function handleEditModalOpen({ item, entityPartName }) {
     setEditModalsState({
       ...editModalsState,
-      [item.id]: {
+      [item._id]: {
         isModalOpen: true
       }
     });
@@ -49,7 +49,7 @@ export default function useDashbaord({
   function handleEditModalClose(item) {
     setEditModalsState({
       ...editModalsState,
-      [item.id]: {
+      [item._id]: {
         isModalOpen: false
       }
     });

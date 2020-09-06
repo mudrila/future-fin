@@ -30,22 +30,39 @@ function* budgetIncomeSourceCreateWorker({ payload, enqueueSnackbar }) {
   }
 }
 
-function* budgetIncomeSourceUpdateWorker({ payload }) {
+function* budgetIncomeSourceUpdateWorker({ payload, enqueueSnackbar }) {
   const loadingAction = budgetIncomesActionCreators.UPDATE.LOADING();
   yield put(loadingAction);
-  const updateIncomeSourceSuccessAction = budgetIncomesActionCreators.UPDATE.SUCCESS(
-    payload
-  );
-  yield put(updateIncomeSourceSuccessAction);
+  try {
+    const updateIncomeSourceSuccessAction = budgetIncomesActionCreators.UPDATE.SUCCESS(
+      payload
+    );
+    yield put(updateIncomeSourceSuccessAction);
+  } catch (e) {
+    const errorAction = budgetIncomesActionCreators.UPDATE.ERROR();
+    enqueueSnackbar(e.message, { variant: "error" });
+    yield put(errorAction);
+  }
 }
 
-function* budgetIncomeSourceDeleteWorker({ payload }) {
+function* budgetIncomeSourceDeleteWorker({ payload, enqueueSnackbar }) {
   const loadingAction = budgetIncomesActionCreators.DELETE.LOADING();
   yield put(loadingAction);
-  const deleteIncomeSourceSuccessAction = budgetIncomesActionCreators.DELETE.SUCCESS(
-    payload
-  );
-  yield put(deleteIncomeSourceSuccessAction);
+  try {
+    console.log(payload, "DELETE");
+    const result = yield incomeSourceRequests.DELETE(null, {
+      path: payload._id
+    });
+    console.log(result);
+    const deleteIncomeSourceSuccessAction = budgetIncomesActionCreators.DELETE.SUCCESS(
+      payload
+    );
+    yield put(deleteIncomeSourceSuccessAction);
+  } catch (e) {
+    const errorAction = budgetIncomesActionCreators.DELETE.ERROR();
+    enqueueSnackbar(e.message, { variant: "error" });
+    yield put(errorAction);
+  }
 }
 
 function* budgetAccountCreateWorker({ payload }) {

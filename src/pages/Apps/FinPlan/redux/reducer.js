@@ -32,7 +32,7 @@ export default function finPlanReducer(
         goals: {
           ...state.goals,
           items: state.goals.items.map((item) => {
-            if (item.id === payload.id) {
+            if (item._id === payload._id) {
               return payload;
             }
             return item;
@@ -44,7 +44,7 @@ export default function finPlanReducer(
         ...state,
         goals: {
           ...state.goals,
-          items: state.goals.items.filter((goal) => goal.id !== payload.id),
+          items: state.goals.items.filter((goal) => goal._id !== payload._id),
           loading: false
         }
       };

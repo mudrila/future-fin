@@ -134,7 +134,7 @@ export default function useBalanceProjection() {
           const creditRequiredPaymentToUAH =
             +credit.requiredPayment * currencyMappingToUAH[credit.currency];
           const debtIndex = checkPoints.findIndex(
-            (debt) => debt.id === credit.id
+            (debt) => debt._id === credit._id
           );
           if (Math.abs(creditBalanceToUAH) < creditRequiredPaymentToUAH) {
             const paidDebt = {
@@ -181,7 +181,7 @@ export default function useBalanceProjection() {
             return null;
           }
           const creditIndex = credits.findIndex(
-            (credit) => credit.id === debt.id
+            (credit) => credit._id === debt._id
           );
           if (Math.abs(debtBalanceToUAH) < monthPossiblePayoutBalance) {
             totalBalance += Math.abs(debtBalanceToUAH);
@@ -194,7 +194,7 @@ export default function useBalanceProjection() {
             if (debtBalanceToUAH > 0) {
               // We achieved financial goal, so we need reduce total balance amount.
               // Kind of "buy" what we wanted to buy.
-              const goal = goals.find((goal) => goal.id === debt.id);
+              const goal = goals.find((goal) => goal._id === debt._id);
               const initialGoalPrice =
                 goal.expectedAmount * currencyMappingToUAH[goal.currency];
               totalBalance -= initialGoalPrice;

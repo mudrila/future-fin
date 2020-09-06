@@ -47,7 +47,7 @@ export default function budgetReducer(
         incomes: {
           ...state.incomes,
           sources: state.incomes.sources.map((item) => {
-            if (item.id === payload.id) {
+            if (item._id === payload._id) {
               return payload;
             }
             return item;
@@ -60,7 +60,7 @@ export default function budgetReducer(
         incomes: {
           ...state.incomes,
           sources: state.incomes.sources.filter(
-            (incomeSource) => incomeSource.id !== payload.id
+            (incomeSource) => incomeSource._id !== payload._id
           ),
           loading: false
         }
@@ -84,7 +84,7 @@ export default function budgetReducer(
         accounts: {
           ...state.accounts,
           items: state.accounts.items.map((item) => {
-            if (item.id === payload.id) {
+            if (item._id === payload._id) {
               return payload;
             }
             return item;
@@ -97,7 +97,7 @@ export default function budgetReducer(
         accounts: {
           ...state.accounts,
           items: state.accounts.items.filter(
-            (account) => account.id !== payload.id
+            (account) => account._id !== payload._id
           ),
           loading: false
         }
@@ -121,7 +121,7 @@ export default function budgetReducer(
         spendings: {
           ...state.spendings,
           categories: state.spendings.categories.map((item) => {
-            if (item.id === payload.id) {
+            if (item._id === payload._id) {
               return payload;
             }
             return item;
@@ -134,7 +134,7 @@ export default function budgetReducer(
         spendings: {
           ...state.spendings,
           categories: state.spendings.categories.filter(
-            (spendingCategory) => spendingCategory.id !== payload.id
+            (spendingCategory) => spendingCategory._id !== payload._id
           ),
           loading: false
         }

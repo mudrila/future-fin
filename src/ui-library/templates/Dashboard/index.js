@@ -68,7 +68,7 @@ export default function Dashboard({
             </Typography>
             {entityPart.items.map((item) => {
               return (
-                <Fragment key={item.id}>
+                <Fragment key={item._id}>
                   <EntityPartCategoryItem
                     {...item}
                     onDelete={() =>
@@ -89,7 +89,7 @@ export default function Dashboard({
                       entityPartName: entityPart.name,
                       item
                     })}
-                    open={editModalsState[item.id]?.isModalOpen}
+                    open={editModalsState[item._id]?.isModalOpen}
                     onClose={() => handleEditModalClose(item)}
                     onSubmit={(formValues) =>
                       handleEdit({
