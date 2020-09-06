@@ -1,3 +1,5 @@
+import { CRUD_KEYS } from "../../config";
+
 const STATE_KEYS = ["REQUEST", "LOADING", "SUCCESS", "ERROR"];
 
 export function makeActionCreator(actionType) {
@@ -27,9 +29,8 @@ export function generateBasicStateActionCreators(actionTypes) {
 }
 
 export function getBasicCRUDResultShape() {
-  const crudKeys = ["CREATE", "UPDATE", "READ", "DELETE"];
   let result = {};
-  crudKeys.forEach((crudKey) => {
+  CRUD_KEYS.forEach((crudKey) => {
     result[crudKey] = {};
     STATE_KEYS.forEach((stateKey) => {
       result[crudKey][stateKey] = "";

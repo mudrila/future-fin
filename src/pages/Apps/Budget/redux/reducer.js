@@ -33,15 +33,11 @@ export default function budgetReducer(
     case BUDGET_INCOME_SOURCES_ACTION_TYPES.DELETE.LOADING:
       return { ...state, incomes: { ...state.incomes, loading: true } };
     case BUDGET_INCOME_SOURCES_ACTION_TYPES.CREATE.SUCCESS:
-      const newSource = {
-        ...payload,
-        id: uuidv4() // Temp
-      };
       return {
         ...state,
         incomes: {
           ...state.incomes,
-          sources: [...state.incomes.sources, newSource],
+          sources: [...state.incomes.sources, payload],
           loading: false
         }
       };

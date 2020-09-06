@@ -1,4 +1,5 @@
 import { takeEvery, put } from "redux-saga/effects";
+
 import {
   BUDGET_INCOME_SOURCES_ACTION_TYPES,
   BUDGET_ACCOUNTS_ACTION_TYPES,
@@ -7,18 +8,27 @@ import {
   budgetAccountsActionCreators,
   budgetSpendingCategoriesActionCreators
 } from "./actions";
+import {
+  incomeSourceRequests,
+  budgetAccountRequests,
+  spendingCategoriesRequests
+} from "./requests";
 
-// TODO: cover everything with actual requests.
-// Since there is no server for now - I just put sagas as "placeholders"
-// And they simply dispatch loading action and success action
-
-function* budgetIncomeSourceCreateWorker({ payload }) {
+function* budgetIncomeSourceCreateWorker({ payload, enqueueSnackbar }) {
   const loadingAction = budgetIncomesActionCreators.CREATE.LOADING();
   yield put(loadingAction);
-  const createIncomeSourceSuccessAction = budgetIncomesActionCreators.CREATE.SUCCESS(
-    payload
-  );
-  yield put(createIncomeSourceSuccessAction);
+  try {
+    const result = yield incomeSourceRequests.CREATE(payload);
+    const createIncomeSourceSuccessAction = budgetIncomesActionCreators.CREATE.SUCCESS(
+      result
+    );
+    yield put(createIncomeSourceSuccessAction);
+  } catch (e) {
+    const errorAction = budgetIncomesActionCreators.CREATE.ERROR({
+      enqueueSnackbar
+    });
+    yield put(errorAction);
+  }
 }
 
 function* budgetIncomeSourceUpdateWorker({ payload }) {

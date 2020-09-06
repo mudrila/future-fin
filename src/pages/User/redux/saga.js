@@ -46,11 +46,12 @@ function* loginWorker({ payload, enqueueSnackbar }) {
   const loadingAction = loginActionCreators.LOADING();
   yield put(loadingAction);
   try {
-    const result = yield loginRequest(payload);
-    api.defaults.headers.Authorization = `Bearer ${result.token}`;
+    const { user, token } = yield loginRequest(payload);
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+    localStorage.setItem("accessToken", token);
     const successAction = loginActionCreators.SUCCESS({
-      ...result.user,
-      token: result.token
+      ...user,
+      token: token
     });
     yield put(successAction);
   } catch (e) {

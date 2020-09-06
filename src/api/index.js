@@ -5,7 +5,8 @@ const api = Axios.create({
   baseURL: config.API_URL,
   headers: {
     Accept: "application/json",
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${localStorage.getItem("accessToken")}`
   }
 });
 
