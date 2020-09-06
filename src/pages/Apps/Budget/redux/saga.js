@@ -20,13 +20,12 @@ function* budgetIncomeSourceCreateWorker({ payload, enqueueSnackbar }) {
   try {
     const result = yield incomeSourceRequests.CREATE(payload);
     const createIncomeSourceSuccessAction = budgetIncomesActionCreators.CREATE.SUCCESS(
-      result
+      result.newIncomeSource
     );
     yield put(createIncomeSourceSuccessAction);
   } catch (e) {
-    const errorAction = budgetIncomesActionCreators.CREATE.ERROR({
-      enqueueSnackbar
-    });
+    const errorAction = budgetIncomesActionCreators.CREATE.ERROR();
+    enqueueSnackbar(e.message, { variant: "error" });
     yield put(errorAction);
   }
 }
