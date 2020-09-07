@@ -1,18 +1,18 @@
 import {
-  generateCRUDActionTypes,
-  generateCRUDActionCreators,
-  generateBasicStateActionTypes,
-  generateBasicStateActionCreators
+  createCRUDActionTypes,
+  createCRUDActionCreators,
+  createBasicStateActionTypes,
+  createBasicStateActionCreators
 } from "../../../store/utils/actionUtils";
 
-export const USER_ACTION_TYPES = generateCRUDActionTypes("USER");
-export const LOGIN_ACTION_TYPES = generateBasicStateActionTypes("LOGIN");
-export const LOGOUT_ACTION_TYPES = generateBasicStateActionTypes("LOGOUT");
+export const USER_ACTION_TYPES = createCRUDActionTypes("USER");
+export const LOGIN_ACTION_TYPES = createBasicStateActionTypes("LOGIN");
+export const LOGOUT_ACTION_TYPES = createBasicStateActionTypes("LOGOUT");
 
-export const loginActionCreators = generateBasicStateActionCreators(
+export const loginActionCreators = createBasicStateActionCreators(
   LOGIN_ACTION_TYPES
 );
-export const logoutActionCreators = generateBasicStateActionCreators(
+export const logoutActionCreators = createBasicStateActionCreators(
   LOGOUT_ACTION_TYPES
 );
-export const userActionCreators = generateCRUDActionCreators(USER_ACTION_TYPES);
+export const userActionCreators = createCRUDActionCreators(USER_ACTION_TYPES);

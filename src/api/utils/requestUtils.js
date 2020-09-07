@@ -12,7 +12,7 @@ export function baseRequest({ method, payload, url }) {
   }).then((response) => response.data);
 }
 // Create all methods for CRUD
-export function generateCRUDRequests(baseUrl) {
+export function createCRUDRequests(baseUrl) {
   let result = {};
   CRUD_KEYS.forEach((crudKey) => {
     function request(payload, { path, ...requestOptions } = {}) {

@@ -374,7 +374,7 @@ const budgetDashbaordConfig = {
               name: "reducingAmount",
               required: false,
               label: "Possible reducing",
-              value: "possibleReducing",
+              value: 0,
               helperText:
                 "If it is possible to reduce this spending - put possible reducing amount, so we can calculate your financial plan with possible reducing options.",
               checked: true

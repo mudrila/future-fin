@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import {
   BUDGET_INCOME_SOURCES_ACTION_TYPES,
   BUDGET_ACCOUNTS_ACTION_TYPES,
@@ -75,15 +74,11 @@ export default function budgetReducer(
         }
       };
     case BUDGET_ACCOUNTS_ACTION_TYPES.CREATE.SUCCESS:
-      const newAccount = {
-        ...payload,
-        id: uuidv4() // Temp
-      };
       return {
         ...state,
         accounts: {
           ...state.accounts,
-          items: [...state.accounts.items, newAccount],
+          items: [...state.accounts.items, payload],
           loading: false
         }
       };
@@ -112,15 +107,11 @@ export default function budgetReducer(
         }
       };
     case BUDGET_SPENDING_CATEGORIES_ACTION_TYPES.CREATE.SUCCESS:
-      const newCategory = {
-        ...payload,
-        id: uuidv4() // Temp
-      };
       return {
         ...state,
         spendings: {
           ...state.spendings,
-          categories: [...state.spendings.categories, newCategory],
+          categories: [...state.spendings.categories, payload],
           loading: false
         }
       };

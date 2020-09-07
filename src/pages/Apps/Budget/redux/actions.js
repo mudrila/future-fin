@@ -1,27 +1,27 @@
 import {
-  generateCRUDActionTypes,
-  generateCRUDActionCreators
+  createCRUDActionTypes,
+  createCRUDActionCreators
 } from "../../../../store/utils/actionUtils";
 
 // Budget Income Sources
-export const BUDGET_INCOME_SOURCES_ACTION_TYPES = generateCRUDActionTypes(
+export const BUDGET_INCOME_SOURCES_ACTION_TYPES = createCRUDActionTypes(
   "BUDGET_INCOME_SOURCES"
 );
 // Budget Accounts
-export const BUDGET_ACCOUNTS_ACTION_TYPES = generateCRUDActionTypes(
+export const BUDGET_ACCOUNTS_ACTION_TYPES = createCRUDActionTypes(
   "BUDGET_ACCOUNTS"
 );
 // Budget Spending Categories
-export const BUDGET_SPENDING_CATEGORIES_ACTION_TYPES = generateCRUDActionTypes(
+export const BUDGET_SPENDING_CATEGORIES_ACTION_TYPES = createCRUDActionTypes(
   "BUDGET_SPENDING_CATEGORIES"
 );
 
-export const budgetIncomesActionCreators = generateCRUDActionCreators(
+export const budgetIncomesActionCreators = createCRUDActionCreators(
   BUDGET_INCOME_SOURCES_ACTION_TYPES
 );
-export const budgetAccountsActionCreators = generateCRUDActionCreators(
+export const budgetAccountsActionCreators = createCRUDActionCreators(
   BUDGET_ACCOUNTS_ACTION_TYPES
 );
-export const budgetSpendingCategoriesActionCreators = generateCRUDActionCreators(
+export const budgetSpendingCategoriesActionCreators = createCRUDActionCreators(
   BUDGET_SPENDING_CATEGORIES_ACTION_TYPES
 );

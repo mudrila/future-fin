@@ -100,7 +100,17 @@ export default function useBudgetDashboard() {
       null,
       enqueueSnackbar
     );
+    const loadAccounts = budgetAccountsActionCreators.READ.REQUEST(
+      null,
+      enqueueSnackbar
+    );
+    const loadSpendingCategories = budgetSpendingCategoriesActionCreators.READ.REQUEST(
+      null,
+      enqueueSnackbar
+    );
     dispatch(loadIncomeSources);
+    dispatch(loadAccounts);
+    dispatch(loadSpendingCategories);
   }, []);
 
   return {

@@ -12,7 +12,7 @@ export function makeActionCreator(actionType) {
   };
 }
 
-export function generateBasicStateActionTypes(prefix) {
+export function createBasicStateActionTypes(prefix) {
   let result = {};
   STATE_KEYS.forEach((stateKey) => {
     result[stateKey] = `${prefix}_${stateKey}`;
@@ -20,7 +20,7 @@ export function generateBasicStateActionTypes(prefix) {
   return result;
 }
 
-export function generateBasicStateActionCreators(actionTypes) {
+export function createBasicStateActionCreators(actionTypes) {
   let result = {};
   Object.keys(actionTypes).forEach((actionTypeKey) => {
     result[actionTypeKey] = makeActionCreator(actionTypes[actionTypeKey]);
@@ -39,7 +39,7 @@ export function getBasicCRUDResultShape() {
   return result;
 }
 
-export function generateCRUDActionCreators(actionTypes) {
+export function createCRUDActionCreators(actionTypes) {
   let actionTypesShape = getBasicCRUDResultShape();
   Object.keys(actionTypesShape).forEach((crudKey) => {
     Object.keys(actionTypesShape[crudKey]).forEach((stateKey) => {
@@ -51,7 +51,7 @@ export function generateCRUDActionCreators(actionTypes) {
   return actionTypesShape;
 }
 
-export function generateCRUDActionTypes(prefix) {
+export function createCRUDActionTypes(prefix) {
   let actionTypesShape = getBasicCRUDResultShape();
   Object.keys(actionTypesShape).forEach((crudKey) => {
     Object.keys(actionTypesShape[crudKey]).forEach((stateKey) => {
