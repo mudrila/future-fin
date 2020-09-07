@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useSnackbar } from "notistack";
 
 import useSecureRoute from "../../../../hooks/useSecureRoute";
 
@@ -8,6 +10,7 @@ import { finPlanGoalsSelector } from "../redux/selectors";
 
 export default function useFinPlanDashboard() {
   useSecureRoute();
+  const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
   const finPlanGoals = useSelector(finPlanGoalsSelector);
   const finPlanDataMapping = {
@@ -22,24 +25,37 @@ export default function useFinPlanDashboard() {
   function handleSubmit(formName, formValues) {
     let action = null;
     if (formName === "goals") {
-      action = finPlanGoalsActionCreators.CREATE.REQUEST(formValues);
+      action = finPlanGoalsActionCreators.CREATE.REQUEST(
+        formValues,
+        enqueueSnackbar
+      );
     }
     dispatch(action);
   }
+
   function handleEdit({ entityPartName, item }) {
     let action = null;
     if (entityPartName === "goals") {
-      action = finPlanGoalsActionCreators.UPDATE.REQUEST(item);
+      action = finPlanGoalsActionCreators.UPDATE.REQUEST(item, enqueueSnackbar);
     }
     action && dispatch(action);
   }
+
   function handleDelete({ entityPartName, item }) {
     let action = null;
     if (entityPartName === "goals") {
-      action = finPlanGoalsActionCreators.DELETE.REQUEST(item);
+      action = finPlanGoalsActionCreators.DELETE.REQUEST(item, enqueueSnackbar);
     }
     action && dispatch(action);
   }
+
+  useEffect(() => {
+    const loadFinPlanGoals = finPlanGoalsActionCreators.READ.REQUEST(
+      null,
+      enqueueSnackbar
+    );
+    dispatch(loadFinPlanGoals);
+  }, []);
 
   return {
     entityParts,

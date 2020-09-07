@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import { FIN_PLAN_GOALS_ACTION_TYPES } from "./actions";
 
 const INITIAL_STATE = {
@@ -14,15 +13,20 @@ export default function finPlanReducer(
 ) {
   switch (type) {
     case FIN_PLAN_GOALS_ACTION_TYPES.CREATE.SUCCESS:
-      const newGoal = {
-        ...payload,
-        id: uuidv4() // Temp
-      };
       return {
         ...state,
         goals: {
           ...state.goals,
-          items: [...state.goals.items, newGoal],
+          items: [...state.goals.items, payload],
+          loading: false
+        }
+      };
+    case FIN_PLAN_GOALS_ACTION_TYPES.READ.SUCCESS:
+      return {
+        ...state,
+        goals: {
+          ...state.goals,
+          items: payload,
           loading: false
         }
       };

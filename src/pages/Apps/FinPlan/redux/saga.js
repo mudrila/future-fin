@@ -1,44 +1,86 @@
 import { takeEvery, put } from "redux-saga/effects";
+
+import { finPlanGoalsRequests } from "./requests";
+
 import {
   FIN_PLAN_GOALS_ACTION_TYPES,
   finPlanGoalsActionCreators
 } from "./actions";
 
-// TODO: cover everything with actual requests.
-// Since there is no server for now - I just put sagas as "placeholders"
-// And they simply dispatch loading action and success action
-
-function* finPlanGoalCreateWorker({ payload }) {
+function* finPlanGoalCreateWorker({ payload, enqueueSnackbar }) {
   const loadingAction = finPlanGoalsActionCreators.CREATE.LOADING();
   yield put(loadingAction);
-  const createFinPlanGoalSuccessAction = finPlanGoalsActionCreators.CREATE.SUCCESS(
-    payload
-  );
-  yield put(createFinPlanGoalSuccessAction);
+  try {
+    const result = yield finPlanGoalsRequests.CREATE(payload);
+    const createFinPlanGoalSuccessAction = finPlanGoalsActionCreators.CREATE.SUCCESS(
+      result.newGoal
+    );
+    yield put(createFinPlanGoalSuccessAction);
+  } catch (e) {
+    const errorAction = finPlanGoalsActionCreators.CREATE.ERROR();
+    enqueueSnackbar(e.message, { variant: "error" });
+    yield put(errorAction);
+  }
 }
 
-function* finPlanGoalUpdateWorker({ payload }) {
+function* finPlanGoalGetListWorker({ enqueueSnackbar }) {
+  const loadingAction = finPlanGoalsActionCreators.READ.LOADING();
+  yield put(loadingAction);
+  try {
+    const result = yield finPlanGoalsRequests.READ(null, { path: "list" });
+    const getFinPlanGoalsSuccessAction = finPlanGoalsActionCreators.READ.SUCCESS(
+      result.goals
+    );
+    yield put(getFinPlanGoalsSuccessAction);
+  } catch (e) {
+    const errorAction = finPlanGoalsActionCreators.CREATE.ERROR();
+    enqueueSnackbar(e.message, { variant: "error" });
+    yield put(errorAction);
+  }
+}
+
+function* finPlanGoalUpdateWorker({ payload, enqueueSnackbar }) {
   const loadingAction = finPlanGoalsActionCreators.UPDATE.LOADING();
   yield put(loadingAction);
-  const updateFinPlanGoalSuccessAction = finPlanGoalsActionCreators.UPDATE.SUCCESS(
-    payload
-  );
-  yield put(updateFinPlanGoalSuccessAction);
+  try {
+    const result = yield finPlanGoalsRequests.UPDATE(payload, {
+      path: payload._id
+    });
+    const updateFinPlanGoalSuccessAction = finPlanGoalsActionCreators.UPDATE.SUCCESS(
+      result.goal
+    );
+    yield put(updateFinPlanGoalSuccessAction);
+  } catch (e) {
+    const errorAction = finPlanGoalsActionCreators.UPDATE.ERROR();
+    enqueueSnackbar(e.message, { variant: "error" });
+    yield put(errorAction);
+  }
 }
 
-function* finPlanGoalDeleteWorker({ payload }) {
+function* finPlanGoalDeleteWorker({ payload, enqueueSnackbar }) {
   const loadingAction = finPlanGoalsActionCreators.DELETE.LOADING();
   yield put(loadingAction);
-  const deleteFinPlanGoalSuccessAction = finPlanGoalsActionCreators.DELETE.SUCCESS(
-    payload
-  );
-  yield put(deleteFinPlanGoalSuccessAction);
+  try {
+    yield finPlanGoalsRequests.DELETE(null, { path: payload._id });
+    const deleteFinPlanGoalSuccessAction = finPlanGoalsActionCreators.DELETE.SUCCESS(
+      payload
+    );
+    yield put(deleteFinPlanGoalSuccessAction);
+  } catch (e) {
+    const errorAction = finPlanGoalsActionCreators.DELETE.ERROR();
+    enqueueSnackbar(e.message, { variant: "error" });
+    yield put(errorAction);
+  }
 }
 
 export default function* finPlanWatcher() {
   yield takeEvery(
     FIN_PLAN_GOALS_ACTION_TYPES.CREATE.REQUEST,
     finPlanGoalCreateWorker
+  );
+  yield takeEvery(
+    FIN_PLAN_GOALS_ACTION_TYPES.READ.REQUEST,
+    finPlanGoalGetListWorker
   );
   yield takeEvery(
     FIN_PLAN_GOALS_ACTION_TYPES.UPDATE.REQUEST,
