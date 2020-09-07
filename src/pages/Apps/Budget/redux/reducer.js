@@ -32,6 +32,15 @@ export default function budgetReducer(
     case BUDGET_INCOME_SOURCES_ACTION_TYPES.UPDATE.LOADING:
     case BUDGET_INCOME_SOURCES_ACTION_TYPES.DELETE.LOADING:
       return { ...state, incomes: { ...state.incomes, loading: true } };
+    case BUDGET_INCOME_SOURCES_ACTION_TYPES.READ.SUCCESS:
+      return {
+        ...state,
+        incomes: {
+          ...state.incomes,
+          sources: payload,
+          loading: false
+        }
+      };
     case BUDGET_INCOME_SOURCES_ACTION_TYPES.CREATE.SUCCESS:
       return {
         ...state,

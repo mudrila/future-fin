@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSnackbar } from "notistack";
 
@@ -93,6 +94,15 @@ export default function useBudgetDashboard() {
     ...entityPart,
     items: budgetDataMapping[entityPart.name] || []
   }));
+
+  useEffect(() => {
+    const loadIncomeSources = budgetIncomesActionCreators.READ.REQUEST(
+      null,
+      enqueueSnackbar
+    );
+    dispatch(loadIncomeSources);
+  }, []);
+
   return {
     handleSubmit,
     entityName: budgetDashbaordConfig.entityName,

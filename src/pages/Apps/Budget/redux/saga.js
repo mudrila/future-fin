@@ -14,6 +14,25 @@ import {
   spendingCategoriesRequests
 } from "./requests";
 
+function* budgetIncomeSourcesGetListWorker({ enqueueSnackbar }) {
+  // Current data flow doesn't assume that we need to load data for particular
+  // Income Source, so right now we would have only list GET, not a single GET.
+  // Which of course might change in future.
+  const loadingAction = budgetIncomesActionCreators.READ.LOADING();
+  yield put(loadingAction);
+  try {
+    const result = yield incomeSourceRequests.READ(null, { path: "list" });
+    const getIncomeSourcesListSuccessAction = budgetIncomesActionCreators.READ.SUCCESS(
+      result.sources
+    );
+    yield put(getIncomeSourcesListSuccessAction);
+  } catch (e) {
+    const errorAction = budgetIncomesActionCreators.READ.ERROR();
+    enqueueSnackbar(e.message, { variant: "error" });
+    yield put(errorAction);
+  }
+}
+
 function* budgetIncomeSourceCreateWorker({ payload, enqueueSnackbar }) {
   const loadingAction = budgetIncomesActionCreators.CREATE.LOADING();
   yield put(loadingAction);
@@ -34,8 +53,11 @@ function* budgetIncomeSourceUpdateWorker({ payload, enqueueSnackbar }) {
   const loadingAction = budgetIncomesActionCreators.UPDATE.LOADING();
   yield put(loadingAction);
   try {
+    const result = yield incomeSourceRequests.UPDATE(payload, {
+      path: payload._id
+    });
     const updateIncomeSourceSuccessAction = budgetIncomesActionCreators.UPDATE.SUCCESS(
-      payload
+      result.incomeSource
     );
     yield put(updateIncomeSourceSuccessAction);
   } catch (e) {
@@ -49,11 +71,9 @@ function* budgetIncomeSourceDeleteWorker({ payload, enqueueSnackbar }) {
   const loadingAction = budgetIncomesActionCreators.DELETE.LOADING();
   yield put(loadingAction);
   try {
-    console.log(payload, "DELETE");
     const result = yield incomeSourceRequests.DELETE(null, {
       path: payload._id
     });
-    console.log(result);
     const deleteIncomeSourceSuccessAction = budgetIncomesActionCreators.DELETE.SUCCESS(
       payload
     );
@@ -124,6 +144,10 @@ export default function* budgetSagaWatcher() {
   yield takeEvery(
     BUDGET_INCOME_SOURCES_ACTION_TYPES.CREATE.REQUEST,
     budgetIncomeSourceCreateWorker
+  );
+  yield takeEvery(
+    BUDGET_INCOME_SOURCES_ACTION_TYPES.READ.REQUEST,
+    budgetIncomeSourcesGetListWorker
   );
   yield takeEvery(
     BUDGET_INCOME_SOURCES_ACTION_TYPES.UPDATE.REQUEST,
