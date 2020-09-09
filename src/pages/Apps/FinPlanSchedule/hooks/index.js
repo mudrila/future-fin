@@ -1,9 +1,12 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useSnackbar } from "notistack";
 import { cloneDeep } from "lodash";
 
 import useSecureRoute from "../../../../hooks/useSecureRoute";
 
+import { finPlanScheduleActionCreators } from "../redux/actions";
+import { finPlanScheduleDataSelector } from "../redux/selectors";
 import { finPlanGoalsSelector } from "../../FinPlan/redux/selectors";
 import {
   incomeSourcesSelector,
@@ -13,6 +16,8 @@ import {
 
 export default function useBalanceProjection() {
   useSecureRoute();
+  const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   // TODO: Grab currency exchange rate from some open data source instead of hardcoding
   const currencyMappingToUAH = {
     EUR: 32.5,
@@ -266,6 +271,14 @@ export default function useBalanceProjection() {
   function handlePossibleReducingChange(event) {
     setPossibleReducing(event.target.checked);
   }
+
+  useEffect(() => {
+    const loadFinPlanScheduleData = finPlanScheduleActionCreators.LOADING(
+      { possibleReducing },
+      enqueueSnackbar
+    );
+    dispatch(loadFinPlanScheduleData);
+  }, []);
 
   return {
     totalIncome,

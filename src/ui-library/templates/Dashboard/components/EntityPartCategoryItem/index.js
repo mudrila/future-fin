@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { format } from "date-fns";
 import {
   Fab,
   Typography,
@@ -23,7 +24,8 @@ export default function EntityPartCategoryItem({
   name,
   currency,
   onDelete,
-  onEdit
+  onEdit,
+  deadline
 }) {
   const classes = useStyles();
   const Icon = allIconsMap[icon].Icon;
@@ -87,7 +89,9 @@ export default function EntityPartCategoryItem({
         </Typography>
         {expectedAmount && (
           <Typography variant="body1">
-            {(+expectedAmount).toFixed(2)} / {capitalizeString(frequency)}
+            {(+expectedAmount).toFixed(2)} /{" "}
+            {capitalizeString(frequency) ||
+              (deadline && format(new Date(deadline), "dd.MM.yyyy"))}
           </Typography>
         )}
       </CardContent>
@@ -105,5 +109,6 @@ EntityPartCategoryItem.propTypes = {
   currency: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
-  balance: PropTypes.string
+  balance: PropTypes.string,
+  deadline: PropTypes.string
 };

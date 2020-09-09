@@ -3,7 +3,7 @@ import { Grid, Typography, Paper } from "@material-ui/core";
 
 export function CustomTooltip({ payload, active }) {
   if (active) {
-    const data = payload[0].payload; // Lol. Thanks recharts.
+    const data = payload[0] ? payload[0].payload : { paidDebts: [] }; // Lol. Thanks recharts.
     return (
       <Paper>
         <Grid container>
