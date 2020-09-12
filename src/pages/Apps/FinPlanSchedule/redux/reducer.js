@@ -1,15 +1,14 @@
 import { FIN_PLAN_SCHEDULE_ACTION_TYPES } from "./actions";
 
 const INITIAL_STATE = {
-  finPlanSchedule: {
-    loading: false,
-    items: [],
-    totalIncome: 0,
-    currentBalance: 0,
-    totalSpendings: 0,
-    monthsToPositiveBalance: 0,
-    totalFinancialGoalsPrice: 0
-  }
+  loading: false,
+  items: [],
+  totalIncome: 0,
+  currentBalance: 0,
+  totalSpendings: 0,
+  monthsToPositiveBalance: 0,
+  totalFinancialGoalsPrice: 0,
+  reducedCategories: []
 };
 
 export default function finPlanScheduleReducer(
@@ -19,18 +18,18 @@ export default function finPlanScheduleReducer(
   switch (type) {
     case FIN_PLAN_SCHEDULE_ACTION_TYPES.LOADING:
       return {
-        ...state.finPlanSchedule,
+        ...state,
         loading: true
       };
     case FIN_PLAN_SCHEDULE_ACTION_TYPES.SUCCESS:
       return {
-        ...state.finPlanSchedule,
+        ...state,
         loading: false,
         ...payload
       };
     case FIN_PLAN_SCHEDULE_ACTION_TYPES.ERROR:
       return {
-        ...state.finPlanSchedule,
+        ...state,
         loading: false
       };
     default:

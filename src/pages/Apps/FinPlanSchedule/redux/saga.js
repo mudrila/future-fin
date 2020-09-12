@@ -12,7 +12,7 @@ function* getFinPlanScheduleWorker({ payload, enqueueSnackbar }) {
   try {
     const result = yield getFinPlanSchedule(payload);
     const getFinPlanScheduleSuccessAction = finPlanScheduleActionCreators.SUCCESS(
-      { ...result }
+      { ...result.finPlanSchedule }
     );
     yield put(getFinPlanScheduleSuccessAction);
   } catch (e) {
@@ -23,5 +23,8 @@ function* getFinPlanScheduleWorker({ payload, enqueueSnackbar }) {
 }
 
 export default function* finPlanScheduleWathcer() {
-  yield takeEvery(FIN_PLAN_SCHEDULE_ACTION_TYPES, getFinPlanScheduleWorker);
+  yield takeEvery(
+    FIN_PLAN_SCHEDULE_ACTION_TYPES.REQUEST,
+    getFinPlanScheduleWorker
+  );
 }

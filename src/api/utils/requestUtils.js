@@ -3,7 +3,7 @@ import API_CONFIG from "../../config/api";
 import api from "../";
 
 export function baseRequest({ method, payload, url }) {
-  const payloadFieldName = method === "get" ? "query" : "data";
+  const payloadFieldName = method === "get" ? "params" : "data";
   return api({
     method,
     url,
