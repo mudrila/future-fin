@@ -19,7 +19,8 @@ export default function Form({
   sections,
   formName,
   submitButtonText = "Submit",
-  loading = false
+  loading = false,
+  formClassName
 }) {
   const classes = useStyles();
   const {
@@ -61,7 +62,7 @@ export default function Form({
   }
   return (
     <Grid>
-      <form name={formName} onSubmit={handleSubmit}>
+      <form name={formName} onSubmit={handleSubmit} className={formClassName}>
         {sectionsSplitting ? renderSections() : renderFields(fields)}
         <Button
           color="primary"
@@ -78,11 +79,12 @@ export default function Form({
 }
 
 Form.propTypes = {
+  formClassName: PropTypes.string,
   fields: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
-      onChange: PropTypes.func.isRequired,
+      onChange: PropTypes.func,
       id: PropTypes.string
     })
   ).isRequired,

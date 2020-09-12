@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TextField } from "@material-ui/core";
+import { TextField, Avatar } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { DatePicker } from "@material-ui/pickers";
 import { format } from "date-fns";
@@ -20,9 +20,6 @@ export default function useForm({ fields, onSubmit }) {
 
   function getComponentByFieldType(type) {
     switch (type) {
-      case "text":
-      default:
-        return TextField;
       case "autocomplete":
         return Autocomplete;
       case "iconSelection":
@@ -31,8 +28,13 @@ export default function useForm({ fields, onSubmit }) {
         return SwitchField;
       case "checkbox":
         return CheckboxField;
+      case "imgAvatar":
+        return Avatar;
       case "date":
         return DatePicker;
+      case "text":
+      default:
+        return TextField;
     }
   }
 
