@@ -1,5 +1,5 @@
-/* eslint-disable no-use-before-define */
 import React from "react";
+import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { makeStyles } from "@material-ui/core/styles";
@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function CountrySelect(props) {
+export default function CountrySelect({ withPhone, ...props }) {
   const classes = useStyles();
 
   return (
@@ -43,7 +43,7 @@ export default function CountrySelect(props) {
       renderOption={(option) => (
         <React.Fragment>
           <span>{countryToFlag(option.code)}</span>
-          {option.label} ({option.code}) +{option.phone}
+          {option.label} ({option.code}) {withPhone && `+${option.phone}`}
         </React.Fragment>
       )}
       renderInput={(params) => (
@@ -61,3 +61,7 @@ export default function CountrySelect(props) {
     />
   );
 }
+
+CountrySelect.propTypes = {
+  withPhone: PropTypes.bool
+};

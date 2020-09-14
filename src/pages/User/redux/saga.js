@@ -95,7 +95,7 @@ function* updateUserAccountWorker({ payload, enqueueSnackbar }) {
   yield put(loadingAction);
   try {
     const result = yield updateUserRequest(payload);
-    const successAction = userActionCreators.UPDATE.SUCCESS(result);
+    const successAction = userActionCreators.UPDATE.SUCCESS(result.user);
     yield put(successAction);
   } catch (e) {
     let message;

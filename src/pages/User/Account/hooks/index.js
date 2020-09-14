@@ -16,10 +16,14 @@ export default function useUserAccount() {
     name: user.name,
     email: user.email,
     avatarUrl: user.avatarUrl,
+    hasLifeInsurance: user.hasLifeInsurance,
+    hasMedicalInsurance: user.hasMedicalInsurance,
+    country: user.country,
     avatarClassName
   });
 
   function handleSubmit(formValues) {
+    console.log(formValues);
     const updateUserRequest = userActionCreators.UPDATE.REQUEST(
       formValues,
       enqueueSnackbar

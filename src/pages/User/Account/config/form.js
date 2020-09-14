@@ -40,7 +40,7 @@ export default function createFormConfig({
       {
         type: "password",
         name: "password",
-        required: true,
+        required: false,
         placeholder: "*********",
         label: "New password",
         value: "",

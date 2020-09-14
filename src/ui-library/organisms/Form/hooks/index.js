@@ -68,6 +68,12 @@ export default function useForm({ fields, onSubmit }) {
         onChange: (event, value) => handleAutocompleteChange(field.name, value),
         value: formState[field.name]
       };
+    } else if (field.type === "countrySelector") {
+      inputProps = {
+        ...field,
+        value: formState[field.name],
+        onChange: (event, value) => handleAutocompleteChange(field.name, value)
+      };
     } else if (field.type === "iconSelection") {
       inputProps = {
         ...field,
@@ -98,7 +104,7 @@ export default function useForm({ fields, onSubmit }) {
   function handleAutocompleteChange(name, value) {
     const targetField = fields.find((field) => name === field.name);
     setFormState({ ...formState, [name]: value });
-    targetField.onChange && targetField.onChange(event);
+    targetField.onChange && targetField.onChange({ name, value });
   }
   function handleChange(event) {
     const { name, value } = event.target;
