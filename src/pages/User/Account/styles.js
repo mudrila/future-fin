@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { deepPurple } from "@material-ui/core/colors";
+import { red, deepPurple } from "@material-ui/core/colors";
 
 function useStyles(theme) {
   return {
@@ -24,7 +24,8 @@ function useStyles(theme) {
     },
     deleteButton: {
       marginTop: theme.spacing(3),
-      width: "100%"
+      width: "100%",
+      backgroundColor: red[900]
     }
   };
 }
