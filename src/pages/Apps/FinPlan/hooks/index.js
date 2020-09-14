@@ -3,13 +3,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
 
 import finplanDashboardConfig from "../config/dashboard";
-import { finPlanGoalsActionCreators } from "../redux/actions";
-import { finPlanGoalsSelector } from "../redux/selectors";
+import {
+  finPlanGoalsActionCreators,
+  finHealthActionCreators
+} from "../redux/actions";
+import { finPlanGoalsSelector, finHealthSelector } from "../redux/selectors";
 
 export default function useFinPlanDashboard() {
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
   const finPlanGoals = useSelector(finPlanGoalsSelector);
+  const finHealth = useSelector(finHealthSelector);
+
   const finPlanDataMapping = {
     goals: finPlanGoals
   };
@@ -51,7 +56,12 @@ export default function useFinPlanDashboard() {
       null,
       enqueueSnackbar
     );
+    const loadFinHealth = finHealthActionCreators.REQUEST(
+      null,
+      enqueueSnackbar
+    );
     dispatch(loadFinPlanGoals);
+    dispatch(loadFinHealth);
   }, []);
 
   return {
@@ -60,6 +70,7 @@ export default function useFinPlanDashboard() {
     formsConfig: finplanDashboardConfig.formsConfig,
     handleDelete,
     handleEdit,
-    handleSubmit
+    handleSubmit,
+    finHealth
   };
 }

@@ -1,9 +1,11 @@
 import { takeEvery, put } from "redux-saga/effects";
 
-import { finPlanGoalsRequests } from "./requests";
+import { finPlanGoalsRequests, getFinPlanHealth } from "./requests";
 
 import {
   FIN_PLAN_GOALS_ACTION_TYPES,
+  FIN_HEALTH_ACTION_TYPES,
+  finHealthActionCreators,
   finPlanGoalsActionCreators
 } from "./actions";
 
@@ -73,6 +75,19 @@ function* finPlanGoalDeleteWorker({ payload, enqueueSnackbar }) {
   }
 }
 
+function* getFinHealthData({ payload, enqueueSnackbar }) {
+  const loadingAction = finHealthActionCreators.LOADING();
+  yield put(loadingAction);
+  try {
+    const result = yield getFinPlanHealth(payload);
+    const successAction = finHealthActionCreators.SUCCESS(result);
+    yield put(successAction);
+  } catch (e) {
+    const errorAction = finHealthActionCreators.ERROR();
+    enqueueSnackbar(e.message, { variant: "error" });
+    yield put(errorAction);
+  }
+}
 export default function* finPlanWatcher() {
   yield takeEvery(
     FIN_PLAN_GOALS_ACTION_TYPES.CREATE.REQUEST,
@@ -90,4 +105,6 @@ export default function* finPlanWatcher() {
     FIN_PLAN_GOALS_ACTION_TYPES.DELETE.REQUEST,
     finPlanGoalDeleteWorker
   );
+
+  yield takeEvery(FIN_HEALTH_ACTION_TYPES.REQUEST, getFinHealthData);
 }

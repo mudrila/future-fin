@@ -8,9 +8,11 @@ function FinPlanDashboard() {
     formsConfig,
     handleSubmit,
     handleEdit,
-    handleDelete
+    handleDelete,
+    finHealth
   } = useFinPlanDashboard();
 
+  console.log(finHealth);
   return (
     <Dashboard
       entityName={entityName}

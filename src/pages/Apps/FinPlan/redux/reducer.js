@@ -1,9 +1,16 @@
-import { FIN_PLAN_GOALS_ACTION_TYPES } from "./actions";
+import {
+  FIN_PLAN_GOALS_ACTION_TYPES,
+  FIN_HEALTH_ACTION_TYPES
+} from "./actions";
 
 const INITIAL_STATE = {
   goals: {
     loading: false,
     items: []
+  },
+  finHealth: {
+    loading: false,
+    checkPoints: []
   }
 };
 
@@ -49,6 +56,22 @@ export default function finPlanReducer(
         goals: {
           ...state.goals,
           items: state.goals.items.filter((goal) => goal._id !== payload._id),
+          loading: false
+        }
+      };
+    case FIN_HEALTH_ACTION_TYPES.SUCCESS:
+      return {
+        ...state,
+        finHealth: {
+          loading: false,
+          ...payload
+        }
+      };
+    case FIN_HEALTH_ACTION_TYPES.ERROR:
+      return {
+        ...state,
+        finHealth: {
+          ...state.finHealth,
           loading: false
         }
       };
