@@ -27,9 +27,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
     marginTop: theme.spacing(7),
-    marginLeft: 210
+    marginLeft: 80
   }
 }));
+
 export default function App({ Component, pageProps }) {
   React.useEffect(() => {
     // Remove the server-side injected CSS.

@@ -40,11 +40,7 @@ export default function FinHealthIndicator({ checkPoints }) {
                   point.achieved ? classes.successTile : classes.errorTile
                 }
               >
-                {point.achieved ? (
-                  <CheckCircle color="green" />
-                ) : (
-                  <CancelRounded color="error" />
-                )}
+                {point.achieved ? <CheckCircle /> : <CancelRounded />}
               </TimelineDot>
               {index !== checkPoints.length - 1 && (
                 <TimelineConnector

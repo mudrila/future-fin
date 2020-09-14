@@ -12,7 +12,6 @@ function useStyles() {
     successText: {
       color: green[900]
     },
-
     errorTile: {
       backgroundColor: red[900]
     },

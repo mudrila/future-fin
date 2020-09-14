@@ -17,7 +17,7 @@ export default makeStyles((theme) => ({
     margin: theme.spacing(3)
   },
   divider: {
-    width: "90%",
+    width: "100%",
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2)
   }
