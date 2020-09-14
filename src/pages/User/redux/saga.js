@@ -1,4 +1,5 @@
 import { takeEvery, put } from "redux-saga/effects";
+import Cookies from "js-cookie";
 import Router from "next/router";
 
 import api from "../../../api";
@@ -54,12 +55,14 @@ function* loginWorker({ payload, enqueueSnackbar }) {
   try {
     const { user, token } = yield loginRequest(payload);
     api.defaults.headers.Authorization = `Bearer ${token}`;
+    Cookies.set("token", token);
     localStorage.setItem("accessToken", token);
     const successAction = loginActionCreators.SUCCESS({
       ...user,
       token: token
     });
     yield put(successAction);
+    Router.push("/");
   } catch (e) {
     let message;
     if (e.response.status === 400 && e.response.data) {
@@ -79,6 +82,7 @@ function* logoutWorker({ enqueueSnackbar }) {
     console.error(e);
   }
   const logoutSuccessAction = logoutActionCreators.SUCCESS();
+  Cookies.remove("token");
   yield put(logoutSuccessAction);
   api.defaults.headers.Authorization = "";
   localStorage.removeItem("persist:appState");

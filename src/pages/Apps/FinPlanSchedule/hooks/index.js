@@ -2,13 +2,10 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
 
-import useSecureRoute from "../../../../hooks/useSecureRoute";
-
 import { finPlanScheduleActionCreators } from "../redux/actions";
 import { finPlanScheduleDataSelector } from "../redux/selectors";
 
 export default function useBalanceProjection() {
-  useSecureRoute();
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
 

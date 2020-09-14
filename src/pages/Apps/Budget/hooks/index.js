@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSnackbar } from "notistack";
 
-import useSecureRoute from "../../../../hooks/useSecureRoute";
 import budgetDashbaordConfig from "../config/dashboard";
 import {
   budgetIncomesActionCreators,
@@ -16,7 +15,6 @@ import {
 } from "../redux/selectors";
 
 export default function useBudgetDashboard() {
-  useSecureRoute();
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const incomeSources = useSelector(incomeSourcesSelector);

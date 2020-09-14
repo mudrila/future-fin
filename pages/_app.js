@@ -4,6 +4,7 @@ import NextApp from "next/app";
 import Head from "next/head";
 import { PersistGate } from "redux-persist/integration/react";
 import { SnackbarProvider } from "notistack";
+import Cookies from "js-cookie";
 
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
@@ -80,6 +81,32 @@ App.propTypes = {
 };
 
 App.getInitialProps = async (appContext) => {
+  let token = Cookies.get("token");
+  const { ctx } = appContext;
+  if (!token && ctx && ctx.req) {
+    // On server side js-cookie can't get cookes from request =/
+    // Therefore - we need to try to get it from headers
+    token = ctx.req.headers.cookie
+      ? ctx.req.headers.cookie.split("token=")[1]
+      : undefined;
+  }
+  if (
+    ctx.res &&
+    !token &&
+    ctx.req.url !== "/login" &&
+    ctx.req.url !== "/sign-up"
+  ) {
+    ctx.res.writeHead(302, { Location: "/login" });
+    ctx.res.end();
+  } else if (
+    token &&
+    ctx &&
+    ctx.req &&
+    (ctx.req.url === "/login" || ctx.req.url === "/sign-up")
+  ) {
+    ctx.res.writeHead(302, { Location: "/" });
+    ctx.res.end();
+  }
   const appProps = await NextApp.getInitialProps(appContext);
   return { ...appProps };
 };

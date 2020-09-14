@@ -4,11 +4,9 @@ import { useSnackbar } from "notistack";
 import useStyles from "../styles";
 import { userActionCreators } from "../../redux/actions";
 import { userSelector } from "../../redux/selectors";
-import useSecureRoute from "../../../../hooks/useSecureRoute";
 import createFormConfig from "../config/form";
 
 export default function useUserAccount() {
-  useSecureRoute();
   const { avatarClassName } = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const user = useSelector(userSelector);
