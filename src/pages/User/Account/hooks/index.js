@@ -23,7 +23,6 @@ export default function useUserAccount() {
   });
 
   function handleSubmit(formValues) {
-    console.log(formValues);
     const updateUserRequest = userActionCreators.UPDATE.REQUEST(
       formValues,
       enqueueSnackbar
