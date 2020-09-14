@@ -29,5 +29,12 @@ export default function useUserAccount() {
     dispatch(updateUserRequest);
   }
 
-  return { user, formConfig, handleSubmit };
+  function handleDelete() {
+    const deleteUserRequest = userActionCreators.DELETE.REQUEST(
+      null,
+      enqueueSnackbar
+    );
+    dispatch(deleteUserRequest);
+  }
+  return { user, formConfig, handleSubmit, handleDelete };
 }

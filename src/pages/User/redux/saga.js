@@ -106,6 +106,27 @@ function* updateUserAccountWorker({ payload, enqueueSnackbar }) {
   }
 }
 
+function* deleteUserAccountWorker() {
+  const loadingAction = userActionCreators.DELETE.LOADING();
+  yield put(loadingAction);
+  try {
+    yield deleteUserRequest();
+    const successAction = userActionCreators.DELETE.SUCCESS();
+    yield put(successAction);
+  } catch (e) {
+    let message;
+    if (
+      (e.response.status === 400 || e.response.status === 406) &&
+      e.response.data
+    ) {
+      message = e.response.data.error;
+    }
+    enqueueSnackbar(message, { variant: "error" });
+    const errorAction = userActionCreators.UPDATE.ERROR();
+    yield put(errorAction);
+  }
+}
+
 export default function* userWatcher() {
   yield takeEvery(USER_ACTION_TYPES.CREATE.REQUEST, signUpWorker);
   yield takeEvery(USER_ACTION_TYPES.UPDATE.REQUEST, updateUserAccountWorker);

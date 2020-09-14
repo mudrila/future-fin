@@ -61,20 +61,18 @@ export default function Form({
     });
   }
   return (
-    <Grid>
-      <form name={formName} onSubmit={handleSubmit} className={formClassName}>
-        {sectionsSplitting ? renderSections() : renderFields(fields)}
-        <Button
-          color="primary"
-          type="submit"
-          variant="contained"
-          fullWidth
-          disabled={loading}
-        >
-          {loading ? <CircularProgress /> : submitButtonText}
-        </Button>
-      </form>
-    </Grid>
+    <form name={formName} onSubmit={handleSubmit} className={formClassName}>
+      {sectionsSplitting ? renderSections() : renderFields(fields)}
+      <Button
+        color="primary"
+        type="submit"
+        variant="contained"
+        fullWidth
+        disabled={loading}
+      >
+        {loading ? <CircularProgress /> : submitButtonText}
+      </Button>
+    </form>
   );
 }
 

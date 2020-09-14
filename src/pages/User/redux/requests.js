@@ -22,3 +22,7 @@ export async function logoutRequest(payload) {
 export async function updateUserRequest(payload) {
   return baseRequest({ method: "put", url: `/user`, payload });
 }
+
+export async function deleteUserRequest() {
+  return baseRequest({ method: "delete", url: "/user" });
+}

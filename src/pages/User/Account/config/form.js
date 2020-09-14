@@ -9,9 +9,8 @@ export default function createFormConfig({
     fields: [
       {
         type: "imgAvatar",
-        name: "avatar",
+        name: "avatarUrl",
         required: true,
-        label: "Your name",
         value: avatarUrl,
         className: avatarClassName
       },
@@ -30,7 +29,7 @@ export default function createFormConfig({
         name: "email",
         required: true,
         placeholder: "admin@example.com",
-        label: "Your email",
+        label: "New email",
         value: email,
         variant: "outlined",
         fullWidth: true
@@ -40,8 +39,8 @@ export default function createFormConfig({
         name: "password",
         required: true,
         placeholder: "*********",
-        label: "Your password",
-        value: "********",
+        label: "New password",
+        value: "",
         variant: "outlined",
         fullWidth: true
       }

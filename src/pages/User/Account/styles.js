@@ -15,6 +15,15 @@ function useStyles(theme) {
       backgroundColor: deepPurple[500]
     },
     root: {
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+      flexWrap: "wrap",
+      paddingLeft: "25%",
+      paddingRight: "35%"
+    },
+    deleteButton: {
+      marginTop: theme.spacing(3),
       width: "100%"
     }
   };
