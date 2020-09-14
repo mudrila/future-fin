@@ -13,6 +13,7 @@ import {
   accountsSelector,
   spendingCategoriesSelector
 } from "../redux/selectors";
+import sumReducer from "../../utils/sumReducer";
 
 export default function useBudgetDashboard() {
   const dispatch = useDispatch();
@@ -88,6 +89,10 @@ export default function useBudgetDashboard() {
     action && dispatch(action);
   }
 
+  const totalIncome = incomeSources.reduce(sumReducer, 0);
+  const currentBalance = accounts.reduce(sumReducer, 0);
+  const totalSpendings = spendingCategories.reduce(sumReducer, 0);
+
   const entityParts = budgetDashbaordConfig.entityParts.map((entityPart) => ({
     ...entityPart,
     items: budgetDataMapping[entityPart.name] || []
@@ -117,6 +122,9 @@ export default function useBudgetDashboard() {
     entityParts,
     formsConfig: budgetDashbaordConfig.formsConfig,
     handleEdit,
-    handleDelete
+    handleDelete,
+    totalIncome,
+    currentBalance,
+    totalSpendings
   };
 }
