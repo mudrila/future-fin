@@ -9,6 +9,8 @@ import {
 } from "../redux/actions";
 import { finPlanGoalsSelector, finHealthSelector } from "../redux/selectors";
 
+import sumReducer from "../../utils/sumReducer";
+
 export default function useFinPlanDashboard() {
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
@@ -24,6 +26,7 @@ export default function useFinPlanDashboard() {
     items: finPlanDataMapping[entityPart.name] || []
   }));
 
+  const totalFinancialGoalsPrice = finPlanGoals.reduce(sumReducer, 0);
   function handleSubmit(formName, formValues) {
     let action = null;
     if (formName === "goals") {
@@ -71,6 +74,7 @@ export default function useFinPlanDashboard() {
     handleDelete,
     handleEdit,
     handleSubmit,
-    finHealth
+    finHealth,
+    totalFinancialGoalsPrice
   };
 }
