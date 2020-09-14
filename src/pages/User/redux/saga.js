@@ -14,7 +14,8 @@ import {
   signUpRequest,
   loginRequest,
   logoutRequest,
-  updateUserRequest
+  updateUserRequest,
+  deleteUserRequest
 } from "./requests";
 
 function* signUpWorker({ payload, enqueueSnackbar }) {
@@ -114,14 +115,7 @@ function* deleteUserAccountWorker() {
     const successAction = userActionCreators.DELETE.SUCCESS();
     yield put(successAction);
   } catch (e) {
-    let message;
-    if (
-      (e.response.status === 400 || e.response.status === 406) &&
-      e.response.data
-    ) {
-      message = e.response.data.error;
-    }
-    enqueueSnackbar(message, { variant: "error" });
+    enqueueSnackbar(e.message, { variant: "error" });
     const errorAction = userActionCreators.UPDATE.ERROR();
     yield put(errorAction);
   }
@@ -130,6 +124,7 @@ function* deleteUserAccountWorker() {
 export default function* userWatcher() {
   yield takeEvery(USER_ACTION_TYPES.CREATE.REQUEST, signUpWorker);
   yield takeEvery(USER_ACTION_TYPES.UPDATE.REQUEST, updateUserAccountWorker);
+  yield takeEvery(USER_ACTION_TYPES.DELETE.REQUEST, deleteUserAccountWorker);
   yield takeEvery(LOGIN_ACTION_TYPES.REQUEST, loginWorker);
   yield takeEvery(LOGOUT_ACTION_TYPES.REQUEST, logoutWorker);
 }
