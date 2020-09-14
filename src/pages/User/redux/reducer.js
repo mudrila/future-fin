@@ -32,6 +32,14 @@ export default function finPlanReducer(
       return { ...state, loading: false };
     case LOGOUT_ACTION_TYPES.SUCCESS:
       return { ...INITIAL_STATE.user };
+    case USER_ACTION_TYPES.UPDATE.SUCCESS:
+      return { ...state, ...payload, loading: false };
+    case USER_ACTION_TYPES.UPDATE.ERROR:
+      return { ...state, loading: false };
+    case USER_ACTION_TYPES.DELETE.SUCCESS:
+      return { ...INITIAL_STATE.user };
+    case USER_ACTION_TYPES.DELETE.ERROR:
+      return { ...state, loading: false };
     default:
       return state;
   }

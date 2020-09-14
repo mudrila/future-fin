@@ -1,6 +1,8 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useSnackbar } from "notistack";
 
 import useStyles from "../styles";
+import { userActionCreators } from "../../redux/actions";
 import { userSelector } from "../../redux/selectors";
 import useSecureRoute from "../../../../hooks/useSecureRoute";
 import createFormConfig from "../config/form";
@@ -8,15 +10,23 @@ import createFormConfig from "../config/form";
 export default function useUserAccount() {
   useSecureRoute();
   const { avatarClassName } = useStyles();
+  const { enqueueSnackbar } = useSnackbar();
   const user = useSelector(userSelector);
+  const dispatch = useDispatch();
+
   const formConfig = createFormConfig({
     name: user.name,
     email: user.email,
     avatarUrl: user.avatarUrl,
     avatarClassName
   });
+
   function handleSubmit(formValues) {
-    console.log(formValues);
+    const updateUserRequest = userActionCreators.UPDATE.REQUEST(
+      formValues,
+      enqueueSnackbar
+    );
+    dispatch(updateUserRequest);
   }
 
   return { user, formConfig, handleSubmit };

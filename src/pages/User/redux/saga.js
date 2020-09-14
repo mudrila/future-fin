@@ -10,7 +10,12 @@ import {
   loginActionCreators,
   logoutActionCreators
 } from "./actions";
-import { signUpRequest, loginRequest, logoutRequest } from "./requests";
+import {
+  signUpRequest,
+  loginRequest,
+  logoutRequest,
+  updateUserRequest
+} from "./requests";
 
 function* signUpWorker({ payload, enqueueSnackbar }) {
   const loadingAction = userActionCreators.CREATE.LOADING();
@@ -80,8 +85,30 @@ function* logoutWorker({ enqueueSnackbar }) {
   Router.push("/login");
 }
 
+function* updateUserAccountWorker({ payload, enqueueSnackbar }) {
+  const loadingAction = userActionCreators.UPDATE.LOADING();
+  yield put(loadingAction);
+  try {
+    const result = yield updateUserRequest(payload);
+    const successAction = userActionCreators.UPDATE.SUCCESS(result);
+    yield put(successAction);
+  } catch (e) {
+    let message;
+    if (
+      (e.response.status === 400 || e.response.status === 406) &&
+      e.response.data
+    ) {
+      message = e.response.data.error;
+    }
+    enqueueSnackbar(message, { variant: "error" });
+    const errorAction = userActionCreators.UPDATE.ERROR();
+    yield put(errorAction);
+  }
+}
+
 export default function* userWatcher() {
   yield takeEvery(USER_ACTION_TYPES.CREATE.REQUEST, signUpWorker);
+  yield takeEvery(USER_ACTION_TYPES.UPDATE.REQUEST, updateUserAccountWorker);
   yield takeEvery(LOGIN_ACTION_TYPES.REQUEST, loginWorker);
   yield takeEvery(LOGOUT_ACTION_TYPES.REQUEST, logoutWorker);
 }

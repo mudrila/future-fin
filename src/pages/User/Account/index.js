@@ -10,7 +10,7 @@ export default function AccountPage() {
     <article className={classes.root}>
       <Form
         {...formConfig}
-        submitButtonText="Save"
+        submitButtonText="Update"
         onSubmit={handleSubmit}
         loading={user.loading}
         formClassName={classes.form}

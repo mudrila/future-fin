@@ -16,9 +16,9 @@ import {
 } from "../redux/selectors";
 
 export default function useBudgetDashboard() {
-  const { enqueueSnackbar } = useSnackbar();
   useSecureRoute();
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   const incomeSources = useSelector(incomeSourcesSelector);
   const accounts = useSelector(accountsSelector);
   const spendingCategories = useSelector(spendingCategoriesSelector);

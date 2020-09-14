@@ -73,6 +73,15 @@ export default function budgetReducer(
           loading: false
         }
       };
+    case BUDGET_ACCOUNTS_ACTION_TYPES.READ.SUCCESS:
+      return {
+        ...state,
+        accounts: {
+          ...state.accounts,
+          items: payload,
+          loading: false
+        }
+      };
     case BUDGET_ACCOUNTS_ACTION_TYPES.CREATE.SUCCESS:
       return {
         ...state,
@@ -103,6 +112,15 @@ export default function budgetReducer(
           items: state.accounts.items.filter(
             (account) => account._id !== payload._id
           ),
+          loading: false
+        }
+      };
+    case BUDGET_SPENDING_CATEGORIES_ACTION_TYPES.READ.SUCCESS:
+      return {
+        ...state,
+        spendings: {
+          ...state.spendings,
+          categories: payload,
           loading: false
         }
       };

@@ -108,7 +108,7 @@ function* budgetAccountGetListWorker({ enqueueSnackbar }) {
   try {
     const result = yield budgetAccountRequests.READ(null, { path: "list" });
     const getAccountsListSuccessAction = budgetAccountsActionCreators.READ.SUCCESS(
-      result.sources
+      result.accounts
     );
     yield put(getAccountsListSuccessAction);
   } catch (e) {
