@@ -3,7 +3,8 @@ import {
   Navigation,
   IconSelector,
   SwitchField,
-  CheckboxField
+  CheckboxField,
+  CountrySelector
 } from "./molecules";
 import { Form, FormDialog } from "./organisms";
 import { Dashboard } from "./templates";
@@ -16,5 +17,6 @@ export {
   Dashboard,
   IconSelector,
   SwitchField,
-  CheckboxField
+  CheckboxField,
+  CountrySelector
 };

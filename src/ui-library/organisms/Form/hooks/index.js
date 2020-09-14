@@ -4,7 +4,12 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { DatePicker } from "@material-ui/pickers";
 import { format } from "date-fns";
 
-import { IconSelector, SwitchField, CheckboxField } from "../../../";
+import {
+  IconSelector,
+  SwitchField,
+  CheckboxField,
+  CountrySelector
+} from "../../../";
 
 export default function useForm({ fields, onSubmit }) {
   const initialFormState = {};
@@ -32,6 +37,8 @@ export default function useForm({ fields, onSubmit }) {
         return Avatar;
       case "date":
         return DatePicker;
+      case "countrySelector":
+        return CountrySelector;
       case "text":
       default:
         return TextField;

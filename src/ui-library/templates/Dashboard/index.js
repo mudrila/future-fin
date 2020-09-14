@@ -26,7 +26,8 @@ export default function Dashboard({
   onDelete,
   onEdit,
   childrenPositioning,
-  children
+  children,
+  subHeader
 }) {
   const {
     createModalsState,
@@ -53,6 +54,7 @@ export default function Dashboard({
       <Typography variant="h4" className={classes.heading} align="center">
         {capitalizeString(entityName)} Dashboard
       </Typography>
+      {subHeader}
       <Divider className={classes.divider} />
       {childrenPositioning === "top" && (
         <Fragment>
@@ -151,5 +153,6 @@ Dashboard.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
   childrenPositioning: PropTypes.oneOf(["top", "bottom"]),
-  children: PropTypes.node
+  children: PropTypes.node,
+  subHeader: PropTypes.oneOfType([PropTypes.node, PropTypes.string])
 };

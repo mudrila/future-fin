@@ -2,7 +2,10 @@ export default function createFormConfig({
   name,
   email,
   avatarUrl,
-  avatarClassName
+  avatarClassName,
+  hasLifeInsurance,
+  hasMedicalInsurance,
+  country
 }) {
   return {
     formName: "user-account-form",
@@ -43,6 +46,37 @@ export default function createFormConfig({
         value: "",
         variant: "outlined",
         fullWidth: true
+      },
+      {
+        type: "countrySelector",
+        name: "country",
+        required: false,
+        label: "Country",
+        helperText: "What is your country?",
+        value: country,
+        fullWidth: true
+      },
+      {
+        type: "checkbox",
+        name: "hasLifeInsurance",
+        required: false,
+        label: "Life Insurance",
+        value: hasLifeInsurance,
+        helperText: "Do you have life insurance?",
+        checked: hasLifeInsurance,
+        fullWidth: true,
+        bordered: true
+      },
+      {
+        type: "checkbox",
+        name: "hasMedicalInsurance",
+        required: false,
+        label: "Medical Insurance",
+        value: hasMedicalInsurance,
+        helperText: "Do you have medical insurance?",
+        checked: hasMedicalInsurance,
+        fullWidth: true,
+        bordered: true
       }
     ]
   };
