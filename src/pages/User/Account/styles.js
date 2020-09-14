@@ -25,7 +25,10 @@ function useStyles(theme) {
     deleteButton: {
       marginTop: theme.spacing(3),
       width: "100%",
-      backgroundColor: red[900]
+      backgroundColor: red["A700"],
+      "&:hover": {
+        backgroundColor: red[900]
+      }
     }
   };
 }
