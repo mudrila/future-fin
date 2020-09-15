@@ -22,7 +22,8 @@ import {
   ChevronLeft,
   Menu as MenuIcon,
   ExitToAppRounded,
-  AccountCircleRounded
+  AccountCircleRounded,
+  SettingsApplicationsRounded
 } from "@material-ui/icons";
 
 import { ICONS_MAP } from "./config";
@@ -104,6 +105,19 @@ export default function Navigation() {
                             <AccountCircleRounded />
                           </ListItemIcon>
                           <ListItemText primary="My Account" />
+                        </MenuItem>
+                      </a>
+                    </Link>
+                    <Link href="/settings" passHref={true}>
+                      <a
+                        className={classes.link}
+                        onClick={handleAccountMenuClose}
+                      >
+                        <MenuItem>
+                          <ListItemIcon>
+                            <SettingsApplicationsRounded />
+                          </ListItemIcon>
+                          <ListItemText primary="App Settings" />
                         </MenuItem>
                       </a>
                     </Link>

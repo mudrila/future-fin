@@ -6,6 +6,7 @@ import HomePage from "./Home";
 import SignUpPage from "./User/SignUp";
 import LoginPage from "./User/Login";
 import AccountPage from "./User/Account";
+import SettingsPage from "./Settings";
 
 export {
   BudgetDashboard,
@@ -15,5 +16,6 @@ export {
   FinPlanSchedule,
   SignUpPage,
   LoginPage,
-  AccountPage
+  AccountPage,
+  SettingsPage
 };
