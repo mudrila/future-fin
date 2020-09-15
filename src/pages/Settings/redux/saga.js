@@ -6,34 +6,34 @@ import {
 } from "./actions";
 import { appSettingsRequests } from "./requests";
 
-function* getAppSettingsWorker({ enquequeSnackbar }) {
+function* getAppSettingsWorker({ enqueueSnackbar }) {
   const loadingAction = appSettingsActionCreators.READ.LOADING();
   yield put(loadingAction);
   try {
     const result = yield appSettingsRequests.READ();
     const successAction = appSettingsActionCreators.READ.SUCCESS(
-      result.settings
+      result.appSettings
     );
     yield put(successAction);
   } catch (e) {
     const errorAction = appSettingsActionCreators.READ.ERROR();
-    enquequeSnackbar(e.message, { variant: "error" });
+    enqueueSnackbar(e.message, { variant: "error" });
     yield put(errorAction);
   }
 }
 
-function* updateAppSettingsWorker({ payload, enquequeSnackbar }) {
+function* updateAppSettingsWorker({ payload, enqueueSnackbar }) {
   const loadingAction = appSettingsActionCreators.UPDATE.LOADING();
   yield put(loadingAction);
   try {
     const result = yield appSettingsRequests.UPDATE(payload);
     const successAction = appSettingsActionCreators.UPDATE.SUCCESS(
-      result.settings
+      result.appSettings
     );
     yield put(successAction);
   } catch (e) {
     const errorAction = appSettingsActionCreators.UPDATE.ERROR();
-    enquequeSnackbar(e.message, { variant: "error" });
+    enqueueSnackbar(e.message, { variant: "error" });
     yield put(errorAction);
   }
 }

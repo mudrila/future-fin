@@ -1,3 +1,3 @@
-export function getAppSettings(state) {
+export function appSettingsSelector(state) {
   return state.appSettings;
 }
