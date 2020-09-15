@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
 
@@ -37,5 +38,12 @@ export default function useUserAccount() {
     );
     dispatch(deleteUserRequest);
   }
+  useEffect(() => {
+    const loadUserDataAction = userActionCreators.READ.REQUEST(
+      null,
+      enqueueSnackbar
+    );
+    dispatch(loadUserDataAction);
+  }, []);
   return { user, formConfig, handleSubmit, handleDelete };
 }

@@ -1,28 +1,14 @@
-import api from "../../../api";
-import { baseRequest } from "../../../api/utils/requestUtils";
-
-export async function signUpRequest(payload) {
-  return await api
-    .post("/public/sign-up", payload)
-    .then((response) => response.data);
-}
+import {
+  baseRequest,
+  createCRUDRequests
+} from "../../../api/utils/requestUtils";
 
 export async function loginRequest(payload) {
-  return await api
-    .post("/public/login", payload)
-    .then((response) => response.data);
+  return baseRequest({ method: "post", url: "/public/login", payload });
 }
 
 export async function logoutRequest(payload) {
-  return await api
-    .post("/public/logout", payload)
-    .then((response) => response.data);
+  return baseRequest({ method: "post", url: "/public/logout", payload });
 }
 
-export async function updateUserRequest(payload) {
-  return baseRequest({ method: "put", url: `/user`, payload });
-}
-
-export async function deleteUserRequest() {
-  return baseRequest({ method: "delete", url: "/user" });
-}
+export const userCRUDRequests = createCRUDRequests("/user");

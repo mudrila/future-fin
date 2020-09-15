@@ -11,19 +11,15 @@ import {
   loginActionCreators,
   logoutActionCreators
 } from "./actions";
-import {
-  signUpRequest,
-  loginRequest,
-  logoutRequest,
-  updateUserRequest,
-  deleteUserRequest
-} from "./requests";
+import { loginRequest, logoutRequest, userCRUDRequests } from "./requests";
 
 function* signUpWorker({ payload, enqueueSnackbar }) {
   const loadingAction = userActionCreators.CREATE.LOADING();
   yield put(loadingAction);
   try {
-    const result = yield signUpRequest(payload);
+    const result = yield userCRUDRequests.CREATE(payload, {
+      url: "/public/sign-up"
+    });
     enqueueSnackbar("Success! You're registered!", { variant: "success" });
     const successAction = userActionCreators.CREATE.SUCCESS(result);
     yield put(successAction);
@@ -49,17 +45,75 @@ function* signUpWorker({ payload, enqueueSnackbar }) {
   }
 }
 
+function* getUserAccountWorker({ enqueueSnackbar }) {
+  const loadingAction = userActionCreators.READ.LOADING();
+  yield put(loadingAction);
+  try {
+    const result = yield userCRUDRequests.READ();
+    const successAction = userActionCreators.READ.SUCCESS(result.user);
+    yield put(successAction);
+  } catch (e) {
+    let message;
+    if (
+      (e.response.status === 400 || e.response.status === 406) &&
+      e.response.data
+    ) {
+      message = e.response.data.error;
+    }
+    enqueueSnackbar(message, { variant: "error" });
+    const errorAction = userActionCreators.READ.ERROR();
+    yield put(errorAction);
+  }
+}
+
+function* updateUserAccountWorker({ payload, enqueueSnackbar }) {
+  const loadingAction = userActionCreators.UPDATE.LOADING();
+  yield put(loadingAction);
+  try {
+    const result = yield userCRUDRequests.UPDATE(payload);
+    const successAction = userActionCreators.UPDATE.SUCCESS(result.user);
+    yield put(successAction);
+  } catch (e) {
+    let message;
+    if (
+      e.response &&
+      (e.response.status === 400 || e.response.status === 406) &&
+      e.response.data
+    ) {
+      message = e.response.data.error;
+    } else {
+      message = e.message;
+    }
+    enqueueSnackbar(message, { variant: "error" });
+    const errorAction = userActionCreators.UPDATE.ERROR();
+    yield put(errorAction);
+  }
+}
+
+function* deleteUserAccountWorker() {
+  const loadingAction = userActionCreators.DELETE.LOADING();
+  yield put(loadingAction);
+  try {
+    yield userCRUDRequests.DELETE();
+    const successAction = userActionCreators.DELETE.SUCCESS();
+    yield put(successAction);
+  } catch (e) {
+    enqueueSnackbar(e.message, { variant: "error" });
+    const errorAction = userActionCreators.UPDATE.ERROR();
+    yield put(errorAction);
+  }
+}
+
 function* loginWorker({ payload, enqueueSnackbar }) {
   const loadingAction = loginActionCreators.LOADING();
   yield put(loadingAction);
   try {
-    const { user, token } = yield loginRequest(payload);
+    const { token } = yield loginRequest(payload);
     api.defaults.headers.Authorization = `Bearer ${token}`;
     Cookies.set("token", token);
     localStorage.setItem("accessToken", token);
     const successAction = loginActionCreators.SUCCESS({
-      ...user,
-      token: token
+      token
     });
     yield put(successAction);
     Router.push("/");
@@ -90,42 +144,8 @@ function* logoutWorker({ enqueueSnackbar }) {
   Router.push("/login");
 }
 
-function* updateUserAccountWorker({ payload, enqueueSnackbar }) {
-  const loadingAction = userActionCreators.UPDATE.LOADING();
-  yield put(loadingAction);
-  try {
-    const result = yield updateUserRequest(payload);
-    const successAction = userActionCreators.UPDATE.SUCCESS(result.user);
-    yield put(successAction);
-  } catch (e) {
-    let message;
-    if (
-      (e.response.status === 400 || e.response.status === 406) &&
-      e.response.data
-    ) {
-      message = e.response.data.error;
-    }
-    enqueueSnackbar(message, { variant: "error" });
-    const errorAction = userActionCreators.UPDATE.ERROR();
-    yield put(errorAction);
-  }
-}
-
-function* deleteUserAccountWorker() {
-  const loadingAction = userActionCreators.DELETE.LOADING();
-  yield put(loadingAction);
-  try {
-    yield deleteUserRequest();
-    const successAction = userActionCreators.DELETE.SUCCESS();
-    yield put(successAction);
-  } catch (e) {
-    enqueueSnackbar(e.message, { variant: "error" });
-    const errorAction = userActionCreators.UPDATE.ERROR();
-    yield put(errorAction);
-  }
-}
-
 export default function* userWatcher() {
+  yield takeEvery(USER_ACTION_TYPES.READ.REQUEST, getUserAccountWorker);
   yield takeEvery(USER_ACTION_TYPES.CREATE.REQUEST, signUpWorker);
   yield takeEvery(USER_ACTION_TYPES.UPDATE.REQUEST, updateUserAccountWorker);
   yield takeEvery(USER_ACTION_TYPES.DELETE.REQUEST, deleteUserAccountWorker);

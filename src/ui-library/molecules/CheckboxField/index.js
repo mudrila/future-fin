@@ -30,7 +30,6 @@ export default function CheckboxField({
         checked={checked}
         control={<Checkbox color="primary" />}
         label={label}
-        labelPlacement="left"
         onChange={onChange}
       />
       {helperText && <Typography variant="body2">{helperText}</Typography>}
