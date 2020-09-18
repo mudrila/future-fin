@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TextField, Avatar } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { DatePicker } from "@material-ui/pickers";
@@ -135,6 +135,11 @@ export default function useForm({ fields, onSubmit }) {
     onSubmit(formState);
     setFormState(initialFormState);
   }
+
+  useEffect(() => {
+    setFormState(initialFormState);
+  }, [fields]);
+
   return {
     getComponentByFieldType,
     handleChange,

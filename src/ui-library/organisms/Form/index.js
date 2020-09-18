@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import {
-  Grid,
   Accordion,
   AccordionSummary,
   AccordionDetails,

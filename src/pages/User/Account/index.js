@@ -1,4 +1,4 @@
-import { Button } from "@material-ui/core";
+import { Button, CircularProgress } from "@material-ui/core";
 
 import { Form } from "../../../ui-library";
 
@@ -10,13 +10,17 @@ export default function AccountPage() {
   const { formConfig, handleSubmit, user, handleDelete } = useAccountPage();
   return (
     <article className={classes.root}>
-      <Form
-        {...formConfig}
-        submitButtonText="Update Account"
-        onSubmit={handleSubmit}
-        loading={user.loading}
-        formClassName={classes.form}
-      />
+      {user.loading ? (
+        <CircularProgress />
+      ) : (
+        <Form
+          {...formConfig}
+          submitButtonText="Update Account"
+          onSubmit={handleSubmit}
+          loading={user.loading}
+          formClassName={classes.form}
+        />
+      )}
       <Button
         variant="contained"
         color="secondary"
