@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import Router from "next/router";
 
 import api from "../../../api";
+import { appSettingsActionCreators } from "../../Settings/redux/actions";
 import {
   USER_ACTION_TYPES,
   LOGIN_ACTION_TYPES,
@@ -117,6 +118,8 @@ function* loginWorker({ payload, enqueueSnackbar }) {
     });
     yield put(successAction);
     Router.push("/");
+    const getAppSettingsAction = appSettingsActionCreators.READ.REQUEST();
+    yield put(getAppSettingsAction);
   } catch (e) {
     let message;
     if (e.response.status === 400 && e.response.data) {

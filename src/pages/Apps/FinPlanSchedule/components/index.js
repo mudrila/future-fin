@@ -3,7 +3,7 @@ import { Grid, Typography, Paper } from "@material-ui/core";
 
 export function CustomTooltip({ payload, active }) {
   if (active) {
-    const data = payload[0] ? payload[0].payload : { paidDebts: [] }; // Lol. Thanks recharts.
+    const data = payload && payload[0] ? payload[0].payload : { payments: [] }; // Lol. Thanks recharts.
     return (
       <Paper>
         <Grid container>
@@ -12,7 +12,7 @@ export function CustomTooltip({ payload, active }) {
           </Grid>
           <Grid item xs={8}>
             <Typography variant="body1">Payments:</Typography>
-            {data.paidDebts.map((payment, i) => (
+            {data.payments.map((payment, i) => (
               <Grid container key={i}>
                 <Grid item xs={6}>
                   {payment.name} {payment.paid && "(Fully Paid!)"}
@@ -41,7 +41,7 @@ CustomTooltip.propTypes = {
       payload: PropTypes.shape({
         date: PropTypes.string,
         totalBalance: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-        paidDebts: PropTypes.arrayOf(
+        payments: PropTypes.arrayOf(
           PropTypes.shape({
             balance: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
               .isRequired,

@@ -107,7 +107,7 @@ export default function FinPlanSchedule() {
             </Typography>
           </Grid>
           <Grid item xs={8}>
-            {item.paidDebts.map((paidDebt, i) => (
+            {item.payments.map((paidDebt, i) => (
               <Typography key={i} variant="body1" className={classes.fullWidth}>
                 {paidDebt.name}: {paidDebt.balance} {paidDebt.currency}
               </Typography>
