@@ -17,7 +17,8 @@ function FinPlanDashboard() {
     handleEdit,
     handleDelete,
     finHealth,
-    totalFinancialGoalsPrice
+    totalFinancialGoalsPrice,
+    t
   } = useFinPlanDashboard();
   return (
     <Dashboard
@@ -33,18 +34,15 @@ function FinPlanDashboard() {
         <Grid container justify="center">
           <Grid container item xs={2}>
             <Typography className={classes.heading} align="center">
-              Total Goals Price
+              {t("finPlan:totalGoals")}
             </Typography>
             <Typography className={classes.heading} align="center">
-              {totalFinancialGoalsPrice} UAH
+              {totalFinancialGoalsPrice} {defaultCurrency}
             </Typography>
           </Grid>
         </Grid>
       }
     >
-      <Typography variant="h4" align="center" className={classes.heading}>
-        Your Financial Health Indication
-      </Typography>
       <FinHealthIndicator checkPoints={finHealth.checkPoints} />
     </Dashboard>
   );

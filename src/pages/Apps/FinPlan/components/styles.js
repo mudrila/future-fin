@@ -17,6 +17,9 @@ function useStyles() {
     },
     errorText: {
       color: red[900]
+    },
+    heading: {
+      width: "100%"
     }
   };
 }

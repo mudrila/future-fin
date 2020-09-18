@@ -8,11 +8,17 @@ import {
   finHealthActionCreators
 } from "../redux/actions";
 import { finPlanGoalsSelector, finHealthSelector } from "../redux/selectors";
+import { appSettingsSelector } from "../../../Settings/redux/selectors";
+import { useTranslation } from "../../../../i18n";
 
 import sumReducer from "../../utils/sumReducer";
 
 export default function useFinPlanDashboard() {
   const { enqueueSnackbar } = useSnackbar();
+  const { t } = useTranslation();
+  const {
+    settings: { defaultCurrency }
+  } = useSelector(appSettingsSelector);
   const dispatch = useDispatch();
   const finPlanGoals = useSelector(finPlanGoalsSelector);
   const finHealth = useSelector(finHealthSelector);
@@ -75,6 +81,8 @@ export default function useFinPlanDashboard() {
     handleEdit,
     handleSubmit,
     finHealth,
-    totalFinancialGoalsPrice
+    totalFinancialGoalsPrice,
+    t,
+    defaultCurrency
   };
 }

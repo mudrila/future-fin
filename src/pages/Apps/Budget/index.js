@@ -15,7 +15,9 @@ function BudgetDashboard() {
     formsConfig,
     totalIncome,
     currentBalance,
-    totalSpendings
+    totalSpendings,
+    t,
+    defaultCurrency
   } = useBudgetDashboard();
 
   return (
@@ -30,16 +32,22 @@ function BudgetDashboard() {
       subHeader={
         <Grid container justify="center">
           <Grid container item xs={1} className={classes.subHeadingItem}>
-            <Typography>Total Income</Typography>
-            <Typography>{totalIncome} UAH</Typography>
+            <Typography>{t("budget:totalIncome")}</Typography>
+            <Typography>
+              {totalIncome} {defaultCurrency}
+            </Typography>
           </Grid>
           <Grid container item xs={1} className={classes.subHeadingItem}>
-            <Typography>Current Balance</Typography>
-            <Typography>{currentBalance} UAH</Typography>
+            <Typography>{t("budget:currentBalance")}</Typography>
+            <Typography>
+              {currentBalance} {defaultCurrency}
+            </Typography>
           </Grid>
           <Grid item xs={1}>
-            <Typography>Total Spendings </Typography>
-            <Typography>{totalSpendings} UAH</Typography>
+            <Typography>{t("budget:totalSpendings")}</Typography>
+            <Typography>
+              {totalSpendings} {defaultCurrency}
+            </Typography>
           </Grid>
         </Grid>
       }

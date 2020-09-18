@@ -13,11 +13,17 @@ import {
   accountsSelector,
   spendingCategoriesSelector
 } from "../redux/selectors";
+import { appSettingsSelector } from "../../../Settings/redux/selectors";
 import sumReducer from "../../utils/sumReducer";
+import { useTranslation } from "../../../../i18n";
 
 export default function useBudgetDashboard() {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
+  const {
+    settings: { defaultCurrency }
+  } = useSelector(appSettingsSelector);
   const incomeSources = useSelector(incomeSourcesSelector);
   const accounts = useSelector(accountsSelector);
   const spendingCategories = useSelector(spendingCategoriesSelector);
@@ -125,6 +131,8 @@ export default function useBudgetDashboard() {
     handleDelete,
     totalIncome,
     currentBalance,
-    totalSpendings
+    totalSpendings,
+    t,
+    defaultCurrency
   };
 }
