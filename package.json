@@ -43,6 +43,7 @@
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.20",
     "next": "^9.5.2",
+    "next-i18next": "^6.0.2",
     "notistack": "^1.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

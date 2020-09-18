@@ -6,10 +6,12 @@ import { useSnackbar } from "notistack";
 import { userSelector } from "../../../../pages/User/redux/selectors";
 import { logoutActionCreators } from "../../../../pages/User/redux/actions";
 import ROUTES from "../../../../config/routes";
+import { useTranslation } from "../../../../i18n";
 
 export default function useNavigation() {
   // TODO: Refactor this so Navigation items are passed outside instead of calculated inside.
   const router = useRouter();
+  const { t } = useTranslation();
   const { isAuthenticated, avatarUrl, name = "G" } = useSelector(userSelector);
   const items = Object.values(
     isAuthenticated ? ROUTES.PROTECTED_ROUTES : ROUTES.PUBLIC_ROUTES
@@ -62,6 +64,7 @@ export default function useNavigation() {
     handleAccountMenuClose,
     handleLogout,
     avatarUrl,
-    name
+    name,
+    t
   };
 }

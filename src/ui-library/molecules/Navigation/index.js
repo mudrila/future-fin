@@ -43,7 +43,8 @@ export default function Navigation() {
     handleAccountMenuClose,
     handleLogout,
     avatarUrl,
-    name
+    name,
+    t
   } = useNavigation();
   const classes = useStyles();
 
@@ -73,7 +74,7 @@ export default function Navigation() {
               </Grid>
               <Grid item xs={11} className={classes.headerTextContainer}>
                 <Typography variant="h5" noWrap>
-                  FutureFin | Financial Plan Builder
+                  {t("nav:header")}
                 </Typography>
               </Grid>
             </Grid>

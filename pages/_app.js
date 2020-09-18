@@ -11,6 +11,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
+import { appWithTranslation } from "../src/i18n";
 import { useStore } from "../src/store";
 import theme from "../src/ui-library/theme";
 import { Navigation } from "../src/ui-library";
@@ -31,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function App({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
@@ -111,3 +112,5 @@ App.getInitialProps = async (appContext) => {
   const appProps = await NextApp.getInitialProps(appContext);
   return { ...appProps };
 };
+
+export default appWithTranslation(App);
