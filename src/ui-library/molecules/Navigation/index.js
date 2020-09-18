@@ -26,6 +26,7 @@ import {
   SettingsApplicationsRounded
 } from "@material-ui/icons";
 
+import { LanguageSwitcher } from "../../";
 import { ICONS_MAP } from "./config";
 
 import useNavigation from "./hooks";
@@ -81,7 +82,7 @@ export default function Navigation() {
             <Grid item xs={1} container justify="flex-end">
               {isAuthenticated && (
                 <Fragment>
-                  <Tooltip title="Profile">
+                  <Tooltip title={t("nav:profile")}>
                     <IconButton onClick={handleAccountMenuOpen}>
                       <Avatar
                         src={avatarUrl}
@@ -90,6 +91,7 @@ export default function Navigation() {
                       />
                     </IconButton>
                   </Tooltip>
+                  <LanguageSwitcher />
                   <Menu
                     open={Boolean(accountMenuAnchorEl)}
                     anchorEl={accountMenuAnchorEl}
@@ -105,7 +107,7 @@ export default function Navigation() {
                           <ListItemIcon>
                             <AccountCircleRounded />
                           </ListItemIcon>
-                          <ListItemText primary="My Account" />
+                          <ListItemText primary={t("nav:account")} />
                         </MenuItem>
                       </a>
                     </Link>
@@ -118,7 +120,7 @@ export default function Navigation() {
                           <ListItemIcon>
                             <SettingsApplicationsRounded />
                           </ListItemIcon>
-                          <ListItemText primary="App Settings" />
+                          <ListItemText primary={t("nav:appSettings")} />
                         </MenuItem>
                       </a>
                     </Link>
@@ -126,7 +128,7 @@ export default function Navigation() {
                       <ListItemIcon>
                         <ExitToAppRounded />
                       </ListItemIcon>
-                      <ListItemText primary="Logout" />
+                      <ListItemText primary={t("nav:logout")} />
                     </MenuItem>
                   </Menu>
                 </Fragment>
@@ -160,12 +162,12 @@ export default function Navigation() {
             return (
               <Link href={item.PATH} passHref={true} key={item.KEY}>
                 <a className={classes.link}>
-                  <Tooltip title={item.TITLE}>
+                  <Tooltip title={t(item.TR_KEY)}>
                     <ListItem button selected={item.selected}>
                       <ListItemIcon>
                         <ItemIcon />
                       </ListItemIcon>
-                      <ListItemText primary={item.TITLE} />
+                      <ListItemText primary={t(item.TR_KEY)} />
                     </ListItem>
                   </Tooltip>
                 </a>

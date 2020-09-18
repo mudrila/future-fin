@@ -3,7 +3,10 @@ const path = require("path");
 
 const NextI18NextInstance = new NextI18Next({
   otherLanguages: ["de", "ru", "ua", "fr"],
-  localePath: path.resolve("./public/static/locales")
+  preload: ["de", "ru", "ua", "fr", "en"],
+  localePath: path.resolve("./public/static/locales"),
+  browserLanguageDetection: false,
+  serverLanguageDetection: false
 });
 
 export default NextI18NextInstance;

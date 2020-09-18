@@ -3,41 +3,41 @@ export default {
     LOGIN: {
       KEY: "LOGIN",
       PATH: "/login",
-      TITLE: "Login"
+      TR_KEY: "nav:login"
     },
     SIGN_UP: {
       KEY: "SIGN_UP",
       PATH: "/sign-up",
-      TITLE: "Sign Up"
+      TR_KEY: "nav:sign_up"
     }
   },
   PROTECTED_ROUTES: {
     HOME: {
       KEY: "HOME",
       PATH: "/",
-      TITLE: "Dashboard"
+      TR_KEY: "nav:home"
     },
     APPS_DASHBOARD: {
       KEY: "APPS_DASHBOARD",
       PATH: "/apps",
-      TITLE: "Apps Overview",
+      TR_KEY: "nav:apps",
       children: ["BUDGET_DASHBOARD", "FINPLAN_DASHBOARD", "FINPLAN_SCHEDULE"]
     },
     BUDGET_DASHBOARD: {
       KEY: "BUDGET_DASHBOARD",
       PATH: "/apps/budget",
-      TITLE: "Budget Overview"
+      TR_KEY: "nav:budget"
     },
     FINPLAN_DASHBOARD: {
       KEY: "FINPLAN_DASHBOARD",
       PATH: "/apps/finplan",
-      TITLE: "Financial Plan Overview",
+      TR_KEY: "nav:finplan",
       children: ["FINPLAN_SCHEDULE"]
     },
     FINPLAN_SCHEDULE: {
       KEY: "FINPLAN_SCHEDULE",
       PATH: "/apps/finplan/schedule",
-      TITLE: "Financial Plan Schedule"
+      TR_KEY: "nav:finplan_schedule"
     }
   }
 };

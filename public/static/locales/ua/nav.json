@@ -1,3 +1,14 @@
 {
-  "header": "FutureFin | Фінансовий Планувальник"
+  "header": "FutureFin | Фінансовий Планувальник",
+  "profile": "Profile",
+  "account": "My Account",
+  "appSettings": "App Settings",
+  "logout": "Logout",
+  "login": "Login",
+  "sign_up": "Sign Up",
+  "home": "Home",
+  "apps": "Apps Dashboard",
+  "budget": "Budget Overview",
+  "finplan": "FinPlan Overview",
+  "finplan_schedule": "FinPlan Schedule"
 }
