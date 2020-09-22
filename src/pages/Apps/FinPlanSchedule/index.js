@@ -15,6 +15,7 @@ import useBalanceProjection from "./hooks";
 import useStyles from "./styles";
 
 export default function FinPlanSchedule() {
+  // TODO: Apply translations once this page would be updated with proper UI
   const classes = useStyles();
   const {
     totalIncome,

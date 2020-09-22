@@ -39,7 +39,8 @@ export default function Dashboard({
     handleEdit,
     handleEditModalClose,
     handleEditModalOpen,
-    mapEntityToEditFormProps
+    mapEntityToEditFormProps,
+    t
   } = useDashboard({
     formsConfig,
     onSubmit,
@@ -66,7 +67,7 @@ export default function Dashboard({
         <Fragment key={entityPart.name}>
           <section className={classes.section}>
             <Typography variant="h5" className={classes.heading} align="center">
-              {capitalizeString(entityPart.name)}
+              {entityPart.dashboardSectionTitle}
             </Typography>
             {entityPart.items.map((item) => {
               return (
@@ -99,7 +100,10 @@ export default function Dashboard({
                         item: formValues
                       })
                     }
-                    title={`Edit ${item.name}`}
+                    title={t(
+                      `${entityName}:form.edit.title${entityPart.name}`,
+                      { itemName: item.name }
+                    )}
                     sectionsSplitting={true}
                   />
                 </Fragment>
@@ -129,7 +133,7 @@ export default function Dashboard({
               onSubmit={(formValues) =>
                 handleSubmit(entityPart.name, formValues)
               }
-              title={`Create new ${entityPart.modalTitle}`}
+              title={entityPart.createTitle}
               sectionsSplitting={true}
             />
           </section>

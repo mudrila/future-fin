@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { useTranslation } from "../../../../i18n";
+
 export default function useDashbaord({
   formsConfig,
   onSubmit,
@@ -7,6 +9,7 @@ export default function useDashbaord({
   onDelete,
   onEdit
 }) {
+  const { t } = useTranslation();
   let initialModalsState = {};
   const formNames = Object.keys(formsConfig);
   formNames.forEach((formKey) => {
@@ -132,6 +135,7 @@ export default function useDashbaord({
     handleEdit,
     handleEditModalOpen,
     currentEditableEntity,
-    mapEntityToEditFormProps
+    mapEntityToEditFormProps,
+    t
   };
 }

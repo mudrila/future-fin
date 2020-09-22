@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSnackbar } from "notistack";
 
-import budgetDashbaordConfig from "../config/dashboard";
+import createBudgetDashboardConfig from "../config/dashboard";
 import {
   budgetIncomesActionCreators,
   budgetAccountsActionCreators,
@@ -20,6 +20,7 @@ import { useTranslation } from "../../../../i18n";
 export default function useBudgetDashboard() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const budgetDashbaordConfig = createBudgetDashboardConfig(t);
   const { enqueueSnackbar } = useSnackbar();
   const {
     settings: { defaultCurrency }

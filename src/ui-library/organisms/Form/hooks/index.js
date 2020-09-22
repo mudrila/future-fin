@@ -136,9 +136,9 @@ export default function useForm({ fields, onSubmit }) {
     setFormState(initialFormState);
   }
 
-  useEffect(() => {
-    setFormState(initialFormState);
-  }, [fields]);
+  // useEffect(() => {
+  //   setFormState(initialFormState);
+  // }, [fields]);
 
   return {
     getComponentByFieldType,

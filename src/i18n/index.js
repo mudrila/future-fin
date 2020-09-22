@@ -6,7 +6,8 @@ const NextI18NextInstance = new NextI18Next({
   preload: ["de", "ru", "ua", "fr", "en"],
   localePath: path.resolve("./public/static/locales"),
   browserLanguageDetection: false,
-  serverLanguageDetection: false
+  serverLanguageDetection: false,
+  keySeparator: "."
 });
 
 export default NextI18NextInstance;

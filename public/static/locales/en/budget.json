@@ -1,5 +1,258 @@
 {
   "totalIncome": "Total Income",
   "currentBalance": "Current Balance",
-  "totalSpendings": "Total Spendings"
+  "totalSpendings": "Total Spendings",
+  "entityParts": {
+    "incomes": "Source of Income",
+    "accounts": "Accounts",
+    "spendings": "Spending Categories"
+  },
+  "form": {
+    "createTitle": {
+      "incomes": "Create new Source of Income",
+      "accounts": "Create new Account",
+      "spendings": "Create new Spending Category"
+    },
+    "editTitle": "Edit {{itemName}}",
+    "createButtonText": "Submit",
+    "editButtonText": "Save",
+    "deleteButtonText": "Delete",
+    "incomes": {
+      "sections": {
+        "general": {
+          "name": "General",
+          "fields": {
+            "name": {
+              "label": "Source",
+              "helperText": "Name of Source of Income",
+              "value": "Salary"
+            },
+            "expectedAmount": {
+              "label": "Amount",
+              "helperText": "Expected Amount of Income"
+            },
+            "currency": {
+              "label": "Currency",
+              "helperText": "In which currency?",
+              "options": {
+                "USD": "US Dollars",
+                "EUR": "European Euro",
+                "UAH": "Ukrainian Hryvna"
+              }
+            },
+            "frequency": {
+              "label": "Frequency",
+              "helperText": "How frequent you will get income from this source?",
+              "options": {
+                "daily": "Per working day",
+                "weekly": "Per week",
+                "montly": "Per month",
+                "yearly": "Per year",
+                "once": "One-time income"
+              }
+            }
+          }
+        },
+        "iconSelection": {
+          "name": "Icon Selection",
+          "fields": {
+            "iconSelection": {
+              "label": "Icon",
+              "helperText": "Select icon, which would be displayed for this income source"
+            }
+          }
+        },
+        "advanced": {
+          "name": "Advanced",
+          "description": "Advanced configuration for Source of Income",
+          "fields": {
+            "incomeFee": {
+              "label": "Fee",
+              "helperText": "Any possible fees"
+            },
+            "incomeFeeType": {
+              "label": "Fee Type",
+              "helperText": "If there's fee - is it fixed, or in percentage?",
+              "options": {
+                "percentage": "Percentage",
+                "fixed": "Fixed"
+              }
+            }
+          }
+        }
+      }
+    },
+    "accounts": {
+      "sections": {
+        "general": {
+          "name": "General",
+          "fields": {
+            "name": {
+              "label": "Account Name",
+              "helperText": "Name of Account"
+            },
+            "balance": {
+              "label": "Balance",
+              "helperText": "Current Balance"
+            },
+            "currency": {
+              "label": "Currency",
+              "helperText": "In which currency?",
+              "options": {
+                "USD": "US Dollars",
+                "EUR": "European Euro",
+                "UAH": "Ukrainian Hryvna"
+              }
+            }
+          }
+        },
+        "iconSelection": {
+          "name": "Icon Selection",
+          "fields": {
+            "iconSelection": {
+              "label": "Icon",
+              "helperText": "Select icon, which would be displayed for this income source"
+            }
+          }
+        },
+        "advanced": {
+          "name": "Advanced",
+          "description": "Advanced configuration for Account",
+          "fields": {
+            "payoutPriority": {
+              "label": "Payout Priority",
+              "helperText": "If this is debt account - how it is important to payout it first prior to others?(from 1 to 10)"
+            },
+            "requiredPayment": {
+              "label": "Required Payment",
+              "helperText": "How much do you need to payout this debt regulary (like bank credit)? Leave 0 if no required payment per some period, or put whole debt amount if you need to pay it via single payment."
+            },
+            "requiredPaymentFrequency": {
+              "label": "Required Payment Frequency",
+              "helperText": "How frequent you need to pay your required payment?",
+              "options": {
+                "daily": "Per working day",
+                "weekly": "Per week",
+                "montly": "Per month",
+                "yearly": "Per year",
+                "once": "One-time payment"
+              }
+            },
+            "limit": {
+              "label": "Debt limit",
+              "helperText": "For some debit cards/accounts - there is possible debt limit."
+            },
+            "fee": {
+              "label": "Debt Limit Fee",
+              "helperText": "If there is fee for debt limit usage - how much it is?"
+            },
+            "debtFeeType": {
+              "label": "Fee Type",
+              "helperText": "If there's fee for debt limit - is it fixed, or in percentage?",
+              "options": {
+                "percentage": "Percentage",
+                "fixed": "Fixed"
+              }
+            },
+            "feeFrequency": {
+              "label": "Fee charging frequency",
+              "helperText": "How frequent you will be charged for debt limit usage?",
+              "options": {
+                "daily": "Per working day",
+                "weekly": "Per week",
+                "montly": "Per month",
+                "yearly": "Per year",
+                "once": "One-time fee"
+              }
+            },
+            "limitFreeUsageDays": {
+              "label": "Free days",
+              "helperText": "How long you can use this debt limit for free?",
+              "options": {
+                "noFreeUsage": "No free usage",
+                "daily": "A day",
+                "weekly": "A week",
+                "montly": "A month",
+                "yearly": "A year",
+                "always": "It's always for free"
+              }
+            }
+          }
+        }
+      }
+    },
+    "spendings": {
+      "sections": {
+        "general": {
+          "name": "General",
+          "fields": {
+            "name": {
+              "label": "Category",
+              "helperText": "Name of Spending Category",
+              "value": "Goods"
+            },
+            "expectedAmount": {
+              "label": "Amount",
+              "helperText": "Expected Amount of Spendings for this Category"
+            },
+            "currency": {
+              "label": "Currency",
+              "helperText": "In which currency?",
+              "options": {
+                "USD": "US Dollars",
+                "EUR": "European Euro",
+                "UAH": "Ukrainian Hryvna"
+              }
+            },
+            "frequency": {
+              "label": "Frequency",
+              "helperText": "What is the frequency of updating expected amount of spending for this category? (I.e. how much in **which period** you want to spend?)",
+              "options": {
+                "daily": "Per working day",
+                "weekly": "Per week",
+                "montly": "Per month",
+                "yearly": "Per year",
+                "once": "One-time income"
+              }
+            }
+          }
+        },
+        "iconSelection": {
+          "name": "Icon Selection",
+          "fields": {
+            "iconSelection": {
+              "label": "Icon",
+              "helperText": "Select icon, which would be displayed for this income source"
+            }
+          }
+        },
+        "advanced": {
+          "name": "Advanced",
+          "description": "Advanced configuration for Spending Category",
+          "fields": {
+            "isMandatory": {
+              "label": "Mandatory spending",
+              "helperText": "Off this box, if this spending category not mandatory (i.e. you can omit this type of spendings for a while)."
+            },
+            "reducingAmount": {
+              "label": "Possible Reducing",
+              "helperText": "If it is possible to reduce this spending - put possible reducing amount, so we can calculate your financial plan with possible reducing options."
+            },
+            "isMandatoryStateExpiration": {
+              "label": "Removal Time",
+              "helperText": "After which period of time you can remove this spending category?",
+              "options": {
+                "daily": "Per working day",
+                "weekly": "Per week",
+                "montly": "Per month",
+                "yearly": "Per year",
+                "once": "One-time spending",
+                "always": "This spending always mandatory"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -1,5 +1,41 @@
 {
   "totalIncome": "Total Income",
   "currentBalance": "Current Balance",
-  "totalSpendings": "Total Spendings"
+  "totalSpendings": "Total Spendings",
+  "entityParts": {
+    "incomes": "Source of Income",
+    "accounts": "Accounts",
+    "spendings": "Spending Categories"
+  },
+  "form": {
+    "createTitle": "Create new {{entityPart}}",
+    "editTitle": "Edit {{itemName}}",
+    "createButtonText": "Submit",
+    "editButtonText": "Save",
+    "deleteButtonText": "Delete",
+    "sections": {
+      "general": {
+        "name": "General",
+        "fields": {
+          "name": {
+            "label": "Source",
+            "helperText": "Name of Source of Income"
+          },
+          "expectedAmount": {
+            "label": "Amount",
+            "helperText": "Expected Amount of Income"
+          },
+          "currency": {
+            "label": "Currency",
+            "helperText": "In which currency?"
+          },
+          "frequency": {
+            "label": "",
+            "helperText": ""
+          }
+        }
+      },
+      "": ""
+    }
+  }
 }

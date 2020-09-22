@@ -18,7 +18,8 @@ function FinPlanDashboard() {
     handleDelete,
     finHealth,
     totalFinancialGoalsPrice,
-    t
+    t,
+    defaultCurrency
   } = useFinPlanDashboard();
   return (
     <Dashboard
