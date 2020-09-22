@@ -89,6 +89,7 @@
           "fields": {
             "name": {
               "label": "Account Name",
+              "value": "Wallet",
               "helperText": "Name of Account"
             },
             "balance": {

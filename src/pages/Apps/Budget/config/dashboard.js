@@ -217,24 +217,34 @@ function createBudgetDashbaordConfig(t) {
         formName: "budget-accounts",
         sections: [
           {
-            name: "General",
+            name: t("budget:form.accounts.sections.general.name"),
             fields: [
               {
                 type: "string",
                 name: "name",
                 required: true,
-                label: "Account Name",
-                value: "Wallet",
+                label: t(
+                  "budget:form.accounts.sections.general.fields.name.label"
+                ),
+                value: t(
+                  "budget:form.accounts.sections.general.fields.name.value"
+                ),
                 variant: "outlined",
-                helperText: "Name of Account",
+                helperText: t(
+                  "budget:form.accounts.sections.general.fields.name.helperText"
+                ),
                 fullWidth: true
               },
               {
                 type: "number",
                 name: "balance",
                 required: true,
-                label: "Balance",
-                helperText: "Current Balance",
+                label: t(
+                  "budget:form.accounts.sections.general.fields.balance.label"
+                ),
+                helperText: t(
+                  "budget:form.accounts.sections.general.fields.balance.label"
+                ),
                 value: "1000.00",
                 variant: "outlined",
                 fullWidth: true
@@ -243,42 +253,74 @@ function createBudgetDashbaordConfig(t) {
                 type: "autocomplete",
                 name: "currency",
                 required: true,
-                label: "Currency",
-                helperText: "In which currency?",
-                value: { label: "US Dollars", value: "USD" },
+                label: t(
+                  "budget:form.accounts.sections.general.fields.currency.label"
+                ),
+                helperText: t(
+                  "budget:form.accounts.sections.general.fields.currency.helperText"
+                ),
+                value: {
+                  label: t(
+                    "budget:form.accounts.sections.general.fields.currency.options.USD"
+                  ),
+                  value: "USD"
+                },
                 options: [
-                  { label: "US Dollars", value: "USD" },
-                  { label: "European Euro", value: "EUR" },
-                  { label: "Ukrainian Hryvna", value: "UAH" }
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.general.fields.currency.options.USD"
+                    ),
+                    value: "USD"
+                  },
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.general.fields.currency.options.EUR"
+                    ),
+                    value: "EUR"
+                  },
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.general.fields.currency.options.UAH"
+                    ),
+                    value: "UAH"
+                  }
                 ]
               }
             ]
           },
           {
-            name: "Icon Selection",
+            name: t("budget:form.accounts.sections.iconSelection.name"),
             fields: [
               {
                 type: "iconSelection",
                 name: "icon",
                 required: false,
-                label: "Icon",
-                helperText:
-                  "Select icon, which would be displayed for this account",
+                label: t(
+                  "budget:form.accounts.sections.iconSelection.fields.iconSelection.label"
+                ),
+                helperText: t(
+                  "budget:form.accounts.sections.iconSelection.fields.iconSelection.helperText"
+                ),
                 value: "AccountBalanceWallet"
               }
             ]
           },
           {
-            name: "Advanced",
-            description: "Advanced configuration for Account",
+            name: t("budget:form.accounts.sections.advanced.name"),
+            description: t(
+              "budget:form.accounts.sections.advanced.description"
+            ),
             fields: [
               {
                 type: "number",
                 name: "payoutPriority",
                 required: false,
-                label: "Payout priority",
-                helperText:
-                  "If this is debt account - how it is important to payout it first prior to others?(from 1 to 10)",
+                label: t(
+                  "budget:form.accounts.sections.advanced.fields.payoutPriority.label"
+                ),
+                helperText: t(
+                  "budget:form.accounts.sections.advanced.fields.payoutPriority.helperText"
+                ),
                 value: "1",
                 variant: "outlined",
                 fullWidth: true
@@ -287,9 +329,12 @@ function createBudgetDashbaordConfig(t) {
                 type: "number",
                 name: "requiredPayment",
                 required: false,
-                label: "Required payment",
-                helperText:
-                  "How much do you need to payout this debt regulary (like bank credit)? Leave 0 if no required payment per some period, or put whole debt amount if you need to pay it via single payment.",
+                label: t(
+                  "budget:form.accounts.sections.advanced.fields.requiredPayment.label"
+                ),
+                helperText: t(
+                  "budget:form.accounts.sections.advanced.fields.payoutPriority.helperText"
+                ),
                 value: "0",
                 variant: "outlined",
                 fullWidth: true
@@ -298,25 +343,61 @@ function createBudgetDashbaordConfig(t) {
                 type: "autocomplete",
                 name: "requiredPaymentFrequency",
                 required: false,
-                label: "Required Payment Frequency",
-                helperText:
-                  "How frequent you need to pay your required payment?",
+                label: t(
+                  "budget:form.accounts.sections.advanced.fields.requiredPaymentFrequency.label"
+                ),
+                helperText: t(
+                  "budget:form.accounts.sections.advanced.fields.requiredPaymentFrequency.helperText"
+                ),
                 options: [
-                  { label: "Per working day", value: "daily" },
-                  { label: "Per week", value: "weekly" },
-                  { label: "Per month", value: "montly" },
-                  { label: "Per year", value: "yearly" },
-                  { label: "One-time payout", value: "once" }
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.advanced.fields.requiredPaymentFrequency.options.daily"
+                    ),
+                    value: "daily"
+                  },
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.advanced.fields.requiredPaymentFrequency.options.weekly"
+                    ),
+                    value: "weekly"
+                  },
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.advanced.fields.requiredPaymentFrequency.options.montly"
+                    ),
+                    value: "montly"
+                  },
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.advanced.fields.requiredPaymentFrequency.options.yearly"
+                    ),
+                    value: "yearly"
+                  },
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.advanced.fields.requiredPaymentFrequency.options.once"
+                    ),
+                    value: "once"
+                  }
                 ],
-                value: { label: "One-time payout", value: "once" }
+                value: {
+                  label: t(
+                    "budget:form.accounts.sections.advanced.fields.requiredPaymentFrequency.options.montly"
+                  ),
+                  value: "monthly"
+                }
               },
               {
                 type: "number",
                 name: "limit",
                 required: false,
-                label: "Debt Limit",
-                helperText:
-                  "For some debit cards/accounts - there is possible debt limit.",
+                label: t(
+                  "budget:form.accounts.sections.advanced.fields.limit.label"
+                ),
+                helperText: t(
+                  "budget:form.accounts.sections.advanced.fields.limit.helperText"
+                ),
                 value: "0",
                 variant: "outlined",
                 fullWidth: true
@@ -325,9 +406,12 @@ function createBudgetDashbaordConfig(t) {
                 type: "number",
                 name: "fee",
                 required: false,
-                label: "Debt Limit Fee",
-                helperText:
-                  "If there is fee for debt limit usage - how much it is?",
+                label: t(
+                  "budget:form.accounts.sections.advanced.fields.fee.label"
+                ),
+                helperText: t(
+                  "budget:form.accounts.sections.advanced.fields.fee.helperText"
+                ),
                 value: "0",
                 variant: "outlined",
                 fullWidth: true
@@ -336,48 +420,130 @@ function createBudgetDashbaordConfig(t) {
                 type: "autocomplete",
                 name: "debtFeeType",
                 required: false,
-                label: "Fee Type",
-                helperText:
-                  "If there's fee for debt limit - is it fixed, or in percentage?",
-                value: { label: "%", value: "%" },
+                label: t(
+                  "budget:form.accounts.sections.advanced.fields.debtFeeType.label"
+                ),
+                helperText: t(
+                  "budget:form.accounts.sections.advanced.fields.debtFeeType.helperText"
+                ),
+                value: {
+                  label: t(
+                    "budget:form.accounts.sections.advanced.fields.debtFeeType.options.percentage"
+                  ),
+                  value: "%"
+                },
                 options: [
-                  { label: "%", value: "%" },
-                  { label: "Fixed", value: "fixed" }
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.advanced.fields.debtFeeType.options.percentage"
+                    ),
+                    value: "%"
+                  },
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.advanced.fields.debtFeeType.options.fixed"
+                    ),
+                    value: "fixed"
+                  }
                 ]
               },
               {
                 type: "autocomplete",
                 name: "feeFrequency",
                 required: false,
-                label: "Frequency",
-                helperText:
-                  "How frequent you will be charged for debt limit usage?",
+                label: t(
+                  "budget:form.accounts.sections.advanced.fields.feeFrequency.label"
+                ),
+                helperText: t(
+                  "budget:form.accounts.sections.advanced.fields.feeFrequency.helperText"
+                ),
                 options: [
-                  { label: "Per working day", value: "daily" },
-                  { label: "Per week", value: "weekly" },
-                  { label: "Per month", value: "montly" },
-                  { label: "Per year", value: "yearly" },
-                  { label: "One-time fee", value: "once" }
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.advanced.fields.feeFrequency.options.daily"
+                    ),
+                    value: "daily"
+                  },
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.advanced.fields.feeFrequency.options.weekly"
+                    ),
+                    value: "weekly"
+                  },
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.advanced.fields.feeFrequency.options.montly"
+                    ),
+                    value: "montly"
+                  },
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.advanced.fields.feeFrequency.options.yearly"
+                    ),
+                    value: "yearly"
+                  },
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.advanced.fields.feeFrequency.options.once"
+                    ),
+                    value: "once"
+                  }
                 ],
-                value: { label: "Per month", value: "montly" }
+                value: {
+                  label: t(
+                    "budget:form.accounts.sections.advanced.fields.feeFrequency.options.montly"
+                  ),
+                  value: "monthly"
+                }
               },
               {
                 type: "autocomplete",
                 name: "limitFreeUsageDays",
                 required: true,
-                label: "Free days",
-                helperText:
-                  "Type amount of days, if there is custom amount of time for free usage",
-                placeholder: "How long you can use debt limit for free?",
+                label: t(
+                  "budget:form.accounts.sections.advanced.fields.limitFreeUsageDays.label"
+                ),
+                helperText: t(
+                  "budget:form.accounts.sections.advanced.fields.limitFreeUsageDays.helperText"
+                ),
                 options: [
-                  { label: "No free usage", value: "noFreeUsage" },
-                  { label: "A day", value: "daily" },
-                  { label: "A week", value: "weekly" },
-                  { label: "A month", value: "montly" },
-                  { label: "A year", value: "yearly" },
-                  { label: "Always", value: "always" }
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.advanced.fields.limitFreeUsageDays.options.daily"
+                    ),
+                    value: "daily"
+                  },
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.advanced.fields.limitFreeUsageDays.options.weekly"
+                    ),
+                    value: "weekly"
+                  },
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.advanced.fields.limitFreeUsageDays.options.montly"
+                    ),
+                    value: "montly"
+                  },
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.advanced.fields.limitFreeUsageDays.options.yearly"
+                    ),
+                    value: "yearly"
+                  },
+                  {
+                    label: t(
+                      "budget:form.accounts.sections.advanced.fields.limitFreeUsageDays.options.always"
+                    ),
+                    value: "once"
+                  }
                 ],
-                value: { label: "A month", value: "montly" }
+                value: {
+                  label: t(
+                    "budget:form.accounts.sections.advanced.fields.limitFreeUsageDays.options.always"
+                  ),
+                  value: "always"
+                }
               }
             ]
           }
@@ -387,24 +553,34 @@ function createBudgetDashbaordConfig(t) {
         formName: "budget-spendings",
         sections: [
           {
-            name: "General",
+            name: t("budget:form.spendings.sections.general.name"),
             fields: [
               {
                 type: "string",
                 name: "name",
                 required: true,
-                label: "Category",
-                value: "Goods",
+                label: t(
+                  "budget:form.spendings.sections.general.fields.name.label"
+                ),
+                value: t(
+                  "budget:form.spendings.sections.general.fields.name.value"
+                ),
                 variant: "outlined",
-                helperText: "Name of Spending Category",
+                helperText: t(
+                  "budget:form.spendings.sections.general.fields.name.helperText"
+                ),
                 fullWidth: true
               },
               {
                 type: "number",
                 name: "expectedAmount",
                 required: true,
-                label: "Amount",
-                helperText: "Expected Amount of Spendings for this Category",
+                label: t(
+                  "budget:form.spendings.sections.general.fields.expectedAmount.label"
+                ),
+                helperText: t(
+                  "budget:form.spendings.sections.general.fields.expectedAmount.helperText"
+                ),
                 value: "1000.00",
                 variant: "outlined",
                 fullWidth: true
@@ -413,88 +589,187 @@ function createBudgetDashbaordConfig(t) {
                 type: "autocomplete",
                 name: "currency",
                 required: true,
-                label: "Currency",
-                helperText: "In which currency?",
-                value: { label: "US Dollars", value: "USD" },
+                label: t(
+                  "budget:form.spendings.sections.general.fields.currency.label"
+                ),
+                helperText: t(
+                  "budget:form.spendings.sections.general.fields.currency.helperText"
+                ),
+                value: {
+                  label: t(
+                    "budget:form.spendings.sections.general.fields.currency.options.USD"
+                  ),
+                  value: "USD"
+                },
                 options: [
-                  { label: "US Dollars", value: "USD" },
-                  { label: "European Euro", value: "EUR" },
-                  { label: "Ukrainian Hryvna", value: "UAH" }
+                  {
+                    label: t(
+                      "budget:form.spendings.sections.general.fields.currency.options.USD"
+                    ),
+                    value: "USD"
+                  },
+                  {
+                    label: t(
+                      "budget:form.spendings.sections.general.fields.currency.options.EUR"
+                    ),
+                    value: "EUR"
+                  },
+                  {
+                    label: t(
+                      "budget:form.spendings.sections.general.fields.currency.options.UAH"
+                    ),
+                    value: "UAH"
+                  }
                 ]
               },
               {
                 type: "autocomplete",
                 name: "frequency",
                 required: true,
-                label: "Frequency",
-                helperText:
-                  "What is the frequency of updating expected amount of spending for this category? (I.e. how much in **which period** you want to spend?",
+                label: t(
+                  "budget:form.spendings.sections.general.fields.frequency.label"
+                ),
+                helperText: t(
+                  "budget:form.spendings.sections.general.fields.frequency.helperText"
+                ),
                 options: [
-                  { label: "Per working day", value: "daily" },
-                  { label: "Per week", value: "weekly" },
-                  { label: "Per month", value: "montly" },
-                  { label: "Per year", value: "yearly" },
-                  { label: "One-time income", value: "once" }
+                  {
+                    label: t(
+                      "budget:form.spendings.sections.general.fields.frequency.options.daily"
+                    ),
+                    value: "daily"
+                  },
+                  {
+                    label: t(
+                      "budget:form.spendings.sections.general.fields.frequency.options.weekly"
+                    ),
+                    value: "weekly"
+                  },
+                  {
+                    label: t(
+                      "budget:form.spendings.sections.general.fields.frequency.options.montly"
+                    ),
+                    value: "montly"
+                  },
+                  {
+                    label: t(
+                      "budget:form.spendings.sections.general.fields.frequency.options.yearly"
+                    ),
+                    value: "yearly"
+                  },
+                  {
+                    label: t(
+                      "budget:form.spendings.sections.general.fields.frequency.options.once"
+                    ),
+                    value: "once"
+                  }
                 ],
-                value: { label: "Per month", value: "montly" }
+                value: {
+                  label: t(
+                    "budget:form.spendings.sections.general.fields.frequency.options.montly"
+                  ),
+                  value: "montly"
+                }
               }
             ]
           },
           {
-            name: "Icon Selection",
+            name: t("budget:form.spendings.sections.iconSelection.name"),
             fields: [
               {
                 type: "iconSelection",
                 name: "icon",
                 required: false,
-                label: "Icon",
-                helperText:
-                  "Select icon, which would be displayed for this spending category",
+                label: t(
+                  "budget:form.spendings.sections.iconSelection.fields.iconSelection.label"
+                ),
+                helperText: t(
+                  "budget:form.spendings.sections.iconSelection.fields.iconSelection.helperText"
+                ),
                 value: "Shop"
               }
             ]
           },
           {
-            name: "Advanced",
-            description: "Advanced configuration for this Spending Category",
+            name: t("budget:form.spendings.sections.advanced.name"),
+            description: t(
+              "budget:form.spendings.sections.advanced.description"
+            ),
             fields: [
               {
                 type: "checkbox",
                 name: "isMandatory",
                 required: false,
-                label: "Mandatory spending",
+                label: t(
+                  "budget:form.spendings.sections.advanced.fields.isMandatory.label"
+                ),
                 value: "isMandatory",
-                helperText:
-                  "Off this box, if this spending category not mandatory (i.e. you can omit this type of spendings for a while).",
+                helperText: t(
+                  "budget:form.spendings.sections.advanced.fields.isMandatory.helperText"
+                ),
                 checked: true
               },
               {
                 type: "number",
                 name: "reducingAmount",
                 required: false,
-                label: "Possible reducing",
+                label: t(
+                  "budget:form.spendings.sections.advanced.fields.reducingAmount.label"
+                ),
                 value: 0,
-                helperText:
-                  "If it is possible to reduce this spending - put possible reducing amount, so we can calculate your financial plan with possible reducing options.",
+                helperText: t(
+                  "budget:form.spendings.sections.advanced.fields.reducingAmount.helperText"
+                ),
                 checked: true
               },
               {
                 type: "autocomplete",
                 name: "isMandatoryStateExpiration",
                 required: false,
-                label: "Removal time",
-                helperText:
-                  "After which period of time you can remove this spending category?",
-                placeholder: "95 days",
+                label: t(
+                  "budget:form.spendings.sections.advanced.fields.isMandatoryStateExpiration.label"
+                ),
+                helperText: t(
+                  "budget:form.spendings.sections.advanced.fields.isMandatoryStateExpiration.helperText"
+                ),
                 options: [
-                  { label: "After a day", value: "daily" },
-                  { label: "After a week", value: "weekly" },
-                  { label: "After a month", value: "montly" },
-                  { label: "After a year", value: "yearly" },
-                  { label: "One-time spending", value: "once" },
-                  { label: "Always mandatory", value: "always" }
+                  {
+                    label: t(
+                      "budget:form.spendings.sections.advanced.fields.isMandatoryStateExpiration.options.daily"
+                    ),
+                    value: "daily"
+                  },
+                  {
+                    label: t(
+                      "budget:form.spendings.sections.advanced.fields.isMandatoryStateExpiration.options.weekly"
+                    ),
+                    value: "weekly"
+                  },
+                  {
+                    label: t(
+                      "budget:form.spendings.sections.advanced.fields.isMandatoryStateExpiration.options.montly"
+                    ),
+                    value: "montly"
+                  },
+                  {
+                    label: t(
+                      "budget:form.spendings.sections.advanced.fields.isMandatoryStateExpiration.options.yearly"
+                    ),
+                    value: "yearly"
+                  },
+                  {
+                    label: t(
+                      "budget:form.spendings.sections.advanced.fields.isMandatoryStateExpiration.options.always"
+                    ),
+                    value: "once"
+                  }
                 ],
-                value: { label: "Always mandatory", value: "always" }
+                value: {
+                  label: t(
+                    "budget:form.spendings.sections.advanced.fields.isMandatoryStateExpiration.options.always"
+                  ),
+                  value: "always"
+                }
               }
             ]
           }
