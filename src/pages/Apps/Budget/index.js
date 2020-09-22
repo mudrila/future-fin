@@ -29,6 +29,7 @@ function BudgetDashboard() {
       normalizeFormData={true}
       onEdit={handleEdit}
       onDelete={handleDelete}
+      dashboardTitle={t("budget:dashboardTitle")}
       subHeader={
         <Grid container justify="center">
           <Grid container item xs={1} className={classes.subHeadingItem}>

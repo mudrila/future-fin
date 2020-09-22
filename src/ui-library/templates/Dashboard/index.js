@@ -27,7 +27,8 @@ export default function Dashboard({
   onEdit,
   childrenPositioning,
   children,
-  subHeader
+  subHeader,
+  dashboardTitle
 }) {
   const {
     createModalsState,
@@ -53,7 +54,7 @@ export default function Dashboard({
   return (
     <section className={classes.root}>
       <Typography variant="h4" className={classes.heading} align="center">
-        {capitalizeString(entityName)} Dashboard
+        {dashboardTitle}
       </Typography>
       {subHeader}
       <Divider className={classes.divider} />
@@ -100,10 +101,9 @@ export default function Dashboard({
                         item: formValues
                       })
                     }
-                    title={t(
-                      `${entityName}:form.edit.title${entityPart.name}`,
-                      { itemName: item.name }
-                    )}
+                    title={t(`${entityName}:form.editTitle`, {
+                      itemName: item.name
+                    })}
                     sectionsSplitting={true}
                   />
                 </Fragment>
@@ -133,7 +133,7 @@ export default function Dashboard({
               onSubmit={(formValues) =>
                 handleSubmit(entityPart.name, formValues)
               }
-              title={entityPart.createTitle}
+              title={entityPart.modalTitle}
               sectionsSplitting={true}
             />
           </section>
@@ -158,5 +158,6 @@ Dashboard.propTypes = {
   onEdit: PropTypes.func.isRequired,
   childrenPositioning: PropTypes.oneOf(["top", "bottom"]),
   children: PropTypes.node,
-  subHeader: PropTypes.oneOfType([PropTypes.node, PropTypes.string])
+  subHeader: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+  dashboardTitle: PropTypes.string
 };
