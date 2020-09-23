@@ -1,3 +1,66 @@
 {
-  "totalGoals": "Total Goals Price"
+  "totalGoals": "Gesamtzielpreis",
+  "entityParts": {
+    "goals": "Finanzielle Ziele"
+  },
+  "dashboardTitle": "Finanzplanübersicht",
+  "form": {
+    "createTitle": {
+      "goals": "Neues Finanzziel erstellen"
+    },
+    "editTitle": "Bearbeiten {{itemName}}",
+    "createButtonText": "Einreichen",
+    "editButtonText": "Sparen",
+    "deleteButtonText": "Löschen",
+    "goals": {
+      "sections": {
+        "general": {
+          "name": "Allgemeines",
+          "fields": {
+            "name": {
+              "label": "Zielname",
+              "value": "Neues Haus",
+              "helperText": "Name des finanziellen Ziels"
+            },
+            "expectedAmount": {
+              "label": "Kosten",
+              "helperText": "Ein durchschnittlicher Aufwand für dieses finanzielle Ziel"
+            },
+            "currency": {
+              "label": "Währung",
+              "helperText": "In welcher Währung?",
+              "options": {
+                "USD": "US Dollar",
+                "EUR": "Europäischer Euro",
+                "UAH": "Ukrainische Griwna"
+              }
+            },
+            "deadline": {
+              "label": "Frist",
+              "helperText": "Bis zu welchem ​​Datum möchten Sie dieses finanzielle Ziel erreichen?"
+            }
+          }
+        },
+        "iconSelection": {
+          "name": "Symbolauswahl",
+          "fields": {
+            "iconSelection": {
+              "label": "Symbol",
+              "helperText": "Wählen Sie das Symbol aus, das für dieses finanzielle Ziel angezeigt werden soll"
+            }
+          }
+        },
+        "advanced": {
+          "name": "Fortgeschrittene",
+          "description": "Erweiterte Konfiguration für Financial Goal",
+          "fields": {
+            "payoutPriority": {
+              "label": "Priorität",
+              "helperText": "Tipp - Es wird das gleiche Prioritätsranking wie Schulden verwendet. Eine höhere Leistungspriorität bedeutet also, dass Sie dieses finanzielle Ziel früher erreichen möchten, als die Schulden zu begleichen"
+            }
+          }
+        }
+      }
+    }
+  }
 }

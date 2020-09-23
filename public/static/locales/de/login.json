@@ -1,22 +1,22 @@
 {
   "form": {
-    "title": "Login",
+    "title": "Anmeldung",
     "serverErrors": {
-      "wrongEmailOrPassword": "Wrong email or password!"
+      "wrongEmailOrPassword": "Falsche Email oder Passwort!"
     },
     "fields": {
       "email": {
-        "label": "Your email",
+        "label": "Deine E-Mail",
         "placeholder": "admin@example.com",
-        "helperText": "Email used during Sign Up"
+        "helperText": "E-Mail, die bei der Anmeldung verwendet wird"
       },
       "password": {
-        "label": "Your password",
-        "helperText": "Password used during Sign Up",
+        "label": "Ihr Passwort",
+        "helperText": "Passwort bei der Anmeldung verwendet",
         "placeholder": "********",
         "errorMessage": {
-          "toShortPassword": "This password is to short! It must be at least 8 characters.",
-          "toWeakPassword": "This password is to weak! You need to use 1 capital character, 1 lowercase character, 1 number, and 1 special symbol."
+          "toShortPassword": "Dieses Passwort ist zu kurz! Es müssen mindestens 8 Zeichen sein.",
+          "toWeakPassword": "Dieses Passwort ist zu schwach! Sie müssen 1 Großbuchstabe, 1 Kleinbuchstabe, 1 Zahl und 1 Sonderzeichen verwenden."
         }
       }
     }

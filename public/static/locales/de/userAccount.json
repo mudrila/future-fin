@@ -1,33 +1,33 @@
 {
   "form": {
-    "submitButtonText": "Update Account",
-    "deleteButtonText": "Delete Account",
-    "deleteAccountSuccessMessage": "Sad to see you're going away :( We would pray to have you as our user later on!!!",
-    "logoutSuccessMessage": "Successfully logged out! See ya later ;)",
+    "submitButtonText": "Konto aktualisieren",
+    "deleteButtonText": "Konto löschen",
+    "deleteAccountSuccessMessage": "Traurig zu sehen, dass du weggehst :( Wir würden beten, dich später als unseren Benutzer zu haben !!!",
+    "logoutSuccessMessage": "Erfolgreich abgemeldet! Bis später ;)",
     "fields": {
       "name": {
-        "label": "Your name",
-        "placeholder": "John Doe"
+        "label": "Dein Name",
+        "placeholder": "Max Mustermann"
       },
       "email": {
-        "label": "Your email",
-        "placeholder": "john.doe@example.com"
+        "label": "Deine E-Mail",
+        "placeholder": "max.mustermann@example.com"
       },
       "password": {
-        "label": "New Password",
+        "label": "Neues Kennwort",
         "placeholder": "********"
       },
       "country": {
-        "label": "Country",
-        "helperText": "What is your country?"
+        "label": "Land",
+        "helperText": "Was ist dein Land?"
       },
       "hasLifeInsurance": {
-        "label": "Life Insurance",
-        "helperText": "Do you have life insurance? We need to know in order to better indicate your financial health"
+        "label": "Lebensversicherung",
+        "helperText": "Haben Sie eine Lebensversicherung? Wir müssen es wissen, um Ihre finanzielle Gesundheit besser anzeigen zu können"
       },
       "hasMedicalInsurance": {
-        "label": "Medical Insurace",
-        "helperText": "Do you have medical insurance? We need it for same purpose as life insurance knowledge."
+        "label": "Krankenversicherung",
+        "helperText": "Haben Sie eine Krankenversicherung? Wir brauchen es für den gleichen Zweck wie das Wissen über Lebensversicherungen."
       }
     }
   }

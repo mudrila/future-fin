@@ -1,14 +1,14 @@
 {
   "header": "FutureFin | Builder für Finanzpläne",
-  "profile": "Profile",
-  "account": "My Account",
-  "appSettings": "App Settings",
-  "logout": "Logout",
-  "login": "Login",
-  "sign_up": "Sign Up",
-  "home": "Home",
-  "apps": "Apps Dashboard",
-  "budget": "Budget Overview",
-  "finplan": "FinPlan Overview",
-  "finplan_schedule": "FinPlan Schedule"
+  "profile": "Profil",
+  "account": "Mein Konto",
+  "appSettings": "App Einstellungen",
+  "logout": "Ausloggen",
+  "login": "Anmeldung",
+  "sign_up": "Anmelden",
+  "home": "Startseite",
+  "apps": "Apps-Dashboard",
+  "budget": "Budgetübersicht",
+  "finplan": "FinPlan Übersicht",
+  "finplan_schedule": "FinPlan-Zeitplan"
 }

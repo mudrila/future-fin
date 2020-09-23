@@ -1,23 +1,23 @@
 {
-  "header": "Your Financial Health Indication",
+  "header": "Ihre finanzielle Gesundheitsanzeige",
   "incomesVsSpendings": {
-    "name": "Incomes > Spendings",
-    "description": "Your total income should be higher than your total spendings + required payments"
+    "name": "Einkommen> Ausgaben",
+    "description": "Ihr Gesamteinkommen sollte höher sein als Ihre Gesamtausgaben + erforderlichen Zahlungen"
   },
   "positiveBalance": {
-    "name": "Positive Balance",
-    "description": "Counting all your savings, budget accounts and debts - your balance should be positive"
+    "name": "Positives Gleichgewicht",
+    "description": "Wenn Sie alle Ihre Ersparnisse, Budgetkonten und Schulden zählen, sollte Ihr Saldo positiv sein"
   },
   "savings": {
-    "name": "Significant Savings",
-    "description": "You should have your 3-6 months total expenses in savings. In other words - if you will lost all your sources of income - you should be able to live 3-6 months with no impact on your normal life at all."
+    "name": "Erhebliche Einsparungen",
+    "description": "Sie sollten Ihre 3-6 Monate Gesamtkosten in Einsparungen haben. Mit anderen Worten - wenn Sie alle Ihre Einkommensquellen verlieren - sollten Sie in der Lage sein, 3-6 Monate zu leben, ohne dass dies Auswirkungen auf Ihr normales Leben hat."
   },
   "investmentAssets": {
-    "name": "Long-term Investment Assets",
-    "description": "You should have investment assets with long-term plans with total cost of at least your 3 months income."
+    "name": "Langfristiges Anlagevermögen",
+    "description": "Sie sollten über ein Anlagevermögen mit langfristigen Plänen mit Gesamtkosten von mindestens Ihrem 3-Monats-Einkommen verfügen."
   },
   "insurance": {
-    "name": "Life & Medical Insurance",
-    "description": "You should have insurance for medical and life-taking accidents in order to protect yourself and your family from being impacted by health problems."
+    "name": "Lebens- und Krankenversicherung",
+    "description": "Sie sollten eine Versicherung für medizinische und lebensbedrohliche Unfälle haben, um sich und Ihre Familie vor gesundheitlichen Problemen zu schützen."
   }
 }
