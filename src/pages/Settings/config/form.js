@@ -2,18 +2,20 @@ export default function createFormConfig({
   defaultCurrency,
   defaultLanguage,
   financialProfileAllocation,
-  financialProfileAllocationInputClassName
+  financialProfileAllocationInputClassName,
+  t
 }) {
   const currencyOptions = [
-    { label: "US Dollars", value: "USD" },
-    { label: "European Euro", value: "EUR" },
-    { label: "Ukrainian Hryvna", value: "UAH" }
+    { label: t("appSettings:currencyOptions.USD"), value: "USD" },
+    { label: t("appSettings:currencyOptions.EUR"), value: "EUR" },
+    { label: t("appSettings:currencyOptions.UAH"), value: "UAH" }
   ];
   const languageOptions = [
-    { label: "English", value: "en" },
-    { label: "French", value: "fr" },
-    { label: "Ukrainian", value: "ua" },
-    { label: "Russian", value: "ru" }
+    { label: t("appSettings:languageOptions.en"), value: "en" },
+    { label: t("appSettings:languageOptions.fr"), value: "fr" },
+    { label: t("appSettings:languageOptions.de"), value: "de" },
+    { label: t("appSettings:languageOptions.ua"), value: "ua" },
+    { label: t("appSettings:languageOptions.ru"), value: "ru" }
   ];
   const defaultLanguageValue = languageOptions.find(
     (language) => language.value === defaultLanguage
@@ -28,9 +30,8 @@ export default function createFormConfig({
         type: "autocomplete",
         name: "defaultCurrency",
         required: true,
-        label: "Default Currency",
-        helperText:
-          "In which currency you want to see countings, totals and so on?",
+        label: t("appSettings:form.fields.defaultCurrency.label"),
+        helperText: t("appSettings:form.fields.defaultCurrency.helperText"),
         value: defaultCurrencyValue,
         options: currencyOptions,
         fullWidth: true
@@ -39,9 +40,8 @@ export default function createFormConfig({
         type: "autocomplete",
         name: "defaultLanguage",
         required: true,
-        label: "Default Language",
-        helperText:
-          "What is your default language for news, push notifications, app translation?",
+        label: t("appSettings:form.fields.defaultLanguage.label"),
+        helperText: t("appSettings:form.fields.defaultLanguage.label"),
         value: defaultLanguageValue,
         options: languageOptions,
         fullWidth: true
@@ -50,9 +50,12 @@ export default function createFormConfig({
         type: "number",
         name: "financialProfileAllocationSavings",
         required: true,
-        label: "Savings Allocation %",
-        helperText:
-          "How much of your 'free' money you want to put on build your significant savings? Would be passed to debts, if you already have enough savings.",
+        label: t(
+          "appSettings:form.fields.financialProfileAllocationSavings.label"
+        ),
+        helperText: t(
+          "appSettings:form.fields.financialProfileAllocationSavings.helperText"
+        ),
         value: financialProfileAllocation.savings,
         variant: "outlined",
         fullWidth: false,
@@ -64,9 +67,12 @@ export default function createFormConfig({
         type: "number",
         name: "financialProfileAllocationDebts",
         required: true,
-        label: "Debts Allocation %",
-        helperText:
-          "How much (in %) of your 'free' money you want to put on debts payout? Would be passed to either savings (if not enough), or to investmens (if enough savings)if you have no debts/credits.",
+        label: t(
+          "appSettings:form.fields.financialProfileAllocationDebts.label"
+        ),
+        helperText: t(
+          "appSettings:form.fields.financialProfileAllocationDebts.helperText"
+        ),
         value: financialProfileAllocation.debtsPayout,
         variant: "outlined",
         fullWidth: false,
@@ -78,9 +84,12 @@ export default function createFormConfig({
         type: "number",
         name: "financialProfileAllocationInvestments",
         required: true,
-        label: "Investments Allocation %",
-        helperText:
-          "How much(in %)  of your 'free' money you want to put on investments?",
+        label: t(
+          "appSettings:form.fields.financialProfileAllocationInvestments.label"
+        ),
+        helperText: t(
+          "appSettings:form.fields.financialProfileAllocationInvestments.helperText"
+        ),
         value: financialProfileAllocation.investments,
         variant: "outlined",
         fullWidth: false,

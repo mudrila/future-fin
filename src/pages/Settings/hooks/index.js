@@ -6,9 +6,12 @@ import createFormConfig from "../config/form";
 import { appSettingsSelector } from "../redux/selectors";
 import { appSettingsActionCreators } from "../redux/actions";
 
+import { useTranslation, i18n } from "../../../i18n";
+
 export default function useSettingsPage({
   financialProfileAllocationInputClassName
 }) {
+  const { t } = useTranslation();
   const appSettings = useSelector(appSettingsSelector);
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
@@ -21,7 +24,8 @@ export default function useSettingsPage({
     defaultLanguage,
     defaultCurrency,
     financialProfileAllocation,
-    financialProfileAllocationInputClassName
+    financialProfileAllocationInputClassName,
+    t
   });
 
   function handleSubmit({
@@ -44,6 +48,7 @@ export default function useSettingsPage({
       enqueueSnackbar
     );
     dispatch(updateSettingsAction);
+    i18n.changeLanguage(defaultLanguage.value);
   }
 
   useEffect(() => {
@@ -53,5 +58,5 @@ export default function useSettingsPage({
     );
     dispatch(loadAppSettingsAction);
   }, []);
-  return { ...appSettings, formConfig, handleSubmit };
+  return { ...appSettings, formConfig, handleSubmit, t };
 }

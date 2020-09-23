@@ -5,7 +5,7 @@ import useStyles from "./styles";
 
 export default function SettingsPage() {
   const classes = useStyles();
-  const { loading, formConfig, handleSubmit } = useAppSettings({
+  const { loading, formConfig, handleSubmit, t } = useAppSettings({
     financialProfileAllocationInputClassName: classes.numberInput
   });
   return (
@@ -14,7 +14,7 @@ export default function SettingsPage() {
         fields={formConfig.fields}
         formName={formConfig.formName}
         loading={loading}
-        submitButtonText="Update Application Settings"
+        submitButtonText={t("appSettings:form.submitButtonText")}
         onSubmit={handleSubmit}
         formClassName={classes.form}
       />
