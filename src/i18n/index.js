@@ -5,8 +5,8 @@ const NextI18NextInstance = new NextI18Next({
   otherLanguages: ["de", "ru", "ua", "fr"],
   preload: ["de", "ru", "ua", "fr", "en"],
   localePath: path.resolve("./public/static/locales"),
-  browserLanguageDetection: false,
-  serverLanguageDetection: false,
+  browserLanguageDetection: true,
+  serverLanguageDetection: true,
   keySeparator: "."
 });
 
