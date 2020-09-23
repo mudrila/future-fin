@@ -5,6 +5,7 @@ import {
   appSettingsActionCreators
 } from "./actions";
 import { appSettingsRequests } from "./requests";
+import { i18n } from "../../../i18n";
 
 function* getAppSettingsWorker({ enqueueSnackbar }) {
   const loadingAction = appSettingsActionCreators.READ.LOADING();
@@ -15,6 +16,7 @@ function* getAppSettingsWorker({ enqueueSnackbar }) {
       result.appSettings
     );
     yield put(successAction);
+    i18n.changeLanguage(result.appSettings.defaultLanguage);
   } catch (e) {
     const errorAction = appSettingsActionCreators.READ.ERROR();
     enqueueSnackbar(e.message, { variant: "error" });
@@ -31,6 +33,7 @@ function* updateAppSettingsWorker({ payload, enqueueSnackbar }) {
       result.appSettings
     );
     yield put(successAction);
+    i18n.changeLanguage(result.appSettings.defaultLanguage);
   } catch (e) {
     const errorAction = appSettingsActionCreators.UPDATE.ERROR();
     enqueueSnackbar(e.message, { variant: "error" });

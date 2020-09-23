@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { makeStyles } from "@material-ui/core/styles";
 
+import { useTranslation } from "../../../i18n";
 import countries from "./data.json";
 
 // ISO 3166-1 alpha-2
@@ -29,6 +30,7 @@ const useStyles = makeStyles({
 });
 
 export default function CountrySelect({ withPhone, ...props }) {
+  const { t } = useTranslation();
   const classes = useStyles();
 
   return (
@@ -49,7 +51,7 @@ export default function CountrySelect({ withPhone, ...props }) {
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Choose a country"
+          label={t("countrySelector.label")}
           variant="outlined"
           inputProps={{
             ...params.inputProps,

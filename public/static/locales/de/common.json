@@ -1,7 +1,9 @@
 {
-    "documentTitle": "FutureFin | Builder für Finanzpläne",
-    "submit": "Einreichen",
-    "cancel": "Stornieren",
-    "formDialogTitle": "Erstelle neu"
+  "documentTitle": "FutureFin | Builder für Finanzpläne",
+  "submit": "Einreichen",
+  "cancel": "Stornieren",
+  "formDialogTitle": "Erstelle neu",
+  "countrySelector": {
+    "label": "Wähle ein Land"
   }
-  
+}
