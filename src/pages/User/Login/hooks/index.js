@@ -23,11 +23,35 @@ export default function useLogin() {
     dispatch(loginRequest);
   }
 
+  function validateForm(formValues) {
+    const strongRegex = new RegExp(
+      "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])"
+    );
+    const { password } = formValues;
+    let isValid = true;
+    let errors = {};
+    if (strongRegex.test(password)) {
+      if (password.length < 8) {
+        isValid = false;
+        errors["password"] = t(
+          "login:form.fields.password.errorMessage.toShortPassword"
+        );
+      }
+    } else {
+      isValid = false;
+      errors["password"] = t(
+        "login:form.fields.password.errorMessage.toWeakPassword"
+      );
+    }
+    return { isValid, errors };
+  }
+
   return {
     formName,
     fields,
     handleSubmit,
     loading,
-    t
+    t,
+    validateForm
   };
 }

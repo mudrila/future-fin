@@ -19,21 +19,25 @@ export default function Form({
   formName,
   submitButtonText,
   loading = false,
-  formClassName
+  formClassName,
+  validateForm
 }) {
   const classes = useStyles();
   const {
     getComponentByFieldType,
     getInputPropsByField,
     handleSubmit,
-    t
+    t,
+    mappedFields,
+    formValid
   } = useForm({
     fields,
-    onSubmit
+    onSubmit,
+    validateForm
   });
   let translatedSubmitButtonText = submitButtonText || t("submit");
-  function renderFields(fields) {
-    return fields.map((field) => {
+  function renderFields(mappedFields) {
+    return mappedFields.map((field) => {
       const Component = getComponentByFieldType(field.type);
       const inputProps = getInputPropsByField(field);
       return (
@@ -63,13 +67,13 @@ export default function Form({
   }
   return (
     <form name={formName} onSubmit={handleSubmit} className={formClassName}>
-      {sectionsSplitting ? renderSections() : renderFields(fields)}
+      {sectionsSplitting ? renderSections() : renderFields(mappedFields)}
       <Button
         color="primary"
         type="submit"
         variant="contained"
         fullWidth
-        disabled={loading}
+        disabled={loading || !formValid}
       >
         {loading ? <CircularProgress /> : translatedSubmitButtonText}
       </Button>
@@ -104,5 +108,6 @@ Form.propTypes = {
     })
   ),
   submitButtonText: PropTypes.string,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  validateForm: PropTypes.func
 };

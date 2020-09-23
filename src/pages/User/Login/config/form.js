@@ -22,7 +22,8 @@ export default function createFormConfig(t) {
         value: "",
         variant: "outlined",
         helperText: t("login:form.fields.password.helperText"),
-        fullWidth: true
+        fullWidth: true,
+        validateAfterChange: true
       }
     ]
   };

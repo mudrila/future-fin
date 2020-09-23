@@ -6,7 +6,14 @@ import useStyles from "./styles";
 
 export default function SignUpPage() {
   const classes = useStyles();
-  const { handleSubmit, fields, formName, loading, t } = useSignUp();
+  const {
+    handleSubmit,
+    fields,
+    formName,
+    loading,
+    t,
+    validateForm
+  } = useSignUp();
   return (
     <Paper vairant="outlined" className={classes.root}>
       <Typography variant="h5" align="center">
@@ -19,6 +26,7 @@ export default function SignUpPage() {
         normalizeFormData={true}
         onSubmit={handleSubmit}
         loading={loading}
+        validateForm={validateForm}
       />
     </Paper>
   );

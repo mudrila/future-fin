@@ -13,12 +13,17 @@
       "password": {
         "label": "Your password",
         "placeholder": "********",
-        "helperText": "Min 8 characters. 1 Capital char, 1 small char, and 1 number. It should be really strong!!!"
+        "helperText": "Min 8 characters. 1 Capital char, 1 small char, and 1 number. It should be really strong!!!",
+        "errorMessage": {
+          "toShortPassword": "This password is to short! It must be at least 8 characters.",
+          "toWeakPassword": "This password is to weak! You need to use 1 capital character, 1 lowercase character, 1 number, and 1 special symbol."
+        }
       },
       "repeatPassword": {
         "label": "Repeat password",
         "placeholder": "********",
-        "helperText": "Just the same password again, to be sure :)"
+        "helperText": "Just the same password again, to be sure :)",
+        "errorMessage": "Password doesn't match"
       }
     }
   }

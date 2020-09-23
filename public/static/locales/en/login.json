@@ -10,7 +10,11 @@
       "password": {
         "label": "Your password",
         "helperText": "Password used during Sign Up",
-        "placeholder": "********"
+        "placeholder": "********",
+        "errorMessage": {
+          "toShortPassword": "This password is to short! It must be at least 8 characters.",
+          "toWeakPassword": "This password is to weak! You need to use 1 capital character, 1 lowercase character, 1 number, and 1 special symbol."
+        }
       }
     }
   }

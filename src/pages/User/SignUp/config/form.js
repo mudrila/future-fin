@@ -31,7 +31,8 @@ export default function createFormConfig(t) {
         helperText: t("signUp:form.fields.password.helperText"),
         value: "",
         variant: "outlined",
-        fullWidth: true
+        fullWidth: true,
+        validateAfterChange: true
       },
       {
         type: "password",
@@ -42,7 +43,8 @@ export default function createFormConfig(t) {
         helperText: t("signUp:form.fields.repeatPassword.helperText"),
         value: "",
         variant: "outlined",
-        fullWidth: true
+        fullWidth: true,
+        validateAfterChange: true
       }
     ]
   };

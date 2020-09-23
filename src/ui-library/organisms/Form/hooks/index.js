@@ -13,7 +13,7 @@ import {
 
 import { useTranslation } from "../../../../i18n";
 
-export default function useForm({ fields, onSubmit }) {
+export default function useForm({ fields, onSubmit, validateForm }) {
   const initialFormState = {};
   fields.forEach(({ name, value, checked, type }) => {
     if (type === "checkbox") {
@@ -25,6 +25,8 @@ export default function useForm({ fields, onSubmit }) {
 
   const { t } = useTranslation();
   const [formState, setFormState] = useState(initialFormState);
+  const [mappedFields, setMappedFields] = useState(fields);
+  const [formValid, setFormValid] = useState(true);
 
   function getComponentByFieldType(type) {
     switch (type) {
@@ -106,26 +108,34 @@ export default function useForm({ fields, onSubmit }) {
 
   function handleAutocompleteChange(name, value) {
     const targetField = fields.find((field) => name === field.name);
-    setFormState({ ...formState, [name]: value });
+    const newFormState = { ...formState, [name]: value };
+    setFormState(newFormState);
     targetField.onChange && targetField.onChange({ name, value });
+    targetField.validateAfterChange && validateAndRemapFields(newFormState);
   }
   function handleChange(event) {
     const { name, value } = event.target;
     const targetField = fields.find((field) => name === field.name);
-    setFormState({ ...formState, [name]: value });
+    const newFormState = { ...formState, [name]: value };
+    setFormState(newFormState);
     targetField.onChange && targetField.onChange(event);
+    targetField.validateAfterChange && validateAndRemapFields(newFormState);
   }
   function handleDateTimeChange(field) {
     const { name, value } = field;
     const targetField = fields.find((field) => name === field.name);
-    setFormState({ ...formState, [name]: format(value, "yyyy-MM-dd") });
+    const newFormState = { ...formState, [name]: format(value, "yyyy-MM-dd") };
+    setFormState(newFormState);
     targetField.onChange && targetField.onChange(event);
+    targetField.validateAfterChange && validateAndRemapFields(newFormState);
   }
   function handleCheckboxChange(event) {
     const { name, checked } = event.target;
     const targetField = fields.find((field) => name === field.name);
-    setFormState({ ...formState, [name]: checked });
+    const newFormState = { ...formState, [name]: checked };
+    setFormState(newFormState);
     targetField.onChange && targetField.onChange(event);
+    targetField.validateAfterChange && validateAndRemapFields(newFormState);
   }
   function handleIconSelectionChange(event) {
     const iconName = event.currentTarget.getAttribute("title");
@@ -133,10 +143,42 @@ export default function useForm({ fields, onSubmit }) {
     setFormState({ ...formState, [fieldName]: iconName });
   }
 
+  function validateAndRemapFields(newFormState, validCallback) {
+    if (validateForm) {
+      const { isValid, errors } = validateForm(newFormState);
+      if (isValid) {
+        setFormValid(true);
+        const updatedMappedFields = fields.map((field) => ({
+          ...field,
+          error: false,
+          helperText: field.helperText
+        }));
+        setMappedFields(updatedMappedFields);
+        validCallback && validCallback();
+      } else {
+        const updatedMappedFields = fields.map((field) => ({
+          ...field,
+          error: !!Object.keys(errors).find(
+            (fieldName) => fieldName === field.name
+          ),
+          helperText: errors[field.name] || field.helperText
+        }));
+        setMappedFields(updatedMappedFields);
+        setFormValid(false);
+      }
+    } else {
+      // If no validate function provided - just call valid callback
+      validCallback && validCallback();
+    }
+  }
   function handleSubmit(event) {
     event.preventDefault();
-    onSubmit(formState);
-    setFormState(initialFormState);
+    validateAndRemapFields(formState, performSubmit);
+    function performSubmit() {
+      setFormValid(true);
+      onSubmit(formState);
+      setFormState(initialFormState);
+    }
   }
 
   useEffect(() => {
@@ -150,6 +192,8 @@ export default function useForm({ fields, onSubmit }) {
     handleSubmit,
     getInputPropsByField,
     formState,
-    t
+    t,
+    mappedFields,
+    formValid
   };
 }
