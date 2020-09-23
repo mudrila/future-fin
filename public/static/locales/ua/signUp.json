@@ -2,8 +2,9 @@
   "form": {
     "title": "Sign Up",
     "successMessage": "Success! You're registered!",
-    "suchUserExists": "User with such email already exists!",
-
+    "serverErrors": {
+      "suchUserExists": "User with such email already exists!"
+    },
     "fields": {
       "name": {
         "label": "Your name",

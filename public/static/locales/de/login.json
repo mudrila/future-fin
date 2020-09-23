@@ -1,6 +1,9 @@
 {
   "form": {
     "title": "Login",
+    "serverErrors": {
+      "wrongEmailOrPassword": "Wrong email or password!"
+    },
     "fields": {
       "email": {
         "label": "Your email",
