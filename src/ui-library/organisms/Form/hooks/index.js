@@ -11,6 +11,8 @@ import {
   CountrySelector
 } from "../../../";
 
+import { useTranslation } from "../../../../i18n";
+
 export default function useForm({ fields, onSubmit }) {
   const initialFormState = {};
   fields.forEach(({ name, value, checked, type }) => {
@@ -21,6 +23,7 @@ export default function useForm({ fields, onSubmit }) {
     }
   });
 
+  const { t } = useTranslation();
   const [formState, setFormState] = useState(initialFormState);
 
   function getComponentByFieldType(type) {
@@ -146,6 +149,7 @@ export default function useForm({ fields, onSubmit }) {
     handleAutocompleteChange,
     handleSubmit,
     getInputPropsByField,
-    formState
+    formState,
+    t
   };
 }

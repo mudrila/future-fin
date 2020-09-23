@@ -6,11 +6,11 @@ import useStyles from "./styles";
 
 export default function LoginPage() {
   const classes = useStyles();
-  const { handleSubmit, fields, formName, loading } = useLogin();
+  const { handleSubmit, fields, formName, loading, t } = useLogin();
   return (
     <Paper vairant="outlined" className={classes.root}>
       <Typography variant="h5" align="center">
-        Login
+        {t("login:form.title")}
       </Typography>
       <Form
         sectionsSplitting={false}

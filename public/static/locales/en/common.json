@@ -1,3 +1,6 @@
 {
-  "documentTitle": "FutureFin | Financial Plan Builder"
+  "documentTitle": "FutureFin | Financial Plan Builder",
+  "submit": "Submit",
+  "cancel": "Cancel",
+  "formDialogTitle": "Create New"
 }

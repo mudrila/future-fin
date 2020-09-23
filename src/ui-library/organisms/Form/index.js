@@ -17,7 +17,7 @@ export default function Form({
   sectionsSplitting = false,
   sections,
   formName,
-  submitButtonText = "Submit",
+  submitButtonText,
   loading = false,
   formClassName
 }) {
@@ -25,11 +25,13 @@ export default function Form({
   const {
     getComponentByFieldType,
     getInputPropsByField,
-    handleSubmit
+    handleSubmit,
+    t
   } = useForm({
     fields,
     onSubmit
   });
+  let translatedSubmitButtonText = submitButtonText || t("submit");
   function renderFields(fields) {
     return fields.map((field) => {
       const Component = getComponentByFieldType(field.type);
@@ -69,7 +71,7 @@ export default function Form({
         fullWidth
         disabled={loading}
       >
-        {loading ? <CircularProgress /> : submitButtonText}
+        {loading ? <CircularProgress /> : translatedSubmitButtonText}
       </Button>
     </form>
   );

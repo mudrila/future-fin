@@ -22,9 +22,9 @@ import useStyles from "./styles";
 // TODO: Find better way to keep it DRY.
 export default function FormDialog({
   formProps,
-  submitButtonText = "Submit",
-  cancelButtonText = "Cancel",
-  title = "Create new",
+  submitButtonText,
+  cancelButtonText,
+  title,
   contentText,
   open,
   onClose,
@@ -41,12 +41,17 @@ export default function FormDialog({
   const {
     getComponentByFieldType,
     getInputPropsByField,
-    handleSubmit
+    handleSubmit,
+    t
   } = useForm({
     fields,
     onSubmit
   });
   const classes = useStyles();
+
+  const translatedButtonText = submitButtonText || t("submit");
+  const translatedCancelButtonText = cancelButtonText || t("cancel");
+  const translatedTitle = title || t("formDialogTitle");
 
   function renderFields(fields) {
     return fields.map((field) => {
@@ -92,7 +97,7 @@ export default function FormDialog({
   return (
     <>
       <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">{title}</DialogTitle>
+        <DialogTitle id="form-dialog-title">{translatedTitle}</DialogTitle>
         <DialogContent className={classes.dialogRoot}>
           {contentText && <DialogContentText>{contentText}</DialogContentText>}
           <Grid item xs={12}>
@@ -105,7 +110,7 @@ export default function FormDialog({
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose} color="primary" variant="contained">
-            {cancelButtonText}
+            {translatedCancelButtonText}
           </Button>
           <Button
             onClick={handleSubmit}
@@ -113,7 +118,7 @@ export default function FormDialog({
             type="submit"
             variant="contained"
           >
-            {submitButtonText}
+            {translatedButtonText}
           </Button>
         </DialogActions>
       </Dialog>
