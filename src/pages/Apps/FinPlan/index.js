@@ -31,6 +31,7 @@ function FinPlanDashboard() {
       onEdit={handleEdit}
       onDelete={handleDelete}
       childrenPositioning="top"
+      dashboardTitle={t("finPlan:dashboardTitle")}
       subHeader={
         <Grid container justify="center">
           <Grid container item xs={2}>

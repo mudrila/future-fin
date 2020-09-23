@@ -3,7 +3,8 @@ export default function createFinplanDashboardConfig(t) {
     entityParts: [
       {
         name: "goals",
-        modalTitle: t("finPlan:form.createTitle")
+        modalTitle: t("finPlan:form.createTitle.goals"),
+        dashboardSectionTitle: t("finPlan:entityParts.goals")
       }
     ],
     entityName: "finPlan",
