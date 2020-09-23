@@ -4,7 +4,8 @@ import {
   IconSelector,
   SwitchField,
   CheckboxField,
-  CountrySelector
+  CountrySelector,
+  PasswordField
 } from "./molecules";
 import { Form, FormDialog } from "./organisms";
 import { Dashboard } from "./templates";
@@ -18,5 +19,6 @@ export {
   IconSelector,
   SwitchField,
   CheckboxField,
-  CountrySelector
+  CountrySelector,
+  PasswordField
 };

@@ -8,7 +8,8 @@ import {
   IconSelector,
   SwitchField,
   CheckboxField,
-  CountrySelector
+  CountrySelector,
+  PasswordField
 } from "../../../";
 
 import { useTranslation } from "../../../../i18n";
@@ -44,6 +45,8 @@ export default function useForm({ fields, onSubmit, validateForm }) {
         return DatePicker;
       case "countrySelector":
         return CountrySelector;
+      case "password":
+        return PasswordField;
       case "text":
       default:
         return TextField;
