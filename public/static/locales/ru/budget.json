@@ -1,82 +1,82 @@
 {
-  "totalIncome": "Total Income",
-  "currentBalance": "Current Balance",
-  "totalSpendings": "Total Spendings",
+  "totalIncome": "Доходы",
+  "currentBalance": "Текущий Баланс",
+  "totalSpendings": "Расходы",
   "entityParts": {
-    "incomes": "Source of Income",
-    "accounts": "Accounts",
-    "spendings": "Spending Categories"
+    "incomes": "Доходы",
+    "accounts": "Счета",
+    "spendings": "Категории расходов"
   },
-  "dashboardTitle": "Budget Overview",
+  "dashboardTitle": "Ваш Бюджет",
   "form": {
     "createTitle": {
-      "incomes": "Create new Source of Income",
-      "accounts": "Create new Account",
-      "spendings": "Create new Spending Category"
+      "incomes": "Создать новый источник дохода",
+      "accounts": "Создать новый счет",
+      "spendings": "Создать новую категорию расходов"
     },
-    "editTitle": "Edit {{itemName}}",
-    "createButtonText": "Submit",
-    "editButtonText": "Save",
-    "deleteButtonText": "Delete",
+    "editTitle": "Редактировать {{itemName}}",
+    "createButtonText": "Создать",
+    "editButtonText": "Сохранить",
+    "deleteButtonText": "Удалить",
     "incomes": {
       "sections": {
         "general": {
-          "name": "General",
+          "name": "Общие",
           "fields": {
             "name": {
-              "label": "Source",
-              "helperText": "Name of Source of Income",
-              "value": "Salary"
+              "label": "Источник Дохода",
+              "helperText": "Имя источника дохода",
+              "value": "Зарплата"
             },
             "expectedAmount": {
-              "label": "Amount",
-              "helperText": "Expected Amount of Income"
+              "label": "Сумма",
+              "helperText": "Ожидаемая сумма дохода"
             },
             "currency": {
-              "label": "Currency",
-              "helperText": "In which currency?",
+              "label": "Валюта",
+              "helperText": "В какой валюте?",
               "options": {
-                "USD": "US Dollars",
-                "EUR": "European Euro",
-                "UAH": "Ukrainian Hryvna"
+                "USD": "Американский Доллар",
+                "EUR": "Европейский Евро",
+                "UAH": "Украинская Гривна"
               }
             },
             "frequency": {
-              "label": "Frequency",
-              "helperText": "How frequent you will get income from this source?",
+              "label": "Периодичность",
+              "helperText": "С какой периодичностью вы будете получать этот доход?",
               "options": {
-                "daily": "Per working day",
-                "weekly": "Per week",
-                "montly": "Per month",
-                "yearly": "Per year",
-                "once": "One-time income"
+                "daily": "Каждый рабочий день",
+                "weekly": "Каждую неделю",
+                "monthly": "Каждый месяц",
+                "yearly": "Каждый год",
+                "once": "Единоразовый доход"
               }
             }
           }
         },
         "iconSelection": {
-          "name": "Icon Selection",
+          "name": "Выбор Иконки",
           "fields": {
             "iconSelection": {
-              "label": "Icon",
-              "helperText": "Select icon, which would be displayed for this income source"
+              "label": "Иконка",
+              "helperText": "Выберите иконку, которая будет отображаться для этого источника дохода"
             }
           }
         },
         "advanced": {
-          "name": "Advanced",
-          "description": "Advanced configuration for Source of Income",
+          "name": "Продвинутые",
+          "description": "Продвинутые настройки для этого источника дохода",
           "fields": {
             "incomeFee": {
-              "label": "Fee",
-              "helperText": "Any possible fees"
+              "label": "Комиссия",
+              "helperText": "Любые возможные удержания с этого дохода (налоги, проценты)."
             },
             "incomeFeeType": {
-              "label": "Fee Type",
-              "helperText": "If there's fee - is it fixed, or in percentage?",
+              "label": "Тип комиссии",
+              "helperText": "Если есть комиссии - они фиксированы, или в процентном соотношении?",
               "options": {
-                "percentage": "Percentage",
-                "fixed": "Fixed"
+                "percentage": "В процентах",
+                "fixed": "Фиксированы"
               }
             }
           }
@@ -86,97 +86,97 @@
     "accounts": {
       "sections": {
         "general": {
-          "name": "General",
+          "name": "Общие",
           "fields": {
             "name": {
-              "label": "Account Name",
-              "value": "Wallet",
-              "helperText": "Name of Account"
+              "label": "Счет",
+              "value": "Кошелек",
+              "helperText": "Имя счета"
             },
             "balance": {
-              "label": "Balance",
-              "helperText": "Current Balance"
+              "label": "Баланс",
+              "helperText": "Текущий Баланс на Счету"
             },
             "currency": {
-              "label": "Currency",
-              "helperText": "In which currency?",
+              "label": "Валюта",
+              "helperText": "В какой валюте?",
               "options": {
-                "USD": "US Dollars",
-                "EUR": "European Euro",
-                "UAH": "Ukrainian Hryvna"
+                "USD": "Американский Доллар",
+                "EUR": "Европейский Евро",
+                "UAH": "Украинская Гривна"
               }
             }
           }
         },
         "iconSelection": {
-          "name": "Icon Selection",
+          "name": "Выбор Иконки",
           "fields": {
             "iconSelection": {
-              "label": "Icon",
-              "helperText": "Select icon, which would be displayed for this income source"
+              "label": "Иконка",
+              "helperText": "Выберите иконку, которая будет отображаться для этого Счета"
             }
           }
         },
         "advanced": {
-          "name": "Advanced",
-          "description": "Advanced configuration for Account",
+          "name": "Продвинутые",
+          "description": "Продвинутые настройки для этого счета",
           "fields": {
             "payoutPriority": {
-              "label": "Payout Priority",
-              "helperText": "If this is debt account - how it is important to payout it first prior to others?(from 1 to 10)"
+              "label": "Приоритетность выплаты",
+              "helperText": "Если это - долговой счет, то какова приоритетность его выплаты относительно других счетов? Чем меньше цифра - тем выша приоритетность (от 1 до 10, где 1 - в первую очередь, а 10 - в последнюю)"
             },
             "requiredPayment": {
-              "label": "Required Payment",
-              "helperText": "How much do you need to payout this debt regulary (like bank credit)? Leave 0 if no required payment per some period, or put whole debt amount if you need to pay it via single payment."
+              "label": "Обязательный платеж",
+              "helperText": "Каков ваш обязательный платеж по этому долгу?"
             },
             "requiredPaymentFrequency": {
-              "label": "Required Payment Frequency",
-              "helperText": "How frequent you need to pay your required payment?",
+              "label": "Регулярность обязательного платежа",
+              "helperText": "С какой регулярностью вам нужно совершать обязательный платеж?",
               "options": {
-                "daily": "Per working day",
-                "weekly": "Per week",
-                "montly": "Per month",
-                "yearly": "Per year",
-                "once": "One-time payment"
+                "daily": "Каждый рабочий день",
+                "weekly": "Раз в неделю",
+                "monthly": "Раз в месяц",
+                "yearly": "Раз в год",
+                "once": "Единоразовый платеж"
               }
             },
             "limit": {
-              "label": "Debt limit",
-              "helperText": "For some debit cards/accounts - there is possible debt limit."
+              "label": "Кредитный Лимит",
+              "helperText": "Есть ли кредитный лимит по этому счету? Так мы сможем рассчитать сумму доступных денег на руках."
             },
             "fee": {
-              "label": "Debt Limit Fee",
-              "helperText": "If there is fee for debt limit usage - how much it is?"
+              "label": "Комиссия за пользование кредитным лимитом",
+              "helperText": "Сколько вы должны платить за использование кредитного лимита?"
             },
             "debtFeeType": {
-              "label": "Fee Type",
-              "helperText": "If there's fee for debt limit - is it fixed, or in percentage?",
+              "label": "Тип комиссии за использование кредитного лимита",
+              "helperText": "Если вы должны платить за использование кредитного лимита - в прцентном соотношении от суммы лимита, или фиксированной суммой?",
               "options": {
-                "percentage": "Percentage",
-                "fixed": "Fixed"
+                "percentage": "В процентах",
+                "fixed": "Фиксированный платеж"
               }
             },
             "feeFrequency": {
-              "label": "Fee charging frequency",
-              "helperText": "How frequent you will be charged for debt limit usage?",
+              "label": "Периодичность начисления комиссии",
+              "helperText": "С какой периодичностью будет начисляться комиссия?",
               "options": {
-                "daily": "Per working day",
-                "weekly": "Per week",
-                "montly": "Per month",
-                "yearly": "Per year",
-                "once": "One-time fee"
+                "daily": "Каждый рабочий день",
+                "weekly": "Каждую неделю",
+                "monthly": "Каждый месяц",
+                "yearly": "Каждый год",
+                "once": "Единоразовый платеж"
               }
             },
             "limitFreeUsageDays": {
-              "label": "Free days",
-              "helperText": "How long you can use this debt limit for free?",
+              "label": "Бесплатный Период",
+              "helperText": "Как долго вы можете пользоваться кредитным лимитом бесплатно?",
               "options": {
-                "noFreeUsage": "No free usage",
-                "daily": "A day",
-                "weekly": "A week",
-                "montly": "A month",
-                "yearly": "A year",
-                "always": "It's always for free"
+                "noFreeUsage": "Нет бесплатного периода",
+                "daily": "День",
+                "weekly": "Неделю",
+                "monthly": "Месяц",
+                "yearly": "Год",
+                "always": "Всегда бесплатно"
               }
             }
           }
@@ -186,59 +186,59 @@
     "spendings": {
       "sections": {
         "general": {
-          "name": "General",
+          "name": "Общие",
           "fields": {
             "name": {
-              "label": "Category",
-              "helperText": "Name of Spending Category",
-              "value": "Goods"
+              "label": "Категория",
+              "helperText": "Название категории расходов",
+              "value": "Еда"
             },
             "expectedAmount": {
-              "label": "Amount",
-              "helperText": "Expected Amount of Spendings for this Category"
+              "label": "Сумма",
+              "helperText": "Ожидаемая сумма расходов по этой категории"
             },
             "currency": {
-              "label": "Currency",
-              "helperText": "In which currency?",
+              "label": "Валюта",
+              "helperText": "В какой валюте?",
               "options": {
-                "USD": "US Dollars",
-                "EUR": "European Euro",
-                "UAH": "Ukrainian Hryvna"
+                "USD": "Американский Доллар",
+                "EUR": "Европейский Евро",
+                "UAH": "Украинская Гривна"
               }
             },
             "frequency": {
-              "label": "Frequency",
-              "helperText": "What is the frequency of updating expected amount of spending for this category? (I.e. how much in **which period** you want to spend?)",
+              "label": "Периодичность",
+              "helperText": "Какова периодичность траты по этой категории",
               "options": {
-                "daily": "Per working day",
-                "weekly": "Per week",
-                "montly": "Per month",
-                "yearly": "Per year",
-                "once": "One-time income"
+                "daily": "Ежедневно",
+                "weekly": "Еженедельно",
+                "monthly": "Ежемесячно",
+                "yearly": "Ежегодно",
+                "once": "Единоразово"
               }
             }
           }
         },
         "iconSelection": {
-          "name": "Icon Selection",
+          "name": "Выбор Иконки",
           "fields": {
             "iconSelection": {
-              "label": "Icon",
-              "helperText": "Select icon, which would be displayed for this income source"
+              "label": "Иконка",
+              "helperText": "Выберите иконку, которая будет отображаться для этой категории трат"
             }
           }
         },
         "advanced": {
-          "name": "Advanced",
-          "description": "Advanced configuration for Spending Category",
+          "name": "Продвинутые",
+          "description": "Продвинутые настройки для это категории трат",
           "fields": {
             "isMandatory": {
-              "label": "Mandatory spending",
-              "helperText": "Off this box, if this spending category not mandatory (i.e. you can omit this type of spendings for a while)."
+              "label": "Обязательная трата",
+              "helperText": "Эта трата является обязательной, или вы можете при необходимости ее избежать?"
             },
             "reducingAmount": {
-              "label": "Possible Reducing",
-              "helperText": "If it is possible to reduce this spending - put possible reducing amount, so we can calculate your financial plan with possible reducing options."
+              "label": "Возможное уменьшение траты",
+              "helperText": "Если трата обязательна, но вы можете тратить меньше - то на сколько меньше?"
             },
             "isMandatoryStateExpiration": {
               "label": "Removal Time",
@@ -246,7 +246,7 @@
               "options": {
                 "daily": "Per working day",
                 "weekly": "Per week",
-                "montly": "Per month",
+                "monthly": "Per month",
                 "yearly": "Per year",
                 "once": "One-time spending",
                 "always": "This spending always mandatory"

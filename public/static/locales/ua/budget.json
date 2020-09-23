@@ -47,7 +47,7 @@
               "options": {
                 "daily": "Per working day",
                 "weekly": "Per week",
-                "montly": "Per month",
+                "monthly": "Per month",
                 "yearly": "Per year",
                 "once": "One-time income"
               }
@@ -135,7 +135,7 @@
               "options": {
                 "daily": "Per working day",
                 "weekly": "Per week",
-                "montly": "Per month",
+                "monthly": "Per month",
                 "yearly": "Per year",
                 "once": "One-time payment"
               }
@@ -162,7 +162,7 @@
               "options": {
                 "daily": "Per working day",
                 "weekly": "Per week",
-                "montly": "Per month",
+                "monthly": "Per month",
                 "yearly": "Per year",
                 "once": "One-time fee"
               }
@@ -174,7 +174,7 @@
                 "noFreeUsage": "No free usage",
                 "daily": "A day",
                 "weekly": "A week",
-                "montly": "A month",
+                "monthly": "A month",
                 "yearly": "A year",
                 "always": "It's always for free"
               }
@@ -212,7 +212,7 @@
               "options": {
                 "daily": "Per working day",
                 "weekly": "Per week",
-                "montly": "Per month",
+                "monthly": "Per month",
                 "yearly": "Per year",
                 "once": "One-time income"
               }
@@ -246,7 +246,7 @@
               "options": {
                 "daily": "Per working day",
                 "weekly": "Per week",
-                "montly": "Per month",
+                "monthly": "Per month",
                 "yearly": "Per year",
                 "once": "One-time spending",
                 "always": "This spending always mandatory"

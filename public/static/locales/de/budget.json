@@ -47,7 +47,7 @@
               "options": {
                 "daily": "Pro Arbeitstag",
                 "weekly": "Pro Woche",
-                "montly": "Pro Monat",
+                "monthly": "Pro Monat",
                 "yearly": "Pro Jahr",
                 "once": "Einmaliges Einkommen"
               }
@@ -135,7 +135,7 @@
               "options": {
                 "daily": "Pro Arbeitstag",
                 "weekly": "Pro Woche",
-                "montly": "Pro Monat",
+                "monthly": "Pro Monat",
                 "yearly": "Pro Jahr",
                 "once": "Einmalige Zahlung"
               }
@@ -162,7 +162,7 @@
               "options": {
                 "daily": "Pro Arbeitstag",
                 "weekly": "Pro Woche",
-                "montly": "Pro Monat",
+                "monthly": "Pro Monat",
                 "yearly": "Pro Jahr",
                 "once": "Einmalige Gebühr"
               }
@@ -174,7 +174,7 @@
                 "noFreeUsage": "Keine kostenlose Nutzung",
                 "daily": "Ein Tag",
                 "weekly": "Eine Woche",
-                "montly": "Ein Monat",
+                "monthly": "Ein Monat",
                 "yearly": "Ein Jahr",
                 "always": "Es ist immer kostenlos"
               }
@@ -212,7 +212,7 @@
               "options": {
                 "daily": "Pro Arbeitstag",
                 "weekly": "Pro Woche",
-                "montly": "Pro Monat",
+                "monthly": "Pro Monat",
                 "yearly": "Pro Jahr",
                 "once": "Einmalige Ausgaben"
               }
@@ -246,7 +246,7 @@
               "options": {
                 "daily": "Nach einem Tag",
                 "weekly": "Nach einer Woche",
-                "montly": "Nach einem Monat",
+                "monthly": "Nach einem Monat",
                 "yearly": "Nach einem Jahr",
                 "once": "Einmalige Ausgaben",
                 "always": "Diese Ausgaben sind immer obligatorisch"

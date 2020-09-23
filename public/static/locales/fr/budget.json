@@ -47,7 +47,7 @@
               "options": {
                 "daily": "Par jour ouvrable",
                 "weekly": "Par semaine",
-                "montly": "Par mois",
+                "monthly": "Par mois",
                 "yearly": "Par an",
                 "once": "Revenu unique"
               }
@@ -135,7 +135,7 @@
               "options": {
                 "daily": "Par jour ouvrable",
                 "weekly": "Par semaine",
-                "montly": "Par mois",
+                "monthly": "Par mois",
                 "yearly": "Par an",
                 "once": "Paiement unique"
               }
@@ -162,7 +162,7 @@
               "options": {
                 "daily": "Par jour ouvrable",
                 "weekly": "Par semaine",
-                "montly": "Par mois",
+                "monthly": "Par mois",
                 "yearly": "Par an",
                 "once": "Frais uniques"
               }
@@ -174,7 +174,7 @@
                 "noFreeUsage": "Pas d'utilisation gratuite",
                 "daily": "Un jour",
                 "weekly": "Une semaine",
-                "montly": "Un mois",
+                "monthly": "Un mois",
                 "yearly": "Une année",
                 "always": "C'est toujours gratuit"
               }
@@ -212,7 +212,7 @@
               "options": {
                 "daily": "Par jour ouvrable",
                 "weekly": "Par semaine",
-                "montly": "Par mois",
+                "monthly": "Par mois",
                 "yearly": "Par an",
                 "once": "Revenu unique"
               }
@@ -246,7 +246,7 @@
               "options": {
                 "daily": "Par jour ouvrable",
                 "weekly": "Par semaine",
-                "montly": "Par mois",
+                "monthly": "Par mois",
                 "yearly": "Par an",
                 "once": "Dépenses ponctuelles",
                 "always": "Cette dépense toujours obligatoire"

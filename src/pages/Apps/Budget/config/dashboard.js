@@ -117,9 +117,9 @@ function createBudgetDashbaordConfig(t) {
                   },
                   {
                     label: t(
-                      "budget:form.incomes.sections.general.fields.frequency.options.montly"
+                      "budget:form.incomes.sections.general.fields.frequency.options.monthly"
                     ),
-                    value: "montly"
+                    value: "monthly"
                   },
                   {
                     label: t(
@@ -136,9 +136,9 @@ function createBudgetDashbaordConfig(t) {
                 ],
                 value: {
                   label: t(
-                    "budget:form.incomes.sections.general.fields.frequency.options.montly"
+                    "budget:form.incomes.sections.general.fields.frequency.options.monthly"
                   ),
-                  value: "montly"
+                  value: "monthly"
                 }
               }
             ]
@@ -364,9 +364,9 @@ function createBudgetDashbaordConfig(t) {
                   },
                   {
                     label: t(
-                      "budget:form.accounts.sections.advanced.fields.requiredPaymentFrequency.options.montly"
+                      "budget:form.accounts.sections.advanced.fields.requiredPaymentFrequency.options.monthly"
                     ),
-                    value: "montly"
+                    value: "monthly"
                   },
                   {
                     label: t(
@@ -383,7 +383,7 @@ function createBudgetDashbaordConfig(t) {
                 ],
                 value: {
                   label: t(
-                    "budget:form.accounts.sections.advanced.fields.requiredPaymentFrequency.options.montly"
+                    "budget:form.accounts.sections.advanced.fields.requiredPaymentFrequency.options.monthly"
                   ),
                   value: "monthly"
                 }
@@ -472,9 +472,9 @@ function createBudgetDashbaordConfig(t) {
                   },
                   {
                     label: t(
-                      "budget:form.accounts.sections.advanced.fields.feeFrequency.options.montly"
+                      "budget:form.accounts.sections.advanced.fields.feeFrequency.options.monthly"
                     ),
-                    value: "montly"
+                    value: "monthly"
                   },
                   {
                     label: t(
@@ -491,7 +491,7 @@ function createBudgetDashbaordConfig(t) {
                 ],
                 value: {
                   label: t(
-                    "budget:form.accounts.sections.advanced.fields.feeFrequency.options.montly"
+                    "budget:form.accounts.sections.advanced.fields.feeFrequency.options.monthly"
                   ),
                   value: "monthly"
                 }
@@ -521,9 +521,9 @@ function createBudgetDashbaordConfig(t) {
                   },
                   {
                     label: t(
-                      "budget:form.accounts.sections.advanced.fields.limitFreeUsageDays.options.montly"
+                      "budget:form.accounts.sections.advanced.fields.limitFreeUsageDays.options.monthly"
                     ),
-                    value: "montly"
+                    value: "monthly"
                   },
                   {
                     label: t(
@@ -647,9 +647,9 @@ function createBudgetDashbaordConfig(t) {
                   },
                   {
                     label: t(
-                      "budget:form.spendings.sections.general.fields.frequency.options.montly"
+                      "budget:form.spendings.sections.general.fields.frequency.options.monthly"
                     ),
-                    value: "montly"
+                    value: "monthly"
                   },
                   {
                     label: t(
@@ -666,9 +666,9 @@ function createBudgetDashbaordConfig(t) {
                 ],
                 value: {
                   label: t(
-                    "budget:form.spendings.sections.general.fields.frequency.options.montly"
+                    "budget:form.spendings.sections.general.fields.frequency.options.monthly"
                   ),
-                  value: "montly"
+                  value: "monthly"
                 }
               }
             ]
@@ -747,9 +747,9 @@ function createBudgetDashbaordConfig(t) {
                   },
                   {
                     label: t(
-                      "budget:form.spendings.sections.advanced.fields.isMandatoryStateExpiration.options.montly"
+                      "budget:form.spendings.sections.advanced.fields.isMandatoryStateExpiration.options.monthly"
                     ),
-                    value: "montly"
+                    value: "monthly"
                   },
                   {
                     label: t(
