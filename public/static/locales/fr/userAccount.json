@@ -2,6 +2,8 @@
   "form": {
     "submitButtonText": "Update Account",
     "deleteButtonText": "Delete Account",
+    "deleteAccountSuccessMessage": "Sad to see you're going away :( We would pray to have you as our user later on!!!",
+    "logoutSuccessMessage": "Successfully logged out! See ya later ;)",
     "fields": {
       "name": {
         "label": "Your name",

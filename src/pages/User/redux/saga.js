@@ -14,6 +14,8 @@ import {
 } from "./actions";
 import { loginRequest, logoutRequest, userCRUDRequests } from "./requests";
 
+import { i18n } from "../../../i18n";
+
 function* signUpWorker({ payload, enqueueSnackbar }) {
   const loadingAction = userActionCreators.CREATE.LOADING();
   yield put(loadingAction);
@@ -21,7 +23,9 @@ function* signUpWorker({ payload, enqueueSnackbar }) {
     const result = yield userCRUDRequests.CREATE(payload, {
       url: "/public/sign-up"
     });
-    enqueueSnackbar("Success! You're registered!", { variant: "success" });
+    enqueueSnackbar(i18n.t("signUp:form.successMessage"), {
+      variant: "success"
+    });
     const successAction = userActionCreators.CREATE.SUCCESS(result);
     yield put(successAction);
     const loginRequestAction = loginActionCreators.REQUEST(
@@ -33,14 +37,15 @@ function* signUpWorker({ payload, enqueueSnackbar }) {
     );
     yield put(loginRequestAction);
   } catch (e) {
-    let message;
+    let message = e.message;
     if (
+      e.response &&
       (e.response.status === 400 || e.response.status === 406) &&
       e.response.data
     ) {
       message = e.response.data.error;
     }
-    enqueueSnackbar(message, { variant: "error" });
+    enqueueSnackbar(i18n.t(message), { variant: "error" });
     const errorAction = userActionCreators.CREATE.ERROR();
     yield put(errorAction);
   }
@@ -54,8 +59,9 @@ function* getUserAccountWorker({ enqueueSnackbar }) {
     const successAction = userActionCreators.READ.SUCCESS(result.user);
     yield put(successAction);
   } catch (e) {
-    let message;
+    let message = e.message;
     if (
+      e.response &&
       (e.response.status === 400 || e.response.status === 406) &&
       e.response.data
     ) {
@@ -75,15 +81,13 @@ function* updateUserAccountWorker({ payload, enqueueSnackbar }) {
     const successAction = userActionCreators.UPDATE.SUCCESS(result.user);
     yield put(successAction);
   } catch (e) {
-    let message;
+    let message = e.message;
     if (
       e.response &&
       (e.response.status === 400 || e.response.status === 406) &&
       e.response.data
     ) {
       message = e.response.data.error;
-    } else {
-      message = e.message;
     }
     enqueueSnackbar(message, { variant: "error" });
     const errorAction = userActionCreators.UPDATE.ERROR();
@@ -91,7 +95,7 @@ function* updateUserAccountWorker({ payload, enqueueSnackbar }) {
   }
 }
 
-function* deleteUserAccountWorker() {
+function* deleteUserAccountWorker({ enqueueSnackbar }) {
   const loadingAction = userActionCreators.DELETE.LOADING();
   yield put(loadingAction);
   try {
@@ -103,6 +107,15 @@ function* deleteUserAccountWorker() {
     const errorAction = userActionCreators.UPDATE.ERROR();
     yield put(errorAction);
   }
+  const logoutSuccessAction = logoutActionCreators.SUCCESS();
+  Cookies.remove("token");
+  yield put(logoutSuccessAction);
+  api.defaults.headers.Authorization = "";
+  localStorage.removeItem("persist:appState");
+  enqueueSnackbar(i18n.t("userAccount:form.deleteAccountSuccessMessage"), {
+    variant: "warning"
+  });
+  Router.push("/login");
 }
 
 function* loginWorker({ payload, enqueueSnackbar }) {
@@ -121,8 +134,8 @@ function* loginWorker({ payload, enqueueSnackbar }) {
     const getAppSettingsAction = appSettingsActionCreators.READ.REQUEST();
     yield put(getAppSettingsAction);
   } catch (e) {
-    let message;
-    if (e.response.status === 400 && e.response.data) {
+    let message = e.message;
+    if (e.response && e.response.status === 400 && e.response.data) {
       message = e.response.data.error;
     }
     enqueueSnackbar(message, { variant: "error" });
@@ -143,7 +156,9 @@ function* logoutWorker({ enqueueSnackbar }) {
   yield put(logoutSuccessAction);
   api.defaults.headers.Authorization = "";
   localStorage.removeItem("persist:appState");
-  enqueueSnackbar("Successfully logged out. See ya ;)", { variant: "success" });
+  enqueueSnackbar(i18n.t("userAccount:form.logoutSuccessMessage"), {
+    variant: "success"
+  });
   Router.push("/login");
 }
 
