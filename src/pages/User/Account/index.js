@@ -7,7 +7,7 @@ import useAccountPage from "./hooks";
 
 export default function AccountPage() {
   const classes = useStyles();
-  const { formConfig, handleSubmit, user, handleDelete } = useAccountPage();
+  const { formConfig, handleSubmit, user, handleDelete, t } = useAccountPage();
   return (
     <article className={classes.root}>
       {user.loading ? (
@@ -15,7 +15,7 @@ export default function AccountPage() {
       ) : (
         <Form
           {...formConfig}
-          submitButtonText="Update Account"
+          submitButtonText={t("userAccount:form.submitButtonText")}
           onSubmit={handleSubmit}
           loading={user.loading}
           formClassName={classes.form}
@@ -27,7 +27,7 @@ export default function AccountPage() {
         onClick={handleDelete}
         className={classes.deleteButton}
       >
-        Delete Account
+        {t("userAccount:form.deleteButtonText")}
       </Button>
     </article>
   );

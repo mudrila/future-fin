@@ -5,7 +5,8 @@ export default function createFormConfig({
   avatarClassName,
   hasLifeInsurance,
   hasMedicalInsurance,
-  country
+  country,
+  t
 }) {
   return {
     formName: "user-account-form",
@@ -21,8 +22,8 @@ export default function createFormConfig({
         type: "string",
         name: "name",
         required: true,
-        placeholder: "John Doe",
-        label: "Your name",
+        placeholder: t("userAccount:form.fields.name.placeholder"),
+        label: t("userAccount:form.fields.name.label"),
         value: name,
         variant: "outlined",
         fullWidth: true
@@ -31,8 +32,8 @@ export default function createFormConfig({
         type: "email",
         name: "email",
         required: true,
-        placeholder: "admin@example.com",
-        label: "New email",
+        placeholder: t("userAccount:form.fields.email.placeholder"),
+        label: t("userAccount:form.fields.email.label"),
         value: email,
         variant: "outlined",
         fullWidth: true
@@ -41,8 +42,8 @@ export default function createFormConfig({
         type: "password",
         name: "password",
         required: false,
-        placeholder: "*********",
-        label: "New password",
+        placeholder: t("userAccount:form.fields.password.placeholder"),
+        label: t("userAccount:form.fields.password.label"),
         value: "",
         variant: "outlined",
         fullWidth: true
@@ -51,8 +52,8 @@ export default function createFormConfig({
         type: "countrySelector",
         name: "country",
         required: false,
-        label: "Country",
-        helperText: "What is your country?",
+        label: t("userAccount:form.fields.country.label"),
+        helperText: t("userAccount:form.fields.country.helperText"),
         value: country,
         fullWidth: true
       },
@@ -60,9 +61,9 @@ export default function createFormConfig({
         type: "checkbox",
         name: "hasLifeInsurance",
         required: false,
-        label: "Life Insurance",
+        label: t("userAccount:form.fields.hasLifeInsurance.label"),
         value: hasLifeInsurance,
-        helperText: "Do you have life insurance?",
+        helperText: t("userAccount:form.fields.hasLifeInsurance.helperText"),
         checked: hasLifeInsurance,
         fullWidth: true,
         bordered: true
@@ -71,9 +72,9 @@ export default function createFormConfig({
         type: "checkbox",
         name: "hasMedicalInsurance",
         required: false,
-        label: "Medical Insurance",
+        label: t("userAccount:form.fields.hasMedicalInsurance.label"),
         value: hasMedicalInsurance,
-        helperText: "Do you have medical insurance?",
+        helperText: t("userAccount:form.fields.hasMedicalInsurance.helperText"),
         checked: hasMedicalInsurance,
         fullWidth: true,
         bordered: true

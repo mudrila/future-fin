@@ -1,0 +1,32 @@
+{
+  "form": {
+    "submitButtonText": "Update Account",
+    "deleteButtonText": "Delete Account",
+    "fields": {
+      "name": {
+        "label": "Your name",
+        "placeholder": "John Doe"
+      },
+      "email": {
+        "label": "Your email",
+        "placeholder": "john.doe@example.com"
+      },
+      "password": {
+        "label": "New Password",
+        "placeholder": "********"
+      },
+      "country": {
+        "label": "Country",
+        "helperText": "What is your country?"
+      },
+      "hasLifeInsurance": {
+        "label": "Life Insurance",
+        "helperText": "Do you have life insurance? We need to know in order to better indicate your financial health"
+      },
+      "hasMedicalInsurance": {
+        "label": "Medical Insurace",
+        "helperText": "Do you have medical insurance? We need it for same purpose as life insurance knowledge."
+      }
+    }
+  }
+}
