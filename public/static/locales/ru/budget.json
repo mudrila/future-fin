@@ -241,15 +241,15 @@
               "helperText": "Если трата обязательна, но вы можете тратить меньше - то на сколько меньше?"
             },
             "isMandatoryStateExpiration": {
-              "label": "Removal Time",
-              "helperText": "After which period of time you can remove this spending category?",
+              "label": "Истечение статуса обязательной траты",
+              "helperText": "Возможно через какой-то период эта трата станет опциональной, или вообще ненужной. Если так - то когда?",
               "options": {
-                "daily": "Per working day",
-                "weekly": "Per week",
-                "monthly": "Per month",
-                "yearly": "Per year",
-                "once": "One-time spending",
-                "always": "This spending always mandatory"
+                "daily": "Через день",
+                "weekly": "Через неделю",
+                "monthly": "Через месяц",
+                "yearly": "Через год",
+                "once": "Единоразовая трата",
+                "always": "Всегда обязательная трата"
               }
             }
           }

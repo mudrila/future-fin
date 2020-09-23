@@ -1,33 +1,33 @@
 {
   "form": {
-    "submitButtonText": "Update Account",
-    "deleteButtonText": "Delete Account",
-    "deleteAccountSuccessMessage": "Sad to see you're going away :( We would pray to have you as our user later on!!!",
-    "logoutSuccessMessage": "Successfully logged out! See ya later ;)",
+    "submitButtonText": "Обновить Профиль",
+    "deleteButtonText": "Удалить Профиль",
+    "deleteAccountSuccessMessage": "Очень жаль прощаться с вами :( Будем молиться богам, что-бы вы к нам вернулись!",
+    "logoutSuccessMessage": "Вы успешно вышли. До скорой встречи, до скорой встречи, наша любовь - к вам навечно ;)",
     "fields": {
       "name": {
-        "label": "Your name",
-        "placeholder": "John Doe"
+        "label": "Ваше Имя",
+        "placeholder": "Иван Иванов"
       },
       "email": {
-        "label": "Your email",
-        "placeholder": "john.doe@example.com"
+        "label": "Ваш email",
+        "placeholder": "ivan.ivanov@example.com"
       },
       "password": {
-        "label": "New Password",
+        "label": "Новый пароль",
         "placeholder": "********"
       },
       "country": {
-        "label": "Country",
-        "helperText": "What is your country?"
+        "label": "Страна",
+        "helperText": "В какой стране вы живете?"
       },
       "hasLifeInsurance": {
-        "label": "Life Insurance",
-        "helperText": "Do you have life insurance? We need to know in order to better indicate your financial health"
+        "label": "Страхование жизни",
+        "helperText": "У вас есть страхование жизни? Мы должны знать для того, что-бы правильно рассчитать ваше Финансовое Здоровье"
       },
       "hasMedicalInsurance": {
-        "label": "Medical Insurace",
-        "helperText": "Do you have medical insurance? We need it for same purpose as life insurance knowledge."
+        "label": "Медицинское Страхование",
+        "helperText": "У вас есть медицинская страховка? Тот же интерес, что и для страхования жизни :)"
       }
     }
   }

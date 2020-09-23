@@ -1,22 +1,22 @@
 {
   "form": {
-    "title": "Login",
+    "title": "Войти",
     "serverErrors": {
-      "wrongEmailOrPassword": "Wrong email or password!"
+      "wrongEmailOrPassword": "Неправильный email или пароль"
     },
     "fields": {
       "email": {
-        "label": "Your email",
+        "label": "Ваш email",
         "placeholder": "admin@example.com",
-        "helperText": "Email used during Sign Up"
+        "helperText": "Email который вы использовали во время регистрации"
       },
       "password": {
-        "label": "Your password",
-        "helperText": "Password used during Sign Up",
+        "label": "Ваш пароль",
+        "helperText": "Пароль используемый во время регистрации",
         "placeholder": "********",
         "errorMessage": {
-          "toShortPassword": "This password is to short! It must be at least 8 characters.",
-          "toWeakPassword": "This password is to weak! You need to use 1 capital character, 1 lowercase character, 1 number, and 1 special symbol."
+          "toShortPassword": "Слишком короткий пароль! При регистрации вы указывали пароль длинной минимум 8 символов.",
+          "toWeakPassword": "Слишком слабый пароль! При регистрации вы указывали пароль, в котором должна быть 1 заглавная буква, 1 строчная, 1 цифра и 1 спец. символ. Только латинские(английские) буквы."
         }
       }
     }
