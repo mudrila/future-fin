@@ -3,12 +3,16 @@ import { useSnackbar } from "notistack";
 
 import { userSelector } from "../../redux/selectors";
 import { userActionCreators } from "../../redux/actions";
-import formConfig from "../config/form";
+import createFormConfig from "../config/form";
+
+import { useTranslation } from "../../../../i18n";
 
 export default function useSignUp() {
   const { loading } = useSelector(userSelector);
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+  const formConfig = createFormConfig(t);
   const { formName, fields } = formConfig;
 
   function handleSubmit(formValues) {
@@ -23,6 +27,7 @@ export default function useSignUp() {
     formName,
     fields,
     handleSubmit,
-    loading
+    loading,
+    t
   };
 }

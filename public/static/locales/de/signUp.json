@@ -1,0 +1,25 @@
+{
+  "form": {
+    "title": "Sign Up",
+    "fields": {
+      "name": {
+        "label": "Your name",
+        "placeholder": "John Doe"
+      },
+      "email": {
+        "label": "Your email",
+        "placeholder": "admin@example.com"
+      },
+      "password": {
+        "label": "Your password",
+        "placeholder": "********",
+        "helperText": "Min 8 characters. 1 Capital char, 1 small char, and 1 number. It should be really strong!!!"
+      },
+      "repeatPassword": {
+        "label": "Repeat password",
+        "placeholder": "********",
+        "helperText": "Just the same password again, to be sure :)"
+      }
+    }
+  }
+}

@@ -6,11 +6,11 @@ import useStyles from "./styles";
 
 export default function SignUpPage() {
   const classes = useStyles();
-  const { handleSubmit, fields, formName, loading } = useSignUp();
+  const { handleSubmit, fields, formName, loading, t } = useSignUp();
   return (
     <Paper vairant="outlined" className={classes.root}>
       <Typography variant="h5" align="center">
-        Sign Up
+        {t("signUp:form.title")}
       </Typography>
       <Form
         sectionsSplitting={false}
