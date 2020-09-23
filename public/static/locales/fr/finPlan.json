@@ -1,3 +1,66 @@
 {
-  "totalGoals": "Total Goals Price"
+  "totalGoals": "Prix ​​total des buts",
+  "entityParts": {
+    "goals": "Objectifs financiers"
+  },
+  "dashboardTitle": "Aperçu du plan financier",
+  "form": {
+    "createTitle": {
+      "goals": "Créer un nouvel objectif financier"
+    },
+    "editTitle": "Éditer {{itemName}}",
+    "createButtonText": "Soumettre",
+    "editButtonText": "Sauver",
+    "deleteButtonText": "Supprimer",
+    "goals": {
+      "sections": {
+        "general": {
+          "name": "Général",
+          "fields": {
+            "name": {
+              "label": "Nom de l'objectif",
+              "value": "Nouvelle maison",
+              "helperText": "Nom de l'objectif financier"
+            },
+            "expectedAmount": {
+              "label": "Frais",
+              "helperText": "Une dépense moyenne de cet objectif financier"
+            },
+            "currency": {
+              "label": "Devise",
+              "helperText": "Dans quelle devise?",
+              "options": {
+                "USD": "Dollars américains",
+                "EUR": "Euro européen",
+                "UAH": "Ukrainien hryvnia"
+              }
+            },
+            "deadline": {
+              "label": "Date limite",
+              "helperText": "Jusqu'à quelle date souhaitez-vous atteindre cet objectif financier?"
+            }
+          }
+        },
+        "iconSelection": {
+          "name": "Sélection d'icônes",
+          "fields": {
+            "iconSelection": {
+              "label": "Icône",
+              "helperText": "Sélectionnez l'icône, qui serait affichée pour cet objectif financier"
+            }
+          }
+        },
+        "advanced": {
+          "name": "Avancé",
+          "description": "Configuration avancée pour l'objectif financier",
+          "fields": {
+            "payoutPriority": {
+              "label": "Priorité",
+              "helperText": "Astuce - il utilise le même classement de priorité que les dettes, donc une priorité de réalisation plus élevée signifie que vous voulez atteindre cet objectif financier avant de régler la dette"
+            }
+          }
+        }
+      }
+    }
+  }
 }

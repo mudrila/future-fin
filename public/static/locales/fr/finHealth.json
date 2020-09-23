@@ -1,23 +1,23 @@
 {
-  "header": "Your Financial Health Indication",
+  "header": "Votre indication de santé financière",
   "incomesVsSpendings": {
-    "name": "Incomes > Spendings",
-    "description": "Your total income should be higher than your total spendings + required payments"
+    "name": "Revenus> Dépenses",
+    "description": "Votre revenu total doit être supérieur à vos dépenses totales + paiements requis"
   },
   "positiveBalance": {
-    "name": "Positive Balance",
-    "description": "Counting all your savings, budget accounts and debts - your balance should be positive"
+    "name": "Balance positive",
+    "description": "En comptant toutes vos économies, comptes budgétaires et dettes - votre solde doit être positif"
   },
   "savings": {
-    "name": "Significant Savings",
-    "description": "You should have your 3-6 months total expenses in savings. In other words - if you will lost all your sources of income - you should be able to live 3-6 months with no impact on your normal life at all."
+    "name": "Économies importantes",
+    "description": "Vous devriez avoir vos dépenses totales de 3 à 6 mois en économies. En d'autres termes, si vous perdez toutes vos sources de revenus, vous devriez pouvoir vivre 3 à 6 mois sans aucun impact sur votre vie normale."
   },
   "investmentAssets": {
-    "name": "Long-term Investment Assets",
-    "description": "You should have investment assets with long-term plans with total cost of at least your 3 months income."
+    "name": "Actifs d'investissement à long terme",
+    "description": "Vous devriez avoir des actifs de placement avec des plans à long terme avec un coût total d'au moins 3 mois de revenu."
   },
   "insurance": {
-    "name": "Life & Medical Insurance",
-    "description": "You should have insurance for medical and life-taking accidents in order to protect yourself and your family from being impacted by health problems."
+    "name": "Assurance vie et médicale",
+    "description": "Vous devriez avoir une assurance pour les accidents médicaux et mortels afin de vous protéger, vous et votre famille, des problèmes de santé."
   }
 }

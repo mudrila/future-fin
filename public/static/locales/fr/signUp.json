@@ -1,33 +1,33 @@
 {
   "form": {
-    "title": "Sign Up",
-    "successMessage": "Success! You're registered!",
+    "title": "S'inscrire",
+    "successMessage": "Succès! Vous êtes inscrit!",
     "serverErrors": {
-      "suchUserExists": "User with such email already exists!"
+      "suchUserExists": "L'utilisateur avec un tel e-mail existe déjà!"
     },
     "fields": {
       "name": {
-        "label": "Your name",
-        "placeholder": "John Doe"
+        "label": "Votre nom",
+        "placeholder": "Jean Dupont"
       },
       "email": {
-        "label": "Your email",
+        "label": "Votre email",
         "placeholder": "admin@example.com"
       },
       "password": {
-        "label": "Your password",
+        "label": "Votre mot de passe",
         "placeholder": "********",
-        "helperText": "Min 8 characters. 1 Capital char, 1 small char, 1 number, and 1 special character. It should be really strong!!!",
+        "helperText": "Min 8 caractères. 1 caractère majuscule, 1 petit caractère, 1 chiffre et 1 caractère spécial. Ça devrait être vraiment fort !!!",
         "errorMessage": {
-          "toShortPassword": "This password is to short! It must be at least 8 characters.",
-          "toWeakPassword": "This password is to weak! You need to use 1 capital character, 1 lowercase character, 1 number, and 1 special symbol."
+          "toShortPassword": "Ce mot de passe est trop court! Il doit comporter au moins 8 caractères.",
+          "toWeakPassword": "Ce mot de passe est trop faible! Vous devez utiliser 1 caractère majuscule, 1 caractère minuscule, 1 chiffre et 1 symbole spécial."
         }
       },
       "repeatPassword": {
-        "label": "Repeat password",
+        "label": "Répéter le mot de passe",
         "placeholder": "********",
-        "helperText": "Just the same password again, to be sure :)",
-        "errorMessage": "Passwords doesn't match"
+        "helperText": "Encore une fois le même mot de passe, pour être sûr :)",
+        "errorMessage": "Les mots de passe ne correspondent pas"
       }
     }
   }

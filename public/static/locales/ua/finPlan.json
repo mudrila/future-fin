@@ -1,3 +1,66 @@
 {
-  "totalGoals": "Total Goals Price"
+  "totalGoals": "Total Goals Price",
+  "entityParts": {
+    "goals": "Financial Goals"
+  },
+  "dashboardTitle": "Financial Plan Overview",
+  "form": {
+    "createTitle": {
+      "goals": "Create new Financial Goal"
+    },
+    "editTitle": "Edit {{itemName}}",
+    "createButtonText": "Submit",
+    "editButtonText": "Save",
+    "deleteButtonText": "Delete",
+    "goals": {
+      "sections": {
+        "general": {
+          "name": "General",
+          "fields": {
+            "name": {
+              "label": "Goal Name",
+              "value": "New House",
+              "helperText": "Name of Financial Goal"
+            },
+            "expectedAmount": {
+              "label": "Expence",
+              "helperText": "An average expence of this financial goal"
+            },
+            "currency": {
+              "label": "Currency",
+              "helperText": "In which currency?",
+              "options": {
+                "USD": "US Dollars",
+                "EUR": "European Euro",
+                "UAH": "Ukrainian Hryvna"
+              }
+            },
+            "deadline": {
+              "label": "Deadline",
+              "helperText": "Till which date you want to achieve this financial goal?"
+            }
+          }
+        },
+        "iconSelection": {
+          "name": "Icon Selection",
+          "fields": {
+            "iconSelection": {
+              "label": "Icon",
+              "helperText": "Select icon, which would be displayed for this financial goal"
+            }
+          }
+        },
+        "advanced": {
+          "name": "Advanced",
+          "description": "Advanced configuration for Financial Goal",
+          "fields": {
+            "payoutPriority": {
+              "label": "Priority",
+              "helperText": "Tip - it use same priority ranking as debts, so higher achievement priority means you want to get this financial goal earlier than settle the debt"
+            }
+          }
+        }
+      }
+    }
+  }
 }

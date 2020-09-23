@@ -1,9 +1,9 @@
 {
-  "documentTitle": "FutureFin | Financial Plan Builder",
-  "submit": "Submit",
-  "cancel": "Cancel",
-  "formDialogTitle": "Create New",
+  "documentTitle": "FutureFin | Créateur de plan financier",
+  "submit": "Soumettre",
+  "cancel": "Annuler",
+  "formDialogTitle": "Créer un nouveau",
   "countrySelector": {
-    "label": "Choose a country"
+    "label": "Choisissez un pays"
   }
 }

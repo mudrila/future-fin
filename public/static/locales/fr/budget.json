@@ -1,82 +1,82 @@
 {
-  "totalIncome": "Total Income",
-  "currentBalance": "Current Balance",
-  "totalSpendings": "Total Spendings",
+  "totalIncome": "Revenu total",
+  "currentBalance": "Solde actuel",
+  "totalSpendings": "Dépenses totales",
   "entityParts": {
-    "incomes": "Source of Income",
-    "accounts": "Accounts",
-    "spendings": "Spending Categories"
+    "incomes": "Source de revenu",
+    "accounts": "Comptes",
+    "spendings": "Catégories de dépenses"
   },
-  "dashboardTitle": "Budget Overview",
+  "dashboardTitle": "Aperçu du budget",
   "form": {
     "createTitle": {
-      "incomes": "Create new Source of Income",
-      "accounts": "Create new Account",
-      "spendings": "Create new Spending Category"
+      "incomes": "Créer une nouvelle source de revenu",
+      "accounts": "Créer un nouveau compte",
+      "spendings": "Créer une nouvelle catégorie de dépenses"
     },
-    "editTitle": "Edit {{itemName}}",
-    "createButtonText": "Submit",
-    "editButtonText": "Save",
-    "deleteButtonText": "Delete",
+    "editTitle": "Éditer {{itemName}}",
+    "createButtonText": "Soumettre",
+    "editButtonText": "Sauver",
+    "deleteButtonText": "Supprimer",
     "incomes": {
       "sections": {
         "general": {
-          "name": "General",
+          "name": "Général",
           "fields": {
             "name": {
-              "label": "Source",
-              "helperText": "Name of Source of Income",
-              "value": "Salary"
+              "label": "La source",
+              "helperText": "Nom de la source de revenu",
+              "value": "Un salaire"
             },
             "expectedAmount": {
-              "label": "Amount",
-              "helperText": "Expected Amount of Income"
+              "label": "Montant",
+              "helperText": "Montant prévu des revenus"
             },
             "currency": {
-              "label": "Currency",
-              "helperText": "In which currency?",
+              "label": "Devise",
+              "helperText": "Dans quelle devise?",
               "options": {
-                "USD": "US Dollars",
-                "EUR": "European Euro",
-                "UAH": "Ukrainian Hryvna"
+                "USD": "Dollars américains",
+                "EUR": "Euro européen",
+                "UAH": "Ukrainien hryvnia"
               }
             },
             "frequency": {
-              "label": "Frequency",
-              "helperText": "How frequent you will get income from this source?",
+              "label": "La fréquence",
+              "helperText": "À quelle fréquence obtiendrez-vous des revenus de cette source?",
               "options": {
-                "daily": "Per working day",
-                "weekly": "Per week",
-                "montly": "Per month",
-                "yearly": "Per year",
-                "once": "One-time income"
+                "daily": "Par jour ouvrable",
+                "weekly": "Par semaine",
+                "montly": "Par mois",
+                "yearly": "Par an",
+                "once": "Revenu unique"
               }
             }
           }
         },
         "iconSelection": {
-          "name": "Icon Selection",
+          "name": "Sélection d'icônes",
           "fields": {
             "iconSelection": {
-              "label": "Icon",
-              "helperText": "Select icon, which would be displayed for this income source"
+              "label": "Icône",
+              "helperText": "Sélectionnez l'icône, qui serait affichée pour cette source de revenu"
             }
           }
         },
         "advanced": {
-          "name": "Advanced",
-          "description": "Advanced configuration for Source of Income",
+          "name": "Avancé",
+          "description": "Configuration avancée pour la source de revenu",
           "fields": {
             "incomeFee": {
-              "label": "Fee",
-              "helperText": "Any possible fees"
+              "label": "Frais",
+              "helperText": "Tous les frais possibles"
             },
             "incomeFeeType": {
-              "label": "Fee Type",
-              "helperText": "If there's fee - is it fixed, or in percentage?",
+              "label": "Type de frais",
+              "helperText": "S'il y a des frais - sont-ils fixes ou en pourcentage?",
               "options": {
-                "percentage": "Percentage",
-                "fixed": "Fixed"
+                "percentage": "Pourcentage",
+                "fixed": "Fixé"
               }
             }
           }
@@ -86,97 +86,97 @@
     "accounts": {
       "sections": {
         "general": {
-          "name": "General",
+          "name": "Général",
           "fields": {
             "name": {
-              "label": "Account Name",
-              "value": "Wallet",
-              "helperText": "Name of Account"
+              "label": "Nom du compte",
+              "value": "Portefeuille",
+              "helperText": "Nom du compte"
             },
             "balance": {
-              "label": "Balance",
-              "helperText": "Current Balance"
+              "label": "Équilibre",
+              "helperText": "Solde actuel"
             },
             "currency": {
-              "label": "Currency",
-              "helperText": "In which currency?",
+              "label": "Devise",
+              "helperText": "Dans quelle devise?",
               "options": {
-                "USD": "US Dollars",
-                "EUR": "European Euro",
-                "UAH": "Ukrainian Hryvna"
+                "USD": "Dollars américains",
+                "EUR": "Euro européen",
+                "UAH": "Ukrainien hryvnia"
               }
             }
           }
         },
         "iconSelection": {
-          "name": "Icon Selection",
+          "name": "Sélection d'icônes",
           "fields": {
             "iconSelection": {
-              "label": "Icon",
-              "helperText": "Select icon, which would be displayed for this income source"
+              "label": "Icône",
+              "helperText": "Sélectionnez l'icône, qui serait affichée pour cette source de revenu"
             }
           }
         },
         "advanced": {
-          "name": "Advanced",
-          "description": "Advanced configuration for Account",
+          "name": "Avancé",
+          "description": "Configuration avancée pour le compte",
           "fields": {
             "payoutPriority": {
-              "label": "Payout Priority",
-              "helperText": "If this is debt account - how it is important to payout it first prior to others?(from 1 to 10)"
+              "label": "Priorité de paiement",
+              "helperText": "S'il s'agit d'un compte de dette - comment est-il important de le payer avant les autres? (De 1 à 10)"
             },
             "requiredPayment": {
-              "label": "Required Payment",
-              "helperText": "How much do you need to payout this debt regulary (like bank credit)? Leave 0 if no required payment per some period, or put whole debt amount if you need to pay it via single payment."
+              "label": "Paiement requis",
+              "helperText": "De combien avez-vous besoin pour payer cette dette régulièrement (comme le crédit bancaire)? Laissez 0 si aucun paiement requis pour une période donnée, ou mettez le montant total de la dette si vous devez le payer par paiement unique."
             },
             "requiredPaymentFrequency": {
-              "label": "Required Payment Frequency",
-              "helperText": "How frequent you need to pay your required payment?",
+              "label": "Fréquence de paiement requise",
+              "helperText": "À quelle fréquence devez-vous payer votre paiement requis?",
               "options": {
-                "daily": "Per working day",
-                "weekly": "Per week",
-                "montly": "Per month",
-                "yearly": "Per year",
-                "once": "One-time payment"
+                "daily": "Par jour ouvrable",
+                "weekly": "Par semaine",
+                "montly": "Par mois",
+                "yearly": "Par an",
+                "once": "Paiement unique"
               }
             },
             "limit": {
-              "label": "Debt limit",
-              "helperText": "For some debit cards/accounts - there is possible debt limit."
+              "label": "Limite d'endettement",
+              "helperText": "Pour certaines cartes de débit / comptes - il existe une limite d'endettement possible."
             },
             "fee": {
-              "label": "Debt Limit Fee",
-              "helperText": "If there is fee for debt limit usage - how much it is?"
+              "label": "Frais de limite de dette",
+              "helperText": "S'il y a des frais pour l'utilisation de la limite d'endettement, quel est le montant?"
             },
             "debtFeeType": {
-              "label": "Fee Type",
-              "helperText": "If there's fee for debt limit - is it fixed, or in percentage?",
+              "label": "Type de frais",
+              "helperText": "S'il y a des frais pour la limite d'endettement - est-ce fixe ou en pourcentage?",
               "options": {
-                "percentage": "Percentage",
-                "fixed": "Fixed"
+                "percentage": "Pourcentage",
+                "fixed": "Fixé"
               }
             },
             "feeFrequency": {
-              "label": "Fee charging frequency",
-              "helperText": "How frequent you will be charged for debt limit usage?",
+              "label": "Fréquence de facturation des frais",
+              "helperText": "À quelle fréquence vous serez facturé pour l'utilisation de la limite de dette?",
               "options": {
-                "daily": "Per working day",
-                "weekly": "Per week",
-                "montly": "Per month",
-                "yearly": "Per year",
-                "once": "One-time fee"
+                "daily": "Par jour ouvrable",
+                "weekly": "Par semaine",
+                "montly": "Par mois",
+                "yearly": "Par an",
+                "once": "Frais uniques"
               }
             },
             "limitFreeUsageDays": {
-              "label": "Free days",
-              "helperText": "How long you can use this debt limit for free?",
+              "label": "Jours gratuits",
+              "helperText": "Combien de temps pouvez-vous utiliser gratuitement cette limite d'endettement?",
               "options": {
-                "noFreeUsage": "No free usage",
-                "daily": "A day",
-                "weekly": "A week",
-                "montly": "A month",
-                "yearly": "A year",
-                "always": "It's always for free"
+                "noFreeUsage": "Pas d'utilisation gratuite",
+                "daily": "Un jour",
+                "weekly": "Une semaine",
+                "montly": "Un mois",
+                "yearly": "Une année",
+                "always": "C'est toujours gratuit"
               }
             }
           }
@@ -186,70 +186,70 @@
     "spendings": {
       "sections": {
         "general": {
-          "name": "General",
+          "name": "Général",
           "fields": {
             "name": {
-              "label": "Category",
-              "helperText": "Name of Spending Category",
-              "value": "Goods"
+              "label": "Catégorie",
+              "helperText": "Nom de la catégorie de dépenses",
+              "value": "Des biens"
             },
             "expectedAmount": {
-              "label": "Amount",
-              "helperText": "Expected Amount of Spendings for this Category"
+              "label": "Montant",
+              "helperText": "Montant prévu des dépenses pour cette catégorie"
             },
             "currency": {
-              "label": "Currency",
-              "helperText": "In which currency?",
+              "label": "Devise",
+              "helperText": "Dans quelle devise?",
               "options": {
-                "USD": "US Dollars",
-                "EUR": "European Euro",
-                "UAH": "Ukrainian Hryvna"
+                "USD": "Dollars américains",
+                "EUR": "Euro européen",
+                "UAH": "Ukrainien hryvnia"
               }
             },
             "frequency": {
-              "label": "Frequency",
-              "helperText": "What is the frequency of updating expected amount of spending for this category? (I.e. how much in **which period** you want to spend?)",
+              "label": "La fréquence",
+              "helperText": "Quelle est la fréquence de mise à jour du montant prévu des dépenses pour cette catégorie? (C'est-à-dire combien pendant ** quelle période ** vous voulez dépenser?)",
               "options": {
-                "daily": "Per working day",
-                "weekly": "Per week",
-                "montly": "Per month",
-                "yearly": "Per year",
-                "once": "One-time income"
+                "daily": "Par jour ouvrable",
+                "weekly": "Par semaine",
+                "montly": "Par mois",
+                "yearly": "Par an",
+                "once": "Revenu unique"
               }
             }
           }
         },
         "iconSelection": {
-          "name": "Icon Selection",
+          "name": "Sélection d'icônes",
           "fields": {
             "iconSelection": {
-              "label": "Icon",
-              "helperText": "Select icon, which would be displayed for this income source"
+              "label": "Icône",
+              "helperText": "Sélectionnez l'icône, qui serait affichée pour cette source de revenu"
             }
           }
         },
         "advanced": {
-          "name": "Advanced",
-          "description": "Advanced configuration for Spending Category",
+          "name": "Avancé",
+          "description": "Configuration avancée pour la catégorie de dépenses",
           "fields": {
             "isMandatory": {
-              "label": "Mandatory spending",
-              "helperText": "Off this box, if this spending category not mandatory (i.e. you can omit this type of spendings for a while)."
+              "label": "Dépenses obligatoires",
+              "helperText": "Hors de cette case, si cette catégorie de dépenses n'est pas obligatoire (c'est-à-dire que vous pouvez omettre ce type de dépenses pendant un certain temps)."
             },
             "reducingAmount": {
-              "label": "Possible Reducing",
-              "helperText": "If it is possible to reduce this spending - put possible reducing amount, so we can calculate your financial plan with possible reducing options."
+              "label": "Réduction possible",
+              "helperText": "S'il est possible de réduire ces dépenses - mettez un montant de réduction possible, afin que nous puissions calculer votre plan financier avec des options de réduction possibles."
             },
             "isMandatoryStateExpiration": {
-              "label": "Removal Time",
-              "helperText": "After which period of time you can remove this spending category?",
+              "label": "Temps de retrait",
+              "helperText": "Après quelle période pouvez-vous supprimer cette catégorie de dépenses?",
               "options": {
-                "daily": "Per working day",
-                "weekly": "Per week",
-                "montly": "Per month",
-                "yearly": "Per year",
-                "once": "One-time spending",
-                "always": "This spending always mandatory"
+                "daily": "Par jour ouvrable",
+                "weekly": "Par semaine",
+                "montly": "Par mois",
+                "yearly": "Par an",
+                "once": "Dépenses ponctuelles",
+                "always": "Cette dépense toujours obligatoire"
               }
             }
           }
