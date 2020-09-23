@@ -26,7 +26,6 @@ import {
   SettingsApplicationsRounded
 } from "@material-ui/icons";
 
-import { LanguageSwitcher } from "../../";
 import { ICONS_MAP } from "./config";
 
 import useNavigation from "./hooks";
@@ -91,7 +90,6 @@ export default function Navigation() {
                       />
                     </IconButton>
                   </Tooltip>
-                  <LanguageSwitcher />
                   <Menu
                     open={Boolean(accountMenuAnchorEl)}
                     anchorEl={accountMenuAnchorEl}

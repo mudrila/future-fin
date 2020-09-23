@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
 
-import finplanDashboardConfig from "../config/dashboard";
+import createFinPlanDashboardConfig from "../config/dashboard";
 import {
   finPlanGoalsActionCreators,
   finHealthActionCreators
@@ -23,6 +23,7 @@ export default function useFinPlanDashboard() {
   const finPlanGoals = useSelector(finPlanGoalsSelector);
   const finHealth = useSelector(finHealthSelector);
 
+  const finplanDashboardConfig = createFinPlanDashboardConfig(t);
   const finPlanDataMapping = {
     goals: finPlanGoals
   };

@@ -1,4 +1,4 @@
-import { AddButton, LanguageSwitcher } from "./atoms";
+import { AddButton } from "./atoms";
 import {
   Navigation,
   IconSelector,
@@ -18,6 +18,5 @@ export {
   IconSelector,
   SwitchField,
   CheckboxField,
-  CountrySelector,
-  LanguageSwitcher
+  CountrySelector
 };
