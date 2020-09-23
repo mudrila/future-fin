@@ -1,14 +1,14 @@
 {
-  "header": "FutureFin | Фінансовий Планувальник",
-  "profile": "Profile",
-  "account": "My Account",
-  "appSettings": "App Settings",
-  "logout": "Logout",
-  "login": "Login",
-  "sign_up": "Sign Up",
-  "home": "Home",
-  "apps": "Apps Dashboard",
-  "budget": "Budget Overview",
-  "finplan": "FinPlan Overview",
-  "finplan_schedule": "FinPlan Schedule"
+  "header": "FutureFin | Финансовый Планировщик",
+  "profile": "Профиль",
+  "account": "Мой Аккаунт",
+  "appSettings": "Настройки Приложения",
+  "logout": "Выйти",
+  "login": "Войти",
+  "sign_up": "Регистрация",
+  "home": "Главная",
+  "apps": "Приложения",
+  "budget": "Бюджет",
+  "finplan": "Финансовый План",
+  "finplan_schedule": "Финансовый Планировщик"
 }

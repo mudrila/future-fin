@@ -1,62 +1,62 @@
 {
-  "totalGoals": "Total Goals Price",
+  "totalGoals": "Общая стоимость Финансовых Целей",
   "entityParts": {
-    "goals": "Financial Goals"
+    "goals": "Финансовые Цели"
   },
-  "dashboardTitle": "Financial Plan Overview",
+  "dashboardTitle": "Финансовый План",
   "form": {
     "createTitle": {
-      "goals": "Create new Financial Goal"
+      "goals": "Создать новую Финансовую Цель"
     },
-    "editTitle": "Edit {{itemName}}",
-    "createButtonText": "Submit",
-    "editButtonText": "Save",
-    "deleteButtonText": "Delete",
+    "editTitle": "Редактировать {{itemName}}",
+    "createButtonText": "Создать",
+    "editButtonText": "Сохранить",
+    "deleteButtonText": "Удалить",
     "goals": {
       "sections": {
         "general": {
-          "name": "General",
+          "name": "Общие",
           "fields": {
             "name": {
-              "label": "Goal Name",
-              "value": "New House",
-              "helperText": "Name of Financial Goal"
+              "label": "Имя Цели",
+              "value": "Новый Дом",
+              "helperText": "Имя Финансовой Цели"
             },
             "expectedAmount": {
-              "label": "Expence",
-              "helperText": "An average expence of this financial goal"
+              "label": "Стоимость",
+              "helperText": "Оценочная стоимость вашей финансовой цели"
             },
             "currency": {
-              "label": "Currency",
-              "helperText": "In which currency?",
+              "label": "Валюта",
+              "helperText": "В какой валюте?",
               "options": {
-                "USD": "US Dollars",
-                "EUR": "European Euro",
-                "UAH": "Ukrainian Hryvna"
+                "USD": "Американский Доллар",
+                "EUR": "Европейский Евро",
+                "UAH": "Украинская Гривна"
               }
             },
             "deadline": {
-              "label": "Deadline",
-              "helperText": "Till which date you want to achieve this financial goal?"
+              "label": "Срок Достижения",
+              "helperText": "К какой дате вы хотите достигнуть этой финансовой цели?"
             }
           }
         },
         "iconSelection": {
-          "name": "Icon Selection",
+          "name": "Выбор Иконки",
           "fields": {
             "iconSelection": {
-              "label": "Icon",
-              "helperText": "Select icon, which would be displayed for this financial goal"
+              "label": "Иконка",
+              "helperText": "Выберите иконку, которая будет отображаться для этой финансовой цели"
             }
           }
         },
         "advanced": {
-          "name": "Advanced",
-          "description": "Advanced configuration for Financial Goal",
+          "name": "Продвинутые",
+          "description": "Продвинутый настройки для этой Финансовой Цели",
           "fields": {
             "payoutPriority": {
-              "label": "Priority",
-              "helperText": "Tip - it use same priority ranking as debts, so higher achievement priority means you want to get this financial goal earlier than settle the debt"
+              "label": "Приоритетность",
+              "helperText": "Подсказска - эта приоритетность соотносится с приоритетностью выплаты долгов. Укажите приоритет выше, и Финансовый Планировщик рассчитает достижение этой цели раньше, чем выплату менее приоритетных долгов."
             }
           }
         }
