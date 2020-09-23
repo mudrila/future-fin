@@ -5,5 +5,7 @@
   "formDialogTitle": "Create New",
   "countrySelector": {
     "label": "Choose a country"
-  }
+  },
+  "edit": "Edit",
+  "delete": "Delete"
 }

@@ -14,6 +14,7 @@ import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
 import { capitalizeString } from "../../../../utils";
 import useStyles from "./styles";
 import { allIconsMap } from "../../../../molecules/IconSelector";
+import { useTranslation } from "../../../../../i18n";
 
 export default function EntityPartCategoryItem({
   expectedAmount,
@@ -29,6 +30,7 @@ export default function EntityPartCategoryItem({
 }) {
   const classes = useStyles();
   const Icon = allIconsMap[icon].Icon;
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -69,12 +71,12 @@ export default function EntityPartCategoryItem({
           >
             <SpeedDialAction
               icon={<allIconsMap.Edit.Icon />}
-              tooltipTitle={"Edit"}
+              tooltipTitle={t("edit")}
               onClick={handleEdit}
             />
             <SpeedDialAction
               icon={<allIconsMap.Delete.Icon />}
-              tooltipTitle={"Delete"}
+              tooltipTitle={t("delete")}
               onClick={handleDelete}
             />
           </SpeedDial>
@@ -90,7 +92,11 @@ export default function EntityPartCategoryItem({
         {expectedAmount && (
           <Typography variant="body1">
             {(+expectedAmount).toFixed(2)} /{" "}
-            {capitalizeString(frequency) ||
+            {/* Translated frequency, or formatted deadline. Or nothing */}
+            {(frequency &&
+              t(
+                `budget:form.incomes.sections.general.frequency.options${frequency}`
+              )) ||
               (deadline && format(new Date(deadline), "dd.MM.yyyy"))}
           </Typography>
         )}

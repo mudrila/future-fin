@@ -5,5 +5,7 @@
   "formDialogTitle": "Créer un nouveau",
   "countrySelector": {
     "label": "Choisissez un pays"
-  }
+  },
+  "edit": "Éditer",
+  "delete": "Supprimer"
 }
