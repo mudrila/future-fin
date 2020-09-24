@@ -1,11 +1,11 @@
 {
-  "documentTitle": "FutureFin | Финансовый Планировщик",
-  "submit": "Отправить",
-  "cancel": "Закрыть",
-  "formDialogTitle": "Создать",
+  "documentTitle": "FutureFin | Фінансовий Планувальник",
+  "submit": "Відправити",
+  "cancel": "Закрити",
+  "formDialogTitle": "Створити",
   "countrySelector": {
-    "label": "Выберите страну"
+    "label": "Оберіть країну"
   },
-  "edit": "Редактировать",
-  "delete": "Удалить"
+  "edit": "Редагувати",
+  "delete": "Видалити"
 }
