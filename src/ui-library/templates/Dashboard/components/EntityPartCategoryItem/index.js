@@ -10,12 +10,14 @@ import {
 } from "@material-ui/core";
 import SpeedDial from "@material-ui/lab/SpeedDial";
 import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
+import { DragPreviewImage } from "react-dnd";
 
 import useStyles from "./styles";
 import { allIconsMap } from "../../../../molecules/IconSelector";
 
 import useEntityPartCategoryItem from "./hooks";
 import { ItemTypes } from "../../config/dnd";
+// import CoinImg from "../../../../../assets/coin.png";
 
 export default function EntityPartCategoryItem({
   expectedAmount,
@@ -44,7 +46,8 @@ export default function EntityPartCategoryItem({
     isDragging,
     drop,
     isOver,
-    canDrop
+    canDrop,
+    preview
   } = useEntityPartCategoryItem({
     onDelete,
     onEdit,
@@ -100,6 +103,7 @@ export default function EntityPartCategoryItem({
           })}
           ref={dragItemType !== ItemTypes.SPENDING ? drag : null}
         >
+          <DragPreviewImage connect={preview} src="/static/assets/coin.png" />
           <Icon />
         </Fab>
         <Typography variant="body1">

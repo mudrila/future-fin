@@ -30,7 +30,7 @@ export default function useEntityPartCategoryItem({
     onEdit();
     handleClose();
   };
-  const [{ isDragging }, drag] = useDrag({
+  const [{ isDragging }, drag, preview] = useDrag({
     item: { type: dragItemType, _id },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging()
@@ -70,6 +70,7 @@ export default function useEntityPartCategoryItem({
     drag,
     drop,
     isOver,
-    canDrop
+    canDrop,
+    preview
   };
 }
