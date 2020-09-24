@@ -96,9 +96,18 @@ export default function useBudgetDashboard() {
     action && dispatch(action);
   }
 
-  const totalIncome = incomeSources.reduce(sumReducer, 0);
-  const currentBalance = accounts.reduce(sumReducer, 0);
-  const totalSpendings = spendingCategories.reduce(sumReducer, 0);
+  const totalIncome = incomeSources.reduce(
+    (prev, curr) => sumReducer(prev, curr, defaultCurrency),
+    0
+  );
+  const currentBalance = accounts.reduce(
+    (prev, curr) => sumReducer(prev, curr, defaultCurrency),
+    0
+  );
+  const totalSpendings = spendingCategories.reduce(
+    (prev, curr) => sumReducer(prev, curr, defaultCurrency),
+    0
+  );
 
   const entityParts = budgetDashbaordConfig.entityParts.map((entityPart) => ({
     ...entityPart,

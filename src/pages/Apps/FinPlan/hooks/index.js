@@ -33,7 +33,10 @@ export default function useFinPlanDashboard() {
     items: finPlanDataMapping[entityPart.name] || []
   }));
 
-  const totalFinancialGoalsPrice = finPlanGoals.reduce(sumReducer, 0);
+  const totalFinancialGoalsPrice = finPlanGoals.reduce(
+    (prev, curr) => sumReducer(prev, curr, defaultCurrency),
+    0
+  );
   function handleSubmit(formName, formValues) {
     let action = null;
     if (formName === "goals") {

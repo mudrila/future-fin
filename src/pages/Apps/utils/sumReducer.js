@@ -1,23 +1,47 @@
-export default function sumReducer(total, current) {
-  // TODO: Grab currency exchange rate from some open data source instead of hardcoding
-  const currencyMappingToUAH = {
-    EUR: 32.5,
-    USD: 27.3,
+// TODO: Get all this data from BE instead of calculating this on FE!!!
+const currencyMappings = {
+  EUR: {
+    EUR: 1,
+    USD: 1.18,
+    UAH: 33.26
+  },
+  USD: {
+    EUR: 0.84,
+    USD: 1,
+    UAH: 27.9
+  },
+  UAH: {
+    EUR: 0.03,
+    USD: 0.036,
     UAH: 1
-  };
-
-  let amount = current.expectedAmount;
-  if (typeof amount === "undefined") {
-    amount = current.balance;
   }
-  const amountToUAH = amount * currencyMappingToUAH[current.currency];
+};
+
+export default function monthSumReducer(total, current, primaryCurrency) {
+  let amountField = current.expectedAmount ? "expectedAmount" : "balance";
+  const amountToPrimaryCurrency = toPrimaryCurrency(
+    current,
+    amountField,
+    primaryCurrency
+  );
   if (current.frequency) {
     if (current.frequency === "daily") {
       // ~Working month
-      return total + amountToUAH * 21;
+      return Math.ceil(total + amountToPrimaryCurrency * 21);
     } else if (current.frequency === "weekly") {
-      return total + amountToUAH * 4;
+      return Math.ceil(total + amountToPrimaryCurrency * 4);
     }
   }
-  return total + amountToUAH;
+  return Math.ceil(total + amountToPrimaryCurrency);
+}
+
+function toPrimaryCurrency(
+  account,
+  balanceFieldName = "balance",
+  primaryCurrency
+) {
+  return Math.ceil(
+    account[balanceFieldName] *
+      currencyMappings[account.currency][primaryCurrency]
+  );
 }
