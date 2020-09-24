@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import clsx from "clsx";
 import { format } from "date-fns";
 import {
   Fab,
@@ -11,10 +11,11 @@ import {
 import SpeedDial from "@material-ui/lab/SpeedDial";
 import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
 
-import { capitalizeString } from "../../../../utils";
 import useStyles from "./styles";
 import { allIconsMap } from "../../../../molecules/IconSelector";
-import { useTranslation } from "../../../../../i18n";
+
+import useEntityPartCategoryItem from "./hooks";
+import { ItemTypes } from "../../config/dnd";
 
 export default function EntityPartCategoryItem({
   expectedAmount,
@@ -26,30 +27,39 @@ export default function EntityPartCategoryItem({
   currency,
   onDelete,
   onEdit,
-  deadline
+  deadline,
+  dragItemType,
+  acceptDropItemTypes,
+  _id
 }) {
+  const {
+    t,
+    handleClose,
+    handleEdit,
+    handleDelete,
+    open,
+    handleOpen,
+    Icon,
+    drag,
+    isDragging,
+    drop,
+    isOver,
+    canDrop
+  } = useEntityPartCategoryItem({
+    onDelete,
+    onEdit,
+    icon,
+    dragItemType,
+    acceptDropItemTypes,
+    _id
+  });
   const classes = useStyles();
-  const Icon = allIconsMap[icon].Icon;
-  const { t } = useTranslation();
-  const [open, setOpen] = useState(false);
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleDelete = () => {
-    onDelete();
-    handleClose();
-  };
-  const handleEdit = () => {
-    onEdit();
-    handleClose();
-  };
-
   return (
-    <Card className={classes.root} variant="outlined">
+    <Card
+      className={clsx(classes.root, { [classes.dropping]: isOver && canDrop })}
+      variant="outlined"
+      ref={dragItemType !== ItemTypes.INCOME ? drop : null}
+    >
       <CardHeader
         className={classes.cardHeader}
         title={name}
@@ -83,7 +93,13 @@ export default function EntityPartCategoryItem({
         }
       />
       <CardContent className={classes.cardContent}>
-        <Fab color="primary" className={classes.actionIcon}>
+        <Fab
+          color="primary"
+          className={clsx(classes.actionIcon, {
+            [classes.dragging]: isDragging
+          })}
+          ref={dragItemType !== ItemTypes.SPENDING ? drag : null}
+        >
           <Icon />
         </Fab>
         <Typography variant="body1">
@@ -95,7 +111,7 @@ export default function EntityPartCategoryItem({
             {/* Translated frequency, or formatted deadline. Or nothing */}
             {(frequency &&
               t(
-                `budget:form.incomes.sections.general.frequency.options${frequency}`
+                `budget:form.incomes.sections.general.frequency.options.${frequency}`
               )) ||
               (deadline && format(new Date(deadline), "dd.MM.yyyy"))}
           </Typography>
@@ -116,5 +132,8 @@ EntityPartCategoryItem.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
   balance: PropTypes.string,
-  deadline: PropTypes.string
+  deadline: PropTypes.string,
+  dragItemType: PropTypes.string,
+  acceptDropItemTypes: PropTypes.arrayOf(PropTypes.string),
+  _id: PropTypes.string.isRequired
 };

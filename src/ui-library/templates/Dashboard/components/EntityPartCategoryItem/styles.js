@@ -31,6 +31,15 @@ function useStyles(theme) {
       "&:hover svg": {
         fill: "white"
       }
+    },
+    dragging: {
+      opacity: 0.5,
+      cursor: "move"
+    },
+    dropping: {
+      opacity: 0.5,
+      zIndex: 1,
+      backgroundColor: "yellow"
     }
   };
 }

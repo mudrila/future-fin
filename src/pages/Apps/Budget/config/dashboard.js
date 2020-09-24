@@ -1,20 +1,28 @@
+import { ItemTypes } from "../../../../ui-library/templates/Dashboard/config/dnd";
+
 function createBudgetDashbaordConfig(t) {
   return {
     entityParts: [
       {
         name: "incomes",
         dashboardSectionTitle: t("budget:entityParts.incomes"),
-        modalTitle: t("budget:form.createTitle.incomes")
+        modalTitle: t("budget:form.createTitle.incomes"),
+        dragItemType: ItemTypes.INCOME,
+        acceptDropItemTypes: []
       },
       {
         name: "accounts",
         dashboardSectionTitle: t("budget:entityParts.accounts"),
-        modalTitle: t("budget:form.createTitle.accounts")
+        modalTitle: t("budget:form.createTitle.accounts"),
+        dragItemType: ItemTypes.ACCOUNT,
+        acceptDropItemTypes: [ItemTypes.ACCOUNT, ItemTypes.INCOME]
       },
       {
         name: "spendings",
         dashboardSectionTitle: t("budget:entityParts.spendings"),
-        modalTitle: t("budget:form.createTitle.spendings")
+        modalTitle: t("budget:form.createTitle.spendings"),
+        dragItemType: ItemTypes.SPENDING,
+        acceptDropItemTypes: [ItemTypes.ACCOUNT]
       }
     ],
     entityName: "budget",
