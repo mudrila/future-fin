@@ -109,7 +109,7 @@ export default function FormDialog({
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} color="primary" variant="contained">
+          <Button onClick={onClose} color="primary" variant="outlined">
             {translatedCancelButtonText}
           </Button>
           <Button

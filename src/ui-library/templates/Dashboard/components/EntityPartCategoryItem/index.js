@@ -32,7 +32,8 @@ export default function EntityPartCategoryItem({
   deadline,
   dragItemType,
   acceptDropItemTypes,
-  _id
+  _id,
+  onTransactionPerform
 }) {
   const {
     t,
@@ -54,7 +55,8 @@ export default function EntityPartCategoryItem({
     icon,
     dragItemType,
     acceptDropItemTypes,
-    _id
+    _id,
+    onTransactionPerform
   });
   const classes = useStyles();
   return (
@@ -115,7 +117,7 @@ export default function EntityPartCategoryItem({
             {/* Translated frequency, or formatted deadline. Or nothing */}
             {(frequency &&
               t(
-                `budget:form.incomes.sections.general.frequency.options.${frequency}`
+                `budget:form.incomes.sections.general.fields.frequency.options.${frequency}`
               )) ||
               (deadline && format(new Date(deadline), "dd.MM.yyyy"))}
           </Typography>
@@ -139,5 +141,6 @@ EntityPartCategoryItem.propTypes = {
   deadline: PropTypes.string,
   dragItemType: PropTypes.string,
   acceptDropItemTypes: PropTypes.arrayOf(PropTypes.string),
-  _id: PropTypes.string.isRequired
+  _id: PropTypes.string.isRequired,
+  onTransactionPerform: PropTypes.func
 };

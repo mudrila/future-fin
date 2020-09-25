@@ -1,0 +1,25 @@
+{
+  "title": "Neue Transaktion",
+  "form": {
+    "submitButtonText": "Aufzeichnung",
+    "cancelButtonText": "Stornieren",
+    "fields": {
+      "from": {
+        "label": "Von",
+        "placeholder": "Debitkarte"
+      },
+      "to": {
+        "label": "Zu",
+        "placeholder": "Brieftasche"
+      },
+      "amount": {
+        "label": "Menge"
+      },
+      "comment": {
+        "label": "Kommentar",
+        "helperText": "Optionaler Kommentar, der Ihnen hilft, besser zu verstehen, was für Sie diese Transaktion durchgeführt hat.",
+        "placeholder": "Holen Sie sich Bargeld von der Debitkarte, um Tee zu kaufen."
+      }
+    }
+  }
+}

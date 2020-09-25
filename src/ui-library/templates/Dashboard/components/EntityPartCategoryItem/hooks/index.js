@@ -10,7 +10,8 @@ export default function useEntityPartCategoryItem({
   dragItemType,
   acceptDropItemTypes,
   icon,
-  _id
+  _id,
+  onTransactionPerform
 }) {
   const Icon = allIconsMap[icon].Icon;
   const { t } = useTranslation();
@@ -38,9 +39,11 @@ export default function useEntityPartCategoryItem({
   });
 
   function performTransaction(draggableItem) {
-    console.log(
-      `Perform Transaction. From ${draggableItem.type} ${draggableItem._id} To ${dragItemType} ${_id}`
-    );
+    onTransactionPerform &&
+      onTransactionPerform({
+        from: draggableItem,
+        to: { type: dragItemType, _id }
+      });
   }
 
   const [{ isOver, canDrop }, drop] = useDrop({

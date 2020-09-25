@@ -1,0 +1,25 @@
+{
+  "title": "Nouvelle transaction",
+  "form": {
+    "submitButtonText": "Record",
+    "cancelButtonText": "Annuler",
+    "fields": {
+      "from": {
+        "label": "De",
+        "placeholder": "Carte de débit"
+      },
+      "to": {
+        "label": "À",
+        "placeholder": "Portefeuille"
+      },
+      "amount": {
+        "label": "Montant"
+      },
+      "comment": {
+        "label": "Commentaire",
+        "helperText": "Commentaire facultatif, qui vous aiderait à mieux comprendre pourquoi vous avez effectué cette transaction.",
+        "placeholder": "Obtenez de l'argent sur votre carte de débit pour acheter du thé."
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "title": "New Transaction",
+  "form": {
+    "submitButtonText": "Record",
+    "cancelButtonText": "Cancel",
+    "fields": {
+      "from": {
+        "label": "From",
+        "placeholder": "Debit Card"
+      },
+      "to": {
+        "label": "To",
+        "placeholder": "Wallet"
+      },
+      "amount": {
+        "label": "Amount"
+      },
+      "comment": {
+        "label": "Comment",
+        "helperText": "Optional comment, which then would help you better understand what for you made this transaction.",
+        "placeholder": "Get some cash from debit card to buy some tea."
+      }
+    }
+  }
+}

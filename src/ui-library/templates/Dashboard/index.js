@@ -29,7 +29,8 @@ export default function Dashboard({
   childrenPositioning,
   children,
   subHeader,
-  dashboardTitle
+  dashboardTitle,
+  onTransactionPerform
 }) {
   const {
     createModalsState,
@@ -81,6 +82,7 @@ export default function Dashboard({
                   <Fragment key={item._id}>
                     <EntityPartCategoryItem
                       {...item}
+                      onTransactionPerform={onTransactionPerform}
                       dragItemType={entityPart.dragItemType}
                       acceptDropItemTypes={entityPart.acceptDropItemTypes}
                       onDelete={() =>
@@ -171,5 +173,6 @@ Dashboard.propTypes = {
   childrenPositioning: PropTypes.oneOf(["top", "bottom"]),
   children: PropTypes.node,
   subHeader: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
-  dashboardTitle: PropTypes.string
+  dashboardTitle: PropTypes.string,
+  onTransactionPerform: PropTypes.func
 };

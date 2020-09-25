@@ -1,6 +1,8 @@
+import { Fragment } from "react";
 import { Grid, Typography } from "@material-ui/core";
 
 import { Dashboard } from "../../../ui-library";
+import TransactionModal from "./components/TransactionModal";
 import useBudgetDashboard from "./hooks";
 import useStyles from "./styles";
 
@@ -17,42 +19,59 @@ function BudgetDashboard() {
     currentBalance,
     totalSpendings,
     t,
-    defaultCurrency
+    defaultCurrency,
+    openTransactionModal,
+    handleTransactionModalClose,
+    handleTransactionModalSubmit,
+    transactionModalOpen,
+    transactionInitialData
   } = useBudgetDashboard();
 
   return (
-    <Dashboard
-      entityName={entityName}
-      entityParts={entityParts}
-      formsConfig={formsConfig}
-      onSubmit={handleSubmit}
-      normalizeFormData={true}
-      onEdit={handleEdit}
-      onDelete={handleDelete}
-      dashboardTitle={t("budget:dashboardTitle")}
-      subHeader={
-        <Grid container justify="center">
-          <Grid container item xs={1} className={classes.subHeadingItem}>
-            <Typography>{t("budget:totalIncome")}</Typography>
-            <Typography>
-              {totalIncome} {defaultCurrency}
-            </Typography>
+    <Fragment>
+      <TransactionModal
+        open={transactionModalOpen}
+        onClose={handleTransactionModalClose}
+        onSubmit={handleTransactionModalSubmit}
+        fromValue={transactionInitialData.fromValue}
+        toValue={transactionInitialData.toValue}
+        fromOptions={transactionInitialData.fromOptions}
+        toOptions={transactionInitialData.toOptions}
+      />
+      <Dashboard
+        entityName={entityName}
+        entityParts={entityParts}
+        formsConfig={formsConfig}
+        onSubmit={handleSubmit}
+        normalizeFormData={true}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+        dashboardTitle={t("budget:dashboardTitle")}
+        onTransactionPerform={openTransactionModal}
+        subHeader={
+          <Grid container justify="center">
+            <Grid container item xs={1} className={classes.subHeadingItem}>
+              <Typography>{t("budget:totalIncome")}</Typography>
+              <Typography>
+                {totalIncome} {defaultCurrency}
+              </Typography>
+            </Grid>
+            <Grid container item xs={1} className={classes.subHeadingItem}>
+              <Typography>{t("budget:currentBalance")}</Typography>
+              <Typography>
+                {currentBalance} {defaultCurrency}
+              </Typography>
+            </Grid>
+            <Grid item xs={1}>
+              <Typography>{t("budget:totalSpendings")}</Typography>
+              <Typography>
+                {totalSpendings} {defaultCurrency}
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid container item xs={1} className={classes.subHeadingItem}>
-            <Typography>{t("budget:currentBalance")}</Typography>
-            <Typography>
-              {currentBalance} {defaultCurrency}
-            </Typography>
-          </Grid>
-          <Grid item xs={1}>
-            <Typography>{t("budget:totalSpendings")}</Typography>
-            <Typography>
-              {totalSpendings} {defaultCurrency}
-            </Typography>
-          </Grid>
-        </Grid>
-      }
-    />
+        }
+      />
+    </Fragment>
   );
 }
 

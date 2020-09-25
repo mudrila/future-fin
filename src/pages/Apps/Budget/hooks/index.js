@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSnackbar } from "notistack";
 
@@ -17,6 +17,8 @@ import { appSettingsSelector } from "../../../Settings/redux/selectors";
 import sumReducer from "../../utils/sumReducer";
 import { useTranslation } from "../../../../i18n";
 
+import { ItemTypes } from "../../../../ui-library/templates/Dashboard/config/dnd";
+
 export default function useBudgetDashboard() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -28,6 +30,9 @@ export default function useBudgetDashboard() {
   const incomeSources = useSelector(incomeSourcesSelector);
   const accounts = useSelector(accountsSelector);
   const spendingCategories = useSelector(spendingCategoriesSelector);
+
+  const [transactionModalOpen, setTransactionModalOpen] = useState(false);
+  const [transactionInitialData, setTransactionInitialData] = useState({});
 
   const budgetDataMapping = {
     incomes: incomeSources,
@@ -114,6 +119,83 @@ export default function useBudgetDashboard() {
     items: budgetDataMapping[entityPart.name] || []
   }));
 
+  function openTransactionModal({ from, to }) {
+    let transactionSource = {};
+    let transactionDestination = {};
+    let fromOptions = [];
+    let toOptions = [];
+    if (from.type === ItemTypes.INCOME) {
+      // We're getting some income.
+      transactionSource = incomeSources.find(
+        (source) => source._id === from._id
+      );
+      transactionDestination = accounts.find(
+        (account) => account._id === to._id
+      );
+      fromOptions = incomeSources.map((source) => ({
+        label: source.name,
+        value: source._id
+      }));
+      toOptions = accounts.map((account) => ({
+        label: account.name,
+        value: account._id
+      }));
+    } else if (
+      from.type === ItemTypes.ACCOUNT &&
+      to.type === ItemTypes.ACCOUNT
+    ) {
+      // Just transaction between accounts, like from debit card to wallet
+      transactionSource = accounts.find((account) => account._id === from._id);
+      transactionDestination = accounts.find(
+        (account) => account._id === to._id
+      );
+      fromOptions = accounts.map((account) => ({
+        label: account.name,
+        value: account._id
+      }));
+      toOptions = fromOptions;
+    } else if (
+      from.type === ItemTypes.ACCOUNT &&
+      to.type === ItemTypes.SPENDING
+    ) {
+      // Time to spend some money :D
+      transactionSource = accounts.find((account) => account._id === from._id);
+      transactionDestination = spendingCategories.find(
+        (category) => category._id === to._id
+      );
+      fromOptions = accounts.map((account) => ({
+        label: account.name,
+        value: account._id
+      }));
+      toOptions = spendingCategories.map((category) => ({
+        label: category.name,
+        value: category._id
+      }));
+    }
+    setTransactionInitialData({
+      fromValue: {
+        label: transactionSource.name,
+        value: transactionSource._id
+      },
+      toValue: {
+        label: transactionDestination.name,
+        value: transactionDestination._id
+      },
+      fromOptions,
+      toOptions
+    });
+    setTransactionModalOpen(true);
+  }
+
+  function handleTransactionModalClose() {
+    setTransactionModalOpen(false);
+  }
+
+  function handleTransactionModalSubmit(formValues) {
+    console.log(formValues);
+    handleTransactionModalClose();
+  }
+
   useEffect(() => {
     const loadIncomeSources = budgetIncomesActionCreators.READ.REQUEST(
       null,
@@ -143,6 +225,11 @@ export default function useBudgetDashboard() {
     currentBalance,
     totalSpendings,
     t,
-    defaultCurrency
+    defaultCurrency,
+    openTransactionModal,
+    handleTransactionModalClose,
+    handleTransactionModalSubmit,
+    transactionModalOpen,
+    transactionInitialData
   };
 }
