@@ -1,0 +1,20 @@
+import useStyles from "../../FormDialog/styles";
+
+export default function FormFields({
+  fields,
+  getComponentByFieldType,
+  getInputPropsByField
+}) {
+  const classes = useStyles();
+  return fields.map((field) => {
+    const Component = getComponentByFieldType(field.type);
+    const inputProps = getInputPropsByField(field);
+    return (
+      <Component
+        key={field.name}
+        className={classes.inputField}
+        {...inputProps}
+      />
+    );
+  });
+}

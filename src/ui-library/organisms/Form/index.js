@@ -1,12 +1,8 @@
 import PropTypes from "prop-types";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import {
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Button,
-  CircularProgress
-} from "@material-ui/core";
+import { Button, CircularProgress } from "@material-ui/core";
+
+import FormSections from "./components/Sections";
+import FormFields from "./components/Fields";
 
 import useForm from "./hooks";
 import useStyles from "../FormDialog/styles";
@@ -20,9 +16,10 @@ export default function Form({
   submitButtonText,
   loading = false,
   formClassName,
-  validateForm
+  validateForm,
+  shouldRenderSubmitButton = true,
+  formRef
 }) {
-  const classes = useStyles();
   const {
     getComponentByFieldType,
     getInputPropsByField,
@@ -36,47 +33,37 @@ export default function Form({
     validateForm
   });
   let translatedSubmitButtonText = submitButtonText || t("submit");
-  function renderFields(mappedFields) {
-    return mappedFields.map((field) => {
-      const Component = getComponentByFieldType(field.type);
-      const inputProps = getInputPropsByField(field);
-      return (
-        <Component
-          key={field.name}
-          className={classes.inputField}
-          {...inputProps}
-        />
-      );
-    });
-  }
-  function renderSections() {
-    return sections.map((section, i) => {
-      return (
-        <Accordion key={section.name} defaultExpanded={i === 0}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id={section.name}
-          >
-            {section.name}
-          </AccordionSummary>
-          <AccordionDetails>{renderFields(section.fields)}</AccordionDetails>
-        </Accordion>
-      );
-    });
-  }
   return (
-    <form name={formName} onSubmit={handleSubmit} className={formClassName}>
-      {sectionsSplitting ? renderSections() : renderFields(mappedFields)}
-      <Button
-        color="primary"
-        type="submit"
-        variant="contained"
-        fullWidth
-        disabled={loading || !formValid}
-      >
-        {loading ? <CircularProgress /> : translatedSubmitButtonText}
-      </Button>
+    <form
+      name={formName}
+      onSubmit={handleSubmit}
+      className={formClassName}
+      ref={formRef}
+    >
+      {sectionsSplitting ? (
+        <FormSections
+          sections={sections}
+          getComponentByFieldType={getComponentByFieldType}
+          getInputPropsByField={getInputPropsByField}
+        />
+      ) : (
+        <FormFields
+          fields={mappedFields}
+          getComponentByFieldType={getComponentByFieldType}
+          getInputPropsByField={getInputPropsByField}
+        />
+      )}
+      {shouldRenderSubmitButton && (
+        <Button
+          color="primary"
+          type="submit"
+          variant="contained"
+          fullWidth
+          disabled={loading || !formValid}
+        >
+          {loading ? <CircularProgress /> : translatedSubmitButtonText}
+        </Button>
+      )}
     </form>
   );
 }
@@ -109,5 +96,11 @@ Form.propTypes = {
   ),
   submitButtonText: PropTypes.string,
   loading: PropTypes.bool,
-  validateForm: PropTypes.func
+  validateForm: PropTypes.func,
+  shouldRenderSubmitButton: PropTypes.bool,
+  formRef: PropTypes.shape({
+    current: PropTypes.shape({
+      dispatchEvent: PropTypes.func
+    })
+  })
 };

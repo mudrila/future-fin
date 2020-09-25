@@ -177,6 +177,7 @@ export default function useForm({ fields, onSubmit, validateForm }) {
   function handleSubmit(event) {
     event.preventDefault();
     validateAndRemapFields(formState, performSubmit);
+    console.log(formState, "handleSubmit");
     function performSubmit() {
       setFormValid(true);
       onSubmit(formState);
