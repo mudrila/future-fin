@@ -8,3 +8,5 @@ export const budgetAccountRequests = createCRUDRequests("/budget-account");
 export const spendingCategoriesRequests = createCRUDRequests(
   "/spending-category"
 );
+
+export const transactionRequests = createCRUDRequests("/transaction");

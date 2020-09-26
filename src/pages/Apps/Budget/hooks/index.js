@@ -6,7 +6,8 @@ import createBudgetDashboardConfig from "../config/dashboard";
 import {
   budgetIncomesActionCreators,
   budgetAccountsActionCreators,
-  budgetSpendingCategoriesActionCreators
+  budgetSpendingCategoriesActionCreators,
+  budgetTransactionsActionCreators
 } from "../redux/actions";
 import {
   incomeSourcesSelector,
@@ -191,12 +192,23 @@ export default function useBudgetDashboard() {
     setTransactionModalOpen(false);
   }
 
-  function handleTransactionModalSubmit(formValues) {
-    console.log(formValues);
+  function handleTransactionModalSubmit({ from, to, amount, comment, date }) {
+    const newTransaction = {
+      from: from.value,
+      to: to.value,
+      amount,
+      comment,
+      date
+    };
+    const newTransactionAction = budgetTransactionsActionCreators.CREATE.REQUEST(
+      newTransaction,
+      enqueueSnackbar
+    );
+    dispatch(newTransactionAction);
     handleTransactionModalClose();
   }
 
-  useEffect(() => {
+  function loadDashboardInitialData() {
     const loadIncomeSources = budgetIncomesActionCreators.READ.REQUEST(
       null,
       enqueueSnackbar
@@ -212,7 +224,9 @@ export default function useBudgetDashboard() {
     dispatch(loadIncomeSources);
     dispatch(loadAccounts);
     dispatch(loadSpendingCategories);
-  }, []);
+  }
+
+  useEffect(loadDashboardInitialData, []);
 
   return {
     handleSubmit,

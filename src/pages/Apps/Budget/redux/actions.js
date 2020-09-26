@@ -15,6 +15,10 @@ export const BUDGET_ACCOUNTS_ACTION_TYPES = createCRUDActionTypes(
 export const BUDGET_SPENDING_CATEGORIES_ACTION_TYPES = createCRUDActionTypes(
   "BUDGET_SPENDING_CATEGORIES"
 );
+// Budget Transaction
+export const BUDGET_TRANSACTIONS_ACTION_TYPES = createCRUDActionTypes(
+  "BUDGET_TRANSACTIONS"
+);
 
 export const budgetIncomesActionCreators = createCRUDActionCreators(
   BUDGET_INCOME_SOURCES_ACTION_TYPES
@@ -24,4 +28,7 @@ export const budgetAccountsActionCreators = createCRUDActionCreators(
 );
 export const budgetSpendingCategoriesActionCreators = createCRUDActionCreators(
   BUDGET_SPENDING_CATEGORIES_ACTION_TYPES
+);
+export const budgetTransactionsActionCreators = createCRUDActionCreators(
+  BUDGET_TRANSACTIONS_ACTION_TYPES
 );

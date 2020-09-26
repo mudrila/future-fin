@@ -6,15 +6,18 @@ import {
   BUDGET_INCOME_SOURCES_ACTION_TYPES,
   BUDGET_ACCOUNTS_ACTION_TYPES,
   BUDGET_SPENDING_CATEGORIES_ACTION_TYPES,
+  BUDGET_TRANSACTIONS_ACTION_TYPES,
   budgetIncomesActionCreators,
   budgetAccountsActionCreators,
-  budgetSpendingCategoriesActionCreators
+  budgetSpendingCategoriesActionCreators,
+  budgetTransactionsActionCreators
 } from "./actions";
 
 import {
   incomeSourceRequests,
   budgetAccountRequests,
-  spendingCategoriesRequests
+  spendingCategoriesRequests,
+  transactionRequests
 } from "./requests";
 
 const budgetIncomeSourcesWatcher = createCRUDSagaWatcher({
@@ -24,24 +27,32 @@ const budgetIncomeSourcesWatcher = createCRUDSagaWatcher({
   readIsList: true
 });
 
-const budgetAccountWathcer = createCRUDSagaWatcher({
+const budgetAccountWatcher = createCRUDSagaWatcher({
   actionTypes: BUDGET_ACCOUNTS_ACTION_TYPES,
   actionCreatorsFacade: budgetAccountsActionCreators,
   requestsHandlersFacade: budgetAccountRequests,
   readIsList: true
 });
 
-const budgetSpendingCategoriesWathcer = createCRUDSagaWatcher({
+const budgetSpendingCategoriesWatcher = createCRUDSagaWatcher({
   actionTypes: BUDGET_SPENDING_CATEGORIES_ACTION_TYPES,
   actionCreatorsFacade: budgetSpendingCategoriesActionCreators,
   requestsHandlersFacade: spendingCategoriesRequests,
   readIsList: true
 });
 
+const budgetTransactionWatcher = createCRUDSagaWatcher({
+  actionTypes: BUDGET_TRANSACTIONS_ACTION_TYPES,
+  actionCreatorsFacade: budgetTransactionsActionCreators,
+  requestsHandlersFacade: transactionRequests,
+  readIsList: true
+});
+
 export default function* budgetSagaWatcher() {
   yield all([
-    budgetAccountWathcer(),
+    budgetAccountWatcher(),
     budgetIncomeSourcesWatcher(),
-    budgetSpendingCategoriesWathcer()
+    budgetSpendingCategoriesWatcher(),
+    budgetTransactionWatcher()
   ]);
 }
