@@ -36,7 +36,7 @@ export default function budgetReducer(
         ...state,
         incomes: {
           ...state.incomes,
-          sources: payload,
+          sources: payload.sources,
           loading: false
         }
       };
@@ -45,7 +45,7 @@ export default function budgetReducer(
         ...state,
         incomes: {
           ...state.incomes,
-          sources: [...state.incomes.sources, payload],
+          sources: [...state.incomes.sources, payload.newIncomeSource],
           loading: false
         }
       };
@@ -56,7 +56,7 @@ export default function budgetReducer(
           ...state.incomes,
           sources: state.incomes.sources.map((item) => {
             if (item._id === payload._id) {
-              return payload;
+              return payload.incomeSource;
             }
             return item;
           })

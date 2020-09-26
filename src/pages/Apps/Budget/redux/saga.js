@@ -1,4 +1,6 @@
-import { takeEvery, put } from "redux-saga/effects";
+import { takeEvery, put, all } from "redux-saga/effects";
+
+import { createCRUDSagaWatcher } from "../../../../store/utils/sagaUtils";
 
 import {
   BUDGET_INCOME_SOURCES_ACTION_TYPES,
@@ -14,6 +16,24 @@ import {
   budgetAccountRequests,
   spendingCategoriesRequests
 } from "./requests";
+
+const budgetIncomeSourcesWatcher = createCRUDSagaWatcher({
+  actionTypes: BUDGET_INCOME_SOURCES_ACTION_TYPES,
+  actionCreatorsFacade: budgetIncomesActionCreators,
+  requestsHandlersFacade: incomeSourceRequests
+});
+
+const budgetAccountWathcer = createCRUDSagaWatcher({
+  actionTypes: BUDGET_ACCOUNTS_ACTION_TYPES,
+  actionCreatorsFacade: budgetAccountsActionCreators,
+  requestsHandlersFacade: budgetAccountRequests
+});
+
+const budgetSpendingCategoriesWathcer = createCRUDSagaWatcher({
+  actionTypes: BUDGET_SPENDING_CATEGORIES_ACTION_TYPES,
+  actionCreatorsFacade: budgetSpendingCategoriesActionCreators,
+  requestsHandlersFacade: spendingCategoriesRequests
+});
 
 function* budgetIncomeSourceCreateWorker({ payload, enqueueSnackbar }) {
   const loadingAction = budgetIncomesActionCreators.CREATE.LOADING();
@@ -222,56 +242,61 @@ function* budgetSpendingCategoryDeleteWorker({ payload, enqueueSnackbar }) {
 
 export default function* budgetSagaWatcher() {
   // Income Sources
-  yield takeEvery(
-    BUDGET_INCOME_SOURCES_ACTION_TYPES.CREATE.REQUEST,
-    budgetIncomeSourceCreateWorker
-  );
-  yield takeEvery(
-    BUDGET_INCOME_SOURCES_ACTION_TYPES.READ.REQUEST,
-    budgetIncomeSourcesGetListWorker
-  );
-  yield takeEvery(
-    BUDGET_INCOME_SOURCES_ACTION_TYPES.UPDATE.REQUEST,
-    budgetIncomeSourceUpdateWorker
-  );
-  yield takeEvery(
-    BUDGET_INCOME_SOURCES_ACTION_TYPES.DELETE.REQUEST,
-    budgetIncomeSourceDeleteWorker
-  );
+  // yield takeEvery(
+  //   BUDGET_INCOME_SOURCES_ACTION_TYPES.CREATE.REQUEST,
+  //   budgetIncomeSourceCreateWorker
+  // );
+  // yield takeEvery(
+  //   BUDGET_INCOME_SOURCES_ACTION_TYPES.READ.REQUEST,
+  //   budgetIncomeSourcesGetListWorker
+  // );
+  // yield takeEvery(
+  //   BUDGET_INCOME_SOURCES_ACTION_TYPES.UPDATE.REQUEST,
+  //   budgetIncomeSourceUpdateWorker
+  // );
+  // yield takeEvery(
+  //   BUDGET_INCOME_SOURCES_ACTION_TYPES.DELETE.REQUEST,
+  //   budgetIncomeSourceDeleteWorker
+  // );
 
-  // Accounts
-  yield takeEvery(
-    BUDGET_ACCOUNTS_ACTION_TYPES.CREATE.REQUEST,
-    budgetAccountCreateWorker
-  );
-  yield takeEvery(
-    BUDGET_ACCOUNTS_ACTION_TYPES.READ.REQUEST,
-    budgetAccountGetListWorker
-  );
-  yield takeEvery(
-    BUDGET_ACCOUNTS_ACTION_TYPES.UPDATE.REQUEST,
-    budgetAccountUpdateWorker
-  );
-  yield takeEvery(
-    BUDGET_ACCOUNTS_ACTION_TYPES.DELETE.REQUEST,
-    budgetAccountDeleteWorker
-  );
+  // // Accounts
+  // yield takeEvery(
+  //   BUDGET_ACCOUNTS_ACTION_TYPES.CREATE.REQUEST,
+  //   budgetAccountCreateWorker
+  // );
+  // yield takeEvery(
+  //   BUDGET_ACCOUNTS_ACTION_TYPES.READ.REQUEST,
+  //   budgetAccountGetListWorker
+  // );
+  // yield takeEvery(
+  //   BUDGET_ACCOUNTS_ACTION_TYPES.UPDATE.REQUEST,
+  //   budgetAccountUpdateWorker
+  // );
+  // yield takeEvery(
+  //   BUDGET_ACCOUNTS_ACTION_TYPES.DELETE.REQUEST,
+  //   budgetAccountDeleteWorker
+  // );
 
-  // Spending Categories
-  yield takeEvery(
-    BUDGET_SPENDING_CATEGORIES_ACTION_TYPES.CREATE.REQUEST,
-    budgetSpendingCategoryCreateWorker
-  );
-  yield takeEvery(
-    BUDGET_SPENDING_CATEGORIES_ACTION_TYPES.READ.REQUEST,
-    budgetSpendingCategoryGetListWorker
-  );
-  yield takeEvery(
-    BUDGET_SPENDING_CATEGORIES_ACTION_TYPES.UPDATE.REQUEST,
-    budgetSpendingCategoryUpdateWorker
-  );
-  yield takeEvery(
-    BUDGET_SPENDING_CATEGORIES_ACTION_TYPES.DELETE.REQUEST,
-    budgetSpendingCategoryDeleteWorker
-  );
+  // // Spending Categories
+  // yield takeEvery(
+  //   BUDGET_SPENDING_CATEGORIES_ACTION_TYPES.CREATE.REQUEST,
+  //   budgetSpendingCategoryCreateWorker
+  // );
+  // yield takeEvery(
+  //   BUDGET_SPENDING_CATEGORIES_ACTION_TYPES.READ.REQUEST,
+  //   budgetSpendingCategoryGetListWorker
+  // );
+  // yield takeEvery(
+  //   BUDGET_SPENDING_CATEGORIES_ACTION_TYPES.UPDATE.REQUEST,
+  //   budgetSpendingCategoryUpdateWorker
+  // );
+  // yield takeEvery(
+  //   BUDGET_SPENDING_CATEGORIES_ACTION_TYPES.DELETE.REQUEST,
+  //   budgetSpendingCategoryDeleteWorker
+  // );
+  yield all([
+    budgetAccountWathcer(),
+    budgetIncomeSourcesWatcher(),
+    budgetSpendingCategoriesWathcer
+  ]);
 }
