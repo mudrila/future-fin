@@ -25,7 +25,7 @@ export default function appSettingsReducer(
     case APP_SETTINGS_ACTION_TYPES.UPDATE.SUCCESS:
       return {
         loading: false,
-        settings: payload
+        settings: payload.appSettings
       };
     case APP_SETTINGS_ACTION_TYPES.READ.ERROR:
     case APP_SETTINGS_ACTION_TYPES.UPDATE.ERROR:

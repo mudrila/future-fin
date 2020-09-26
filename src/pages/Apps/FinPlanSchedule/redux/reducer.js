@@ -25,7 +25,7 @@ export default function finPlanScheduleReducer(
       return {
         ...state,
         loading: false,
-        ...payload
+        ...payload.finPlanSchedule
       };
     case FIN_PLAN_SCHEDULE_ACTION_TYPES.ERROR:
       return {
