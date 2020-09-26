@@ -12,17 +12,21 @@ export default function createFinplanDashboardConfig(t) {
       goals: {
         sections: [
           {
-            name: t("finPlan:form.sections.general.name"),
+            name: t("finPlan:form.goals.sections.general.name"),
             fields: [
               {
                 type: "string",
                 name: "name",
                 required: true,
-                label: t("finPlan:form.sections.general.fields.name.label"),
-                value: t("finPlan:form.sections.general.fields.name.value"),
+                label: t(
+                  "finPlan:form.goals.sections.general.fields.name.label"
+                ),
+                value: t(
+                  "finPlan:form.goals.sections.general.fields.name.value"
+                ),
                 variant: "outlined",
                 helperText: t(
-                  "finPlan:form.sections.general.fields.name.helperText"
+                  "finPlan:form.goals.sections.general.fields.name.helperText"
                 ),
                 fullWidth: true
               },
@@ -31,10 +35,10 @@ export default function createFinplanDashboardConfig(t) {
                 name: "expectedAmount",
                 required: true,
                 label: t(
-                  "finPlan:form.sections.general.fields.expectedAmount.label"
+                  "finPlan:form.goals.sections.general.fields.expectedAmount.label"
                 ),
                 helperText: t(
-                  "finPlan:form.sections.general.fields.expectedAmount.helperText"
+                  "finPlan:form.goals.sections.general.fields.expectedAmount.helperText"
                 ),
                 value: "1000.00",
                 variant: "outlined",

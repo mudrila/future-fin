@@ -55,7 +55,7 @@ export default function budgetReducer(
         incomes: {
           ...state.incomes,
           sources: state.incomes.sources.map((item) => {
-            if (item._id === payload._id) {
+            if (item._id === payload.incomeSource._id) {
               return payload.incomeSource;
             }
             return item;
@@ -78,7 +78,7 @@ export default function budgetReducer(
         ...state,
         accounts: {
           ...state.accounts,
-          items: payload,
+          items: payload.accounts,
           loading: false
         }
       };
@@ -87,7 +87,7 @@ export default function budgetReducer(
         ...state,
         accounts: {
           ...state.accounts,
-          items: [...state.accounts.items, payload],
+          items: [...state.accounts.items, payload.newAccount],
           loading: false
         }
       };
@@ -97,8 +97,8 @@ export default function budgetReducer(
         accounts: {
           ...state.accounts,
           items: state.accounts.items.map((item) => {
-            if (item._id === payload._id) {
-              return payload;
+            if (item._id === payload.account._id) {
+              return payload.account;
             }
             return item;
           })
@@ -120,7 +120,7 @@ export default function budgetReducer(
         ...state,
         spendings: {
           ...state.spendings,
-          categories: payload,
+          categories: payload.spendingCategories,
           loading: false
         }
       };
@@ -129,7 +129,10 @@ export default function budgetReducer(
         ...state,
         spendings: {
           ...state.spendings,
-          categories: [...state.spendings.categories, payload],
+          categories: [
+            ...state.spendings.categories,
+            payload.newSpendingCategory
+          ],
           loading: false
         }
       };
@@ -139,8 +142,8 @@ export default function budgetReducer(
         spendings: {
           ...state.spendings,
           categories: state.spendings.categories.map((item) => {
-            if (item._id === payload._id) {
-              return payload;
+            if (item._id === payload.spendingCategory._id) {
+              return payload.spendingCategory;
             }
             return item;
           })

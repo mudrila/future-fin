@@ -1,10 +1,13 @@
 import { takeLatest, put } from "redux-saga/effects";
 import { CRUD_KEYS } from "../../config";
 
+import { i18n } from "../../i18n";
+
 export function createCRUDSagaWatcher({
   actionTypes,
   actionCreatorsFacade,
-  requestsHandlersFacade
+  requestsHandlersFacade,
+  readIsList
 }) {
   return function* CRUDSagaWatcher() {
     // Create set of CRUD workers
@@ -13,7 +16,8 @@ export function createCRUDSagaWatcher({
       const worker = createBasicRequestWorker({
         actionCreatorsFacade: actionCreatorsFacade[crudKey],
         requestHandler: requestsHandlersFacade[crudKey],
-        crudKey
+        crudKey,
+        readIsList
       });
       workersFacade[crudKey] = worker;
     });
@@ -29,21 +33,22 @@ export function createCRUDSagaWatcher({
 export function createBasicRequestWorker({
   actionCreatorsFacade,
   requestHandler,
-  crudKey
+  crudKey,
+  readIsList
 }) {
-  return function* worker({ payload, enqueueSnackbar, t }) {
+  return function* worker({ payload, enqueueSnackbar }) {
     const loadingAction = actionCreatorsFacade.LOADING();
     yield put(loadingAction);
     try {
       let additionalRequestConfig = {};
-      if (crudKey === CRUD_KEYS.READ) {
+      if (crudKey === "READ" && readIsList) {
         additionalRequestConfig.path = "list";
-      } else {
+      } else if (payload && payload._id) {
         additionalRequestConfig.path = payload._id;
       }
       const data = yield requestHandler(payload, additionalRequestConfig);
       let successAction = actionCreatorsFacade.SUCCESS(data);
-      if (crudKey === CRUD_KEYS.DELETE) {
+      if (crudKey === "DELETE") {
         successAction = actionCreatorsFacade.SUCCESS(payload);
       }
       yield put(successAction);
@@ -54,7 +59,7 @@ export function createBasicRequestWorker({
       if (e.response && e.response.data && e.response.data.error) {
         errorMessage = e.response.data.error;
       }
-      enqueueSnackbar(t(errorMessage), { variant: "error" });
+      enqueueSnackbar(i18n.t(errorMessage), { variant: "error" });
     }
   };
 }

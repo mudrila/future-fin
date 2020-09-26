@@ -32,7 +32,8 @@ export default function useEntityPartCategoryItem({
     handleClose();
   };
   const [{ isDragging }, drag, preview] = useDrag({
-    item: { type: dragItemType, _id },
+    // Not the best solution, but
+    item: { type: dragItemType || "NOT_DRAGGABLE", _id },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging()
     })
@@ -47,7 +48,7 @@ export default function useEntityPartCategoryItem({
   }
 
   const [{ isOver, canDrop }, drop] = useDrop({
-    accept: acceptDropItemTypes,
+    accept: acceptDropItemTypes || [],
     drop: performTransaction,
     canDrop: (draggableItem) => {
       if (draggableItem._id !== _id) {
