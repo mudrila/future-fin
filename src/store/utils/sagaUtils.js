@@ -36,7 +36,7 @@ export function createBasicRequestWorker({
   crudKey,
   readIsList
 }) {
-  return function* worker({ payload, enqueueSnackbar }) {
+  return function* worker({ payload, enqueueSnackbar, successCallback }) {
     const loadingAction = actionCreatorsFacade.LOADING();
     yield put(loadingAction);
     try {
@@ -52,6 +52,7 @@ export function createBasicRequestWorker({
         successAction = actionCreatorsFacade.SUCCESS(payload);
       }
       yield put(successAction);
+      successCallback && successCallback();
     } catch (e) {
       const errorAction = actionCreatorsFacade.ERROR();
       yield put(errorAction);

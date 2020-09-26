@@ -202,7 +202,10 @@ export default function useBudgetDashboard() {
     };
     const newTransactionAction = budgetTransactionsActionCreators.CREATE.REQUEST(
       newTransaction,
-      enqueueSnackbar
+      enqueueSnackbar,
+      // TODO: Research for possible better way to update UI.
+      // Reloading all data sounds not as good solution.
+      loadDashboardInitialData
     );
     dispatch(newTransactionAction);
     handleTransactionModalClose();

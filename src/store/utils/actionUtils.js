@@ -3,11 +3,12 @@ import { CRUD_KEYS } from "../../config";
 const STATE_KEYS = ["REQUEST", "LOADING", "SUCCESS", "ERROR"];
 
 export function makeActionCreator(actionType) {
-  return function actionCreator(payload, enqueueSnackbar) {
+  return function actionCreator(payload, enqueueSnackbar, successCallback) {
     return {
       type: actionType,
       payload,
-      enqueueSnackbar
+      enqueueSnackbar,
+      successCallback
     };
   };
 }
