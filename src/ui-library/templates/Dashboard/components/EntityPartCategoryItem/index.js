@@ -17,6 +17,7 @@ import { allIconsMap } from "../../../../molecules/IconSelector";
 import useEntityPartCategoryItem from "./hooks";
 import { ItemTypes } from "../../config/dnd";
 import DragPreview from "../DragPreview";
+import MobileCard from "./MobileCard";
 
 export default function EntityPartCategoryItem({
   expectedAmount,
@@ -59,11 +60,32 @@ export default function EntityPartCategoryItem({
     onTransactionPerform
   });
   const classes = useStyles({ isMobile });
+  const dropRef = dragItemType !== ItemTypes.INCOME ? drop : null;
+  const dragRef = dragItemType !== ItemTypes.SPENDING ? drag : null;
+  if (isMobile) {
+    return (
+      <MobileCard
+        drop={dropRef}
+        drag={dragRef}
+        Icon={Icon}
+        onClick={handleEdit}
+        t={t}
+        deadline={deadline}
+        amount={amount}
+        name={name}
+        balance={balance}
+        frequency={frequency}
+        currency={currency}
+        expectedAmount={expectedAmount}
+        classes={classes.mobile}
+      />
+    );
+  }
   return (
     <Card
       className={clsx(classes.root, { [classes.dropping]: isOver && canDrop })}
       variant="outlined"
-      ref={dragItemType !== ItemTypes.INCOME ? drop : null}
+      ref={dropRef}
     >
       <CardHeader
         className={classes.cardHeader}
@@ -105,8 +127,7 @@ export default function EntityPartCategoryItem({
           className={clsx(classes.actionIcon, {
             [classes.dragging]: isDragging
           })}
-          ref={dragItemType !== ItemTypes.SPENDING ? drag : null}
-          onClick={isMobile ? handleEdit : null}
+          ref={dragRef}
         >
           <DragPreview connect={preview} isMobile={isMobile} />
           <Icon />
