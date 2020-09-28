@@ -2,9 +2,8 @@ import { Fragment } from "react";
 import PropTypes from "prop-types";
 import { Typography, Divider } from "@material-ui/core";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { TouchBackend } from "react-dnd-touch-backend";
+import { DndProvider } from "react-dnd-multi-backend";
+import { HTML5toTouch } from "./config/dnd";
 
 import { FormDialog } from "../../";
 import EntityPartCategoryItem from "./components/EntityPartCategoryItem";
@@ -51,7 +50,7 @@ export default function Dashboard({
   const isMobile = useMediaQuery("(max-width:768px)");
   const cardClasses = useEntityPartCategoryItemStyles();
   return (
-    <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
+    <DndProvider options={HTML5toTouch}>
       <section className={classes.root}>
         <Typography variant="h4" className={classes.heading} align="center">
           {dashboardTitle}
