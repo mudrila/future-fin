@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: ({ isMobile }) => theme.spacing(isMobile ? 1 : 3),
-    marginTop: ({ isMobile }) => theme.spacing(isMobile ? 1 : 7),
+    marginTop: theme.spacing(7),
     marginLeft: ({ isMobile }) => (isMobile ? 0 : 80)
   }
 }));

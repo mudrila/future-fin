@@ -1,19 +1,19 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-function useStyles() {
+function useStyles({ spacing }) {
   return {
     subHeadingItem: {
-      position: "relative",
-      "&:after": {
-        position: "absolute",
-        width: 2,
-        height: 55,
-        backgroundColor: "grey",
-        content: "' '",
-        display: "block",
-        right: 5,
-        top: 0
-      }
+      borderRight: "1px solid grey",
+      flexWrap: "wrap",
+      flexDirection: "column",
+      justifyContent: "space-between",
+      marginRight: spacing(1),
+      paddingRight: spacing(1)
+    },
+    lastSubHeading: {
+      flexWrap: "wrap",
+      flexDirection: "column",
+      justifyContent: "space-between"
     }
   };
 }

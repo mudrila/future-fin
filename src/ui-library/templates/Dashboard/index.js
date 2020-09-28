@@ -1,18 +1,14 @@
 import { Fragment } from "react";
 import PropTypes from "prop-types";
-import {
-  Typography,
-  Divider,
-  Card,
-  CardHeader,
-  CardContent
-} from "@material-ui/core";
-import Skeleton from "@material-ui/lab/Skeleton";
+import { Typography, Divider } from "@material-ui/core";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { TouchBackend } from "react-dnd-touch-backend";
 
-import { AddButton, FormDialog } from "../../";
+import { FormDialog } from "../../";
 import EntityPartCategoryItem from "./components/EntityPartCategoryItem";
+import AddNewItemCard from "./components/AddNewItemCard";
 
 import useEntityPartCategoryItemStyles from "./components/EntityPartCategoryItem/styles";
 import useStyles from "./styles";
@@ -52,9 +48,10 @@ export default function Dashboard({
     onEdit
   });
   const classes = useStyles();
+  const isMobile = useMediaQuery("(max-width:768px)");
   const cardClasses = useEntityPartCategoryItemStyles();
   return (
-    <DndProvider backend={HTML5Backend}>
+    <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
       <section className={classes.root}>
         <Typography variant="h4" className={classes.heading} align="center">
           {dashboardTitle}
@@ -82,6 +79,7 @@ export default function Dashboard({
                   <Fragment key={item._id}>
                     <EntityPartCategoryItem
                       {...item}
+                      isMobile={isMobile}
                       onTransactionPerform={onTransactionPerform}
                       dragItemType={entityPart.dragItemType}
                       acceptDropItemTypes={entityPart.acceptDropItemTypes}
@@ -115,30 +113,16 @@ export default function Dashboard({
                         itemName: item.name
                       })}
                       sectionsSplitting={true}
+                      additionalActionsContent={isMobile ? "Delete" : null}
                     />
                   </Fragment>
                 );
               })}
-              <Card className={cardClasses.root} variant="outlined">
-                <CardHeader
-                  className={cardClasses.cardHeader}
-                  title={
-                    <Skeleton
-                      variant="text"
-                      className={cardClasses.textHeader}
-                    />
-                  }
-                  action={<Skeleton width={56} height={56} variant="circle" />}
-                />
-                <CardContent className={cardClasses.cardContent}>
-                  <AddButton
-                    onClick={() => handleCreateModalOpen(entityPart.name)}
-                    className={cardClasses.actionIcon}
-                  />
-                  <Skeleton variant="text" />
-                  <Skeleton variant="text" />
-                </CardContent>
-              </Card>
+              <AddNewItemCard
+                isMobile={isMobile}
+                cardClasses={cardClasses}
+                onAddButtonClick={() => handleCreateModalOpen(entityPart.name)}
+              />
               <FormDialog
                 formProps={formsConfig[entityPart.name]}
                 open={createModalsState[entityPart.name].isModalOpen}

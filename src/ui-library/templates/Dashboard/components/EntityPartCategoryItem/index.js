@@ -17,7 +17,6 @@ import { allIconsMap } from "../../../../molecules/IconSelector";
 
 import useEntityPartCategoryItem from "./hooks";
 import { ItemTypes } from "../../config/dnd";
-// import CoinImg from "../../../../../assets/coin.png";
 
 export default function EntityPartCategoryItem({
   expectedAmount,
@@ -33,7 +32,8 @@ export default function EntityPartCategoryItem({
   dragItemType,
   acceptDropItemTypes,
   _id,
-  onTransactionPerform
+  onTransactionPerform,
+  isMobile
 }) {
   const {
     t,
@@ -58,7 +58,7 @@ export default function EntityPartCategoryItem({
     _id,
     onTransactionPerform
   });
-  const classes = useStyles();
+  const classes = useStyles({ isMobile });
   return (
     <Card
       className={clsx(classes.root, { [classes.dropping]: isOver && canDrop })}
@@ -73,28 +73,30 @@ export default function EntityPartCategoryItem({
           className: classes.textHeader
         }}
         action={
-          <SpeedDial
-            ariaLabel="Manage"
-            icon={<allIconsMap.Settings.Icon />}
-            FabProps={{
-              className: classes.settingsIcon
-            }}
-            onClose={handleClose}
-            onOpen={handleOpen}
-            open={open}
-            direction={"down"}
-          >
-            <SpeedDialAction
-              icon={<allIconsMap.Edit.Icon />}
-              tooltipTitle={t("edit")}
-              onClick={handleEdit}
-            />
-            <SpeedDialAction
-              icon={<allIconsMap.Delete.Icon />}
-              tooltipTitle={t("delete")}
-              onClick={handleDelete}
-            />
-          </SpeedDial>
+          !isMobile && (
+            <SpeedDial
+              ariaLabel="Manage"
+              icon={<allIconsMap.Settings.Icon />}
+              FabProps={{
+                className: classes.settingsIcon
+              }}
+              onClose={handleClose}
+              onOpen={handleOpen}
+              open={open}
+              direction={"down"}
+            >
+              <SpeedDialAction
+                icon={<allIconsMap.Edit.Icon />}
+                tooltipTitle={t("edit")}
+                onClick={handleEdit}
+              />
+              <SpeedDialAction
+                icon={<allIconsMap.Delete.Icon />}
+                tooltipTitle={t("delete")}
+                onClick={handleDelete}
+              />
+            </SpeedDial>
+          )
         }
       />
       <CardContent className={classes.cardContent}>
@@ -104,6 +106,7 @@ export default function EntityPartCategoryItem({
             [classes.dragging]: isDragging
           })}
           ref={dragItemType !== ItemTypes.SPENDING ? drag : null}
+          onClick={isMobile ? handleEdit : null}
         >
           <DragPreviewImage connect={preview} src="/static/assets/coin.png" />
           <Icon />
@@ -142,5 +145,6 @@ EntityPartCategoryItem.propTypes = {
   dragItemType: PropTypes.string,
   acceptDropItemTypes: PropTypes.arrayOf(PropTypes.string),
   _id: PropTypes.string.isRequired,
-  onTransactionPerform: PropTypes.func
+  onTransactionPerform: PropTypes.func,
+  isMobile: PropTypes.bool.isRequired
 };

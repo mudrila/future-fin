@@ -50,19 +50,31 @@ function BudgetDashboard() {
         onTransactionPerform={openTransactionModal}
         subHeader={
           <Grid container justify="center">
-            <Grid container item xs={1} className={classes.subHeadingItem}>
+            <Grid
+              container
+              item
+              xs={4}
+              md={1}
+              className={classes.subHeadingItem}
+            >
               <Typography>{t("budget:totalIncome")}</Typography>
               <Typography>
                 {totalIncome} {defaultCurrency}
               </Typography>
             </Grid>
-            <Grid container item xs={1} className={classes.subHeadingItem}>
+            <Grid
+              container
+              item
+              xs={4}
+              md={1}
+              className={classes.subHeadingItem}
+            >
               <Typography>{t("budget:currentBalance")}</Typography>
               <Typography>
                 {currentBalance} {defaultCurrency}
               </Typography>
             </Grid>
-            <Grid item xs={1}>
+            <Grid container item xs={3} md={1} justify="space-between">
               <Typography>{t("budget:totalSpendings")}</Typography>
               <Typography>
                 {totalSpendings} {defaultCurrency}
