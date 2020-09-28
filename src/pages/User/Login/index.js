@@ -1,11 +1,13 @@
 import { Paper, Typography } from "@material-ui/core";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import { Form } from "../../../ui-library";
 import useLogin from "./hooks";
 import useStyles from "./styles";
 
 export default function LoginPage() {
-  const classes = useStyles();
+  const isMobile = useMediaQuery("(max-width:768px)");
+  const classes = useStyles({ isMobile });
   const {
     handleSubmit,
     fields,

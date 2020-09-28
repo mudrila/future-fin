@@ -1,9 +1,9 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export default makeStyles((theme) => ({
+export default makeStyles(({ spacing }) => ({
   root: {
-    padding: theme.spacing(6),
-    marginTop: theme.spacing(10),
+    padding: ({ isMobile }) => (isMobile ? spacing(2) : spacing(6)),
+    marginTop: spacing(10),
     marginLeft: "auto",
     marginRight: "auto"
   }

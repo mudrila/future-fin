@@ -10,6 +10,7 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import { appWithTranslation } from "../src/i18n";
 import { useStore } from "../src/store";
@@ -26,9 +27,9 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
-    marginTop: theme.spacing(7),
-    marginLeft: 80
+    padding: ({ isMobile }) => theme.spacing(isMobile ? 1 : 3),
+    marginTop: ({ isMobile }) => theme.spacing(isMobile ? 1 : 7),
+    marginLeft: ({ isMobile }) => (isMobile ? 0 : 80)
   }
 }));
 
@@ -41,7 +42,8 @@ function App({ Component, pageProps }) {
     }
   }, []);
   const store = useStore(pageProps.initialReduxState);
-  const classes = useStyles();
+  const isMobile = useMediaQuery("(max-width:768px)");
+  const classes = useStyles({ isMobile });
   return (
     <>
       <Head>

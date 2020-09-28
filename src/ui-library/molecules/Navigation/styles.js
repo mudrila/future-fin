@@ -31,7 +31,7 @@ export default makeStyles((theme) => ({
     whiteSpace: "nowrap"
   },
   drawerOpen: {
-    width: drawerWidth,
+    width: ({ isMobile }) => (isMobile ? "100%" : drawerWidth),
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
@@ -75,5 +75,8 @@ export default makeStyles((theme) => ({
   purpleAvatar: {
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500]
+  },
+  mobileDrawerHeader: {
+    paddingLeft: theme.spacing(2)
   }
 }));

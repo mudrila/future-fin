@@ -25,6 +25,7 @@ import {
   AccountCircleRounded,
   SettingsApplicationsRounded
 } from "@material-ui/icons";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import { ICONS_MAP } from "./config";
 
@@ -46,7 +47,8 @@ export default function Navigation() {
     name,
     t
   } = useNavigation();
-  const classes = useStyles();
+  const isMobile = useMediaQuery("(max-width:768px)");
+  const classes = useStyles({ isMobile });
 
   return (
     <>
@@ -73,8 +75,12 @@ export default function Navigation() {
                 </IconButton>
               </Grid>
               <Grid item xs={11} className={classes.headerTextContainer}>
-                <Typography variant="h5" noWrap>
-                  {t("nav:header")}
+                <Typography
+                  variant="h5"
+                  noWrap
+                  className={isMobile ? classes.mobileDrawerHeader : null}
+                >
+                  FutureFin {!isMobile && " | " + t("nav:header")}
                 </Typography>
               </Grid>
             </Grid>
@@ -136,7 +142,7 @@ export default function Navigation() {
         </Toolbar>
       </AppBar>
       <Drawer
-        variant="permanent"
+        variant={isMobile ? "temporary" : "permanent"}
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
           [classes.drawerClose]: !open
@@ -147,6 +153,7 @@ export default function Navigation() {
             [classes.drawerClose]: !open
           })
         }}
+        open={open}
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
@@ -159,7 +166,10 @@ export default function Navigation() {
             const ItemIcon = ICONS_MAP[item.KEY];
             return (
               <Link href={item.PATH} passHref={true} key={item.KEY}>
-                <a className={classes.link}>
+                <a
+                  className={classes.link}
+                  onClick={isMobile && handleDrawerClose}
+                >
                   <Tooltip title={t(item.TR_KEY)}>
                     <ListItem button selected={item.selected}>
                       <ListItemIcon>
