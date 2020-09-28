@@ -33,7 +33,8 @@ export default function createTransactionFormConfig({
         label: t("transactionModal:form.fields.amount.label"),
         placeholder: "1000.00",
         fullWidth: true,
-        variant: "outlined"
+        variant: "outlined",
+        min: 0
       },
       {
         type: "textbox",

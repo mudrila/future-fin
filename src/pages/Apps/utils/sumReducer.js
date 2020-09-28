@@ -42,6 +42,8 @@ function toPrimaryCurrency(
 ) {
   return Math.ceil(
     account[balanceFieldName] *
-      currencyMappings[account.currency][primaryCurrency]
+      (currencyMappings[account.currency]
+        ? currencyMappings[account.currency][primaryCurrency]
+        : 1)
   );
 }
