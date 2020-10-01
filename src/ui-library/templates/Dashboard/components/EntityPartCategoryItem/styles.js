@@ -40,6 +40,14 @@ function useStyles(theme) {
       opacity: 0.5,
       zIndex: 1,
       backgroundColor: "yellow"
+    },
+    mobileButtonWrapper: {
+      display: "flex",
+      flex: "1 0 33%",
+      flexWrap: "wrap",
+      justifyContent: "center",
+      alignItems: "center",
+      height: 150
     }
   };
 }

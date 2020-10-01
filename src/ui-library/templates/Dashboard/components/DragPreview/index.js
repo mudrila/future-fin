@@ -4,16 +4,17 @@ import { DragPreviewImage } from "react-dnd";
 
 export default function DragPreview({ isMobile, preview }) {
   const { display, style } = usePreview();
-  if (!display) {
-    return null;
-  }
-  if (isMobile) {
-    return <img src="/static/assets/coin.png" style={style} />;
+  if (isMobile && display) {
+    return (
+      <div style={style}>
+        <img src="/static/assets/coin.png" />
+      </div>
+    );
   }
   return <DragPreviewImage connect={preview} src="/static/assets/coin.png" />;
 }
 
 DragPreview.propTypes = {
   isMobile: PropTypes.bool.isRequired,
-  preview: PropTypes.any.isRequired
+  preview: PropTypes.func.isRequired
 };

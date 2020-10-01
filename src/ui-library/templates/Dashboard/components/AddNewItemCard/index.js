@@ -11,10 +11,12 @@ export default function AddNewItemCard({
 }) {
   if (isMobile) {
     return (
-      <AddButton
-        onClick={onAddButtonClick}
-        className={cardClasses.actionIcon}
-      />
+      <section className={cardClasses.mobileButtonWrapper}>
+        <AddButton
+          onClick={onAddButtonClick}
+          className={cardClasses.actionIcon}
+        />
+      </section>
     );
   }
   return (
@@ -43,7 +45,8 @@ AddNewItemCard.propTypes = {
     cardContent: PropTypes.string,
     root: PropTypes.string,
     textHeader: PropTypes.string,
-    cardHeader: PropTypes.string
+    cardHeader: PropTypes.string,
+    mobileButtonWrapper: PropTypes.string
   }).isRequired,
   onAddButtonClick: PropTypes.func.isRequired
 };

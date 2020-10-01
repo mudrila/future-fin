@@ -78,7 +78,11 @@ export default function EntityPartCategoryItem({
         currency={currency}
         expectedAmount={expectedAmount}
         classes={classes.mobile}
-      />
+        canDrop={canDrop}
+        isOver={isOver}
+      >
+        <DragPreview preview={preview} isMobile={isMobile} />
+      </MobileCard>
     );
   }
   return (
@@ -129,7 +133,7 @@ export default function EntityPartCategoryItem({
           })}
           ref={dragRef}
         >
-          <DragPreview connect={preview} isMobile={isMobile} />
+          <DragPreview preview={preview} isMobile={isMobile} />
           <Icon />
         </Fab>
         <Typography variant="body1">
