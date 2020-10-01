@@ -1,10 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { red, green } from "@material-ui/core/colors";
 
-function useStyles() {
+function useStyles(theme) {
   return {
     paper: {
-      padding: "6px 16px"
+      padding: "6px 16px",
+      width: 200
     },
     successTile: {
       backgroundColor: green[900]
@@ -20,6 +21,20 @@ function useStyles() {
     },
     heading: {
       width: "100%"
+    },
+    dialogTitle: {
+      display: "flex",
+      justifyContent: "flex-end",
+      alignItems: "flex-end",
+      paddingRight: theme.spacing(3)
+    },
+    closeDialogButton: {
+      width: 40
+    },
+    dialogContent: {
+      marginTop: theme.spacing(7),
+      alignItems: "center",
+      display: "flex"
     }
   };
 }

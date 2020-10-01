@@ -29,6 +29,6 @@ const getFinHealthDataWorker = createBasicRequestWorker({
 });
 
 export default function* finPlanWatcher() {
-  yield all([_finPlanWatcher()]);
   yield takeEvery(FIN_HEALTH_ACTION_TYPES.REQUEST, getFinHealthDataWorker);
+  yield all([_finPlanWatcher()]);
 }

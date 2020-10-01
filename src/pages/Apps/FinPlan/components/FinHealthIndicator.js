@@ -1,5 +1,15 @@
 import { Fragment } from "react";
-import { Paper, Typography } from "@material-ui/core";
+import {
+  Paper,
+  Typography,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  IconButton,
+  AppBar
+} from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import {
   Timeline,
   TimelineItem,
@@ -14,16 +24,24 @@ import PropTypes from "prop-types";
 
 import { useTranslation } from "../../../../i18n";
 import useStyles from "./styles";
+import useFinHealthIndicator from "./hooks";
 
 export default function FinHealthIndicator({ checkPoints }) {
   const { t } = useTranslation();
+  const {
+    modalOpen,
+    modalContent,
+    handleOpen,
+    handleClose
+  } = useFinHealthIndicator();
   const classes = useStyles();
+  const isMobile = useMediaQuery("(max-width:768px)");
   return (
     <Fragment>
       <Typography variant="h4" align="center" className={classes.heading}>
         {t("finHealth:header")}
       </Typography>
-      <Timeline align="alternate">
+      <Timeline align={isMobile ? "right" : "alternate"}>
         {checkPoints
           .sort(function (x, y) {
             // true values first
@@ -31,18 +49,24 @@ export default function FinHealthIndicator({ checkPoints }) {
           })
           .map((point, index) => (
             <TimelineItem key={point.key}>
-              <TimelineOppositeContent>
-                <Typography
-                  variant="body2"
-                  className={
-                    point.achieved ? classes.successText : classes.errorText
-                  }
-                >
-                  {t(`finHealth:${point.key}.name`)}
-                </Typography>
-              </TimelineOppositeContent>
+              {!isMobile && (
+                <TimelineOppositeContent>
+                  <Typography
+                    variant="body2"
+                    className={
+                      point.achieved ? classes.successText : classes.errorText
+                    }
+                  >
+                    {t(`finHealth:${point.key}.name`)}
+                  </Typography>
+                </TimelineOppositeContent>
+              )}
               <TimelineSeparator>
                 <TimelineDot
+                  onClick={() =>
+                    isMobile &&
+                    handleOpen(t(`finHealth:${point.key}.description`))
+                  }
                   className={
                     point.achieved ? classes.successTile : classes.errorTile
                   }
@@ -60,13 +84,33 @@ export default function FinHealthIndicator({ checkPoints }) {
               <TimelineContent>
                 <Paper elevation={3} className={classes.paper}>
                   <Typography variant="h6">
-                    {t(`finHealth:${point.key}.description`)}
+                    {isMobile
+                      ? t(`finHealth:${point.key}.name`)
+                      : t(`finHealth:${point.key}.description`)}
                   </Typography>
                 </Paper>
               </TimelineContent>
             </TimelineItem>
           ))}
       </Timeline>
+      {isMobile && (
+        <Dialog open={modalOpen} onClose={handleClose} fullScreen>
+          <AppBar className={classes.dialogTitle}>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleClose}
+              aria-label="close"
+              className={classes.closeDialogButton}
+            >
+              <CloseIcon />
+            </IconButton>
+          </AppBar>
+          <DialogContent className={classes.dialogContent}>
+            {modalContent}
+          </DialogContent>
+        </Dialog>
+      )}
     </Fragment>
   );
 }
