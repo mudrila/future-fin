@@ -2,9 +2,9 @@ import { combineReducers } from "redux";
 
 import { LOGOUT_ACTION_TYPES } from "../pages/User/redux/actions";
 
-import finPlanReducer from "../pages/Apps/FinPlan/redux/reducer";
-import finPlanScheduleReducer from "../pages/Apps/FinPlanSchedule/redux/reducer";
-import budgetReducer from "../pages/Apps/Budget/redux/reducer";
+import finPlanReducer from "../pages/FinPlan/redux/reducer";
+import finPlanScheduleReducer from "../pages/FinPlanSchedule/redux/reducer";
+import budgetReducer from "../pages/Budget/redux/reducer";
 import userReducer from "../pages/User/redux/reducer";
 import appSettingsReducer from "../pages/Settings/redux/reducer";
 

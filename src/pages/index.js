@@ -1,7 +1,6 @@
-import BudgetDashboard from "./Apps/Budget";
-import AppsDashboard from "./Apps";
-import FinPlanDashboard from "./Apps/FinPlan";
-import FinPlanSchedule from "./Apps/FinPlanSchedule";
+import BudgetDashboard from "./Budget";
+import FinPlanDashboard from "./FinPlan";
+import FinPlanSchedule from "./FinPlanSchedule";
 import HomePage from "./Home";
 import SignUpPage from "./User/SignUp";
 import LoginPage from "./User/Login";
@@ -10,7 +9,6 @@ import SettingsPage from "./Settings";
 
 export {
   BudgetDashboard,
-  AppsDashboard,
   FinPlanDashboard,
   HomePage,
   FinPlanSchedule,

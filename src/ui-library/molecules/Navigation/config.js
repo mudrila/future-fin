@@ -2,7 +2,6 @@ import ROUTES from "../../../config/routes";
 
 import {
   HomeRounded,
-  AppsRounded,
   AccountBalanceWalletRounded,
   MonetizationOnRounded,
   DateRangeRounded,
@@ -12,7 +11,6 @@ import {
 
 export const ICONS_MAP = {
   [ROUTES.PROTECTED_ROUTES.HOME.KEY]: HomeRounded,
-  [ROUTES.PROTECTED_ROUTES.APPS_DASHBOARD.KEY]: AppsRounded,
   [ROUTES.PROTECTED_ROUTES.BUDGET_DASHBOARD.KEY]: AccountBalanceWalletRounded,
   [ROUTES.PROTECTED_ROUTES.FINPLAN_DASHBOARD.KEY]: MonetizationOnRounded,
   [ROUTES.PROTECTED_ROUTES.FINPLAN_SCHEDULE.KEY]: DateRangeRounded,

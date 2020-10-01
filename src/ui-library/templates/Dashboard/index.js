@@ -2,8 +2,6 @@ import { Fragment } from "react";
 import PropTypes from "prop-types";
 import { Typography, Divider, Button } from "@material-ui/core";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { DndProvider } from "react-dnd-multi-backend";
-import { HTML5toTouch } from "./config/dnd";
 
 import { FormDialog } from "../../";
 import EntityPartCategoryItem from "./components/EntityPartCategoryItem";
@@ -50,111 +48,105 @@ export default function Dashboard({
   const isMobile = useMediaQuery("(max-width:768px)");
   const cardClasses = useEntityPartCategoryItemStyles();
   return (
-    <DndProvider options={HTML5toTouch}>
-      <section className={classes.root}>
-        <Typography variant="h4" className={classes.heading} align="center">
-          {dashboardTitle}
-        </Typography>
-        {subHeader}
-        <Divider className={classes.divider} />
-        {childrenPositioning === "top" && (
-          <Fragment>
-            {children}
-            <Divider className={classes.divider} />
-          </Fragment>
-        )}
-        {entityParts.map((entityPart) => (
-          <Fragment key={entityPart.name}>
-            <section className={classes.section}>
-              <Typography
-                variant="h5"
-                className={classes.heading}
-                align="center"
-              >
-                {entityPart.dashboardSectionTitle}
-              </Typography>
-              {entityPart.items.map((item) => {
-                return (
-                  <Fragment key={item._id}>
-                    <EntityPartCategoryItem
-                      {...item}
-                      isMobile={isMobile}
-                      onTransactionPerform={onTransactionPerform}
-                      dragItemType={entityPart.dragItemType}
-                      acceptDropItemTypes={entityPart.acceptDropItemTypes}
-                      onDelete={() =>
-                        handleDeleteCategory({
-                          entityPartName: entityPart.name,
-                          item
-                        })
-                      }
-                      onEdit={() =>
-                        handleEditModalOpen({
-                          entityPartName: entityPart.name,
-                          item
-                        })
-                      }
-                    />
-                    <FormDialog
-                      formProps={mapEntityToEditFormProps({
+    <section className={classes.root}>
+      <Typography variant="h4" className={classes.heading} align="center">
+        {dashboardTitle}
+      </Typography>
+      {subHeader}
+      <Divider className={classes.divider} />
+      {childrenPositioning === "top" && (
+        <Fragment>
+          {children}
+          <Divider className={classes.divider} />
+        </Fragment>
+      )}
+      {entityParts.map((entityPart) => (
+        <Fragment key={entityPart.name}>
+          <section className={classes.section}>
+            <Typography variant="h5" className={classes.heading} align="center">
+              {entityPart.dashboardSectionTitle}
+            </Typography>
+            {entityPart.items.map((item) => {
+              return (
+                <Fragment key={item._id}>
+                  <EntityPartCategoryItem
+                    {...item}
+                    isMobile={isMobile}
+                    onTransactionPerform={onTransactionPerform}
+                    dragItemType={entityPart.dragItemType}
+                    acceptDropItemTypes={entityPart.acceptDropItemTypes}
+                    onDelete={() =>
+                      handleDeleteCategory({
                         entityPartName: entityPart.name,
                         item
-                      })}
-                      open={editModalsState[item._id]?.isModalOpen}
-                      onClose={() => handleEditModalClose(item)}
-                      onSubmit={(formValues) =>
-                        handleEdit({
-                          entityPartName: entityPart.name,
-                          item: formValues
-                        })
-                      }
-                      title={t(`${entityName}:form.editTitle`, {
-                        itemName: item.name
-                      })}
-                      sectionsSplitting={true}
-                      additionalActionsContent={
-                        isMobile ? (
-                          <Button
-                            onClick={() =>
-                              handleDeleteCategory({
-                                entityPartName: entityPart.name,
-                                item
-                              })
-                            }
-                            variant="contained"
-                            color="secondary"
-                          >
-                            {t("delete")}
-                          </Button>
-                        ) : null
-                      }
-                      fullScreen={isMobile}
-                    />
-                  </Fragment>
-                );
-              })}
-              <AddNewItemCard
-                isMobile={isMobile}
-                cardClasses={cardClasses}
-                onAddButtonClick={() => handleCreateModalOpen(entityPart.name)}
-              />
-              <FormDialog
-                formProps={formsConfig[entityPart.name]}
-                open={createModalsState[entityPart.name].isModalOpen}
-                onClose={() => handleCreateModalClose(entityPart.name)}
-                onSubmit={(formValues) =>
-                  handleSubmit(entityPart.name, formValues)
-                }
-                title={entityPart.modalTitle}
-                sectionsSplitting={true}
-                fullScreen={isMobile}
-              />
-            </section>
-            <Divider className={classes.divider} />
-          </Fragment>
-        ))}
-      </section>
-    </DndProvider>
+                      })
+                    }
+                    onEdit={() =>
+                      handleEditModalOpen({
+                        entityPartName: entityPart.name,
+                        item
+                      })
+                    }
+                  />
+                  <FormDialog
+                    formProps={mapEntityToEditFormProps({
+                      entityPartName: entityPart.name,
+                      item
+                    })}
+                    open={editModalsState[item._id]?.isModalOpen}
+                    onClose={() => handleEditModalClose(item)}
+                    onSubmit={(formValues) =>
+                      handleEdit({
+                        entityPartName: entityPart.name,
+                        item: formValues
+                      })
+                    }
+                    title={t(`${entityName}:form.editTitle`, {
+                      itemName: item.name
+                    })}
+                    sectionsSplitting={true}
+                    additionalActionsContent={
+                      isMobile ? (
+                        <Button
+                          onClick={() =>
+                            handleDeleteCategory({
+                              entityPartName: entityPart.name,
+                              item
+                            })
+                          }
+                          variant="contained"
+                          color="secondary"
+                        >
+                          {t("delete")}
+                        </Button>
+                      ) : null
+                    }
+                    fullScreen={isMobile}
+                  />
+                </Fragment>
+              );
+            })}
+            <AddNewItemCard
+              isMobile={isMobile}
+              cardClasses={cardClasses}
+              onAddButtonClick={() => handleCreateModalOpen(entityPart.name)}
+            />
+            <FormDialog
+              formProps={formsConfig[entityPart.name]}
+              open={createModalsState[entityPart.name].isModalOpen}
+              onClose={() => handleCreateModalClose(entityPart.name)}
+              onSubmit={(formValues) =>
+                handleSubmit(entityPart.name, formValues)
+              }
+              title={entityPart.modalTitle}
+              sectionsSplitting={true}
+              fullScreen={isMobile}
+            />
+          </section>
+          <Divider className={classes.divider} />
+        </Fragment>
+      ))}
+    </section>
   );
 }
 

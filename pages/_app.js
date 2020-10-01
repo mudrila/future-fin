@@ -5,6 +5,7 @@ import Head from "next/head";
 import { PersistGate } from "redux-persist/integration/react";
 import { SnackbarProvider } from "notistack";
 import Cookies from "js-cookie";
+import { DndProvider } from "react-dnd-multi-backend";
 
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
@@ -12,6 +13,7 @@ import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
+import { HTML5toTouch } from "../src/ui-library/templates/Dashboard/config/dnd";
 import { appWithTranslation } from "../src/i18n";
 import { useStore } from "../src/store";
 import theme from "../src/ui-library/theme";
@@ -28,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: ({ isMobile }) => theme.spacing(isMobile ? 1 : 3),
-    marginTop: theme.spacing(7),
+    marginTop: theme.spacing(8),
     marginLeft: ({ isMobile }) => (isMobile ? 0 : 80)
   }
 }));
@@ -62,7 +64,9 @@ function App({ Component, pageProps }) {
                 <Navigation />
                 <main className={classes.content}>
                   <article className={classes.innerContent}>
-                    <Component {...pageProps} />
+                    <DndProvider options={HTML5toTouch}>
+                      <Component {...pageProps} />
+                    </DndProvider>
                   </article>
                 </main>
               </SnackbarProvider>
