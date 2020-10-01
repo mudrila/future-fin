@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import clsx from "clsx";
 import { Typography, Fab, Tooltip } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { format } from "date-fns";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -73,7 +74,10 @@ export default function MobileCard({
             className={clsx(classes.alignTextCenter, classes.paragraph)}
             align="center"
           >
-            {(+balance || +amount).toFixed(2)} {currency}
+            {deadline
+              ? (+expectedAmount).toFixed(2)
+              : (+balance || +amount).toFixed(2)}{" "}
+            {currency}
           </Typography>
         </Tooltip>
       ) : (

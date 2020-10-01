@@ -13,14 +13,16 @@ function useStyles(theme) {
       display: "flex",
       justifyContent: "center",
       flexWrap: "wrap",
-      paddingLeft: "25%",
-      paddingRight: "35%"
+      paddingLeft: ({ isMobile }) => (isMobile ? 0 : "25%"),
+      paddingRight: ({ isMobile }) => (isMobile ? 0 : "35%"),
+      marginTop: theme.spacing(1)
     },
     numberInput: {
-      width: "30%",
+      width: ({ isMobile }) => (isMobile ? "100%" : "30%"),
       marginLeft: theme.spacing(1),
       marginRight: theme.spacing(1),
-      marginBottom: theme.spacing(2)
+      marginBottom: ({ isMobile }) =>
+        isMobile ? theme.spacing(3) : theme.spacing(2)
     }
   };
 }

@@ -19,8 +19,9 @@ function useStyles(theme) {
       display: "flex",
       justifyContent: "center",
       flexWrap: "wrap",
-      paddingLeft: "25%",
-      paddingRight: "35%"
+      paddingLeft: ({ isMobile }) => (isMobile ? 0 : "25%"),
+      paddingRight: ({ isMobile }) => (isMobile ? 0 : "35%"),
+      marginTop: theme.spacing(1)
     },
     deleteButton: {
       marginTop: theme.spacing(3),

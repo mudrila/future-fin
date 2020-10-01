@@ -1,4 +1,5 @@
 import { Button, CircularProgress } from "@material-ui/core";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import { Form } from "../../../ui-library";
 
@@ -6,7 +7,8 @@ import useStyles from "./styles";
 import useAccountPage from "./hooks";
 
 export default function AccountPage() {
-  const classes = useStyles();
+  const isMobile = useMediaQuery("(max-width:768px)");
+  const classes = useStyles({ isMobile });
   const { formConfig, handleSubmit, user, handleDelete, t } = useAccountPage();
   return (
     <article className={classes.root}>

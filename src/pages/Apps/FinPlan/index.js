@@ -34,7 +34,7 @@ function FinPlanDashboard() {
       dashboardTitle={t("finPlan:dashboardTitle")}
       subHeader={
         <Grid container justify="center">
-          <Grid container item xs={2}>
+          <Grid container item xs={12} md={3}>
             <Typography className={classes.heading} align="center">
               {t("finPlan:totalGoals")}
             </Typography>
