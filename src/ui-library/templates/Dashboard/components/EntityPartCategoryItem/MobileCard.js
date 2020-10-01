@@ -18,6 +18,11 @@ const useStyles = makeStyles(() => ({
   paragraph: {
     width: "100%",
     height: 45
+  },
+  alignTextCenter: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
   }
 }));
 export default function MobileCard({
@@ -52,13 +57,8 @@ export default function MobileCard({
       {expectedAmount ? (
         <Tooltip
           title={
-            <Typography
-              variant="body2"
-              color="inherit"
-              className={classes.paragraph}
-              align="center"
-            >
-              {(+expectedAmount).toFixed(2)} /{" "}
+            <Typography variant="body2" color="inherit" align="center">
+              {(+expectedAmount).toFixed(2)} {currency} /{" "}
               {/* Translated frequency, or formatted deadline. Or nothing */}
               {(frequency &&
                 t(
@@ -70,7 +70,7 @@ export default function MobileCard({
         >
           <Typography
             variant="body2"
-            className={classes.paragraph}
+            className={clsx(classes.alignTextCenter, classes.paragraph)}
             align="center"
           >
             {(+balance || +amount).toFixed(2)} {currency}
@@ -79,7 +79,7 @@ export default function MobileCard({
       ) : (
         <Typography
           variant="body2"
-          className={classes.paragraph}
+          className={clsx(classes.alignTextCenter, classes.paragraph)}
           align="center"
         >
           {(+balance || +amount).toFixed(2)} {currency}

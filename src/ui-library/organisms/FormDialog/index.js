@@ -24,6 +24,8 @@ export default function FormDialog({
   onClose,
   onSubmit,
   sectionsSplitting = false,
+  fullScreen = false,
+  additionalActionsContent = null,
   ...restProps
 }) {
   let fields = formProps.fields;
@@ -35,7 +37,7 @@ export default function FormDialog({
   }
   const { t } = useTranslation();
   const formRef = useRef();
-  const classes = useStyles();
+  const classes = useStyles({ fullScreen });
 
   const translatedButtonText = submitButtonText || t("submit");
   const translatedCancelButtonText = cancelButtonText || t("cancel");
@@ -51,7 +53,12 @@ export default function FormDialog({
 
   return (
     <>
-      <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
+      <Dialog
+        fullScreen={fullScreen}
+        open={open}
+        onClose={onClose}
+        aria-labelledby="form-dialog-title"
+      >
         <DialogTitle id="form-dialog-title">{translatedTitle}</DialogTitle>
         <DialogContent className={classes.dialogRoot}>
           {contentText && <DialogContentText>{contentText}</DialogContentText>}
@@ -69,6 +76,7 @@ export default function FormDialog({
           </Grid>
         </DialogContent>
         <DialogActions>
+          {additionalActionsContent}
           <Button onClick={onClose} color="primary" variant="outlined">
             {translatedCancelButtonText}
           </Button>
@@ -119,5 +127,7 @@ FormDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  sectionsSplitting: PropTypes.bool
+  sectionsSplitting: PropTypes.bool,
+  additionalActionsContent: PropTypes.node,
+  fullScreen: PropTypes.bool
 };

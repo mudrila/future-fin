@@ -6,7 +6,7 @@ export default makeStyles((theme) => ({
     marginBottom: theme.spacing(2)
   },
   dialogRoot: {
-    minWidth: 600
+    minWidth: ({ fullScreen }) => (fullScreen ? 320 : 600)
   },
   detailsContainer: {
     flexWrap: "wrap"

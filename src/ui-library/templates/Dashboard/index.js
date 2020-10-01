@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import PropTypes from "prop-types";
-import { Typography, Divider } from "@material-ui/core";
+import { Typography, Divider, Button } from "@material-ui/core";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { DndProvider } from "react-dnd-multi-backend";
 import { HTML5toTouch } from "./config/dnd";
@@ -112,7 +112,23 @@ export default function Dashboard({
                         itemName: item.name
                       })}
                       sectionsSplitting={true}
-                      additionalActionsContent={isMobile ? "Delete" : null}
+                      additionalActionsContent={
+                        isMobile ? (
+                          <Button
+                            onClick={() =>
+                              handleDeleteCategory({
+                                entityPartName: entityPart.name,
+                                item
+                              })
+                            }
+                            variant="contained"
+                            color="secondary"
+                          >
+                            {t("delete")}
+                          </Button>
+                        ) : null
+                      }
+                      fullScreen={isMobile}
                     />
                   </Fragment>
                 );
@@ -131,6 +147,7 @@ export default function Dashboard({
                 }
                 title={entityPart.modalTitle}
                 sectionsSplitting={true}
+                fullScreen={isMobile}
               />
             </section>
             <Divider className={classes.divider} />

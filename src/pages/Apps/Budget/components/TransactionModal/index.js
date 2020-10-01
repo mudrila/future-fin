@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import { FormDialog } from "../../../../../ui-library";
 
@@ -13,6 +14,7 @@ export default function TransactionModal({
   onClose,
   onSubmit
 }) {
+  const isMobile = useMediaQuery("(max-width:768px)");
   const { formConfig, handleSubmit, t } = useTransactionModal({
     fromValue,
     toValue,
@@ -23,6 +25,7 @@ export default function TransactionModal({
 
   return (
     <FormDialog
+      fullScreen={isMobile}
       formProps={formConfig}
       sectionsSplitting={false}
       onSubmit={handleSubmit}
