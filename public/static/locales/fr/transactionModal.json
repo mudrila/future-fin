@@ -19,6 +19,9 @@
         "label": "Commentaire",
         "helperText": "Commentaire facultatif, qui vous aiderait à mieux comprendre pourquoi vous avez effectué cette transaction.",
         "placeholder": "Obtenez de l'argent sur votre carte de débit pour acheter du thé."
+      },
+      "date": {
+        "label": "Date"
       }
     }
   }

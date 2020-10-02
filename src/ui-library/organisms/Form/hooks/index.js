@@ -97,6 +97,8 @@ export default function useForm({ fields, onSubmit, validateForm }) {
     } else if (field.type === "date") {
       inputProps = {
         ...field,
+        format: "dd.MM.yyyy",
+        type: "",
         onChange: (value) => handleDateTimeChange({ name: field.name, value })
       };
     } else {
@@ -127,7 +129,7 @@ export default function useForm({ fields, onSubmit, validateForm }) {
   function handleDateTimeChange(field) {
     const { name, value } = field;
     const targetField = fields.find((field) => name === field.name);
-    const newFormState = { ...formState, [name]: format(value, "yyyy-MM-dd") };
+    const newFormState = { ...formState, [name]: value };
     setFormState(newFormState);
     targetField.onChange && targetField.onChange(event);
     targetField.validateAfterChange && validateAndRemapFields(newFormState);

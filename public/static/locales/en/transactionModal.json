@@ -19,6 +19,9 @@
         "label": "Comment",
         "helperText": "Optional comment, which then would help you better understand what for you made this transaction.",
         "placeholder": "Get some cash from debit card to buy some tea."
+      },
+      "date": {
+        "label": "Date"
       }
     }
   }

@@ -54,8 +54,9 @@ export default function createTransactionFormConfig({
         variant: "inline",
         autoOk: true,
         required: true,
-        variant: "outlined",
-        fullWidth: true
+        inputVariant: "outlined",
+        fullWidth: true,
+        label: t("transactionModal:form.fields.date.label")
       }
     ]
   };

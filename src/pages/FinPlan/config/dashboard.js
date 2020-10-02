@@ -95,7 +95,9 @@ export default function createFinplanDashboardConfig(t) {
                 disablePast: true,
                 animateYearScrolling: true,
                 variant: "inline",
-                autoOk: true
+                inputVariant: "outlined",
+                autoOk: true,
+                fullWidth: true
               }
             ]
           },
