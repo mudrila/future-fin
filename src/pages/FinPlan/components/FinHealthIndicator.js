@@ -3,7 +3,6 @@ import {
   Paper,
   Typography,
   Dialog,
-  DialogTitle,
   DialogContent,
   IconButton,
   AppBar
@@ -34,8 +33,8 @@ export default function FinHealthIndicator({ checkPoints }) {
     handleOpen,
     handleClose
   } = useFinHealthIndicator();
-  const classes = useStyles();
   const isMobile = useMediaQuery("(max-width:768px)");
+  const classes = useStyles({ isMobile });
   return (
     <Fragment>
       <Typography variant="h4" align="center" className={classes.heading}>
@@ -107,7 +106,9 @@ export default function FinHealthIndicator({ checkPoints }) {
             </IconButton>
           </AppBar>
           <DialogContent className={classes.dialogContent}>
-            {modalContent}
+            <Paper elevation={5} className={classes.dialogInnerContent}>
+              {modalContent}
+            </Paper>
           </DialogContent>
         </Dialog>
       )}

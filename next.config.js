@@ -5,6 +5,8 @@ module.exports = withPWA({
     API_URL: process.env.API_URL
   },
   pwa: {
-    dest: "public"
+    dest: "public",
+    disable: process.env.NODE_ENV === "development",
+    register: true
   }
 });

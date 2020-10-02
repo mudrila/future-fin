@@ -13,7 +13,8 @@ import useStyles from "../../FormDialog/styles";
 export default function FormSections({
   sections,
   getComponentByFieldType,
-  getInputPropsByField
+  getInputPropsByField,
+  formState
 }) {
   const classes = useStyles();
   return sections.map((section, i) => (
@@ -40,6 +41,7 @@ export default function FormSections({
             fields={section.fields}
             getComponentByFieldType={getComponentByFieldType}
             getInputPropsByField={getInputPropsByField}
+            formState={formState}
           />
         </Grid>
       </AccordionDetails>

@@ -3,7 +3,8 @@ import useStyles from "../../FormDialog/styles";
 export default function FormFields({
   fields,
   getComponentByFieldType,
-  getInputPropsByField
+  getInputPropsByField,
+  formState
 }) {
   const classes = useStyles();
   return fields.map((field) => {
@@ -14,6 +15,7 @@ export default function FormFields({
         key={field.name}
         className={classes.inputField}
         {...inputProps}
+        value={formState[field.name]}
       />
     );
   });

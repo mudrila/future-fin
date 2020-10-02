@@ -5,7 +5,6 @@ import FormSections from "./components/Sections";
 import FormFields from "./components/Fields";
 
 import useForm from "./hooks";
-import useStyles from "../FormDialog/styles";
 
 export default function Form({
   fields,
@@ -26,7 +25,8 @@ export default function Form({
     handleSubmit,
     t,
     mappedFields,
-    formValid
+    formValid,
+    formState
   } = useForm({
     fields,
     onSubmit,
@@ -45,12 +45,14 @@ export default function Form({
           sections={sections}
           getComponentByFieldType={getComponentByFieldType}
           getInputPropsByField={getInputPropsByField}
+          formState={formState}
         />
       ) : (
         <FormFields
           fields={mappedFields}
           getComponentByFieldType={getComponentByFieldType}
           getInputPropsByField={getInputPropsByField}
+          formState={formState}
         />
       )}
       {shouldRenderSubmitButton && (

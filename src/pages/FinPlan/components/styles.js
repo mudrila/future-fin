@@ -5,7 +5,7 @@ function useStyles(theme) {
   return {
     paper: {
       padding: "6px 16px",
-      width: 200
+      width: ({ isMobile }) => (isMobile ? 200 : "auto")
     },
     successTile: {
       backgroundColor: green[900]
@@ -35,6 +35,9 @@ function useStyles(theme) {
       marginTop: theme.spacing(7),
       alignItems: "center",
       display: "flex"
+    },
+    dialogInnerContent: {
+      padding: theme.spacing(3)
     }
   };
 }
