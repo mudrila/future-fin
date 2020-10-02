@@ -14,7 +14,7 @@
       "type": "image/png"
     },
     {
-      "src": "/static/assets/icons/icon-512x512.png",
+      "src": "/static/assets/icons/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
