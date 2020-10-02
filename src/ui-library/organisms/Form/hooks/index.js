@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { TextField, Avatar } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { DatePicker } from "@material-ui/pickers";
-import { format } from "date-fns";
 
 import {
   IconSelector,
@@ -68,10 +67,20 @@ export default function useForm({ fields, onSubmit, validateForm }) {
           />
         ),
         getOptionLabel: (option) => {
+          if (!option.label) {
+            const fieldOption = field.options.find(
+              (fieldOption) => fieldOption.value === option
+            );
+            return fieldOption.label;
+          }
           return option.label;
         },
         getOptionSelected: (option, value) => {
-          return option.value === value.value;
+          if (value.value) {
+            return option.value === value.value;
+          } else {
+            return option.value === value;
+          }
         },
         onChange: (event, value) => handleAutocompleteChange(field.name, value),
         value: formState[field.name]

@@ -1,12 +1,14 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export default makeStyles((theme) => ({
+export default makeStyles(({ spacing }) => ({
   inputField: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2)
+    marginTop: spacing(2),
+    marginBottom: spacing(2)
   },
   dialogRoot: {
-    minWidth: ({ fullScreen }) => (fullScreen ? 320 : 600)
+    minWidth: ({ fullScreen }) => (fullScreen ? 320 : 600),
+    padding: ({ fullScreen }) =>
+      fullScreen ? 0 : `${spacing(1)}px ${spacing(3)}px`
   },
   detailsContainer: {
     flexWrap: "wrap"

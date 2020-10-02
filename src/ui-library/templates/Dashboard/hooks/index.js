@@ -106,19 +106,10 @@ export default function useDashbaord({
       sections: initialFormConfig.sections.map((section) => {
         return {
           ...section,
-          fields: section.fields.map((field) => {
-            if (field.type === "autocomplete") {
-              return {
-                ...field,
-                value: { value: item[field.name], label: item[field.name] }
-              };
-            } else {
-              return {
-                ...field,
-                value: item[field.name]
-              };
-            }
-          })
+          fields: section.fields.map((field) => ({
+            ...field,
+            value: item[field.name]
+          }))
         };
       })
     };
