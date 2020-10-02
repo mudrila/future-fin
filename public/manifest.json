@@ -5,7 +5,8 @@
   "background_color": "#002a54",
   "display": "fullscreen",
   "scope": "/",
-  "start_url": "/",
+  "start_url": "/login",
+  "orientation": "landscape",
   "icons": [
     {
       "src": "/static/assets/icons/android-chrome-192x192.png",
